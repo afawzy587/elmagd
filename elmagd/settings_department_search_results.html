@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجد</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+        integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="css/formValidation.css" />
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+
+
+    <!-- navbar -->
+    <nav class="navbar fixed-top navbar-dark main-bg-lgrd navbar-expand-md mainNavbar">
+        <!-- only mob menu items -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img class="mobmenuLogo" src="images/elmagdLogo.png" height=50 />
+        <a class="nav-link dropdown-toggle notificationIcon p-0" href="#" id="noti" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <!-- <i class="fas fa-bell cool-grey mainBell"></i> -->
+            <i class="fas fa-bell cool-grey mobmenuBell"></i>
+    </a>
+    <div class="dropdown-menu notifiDropdown mobileNoti_dp" aria-labelledby="noti">
+        <a class="dropdown-item" href="#">
+            لقد تم .. .. .. .. .. .. .. .. ..
+            <div><small>منذ 3 ساعات</small></div>
+        </a>
+        <a class="dropdown-item" href="#">
+            يوجد اشعار .. ..
+            <div><small>أمس 09:10 AM</small></div>
+        </a>
+    </div>
+        <!-- end only mob menu items-->
+        <div class="collapse navbar-collapse flex-column" id="navbar">
+            <!-- top nav - header -->
+            <div class="container">
+                <ul class="navbar-nav topNav-ul nav w-100">
+                    <a class="navbar-brand brandNP" href="#">
+                        <img src="images/elmagdLogo.png" height=50 />
+                        <p class="mb-0 brand-name">شركة المجد للتوريدات العمومية</p>
+                    </a>
+
+                    <div class="userNav-info mt-2 mt-md-0 top_nav">
+                        <span>
+                            <a class="nav-link dropdown-toggle notificationIcon" href="#" id="noti" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-bell cool-grey mainBell"></i>
+                            </a>
+                            <div class="dropdown-menu notifiDropdown" aria-labelledby="noti">
+                                <a class="dropdown-item" href="#">
+                                    لقد تم .. .. .. .. .. .. .. .. ..
+                                    <div><small>منذ 3 ساعات</small></div>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    يوجد اشعار .. ..
+                                    <div><small>أمس 09:10 AM</small></div>
+                                </a>
+                            </div>
+
+                        </span>
+
+                        <hr>
+                        <span>
+                            <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                أحمد محمد
+                                <small class="userGroup">أدمن</small>
+                            </a>
+
+                            <div class="dropdown-menu userDropdown" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">الصفحة الشخصية</a>
+                                <a class="dropdown-item" href="#">تسجيل الخروج</a>
+                            </div>
+                        </span>
+                        <img src="images/avatar.png" class="rounded-circle userImg">
+                    </div>
+                </ul>
+            </div>
+            <!-- end top nav - header -->
+
+            <!-- Navbar - menu Items -->
+            <div class="gradientBorderDiv"></div>
+            <div class="main-bg-lgrd" style="width: 100%;">
+                <div class="container">
+                    <ul class="navbar-nav nav-ul  nav w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./dashboard.html">
+                                <i class="fas fa-chart-bar"></i>
+                                لوحة العرض
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-suitcase"></i>
+                                عمليات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                                <li class="dropdown-item" href="./transactions_trade.html"><a>عمليات
+                                        تجارية</a></li>
+                                <li class="dropdown-item" href="./transactions_add_internal_expenses.html"><a>مصروفات
+                                        داخلية</a></li>
+                                <li class="dropdown-item" href="./transactions_warehouses_search.html"><a>مخازن </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-friends"></i>
+                                موردين
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown2">
+                                <li class="dropdown-item" href="./suppliers_accounts_search.html"><a>حسابات
+                                        الموردين</a></li>
+                                <li class="dropdown-item" href="./suppliers_pricing_search.html"><a>تسعير سابق</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown3" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-line"></i>
+                                عملاء
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown3">
+                                <li class="dropdown-item" href="./customers_pricing.html"><a>تسعير </a></li>
+                                <li class="dropdown-item" href="./customers_accounts_search.html"><a>حسابات
+                                        العملاء</a></li>
+                                <li class="dropdown-item" href="./customers_pricing_search.html"><a>تسعير سابق</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                خزنة وبنوك
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown4">
+                                <li class="dropdown-item" href="./banks_operations_deposit.html"><a>ايداع
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_operations_withdrawal.html"><a>سحب
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_operations_transfer.html"><a>تحويل
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_credits_Details.html"><a>الاطلاع علي
+                                        الأرصدة </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./reminders.html">
+                                <i class="fas fa-bell"></i>
+                                تذكيرات
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown5" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-pie"></i>
+                                تقارير ومرفقات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown5">
+                                <li class="dropdown-item" href="./reports.html"><a>تقارير</a></li>
+                                <li class="dropdown-item" href="./documents.html"><a>مرفقات</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" id="dropdown6" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                اعدادات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown6">
+                                <li class="dropdown-item dropdown submenutitle">
+                                    <a class="dropdown-toggle" id="dropdown6-1" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">الشركة</a>
+                                    <ul class="dropdown-menu submenu" aria-labelledby="dropdown6-1">
+                                        <li class="dropdown-item" href="./settings_companyData.html"><a>بيانات
+                                                اساسية</a></li>
+                                        <li class="dropdown-item" href="./settings_department.html"><a>الإدارات</a></li>
+                                        <li class="dropdown-item" href="./settings_role.html"><a>الوظائف</a></li>
+                                        <li class="dropdown-item" href="./settings_warehouse.html"><a>مخازن</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item" href="./settings_product.html"><a>المنتجات</a>
+                                </li>
+                                <li class="dropdown-item" href="./settings_supplier.html"><a>الموردين</a>
+                                </li>
+                                <li class="dropdown-item" href="./settings_customer.html"><a>العملاء</a></li>
+                                <li class="dropdown-item" href="./settings_bank.html"><a>البنوك</a></li>
+                                <li class="dropdown-item" href="./settings_user.html"><a>مستخدمي
+                                        النظام</a></li>
+                                <li class="dropdown-item" href="./settings_access.html"><a>صلاحيات
+                                        النظام</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./about.html">
+                                <i class="fas fa-info-circle"></i>
+                                عن النظام
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- end Navbar - menu Items -->
+
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+
+    <!-- page content -->
+    <div class="container mainPageContainer">
+
+        <!-- links row -->
+        <div class="row mt-5">
+            <div class="col">
+                <p class="blueSky">
+                    <i class="fas fa-info-circle"></i>
+                    <a class="blueSky" href="./dashboard.html">الرئيسية </a>
+                    <span class="blueSky"><strong> &gt; </strong> اعدادات </span>
+                    <span class="blueSky"><strong> &gt; </strong> الشركة </span>
+                    <a class="blueSky" href="./settings_department.html"><strong> &gt; </strong> الادارات </a>
+                    <span class="blueSky"><strong> &gt; </strong> نتائج بحث</span>
+                </p>
+            </div>
+        </div>
+        <!-- end links row -->
+
+        <!-- search bar row -->
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-3">
+                <form action="#" id="departmentSearchform">
+                    <div class="form-group has-search">
+                        <label for="">بحث</label>
+                        <button class="btn btn-info form-control-feedback" type="submit"><i class="fas fa-search"></i></button>
+                        <input type="text" class="form-control" placeholder="" id="departmentSearch">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end search bar row -->
+
+        <!-- table row -->
+        <div class="row">
+            <div class="col">
+                <table class="table table-fluid " id="departmentTable">
+                    <thead>
+                        <tr>
+                            <th>الادارة</th>
+                            <th>الوصف</th>
+                            <th style="width: 6rem;">الاجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>المالية</td>
+                            <td>الادارة المالية</td>
+                            <td class="text-center tableActions">
+                                <i class="fas fa-edit mr-3 green"></i>
+                                <i class="fas fa-trash rose"></i>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end table row -->
+    </div>
+    <!-- end page content -->
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
+        integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="js/formValidation.js"></script>
+    <script src="js/framework/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/departmentsearch.js"></script>
+</body>
+
+</html>

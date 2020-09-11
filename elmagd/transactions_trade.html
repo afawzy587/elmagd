@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجد</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+        integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+    <link rel="stylesheet" href="css/formValidation.css" />
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar fixed-top navbar-dark main-bg-lgrd navbar-expand-md mainNavbar">
+        <!-- only mob menu items -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img class="mobmenuLogo" src="images/elmagdLogo.png" height=50 />
+        <a class="nav-link dropdown-toggle notificationIcon p-0" href="#" id="noti" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <!-- <i class="fas fa-bell cool-grey mainBell"></i> -->
+            <i class="fas fa-bell cool-grey mobmenuBell"></i>
+    </a>
+    <div class="dropdown-menu notifiDropdown mobileNoti_dp" aria-labelledby="noti">
+        <a class="dropdown-item" href="#">
+            لقد تم .. .. .. .. .. .. .. .. ..
+            <div><small>منذ 3 ساعات</small></div>
+        </a>
+        <a class="dropdown-item" href="#">
+            يوجد اشعار .. ..
+            <div><small>أمس 09:10 AM</small></div>
+        </a>
+    </div>
+        <!-- end only mob menu items-->
+        <div class="collapse navbar-collapse flex-column" id="navbar">
+            <!-- top nav - header -->
+            <div class="container">
+                <ul class="navbar-nav topNav-ul nav w-100">
+                    <a class="navbar-brand brandNP" href="#">
+                        <img src="images/elmagdLogo.png" height=50 />
+                        <p class="mb-0 brand-name">شركة المجد للتوريدات العمومية</p>
+                    </a>
+
+                    <div class="userNav-info mt-2 mt-md-0 top_nav">
+                        <span>
+                            <a class="nav-link dropdown-toggle notificationIcon" href="#" id="noti" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-bell cool-grey mainBell"></i>
+                            </a>
+                            <div class="dropdown-menu notifiDropdown" aria-labelledby="noti">
+                                <a class="dropdown-item" href="#">
+                                    لقد تم .. .. .. .. .. .. .. .. ..
+                                    <div><small>منذ 3 ساعات</small></div>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    يوجد اشعار .. ..
+                                    <div><small>أمس 09:10 AM</small></div>
+                                </a>
+                            </div>
+
+                        </span>
+
+                        <hr>
+                        <span>
+                            <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                أحمد محمد
+                                <small class="userGroup">أدمن</small>
+                            </a>
+
+                            <div class="dropdown-menu userDropdown" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">الصفحة الشخصية</a>
+                                <a class="dropdown-item" href="#">تسجيل الخروج</a>
+                            </div>
+                        </span>
+                        <img src="images/avatar.png" class="rounded-circle userImg">
+                    </div>
+                </ul>
+            </div>
+            <!-- end top nav - header -->
+
+            <!-- Navbar - menu Items -->
+            <div class="gradientBorderDiv"></div>
+            <div class="main-bg-lgrd" style="width: 100%;">
+                <div class="container">
+                    <ul class="navbar-nav nav-ul  nav w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./dashboard.html">
+                                <i class="fas fa-chart-bar"></i>
+                                لوحة العرض
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-suitcase"></i>
+                                عمليات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                                <li class="dropdown-item" href="./transactions_trade.html"><a>عمليات
+                                        تجارية</a></li>
+                                <li class="dropdown-item" href="./transactions_add_internal_expenses.html"><a>مصروفات
+                                        داخلية</a></li>
+                                <li class="dropdown-item" href="./transactions_warehouses_search.html"><a>مخازن </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-friends"></i>
+                                موردين
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown2">
+                                <li class="dropdown-item" href="./suppliers_accounts_search.html"><a>حسابات
+                                        الموردين</a></li>
+                                <li class="dropdown-item" href="./suppliers_pricing_search.html"><a>تسعير سابق</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown3" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-line"></i>
+                                عملاء
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown3">
+                                <li class="dropdown-item" href="./customers_pricing.html"><a>تسعير </a></li>
+                                <li class="dropdown-item" href="./customers_accounts_search.html"><a>حسابات
+                                        العملاء</a></li>
+                                <li class="dropdown-item" href="./customers_pricing_search.html"><a>تسعير سابق</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                خزنة وبنوك
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown4">
+                                <li class="dropdown-item" href="./banks_operations_deposit.html"><a>ايداع
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_operations_withdrawal.html"><a>سحب
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_operations_transfer.html"><a>تحويل
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_credits_Details.html"><a>الاطلاع علي
+                                        الأرصدة </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./reminders.html">
+                                <i class="fas fa-bell"></i>
+                                تذكيرات
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown5" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-pie"></i>
+                                تقارير ومرفقات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown5">
+                                <li class="dropdown-item" href="./reports.html"><a>تقارير</a></li>
+                                <li class="dropdown-item" href="./documents.html"><a>مرفقات</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown6" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                اعدادات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown6">
+                                <li class="dropdown-item dropdown submenutitle">
+                                    <a class="dropdown-toggle" id="dropdown6-1" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">الشركة</a>
+                                    <ul class="dropdown-menu submenu" aria-labelledby="dropdown6-1">
+                                        <li class="dropdown-item" href="./settings_companyData.html"><a>بيانات
+                                                اساسية</a></li>
+                                        <li class="dropdown-item" href="./settings_department.html"><a>الإدارات</a></li>
+                                        <li class="dropdown-item" href="./settings_role.html"><a>الوظائف</a></li>
+                                        <li class="dropdown-item" href="./settings_warehouse.html"><a>مخازن</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item" href="./settings_product.html"><a>المنتجات</a>
+                                </li>
+                                <li class="dropdown-item" href="./settings_supplier.html"><a>الموردين</a>
+                                </li>
+                                <li class="dropdown-item" href="./settings_customer.html"><a>العملاء</a></li>
+                                <li class="dropdown-item" href="./settings_bank.html"><a>البنوك</a></li>
+                                <li class="dropdown-item" href="./settings_user.html"><a>مستخدمي
+                                        النظام</a></li>
+                                <li class="dropdown-item" href="./settings_access.html"><a>صلاحيات
+                                        النظام</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./about.html">
+                                <i class="fas fa-info-circle"></i>
+                                عن النظام
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- end Navbar - menu Items -->
+
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- page content -->
+    <div class="container mainPageContainer">
+
+        <!-- links row -->
+        <div class="row mt-5">
+            <div class="col">
+                <p class="blueSky">
+                    <i class="fas fa-info-circle"></i>
+                    <a class="blueSky" href="./dashboard.html">الرئيسية </a>
+                    <span class="blueSky"><strong> &gt; </strong> عمليات </span>
+                    <span class="blueSky"><strong> &gt; </strong>عمليات تجارية </span>
+                </p>
+            </div>
+        </div>
+        <!-- end links row -->
+
+        <!-- search bar row -->
+        <div class="row d-flex justify-content-end">
+            <div class="col-md-3">
+                <form id="tradeSearchForm" action="./transactions_trade_searchResults.html">
+                    <div class="form-group has-search">
+                        <label for="">بحث</label>
+                        <button class="btn btn-info form-control-feedback" type="submit"><i
+                                class="fas fa-search"></i></button>
+                        <input type="text" class="form-control" placeholder="اسم المورد أو رقم العملية"
+                            name="tradesearch">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end search bar row -->
+
+        <!-- add/edit department row -->
+        <div class="row centerContent">
+            <div class="col">
+                <form action="#" id="newTransactionForm">
+                    <h5>عملية تجارية جديدة </h5>
+                    <div class="darker-bg centerDarkerDiv formCenterDiv">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">تاريخ العملية</label>
+                                    <div class="col-xs-5">
+                                        <input type="date" name="transactionDate"
+                                            class="form-control transactiondetailsInput">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">المورد</label>
+                                    <div class="col-xs-5">
+                                        <div class="select">
+                                            <select name="supplier" class="form-control transactiondetailsInput">
+                                                <option selected disabled value="">اختر المورد</option>
+                                                <option value="1">المورد1</option>
+                                                <option value="2">المورد2</option>
+                                                <option value="3">المورد3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">العميل</label>
+                                    <div class="col-xs-5">
+                                        <div class="select">
+                                            <select name="customer" class="form-control transactiondetailsInput">
+                                                <option selected disabled value="">اختر العميل</option>
+                                                <option value="1">العميل1</option>
+                                                <option value="2">العميل2</option>
+                                                <option value="3">العميل3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">المنتج</label>
+                                    <div class="col-xs-5">
+                                        <div class="select">
+                                            <select name="product" class="form-control transactiondetailsInput">
+                                                <option selected disabled value="">اختر المنتج</option>
+                                                <option value="1">المنتج1</option>
+                                                <option value="2">المنتج2</option>
+                                                <option value="3">المنتج3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="transactionDetailsRowContainer">
+                            <!-- transaction Details Row -->
+                            <div class="row hideRow" id="transactionDetailsRow">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">رقم الفاتورة(العملية)</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" class="form-control" name="checkNum" readonly
+                                                        placeholder="123456" value="123456">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3">سعر التوريد (ج.م)</label>
+                                                        <div class="col-xs-5">
+                                                            <input type="text" class="form-control" name="checkNum"
+                                                                readonly placeholder="4500" value="4500">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-xs-3">سعر البيع (ج.م)</label>
+                                                        <div class="col-xs-5">
+                                                            <input type="text" class="form-control" name="checkNum"
+                                                                readonly placeholder="5000" value="5000">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">رقم كارت الاستلام</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" class="form-control" name="cardNum"
+                                                        placeholder="123456">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="blueSky">يوجد بونص لهذا <a class="whiteText"
+                                                        href="">العميل</a> , هل تود تطبيقه لهذه
+                                                    العملية؟</label>
+                                                <div class="col-xs-5 ">
+                                                    <div class="col-xs-5  d-flex ">
+                                                        <div class="form-check radioBtn d-inline-block">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="customerBouns" id="customerBouns1" value="1"
+                                                                checked>
+                                                            <label class="form-check-label" for="customerBouns1">
+                                                                نعم
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check radioBtn d-inline-block ml-5">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="customerBouns" id="customerBouns2" value="2">
+                                                            <label class="form-check-label " for="customerBouns2">
+                                                                لا
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="blueSky">يوجد بونص لهذا <a class="whiteText"
+                                                        href="">المورد</a> , هل تود تطبيقه لهذه
+                                                    العملية؟</label>
+                                                <div class="col-xs-5 ">
+                                                    <div class="col-xs-5  d-flex ">
+                                                        <div class="form-check radioBtn d-inline-block">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="supplierBouns" id="supplierBouns1" value="1"
+                                                                checked>
+                                                            <label class="form-check-label" for="supplierBouns1">
+                                                                نعم
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check radioBtn d-inline-block ml-5">
+                                                            <input class="form-check-input" type="radio"
+                                                                name="supplierBouns" id="supplierBouns2" value="2">
+                                                            <label class="form-check-label " for="supplierBouns2">
+                                                                لا
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-start align-items-baseline mb-5 mainInputs">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">الكمية (كجم)</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" class="form-control" name="quantityKgm"
+                                                        placeholder="500">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">(%) الخصم العام</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" class="form-control" name="generalDiscount"
+                                                        placeholder="10">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">الكمية بعد نسبة الخصم العام (كجم)</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" class="form-control" name="finalQuantityKgm"
+                                                        readonly placeholder="5">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quality Items container row  -->
+                                    <div class=" mb-5" id="qualityItemsContainer">
+                                    </div>
+                                    <!-- end Quality Items container row -->
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-7 ">
+                                                        <label class="col-xs-3">وجه كارت الاستلام</label>
+                                                        <div class="upload-btn-wrapper">
+                                                            <button class="btn">اختار ملف التحميل</button>
+                                                            <input type="file" class="form-control uploadimage"
+                                                                name="cardImg1">
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col-md-5 d-flex justify-content-end align-items-end mb-2">
+                                                        <img src="images/img-icon.png" height="50px"
+                                                            class="imagePreviewURL" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-7 ">
+                                                        <label class="col-xs-3">ظهر كارت الاستلام</label>
+                                                        <div class="upload-btn-wrapper">
+                                                            <button class="btn">اختار ملف التحميل</button>
+                                                            <input type="file" class="form-control uploadimage"
+                                                                name="cardImg2">
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col-md-5 d-flex justify-content-end align-items-end mb-2">
+                                                        <img src="images/img-icon.png" height="50px"
+                                                            class="imagePreviewURL" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- transaction Details Row end -->
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-2 mb-5">
+                        <div class="col d-flex justify-content-end">
+                            <span>
+                                <button class="btn roundedBtn mr-2" type="submit">حفظ واضافة</button>
+                                <a href="./transactions_trade_cardesBankup.html">
+                                    <button class="btn roundedBtn" type="button">تجميع العملية</button>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end add/edit department row -->
+    </div>
+    <!-- end page content -->
+
+
+
+
+    <!-- quality item -->
+    <div class="hideRow qualityItemRow" id="qualityItem">
+        <div class="row justify-content-start align-items-baseline">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">الدرجة 1</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="qualityName" readonly placeholder="زيرو"
+                            value="زيرو">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">(%) نسبة الخصم علي المورد</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="discountPercentage" placeholder="5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">قيمة الخصم من المورد (ج.م)</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="discountAmount" placeholder="50000">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-start align-items-baseline">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">(%) نسبة الدرجة</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="checkNum" id="check_number" placeholder="50000">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">(%) نسبة خصم الدرجة</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="qualityDiscountPercentage" placeholder="50000">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">(%) نسبة السماح</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="percentage" placeholder="50000">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">كمية الدرجة (كجم)</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="qualityKgm" readonly placeholder="50000">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-xs-3">كمية السماح (كجم)</label>
+                    <div class="col-xs-5">
+                        <input type="text" class="form-control" name="amount" readonly placeholder="50000">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end quality item -->
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
+        integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
+        crossorigin="anonymous"></script>
+    <script src="js/formValidation.js"></script>
+    <script src="js/framework/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/transactions_trade.js"></script>
+</body>
+
+</html>

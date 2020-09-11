@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المجد</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+        integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+    <link rel="stylesheet" href="css/formValidation.css" />
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar fixed-top navbar-dark main-bg-lgrd navbar-expand-md mainNavbar">
+        <!-- only mob menu items -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img class="mobmenuLogo" src="images/elmagdLogo.png" height=50 />
+        <a class="nav-link dropdown-toggle notificationIcon p-0" href="#" id="noti" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <!-- <i class="fas fa-bell cool-grey mainBell"></i> -->
+            <i class="fas fa-bell cool-grey mobmenuBell"></i>
+        </a>
+        <div class="dropdown-menu notifiDropdown mobileNoti_dp" aria-labelledby="noti">
+            <a class="dropdown-item" href="#">
+                لقد تم .. .. .. .. .. .. .. .. ..
+                <div><small>منذ 3 ساعات</small></div>
+            </a>
+            <a class="dropdown-item" href="#">
+                يوجد اشعار .. ..
+                <div><small>أمس 09:10 AM</small></div>
+            </a>
+        </div>
+        <!-- end only mob menu items-->
+        <div class="collapse navbar-collapse flex-column" id="navbar">
+            <!-- top nav - header -->
+            <div class="container">
+                <ul class="navbar-nav topNav-ul nav w-100">
+                    <a class="navbar-brand brandNP" href="#">
+                        <img src="images/elmagdLogo.png" height=50 />
+                        <p class="mb-0 brand-name">شركة المجد للتوريدات العمومية</p>
+                    </a>
+
+                    <div class="userNav-info mt-2 mt-md-0 top_nav">
+                        <span>
+                            <a class="nav-link dropdown-toggle notificationIcon" href="#" id="noti" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-bell cool-grey mainBell"></i>
+                            </a>
+                            <div class="dropdown-menu notifiDropdown" aria-labelledby="noti">
+                                <a class="dropdown-item" href="#">
+                                    لقد تم .. .. .. .. .. .. .. .. ..
+                                    <div><small>منذ 3 ساعات</small></div>
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    يوجد اشعار .. ..
+                                    <div><small>أمس 09:10 AM</small></div>
+                                </a>
+                            </div>
+
+                        </span>
+
+                        <hr>
+                        <span>
+                            <a class="nav-link dropdown-toggle " id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                أحمد محمد
+                                <small class="userGroup">أدمن</small>
+                            </a>
+
+                            <div class="dropdown-menu userDropdown" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">الصفحة الشخصية</a>
+                                <a class="dropdown-item" href="#">تسجيل الخروج</a>
+                            </div>
+                        </span>
+                        <img src="images/avatar.png" class="rounded-circle userImg">
+                    </div>
+                </ul>
+            </div>
+            <!-- end top nav - header -->
+
+            <!-- Navbar - menu Items -->
+            <div class="gradientBorderDiv"></div>
+            <div class="main-bg-lgrd" style="width: 100%;">
+                <div class="container">
+                    <ul class="navbar-nav nav-ul  nav w-100">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./dashboard.html">
+                                <i class="fas fa-chart-bar"></i>
+                                لوحة العرض
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-suitcase"></i>
+                                عمليات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                                <li class="dropdown-item" href="./transactions_trade.html"><a>عمليات
+                                        تجارية</a></li>
+                                <li class="dropdown-item" href="./transactions_add_internal_expenses.html"><a>مصروفات
+                                        داخلية</a></li>
+                                <li class="dropdown-item" href="./transactions_warehouses_search.html"><a>مخازن </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-friends"></i>
+                                موردين
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown2">
+                                <li class="dropdown-item" href="./suppliers_accounts_search.html"><a>حسابات
+                                        الموردين</a></li>
+                                <li class="dropdown-item" href="./suppliers_pricing_search.html"><a>تسعير سابق</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown3" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-line"></i>
+                                عملاء
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown3">
+                                <li class="dropdown-item" href="./customers_pricing.html"><a>تسعير </a></li>
+                                <li class="dropdown-item" href="./customers_accounts_search.html"><a>حسابات
+                                        العملاء</a></li>
+                                <li class="dropdown-item" href="./customers_pricing_search.html"><a>تسعير سابق</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                خزنة وبنوك
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown4">
+                                <li class="dropdown-item" href="./banks_operations_deposit.html"><a>ايداع
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_operations_withdrawal.html"><a>سحب
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_operations_transfer.html"><a>تحويل
+                                    </a></li>
+                                <li class="dropdown-item" href="./banks_credits_Details.html"><a>الاطلاع علي
+                                        الأرصدة </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./reminders.html">
+                                <i class="fas fa-bell"></i>
+                                تذكيرات
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="dropdown5" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-chart-pie"></i>
+                                تقارير ومرفقات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown5">
+                                <li class="dropdown-item" href="./reports.html"><a>تقارير</a></li>
+                                <li class="dropdown-item" href="./documents.html"><a>مرفقات</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" id="dropdown6" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                                اعدادات
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown6">
+                                <li class="dropdown-item dropdown submenutitle">
+                                    <a class="dropdown-toggle" id="dropdown6-1" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">الشركة</a>
+                                    <ul class="dropdown-menu submenu" aria-labelledby="dropdown6-1">
+                                        <li class="dropdown-item" href="./settings_companyData.html"><a>بيانات
+                                                اساسية</a></li>
+                                        <li class="dropdown-item" href="./settings_department.html"><a>الإدارات</a></li>
+                                        <li class="dropdown-item" href="./settings_role.html"><a>الوظائف</a></li>
+                                        <li class="dropdown-item" href="./settings_warehouse.html"><a>مخازن</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-item" href="./settings_product.html"><a>المنتجات</a>
+                                </li>
+                                <li class="dropdown-item" href="./settings_supplier.html"><a>الموردين</a>
+                                </li>
+                                <li class="dropdown-item" href="./settings_customer.html"><a>العملاء</a></li>
+                                <li class="dropdown-item" href="./settings_bank.html"><a>البنوك</a></li>
+                                <li class="dropdown-item" href="./settings_user.html"><a>مستخدمي
+                                        النظام</a></li>
+                                <li class="dropdown-item" href="./settings_access.html"><a>صلاحيات
+                                        النظام</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="./about.html">
+                                <i class="fas fa-info-circle"></i>
+                                عن النظام
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- end Navbar - menu Items -->
+
+        </div>
+    </nav>
+    <!-- end navbar -->
+
+    <!-- page content -->
+    <div class="container mainPageContainer">
+
+        <!-- links row -->
+        <div class="row mt-5">
+            <div class="col">
+                <p class="blueSky">
+                    <i class="fas fa-info-circle"></i>
+                    <a class="blueSky" href="./dashboard.html">الرئيسية </a>
+                    <span class="blueSky"><strong> &gt; </strong> عمليات </span>
+                    <a class="blueSky" href="./transactions_trade.html"><strong> &gt; </strong> عمليات تجارية </a>
+                    <a class="blueSky" href="./transactions_trade_cardesBankup.html"><strong> &gt; </strong> تجميع كروت
+                        استلام </a>
+                    <span class="blueSky"><strong> &gt; </strong> محاسبة المورد </span>
+                </p>
+            </div>
+        </div>
+        <!-- end links row -->
+
+        <!-- account details row -->
+        <div class="row justify-content-center mb-5">
+            <div class="col">
+
+                <div class="row mt-5  justify-content-center">
+                    <div class="col-md-2 text-center">
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100">الخزنة</h5>
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100 ltrDir"> 80,000</h5>
+                        <!-- INFO ==> add warning class for negative values  -->
+                        <!-- <h5 class="d-inline-block bg_text2 text_height2 warning w-100 ltrDir">-10,125.50</h5> -->
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100">بنك الكويت</h5>
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100 ltrDir"> 10,000</h5>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100">QNB</h5>
+                        <h5 class="d-inline-block bg_text2 text_height2 warning w-100 ltrDir"> - 30,000</h5>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100">الاهلي</h5>
+                        <h5 class="d-inline-block bg_text2 text_height2 warning w-100 ltrDir"> - 60,000</h5>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <h5 class="d-inline-block bg_text2 text_height2 w-100">ABC</h5>
+                        <h5 class="d-inline-block bg_text2 text_height2 warning w-100 ltrDir"> 0</h5>
+                    </div>
+
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col text-center">
+                        <h5>الرصيد المتاح </h5>
+                        <h4 class="d-inline-block bg_text text_height ltrDir"><strong> 120,000</strong></h4>
+                        <!-- INFO ==> add warning class for nagative values  -->
+                        <!-- <h4 class="d-inline-block bg_text2 text_height2 warning ltrDir"> - 10,000</h4>  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end account details row -->
+
+
+        <!-- add/edit department row -->
+        <div class="row centerContent">
+            <div class="col">
+                <form action="" id="supplierPayments">
+                    <div class="darker-bg centerDarkerDiv formCenterDiv">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">تاريخ التجميع</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="bankupDate" value="1/5/2020" class="form-control"
+                                            readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">المورد</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="supplier" value="الشيخ ياسر" class="form-control"
+                                            readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">كود العملية المجمعة</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="tranactionCode" value="ABC123" class="form-control"
+                                            readonly>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row justify-content-end">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3 blueSky">حساب المورد الحالي(ج.م)</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="currentState" value="-5000"
+                                            class="form-control redText ltrDir" id="currentSupplierState" readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3 blueSky">المستحق للمورد عن العملية (ج.م)</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="toSupplier" value="19000.22"
+                                            class="form-control redText ltrDir" readonly>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="customerItems">
+                        <!-- customer Item -->
+                        <div class="darker-bg centerDarkerDiv formCenterDiv mt-3 customerItem" id="customerPaymentItem">
+                            <div class="row align-items-baseline">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">العميل</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="customer" value="بسمة " class="form-control"
+                                                readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المنتج</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="product" value="بامية " class="form-control"
+                                                readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row align-items-baseline">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">صافي كمية (كجم)</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="kgms" value="912.5 " class="form-control"
+                                                        readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">قيمة للمورد</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="paymentTosupplier" value="1500.66 "
+                                                        class="form-control redText" readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">عدد كروت الاستلام</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="cardsNum" value="5" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">من مسلسل </label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="startSerial" value="115"
+                                                        class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">الي مسلسل</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="endSerial" value="120" class="form-control"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">نظام الدفع</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="paymentType" class="form-control transactiondetailsInput">
+                                                    <option disabled value="">اختر نظام الدفع</option>
+                                                    <option selected value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">رقم الشيك</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="date" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">دفع من رصيد</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="addedTocredit" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر البنك</option>
+                                                    <option value="1">QNB</option>
+                                                    <option value="2">NBE</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">نوع الحساب</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="accountType" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر نوع الحساب</option>
+                                                    <option value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">الوعاء</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="accountPart" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر الوعاء</option>
+                                                    <option value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المبلغ (ج.م)</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="amount" class="form-control paidAmount">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">تاريخ استحقاق الشيك</label>
+                                        <div class="col-xs-5">
+                                            <input type="date" name="checkDate" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المتبقي الجزئي</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="remainAmount"
+                                                class="form-control remainAmountInput" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">تاريخ استحقاق المتبقي الجزئي</label>
+                                        <div class="col-xs-5">
+                                            <input type="date" name="remaninAmountDate" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end customer Item -->
+
+                        <!-- customer Item -->
+                        <div class="darker-bg centerDarkerDiv formCenterDiv mt-3 customerItem"
+                            id="customerPaymentItem2">
+                            <div class="row align-items-baseline">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">العميل</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="customer" value="بسمة " class="form-control"
+                                                readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المنتج</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="product" value="بامية " class="form-control"
+                                                readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row align-items-baseline">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">صافي كمية (كجم)</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="kgms" value="912.5 " class="form-control"
+                                                        readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">قيمة للمورد</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="paymentTosupplier" value="1000.66 "
+                                                        class="form-control redText" readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">عدد كروت الاستلام</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="cardsNum" value="5" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">من مسلسل </label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="startSerial" value="115"
+                                                        class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">الي مسلسل</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="endSerial" value="120" class="form-control"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">نظام الدفع</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="paymentType" class="form-control transactiondetailsInput">
+                                                    <option disabled value="">اختر نظام الدفع</option>
+                                                    <option selected value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">رقم الشيك</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="date" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">دفع من رصيد</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="addedTocredit" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر البنك</option>
+                                                    <option value="1">QNB</option>
+                                                    <option value="2">NBE</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">نوع الحساب</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="accountType" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر نوع الحساب</option>
+                                                    <option value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">الوعاء</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="accountPart" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر الوعاء</option>
+                                                    <option value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المبلغ (ج.م)</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="amount" class="form-control paidAmount">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">تاريخ استحقاق الشيك</label>
+                                        <div class="col-xs-5">
+                                            <input type="date" name="checkDate" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المتبقي الجزئي</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="remainAmount"
+                                                class="form-control remainAmountInput" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">تاريخ استحقاق المتبقي الجزئي</label>
+                                        <div class="col-xs-5">
+                                            <input type="date" name="remaninAmountDate" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end customer Item -->
+                        <!-- customer Item -->
+                        <div class="darker-bg centerDarkerDiv formCenterDiv mt-3 customerItem"
+                            id="customerPaymentItem2">
+                            <div class="row align-items-baseline">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">العميل</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="customer" value="بسمة " class="form-control"
+                                                readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المنتج</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="product" value="بامية " class="form-control"
+                                                readonly>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row align-items-baseline">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">صافي كمية (كجم)</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="kgms" value="912.5 " class="form-control"
+                                                        readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">قيمة للمورد</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="paymentTosupplier" value="2000 "
+                                                        class="form-control redText" readonly>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">عدد كروت الاستلام</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="cardsNum" value="5" class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">من مسلسل </label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="startSerial" value="115"
+                                                        class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-xs-3">الي مسلسل</label>
+                                                <div class="col-xs-5">
+                                                    <input type="text" name="endSerial" value="120" class="form-control"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">نظام الدفع</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="paymentType" class="form-control transactiondetailsInput">
+                                                    <option disabled value="">اختر نظام الدفع</option>
+                                                    <option selected value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">رقم الشيك</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="date" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">دفع من رصيد</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="addedTocredit" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر البنك</option>
+                                                    <option value="1">QNB</option>
+                                                    <option value="2">NBE</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">نوع الحساب</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="accountType" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر نوع الحساب</option>
+                                                    <option value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">الوعاء</label>
+                                        <div class="col-xs-5">
+                                            <div class="select">
+                                                <select name="accountPart" class="form-control" disabled>
+                                                    <option selected disabled value="">اختر الوعاء</option>
+                                                    <option value="1">نقدي</option>
+                                                    <option value="2">شيك</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المبلغ (ج.م)</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="amount" class="form-control paidAmount">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">تاريخ استحقاق الشيك</label>
+                                        <div class="col-xs-5">
+                                            <input type="date" name="checkDate" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">المتبقي الجزئي</label>
+                                        <div class="col-xs-5">
+                                            <input type="text" name="remainAmount"
+                                                class="form-control remainAmountInput" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="col-xs-3">تاريخ استحقاق المتبقي الجزئي</label>
+                                        <div class="col-xs-5">
+                                            <input type="date" name="remaninAmountDate" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end customer Item -->
+                    </div>
+
+                    <!-- total row -->
+                    <div class="darker-bg centerDarkerDiv formCenterDiv mt-3">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3 blueSky">اجمالي المدفوع (ج.م)</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="totalPaidAmount" class="form-control greenText"
+                                            id="TotalPaid" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3 blueSky">اجمالي المتبقي عن العملية (ج.م)</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="transactionTotalRemainAmount"
+                                            class="form-control redText ltrDir" id="TotalRemainAmount" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3 blueSky">حساب المورد الحالي (ج.م)</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="currentSupplierAccount"
+                                            class="form-control redText ltrDir" id="FinalCurrentSupplierState" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-start">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">المستلم</label>
+                                    <div class="col-xs-5">
+                                        <input type="text" name="recipient" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-xs-3">تاريخ الاستلام</label>
+                                    <div class="col-xs-5">
+                                        <input type="date" name="receptionDate" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end total row -->
+
+                    <div class="row mt-2 mb-5">
+                        <div class="col d-flex justify-content-between">
+                            <span>
+                                <a href="./suppliers_accounts_payment.html">
+                                    <button class="btn roundedBtn" type="button">حساب المورد</button>
+                                </a>
+                            </span>
+                            <span>
+                                <button class="btn roundedBtn" type="button">طباعة</button>
+                                <button class="btn roundedBtn" type="submit">حفظ</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end add/edit department row -->
+    </div>
+    <!-- end page content -->
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"
+        integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
+        crossorigin="anonymous"></script>
+    <script src="js/formValidation.js"></script>
+    <script src="js/framework/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/transactions_trade_supplier_payments.js"></script>
+</body>
+
+</html>
