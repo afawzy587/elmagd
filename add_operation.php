@@ -51,7 +51,7 @@
 					$_operation['rates_product_rate_percentage']               =       $_POST["rates_product_rate_percentage"];
 					$_operation['rates_product_rate_discount_percentage']      =       $_POST["rates_product_rate_discount_percentage"];
 					$_operation['rates_product_rate_excuse_percentage']        =       $_POST["rates_product_rate_excuse_percentage"];
-					$_operation['rates_product_rate_supply_price']             =       $_POST["rates_product_rate_supply_price"];
+					$_operation['rates_product_rate_supply_price']             =       $_POST["pricing_supply_price"];
 					$_operation['rates_product_rate_excuse_price']             =       $_POST["rates_product_rate_excuse_price"];
 					$_operation['rates_product_rate_quantity']                 =       $_POST["rates_product_rate_quantity"];
 					$_operation['rates_product_rate_excuse_quantity']          =       $_POST["rates_product_rate_excuse_quantity"];

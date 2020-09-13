@@ -79,7 +79,7 @@
 						</a>
 					</li>
 					<?php
-					echo'<li class="nav-item dropdown  '; if($page_name == "add_operation" ||$page_name == "expense" ){echo 'active';}echo'">
+					echo'<li class="nav-item dropdown  '; if($page_name == "add_operation" || $page_name == "operations" || $page_name == "expense" ){echo 'active';}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-suitcase"></i>

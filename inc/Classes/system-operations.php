@@ -7,6 +7,25 @@ class systemOperations
 {
 	var $tableName 	= "operations";
 
+
+	function GetAllOperations($addon,$q)
+	{
+		if($q == "")
+		{
+			$search = "";
+		}else{
+			$search= "WHERE (o.`operations_code` = '".$q."' || s.`suppliers_name` LIKE '%".$q."%')" ;
+		}
+		$query = $GLOBALS['db']->query("SELECT o.* , s.`suppliers_name` FROM `".$this->tableName."` o LEFT JOIN
+		`settings_suppliers` s ON o.`operations_supplier` = s.`suppliers_sn`
+		   ".$search." ORDER BY `operations_sn`  DESC ".$addon);
+        $queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+			return $GLOBALS['db']->fetchlist();
+		}else{return null;}
+	}
+
 	function getOperations_sum($q)
 	{
 		$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `operations_status` != '0' AND `operations_code` = '".$q."' ORDER BY `operations_sn`  DESC ".$addon);
@@ -107,7 +126,7 @@ class systemOperations
 			if($financeTotal > 0)
 			{
 
-				$sitefinance = $GLOBALS['db']->fetchitem($query);
+				$sitefinance = $GLOBALS['db']->fetchitem($finance);
 				$new = $sitefinance['clients_finance_credit'] - $Operations['operations_customer_price'];
 				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
 				`clients_finance_credit`		 =	'".$new."'
@@ -120,6 +139,27 @@ class systemOperations
 				(NULL , '".$Operations['operations_customer']."' , '".$new."',1)
 				");
 			}
+			// *************** add to supllier finance **************//
+			$finance_supplier = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$Operations['operations_supplier']."'  LIMIT 1 ");
+        	$finance_supplierTotal = $GLOBALS['db']->resultcount();
+			if($finance_supplierTotal > 0)
+			{
+
+				$sitefinance_supplier = $GLOBALS['db']->fetchitem($finance_supplier);
+				$new = $sitefinance_supplier['suppliers_finance_credit'] + $Operations['operations_supplier_price'];
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `suppliers_finance` SET
+				`suppliers_finance_credit`		 =	'".$new."'
+				WHERE `suppliers_finance_sn` 		 = 	'".$sitefinance_supplier['suppliers_finance_sn']."' LIMIT 1 ");
+			}else{
+				$new  =  $Operations['operations_supplier_price'];
+				$GLOBALS['db']->query("INSERT INTO `suppliers_finance`
+				(`suppliers_finance_sn`, `suppliers_finance_supplier_id`, `suppliers_finance_credit`, `suppliers_status`)
+				VALUES
+				(NULL , '".$Operations['operations_customer']."' , '".$new."',1)
+				");
+			}
+
+
 			foreach($Operations['rates_product_rate_id'] as $oId => $o)
 			{
 				$rates_product_rate_id = intval($o);
@@ -146,7 +186,6 @@ class systemOperations
 
 		}
 	}
-
 	
 	function get_client_supplier_product($supplier,$client)
 	{
@@ -162,7 +201,6 @@ class systemOperations
             return($GLOBALS['db']->fetchlist());
         }else{return null;}	
 	}
-	
 	
 	function get_client_product_rate($Id,$client)
 	{
@@ -180,6 +218,43 @@ class systemOperations
         {
             return($GLOBALS['db']->fetchlist());
         }else{return null;}
+	}
+
+
+	function deleteOperation($id)
+	{
+		$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `operations_sn` = '".$id."' LIMIT 1 ");
+        $queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+			$siteoperation = $GLOBALS['db']->fetchitem($query);
+			$finance = $GLOBALS['db']->query("SELECT * FROM `clients_finance` WHERE `clients_finance_client_id` = '".$siteoperation['operations_customer']."'  LIMIT 1 ");
+        	$financeTotal = $GLOBALS['db']->resultcount();
+			if($financeTotal > 0)
+			{
+				$sitefinance = $GLOBALS['db']->fetchitem($finance);
+				$new = $sitefinance['clients_finance_credit'] + $siteoperation['operations_customer_price'];
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
+				`clients_finance_credit`		 =	'".$new."'
+				WHERE `clients_finance_sn` 		 = 	'".$sitefinance['clients_finance_sn']."' LIMIT 1 ");
+			}
+			// *************** add to supllier finance **************//
+			$finance_supplier = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$siteoperation['operations_supplier']."'  LIMIT 1 ");
+        	$finance_supplierTotal = $GLOBALS['db']->resultcount();
+			if($finance_supplierTotal > 0)
+			{
+
+				$sitefinance_supplier = $GLOBALS['db']->fetchitem($finance_supplier);
+				$new = $sitefinance_supplier['suppliers_finance_credit'] - $siteoperation['operations_supplier_price'];
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `suppliers_finance` SET
+				`suppliers_finance_credit`		 =	'".$new."'
+				WHERE `suppliers_finance_sn` 		 = 	'".$sitefinance_supplier['suppliers_finance_sn']."' LIMIT 1 ");
+			}
+		}
+		$GLOBALS['db']->query("UPDATE LOW_PRIORITY `".$this->tableName."` SET
+					`operations_status`               =       '0'
+			  WHERE `operations_sn`    	            = 	    '".$id."' LIMIT 1 ");
+		return 1;
 	}
 
 

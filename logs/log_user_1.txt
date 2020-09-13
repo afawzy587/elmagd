@@ -1246,3 +1246,137 @@ July 19, 2020, 11:58 pmLOGS :  User => Ahmed fawzy Id =>1  Module =>products  Pa
 ------------------------------
 [ September 11, 2020, 10:11 am ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
 ------------------------------
+[ September 11, 2020, 10:45 am ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 11, 2020, 10:46 am ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 11, 2020, 10:46 am ] LOGS :  User => Ahmed fawzy Id =>1  Module =>expenses  Page => list
+------------------------------
+[ September 13, 2020, 12:20 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>pricing_search  Page => pricing_search
+------------------------------
+[ September 13, 2020, 12:20 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>pricing_search  Page => pricing_search
+------------------------------
+[ September 13, 2020, 12:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:46 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:49 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:50 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:51 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:52 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 12:58 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:00 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:00 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>expenses  Page => list
+------------------------------
+[ September 13, 2020, 1:25 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 13, 2020, 1:25 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:28 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 13, 2020, 1:37 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:48 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:48 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:48 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:49 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:49 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:51 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 13, 2020, 1:51 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:52 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:52 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:59 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 1:59 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:00 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:00 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:01 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 13, 2020, 2:01 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:02 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:03 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:06 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:07 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 13, 2020, 2:07 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:08 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:08 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:09 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 13, 2020, 2:09 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:09 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:09 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:11 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:11 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:11 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 13, 2020, 2:11 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------

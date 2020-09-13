@@ -24,6 +24,7 @@ $lang['DAY']                       =      "يوم";
 $lang['MONTH']                     =      "شهر";
 $lang['MON_TH']                    =      "الشهر";
 $lang['DELETE']                    =      "حذف العنصر";
+$lang['DELETE_DONE']               =      " تم الحذف ";
 $lang['CHOOSE_MONTH']              =      " اختر الشهر ";
 $lang['YEAR']                      =      "سنة";
 $lang['Jan']                       =      "يناير";
@@ -565,6 +566,12 @@ $lang['OPERATIONS_M_UAN_AFTR']            =    "كمية بعد الخصم ";
 $lang['OPERATIONS_M_EX_PRICE']            =    "سعر السماح";
 $lang['OPERATIONS_M_SU_PRICE']            =    "سعر المورد";
 $lang['OPERATIONS_M_SU_FINANCE']          =    "حساب المورد";
+$lang['OPERATIONS_NUMBER']                =    "رقم العملية";
+$lang['OPERATIONS_CARD_SERIAL']           =    "رقم الكارت";
+$lang['OPERATIONS_SUPLLY_TOTAL']          =    "اجمالى المورد( ج م)";
+$lang['OPERATIONS_LIST']                  =    "قائمة العمليات (نتائج بحث)";
+$lang['OPERATIONS_']                    =    " ";
+$lang['OPERATIONS_']                    =    " ";
 $lang['OPERATIONS_']                    =    " ";
 
 //******************expences**************//
