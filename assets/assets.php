@@ -285,6 +285,17 @@
 		}
 	}
 
+	function get_client_product($id)
+	{
+		$query = $GLOBALS['db']->query(" SELECT * FROM `settings_products` p  LEFT JOIN `settings_clients_products` c  ON p.`products_sn` = c.`clients_products_product_id` WHERE c.`clients_products_sn` = '".$id."' AND p.`products_status` != '0'  LIMIT 1");
+		$queryCount = $GLOBALS['db']->resultcount();
+		if($queryCount == 1)
+		{
+			$_data = $GLOBALS['db']->fetchitem($query);
+			return ($_data['products_name']);
+		}
+	}
+
 	
 
 

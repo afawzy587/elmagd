@@ -570,9 +570,9 @@ $lang['OPERATIONS_NUMBER']                =    "رقم العملية";
 $lang['OPERATIONS_CARD_SERIAL']           =    "رقم الكارت";
 $lang['OPERATIONS_SUPLLY_TOTAL']          =    "اجمالى المورد( ج م)";
 $lang['OPERATIONS_LIST']                  =    "قائمة العمليات (نتائج بحث)";
-$lang['OPERATIONS_']                    =    " ";
-$lang['OPERATIONS_']                    =    " ";
-$lang['OPERATIONS_']                    =    " ";
+$lang['OPERATIONS_']                      =    " ";
+$lang['OPERATIONS_']                      =    " ";
+$lang['OPERATIONS_']                      =    " ";
 
 //******************expences**************//
 $lang['EXPENCE_ADD']                 =  "اضافة مصروف داخلي";
@@ -589,7 +589,28 @@ $lang['EXPENCE_']                 =  "";
 $lang['EXPENCE_']                 =  "";
 $lang['EXPENCE_']                 =  "";
 $lang['EXPENCE_']                 =  "";
-$lang['EXPENCE_']                 =  "";
+
+
+//***************** BANKS ********************//
+$lang['BANKS_AND_SAVES']                 =  "خزنة وبنوك";
+$lang['BANKS_DEPOSIT']                   =  "ايداع";
+$lang['BANKS_PULL']                      =  "سحب";
+$lang['BANKS_TRANSFAR']                  =  "تحويل";
+$lang['BANKS_SHOW_ACCOUNT']              =  "الاطلاع علي الأرصدة";
+$lang['BANKS_ADD_NEW_DEPOSIT']           =  "اضافة ايداع جديد";
+$lang['BANKS_DEPOSIT_DATE']              =  "تاريخ الايداع";
+$lang['BANKS_DEPOSIT_TYPE']              =  "نوع الايداع";
+$lang['BANKS_CUT_VALUE']                 =  "قيمة القطع (ج.م)";
+$lang['BANKS_DEPOSIT_BUY_DATE']          =  "تاريخ السداد";
+$lang['BANKS_DEPOSIT_INVOICES']          =  "الفواتير المطلوب سدادها";
+$lang['BANKS_BENFITS']                   =  "الفوائد";
+$lang['BANKS_TOTAL']                     =  "الاجمالى";
+$lang['BANKS_MONEY_PULL']                =  "المبلغ المسحوب";
+$lang['BANKS_MONEY_DIS']                 =  "المبلغ المخصوم";
+$lang['BANKS_MONEY_REMIN']               =  "المتبقى";
+$lang['NO_INVOICES']                     =  "لا توجد فواتير";
+
+
 
 
 

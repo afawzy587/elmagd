@@ -202,15 +202,14 @@ class systemOperations
         }else{return null;}	
 	}
 	
-	function get_client_product_rate($Id,$client)
+	function get_client_product_rate($Id,$client,$date)
 	{
-
 		$query = $GLOBALS['db']->query("
 		SELECT DISTINCT * FROM `settings_clients_products_rate` r
 		LEFT JOIN `settings_clients_products` c ON c.`clients_products_sn` = r.`clients_products_rate_product_id`
-		INNER JOIN `clients_pricing` cp ON ( cp.`pricing_product_rate` = r.`clients_products_rate_sn` AND (cp.`pricing_end_date` IS NULL || cp.`pricing_end_date` > NOW()))
+		INNER JOIN `clients_pricing` cp ON  cp.`pricing_product_rate` = r.`clients_products_rate_sn` AND (cp.`pricing_start_date` <= '".$date."' AND   (cp.`pricing_end_date` is null OR cp.`pricing_end_date` >= '".$date."'))
 		WHERE `clients_products_product_id` ='".$Id."' AND c.`clients_products_client_id` ='".$client."'
-		AND `clients_products_rate_status` !='0' AND cp.`pricing_end_date` != NOW() ORDER BY  cp.`pricing_sn` DESC 
+		AND `clients_products_rate_status` !='0'  ORDER BY  cp.`pricing_sn` ASC 
 		");
         $queryTotal = $GLOBALS['db']->resultcount();
 		

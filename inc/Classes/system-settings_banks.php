@@ -170,7 +170,7 @@ class systemSettings_banks
 					`banks_finance_open_balance`          =       '".$Settings_banks['banks_credit_open_balance'][$k]."',
 					WHERE `banks_finance_account_type` = 'credit' AND `banks_finance_bank_id`   =  '".$Settings_banks['banks_sn']."' AND `banks_finance_account_id` = '".$v."' LIMIT 1 ");
 				}else{
-					if($Settings_banks['banks_credit_name'] !== "")
+					if($Settings_banks['banks_credit_name'][$k] !== "")
 					{
 						$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_credit`
 						(`banks_credit_sn`, `banks_credit_bank_id`, `banks_credit_name`, 
@@ -185,26 +185,51 @@ class systemSettings_banks
 				}
 				
 			}
-			
-			$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_banks_saving` SET
+			if($Settings_banks['banks_saving_sn'] != 0)
+			{
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_banks_saving` SET
 					`banks_saving_account_number`         =       '".$Settings_banks['banks_saving_account_number']."',
 					`banks_saving_open_balance`           =       '".$Settings_banks['banks_saving_open_balance']."',
 					`banks_saving_duration_of_interest`   =       '".$Settings_banks['banks_saving_duration_of_interest']."',
 					`banks_saving_interest_rate`          =       '".$Settings_banks['banks_saving_interest_rate']."'
-			  WHERE `banks_saving_sn`    	              = 	    '".$Settings_banks['banks_saving_sn']."' LIMIT 1 ");
-			
-			$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
-					`banks_finance_open_balance`          =       '".$Settings_banks['banks_saving_open_balance']."',
-			WHERE `banks_finance_account_type` = 'saving' AND `banks_finance_bank_id`   =  '".$Settings_banks['banks_sn']."' AND `banks_finance_account_id` = '".$Settings_banks['banks_saving_sn']."' LIMIT 1 ");
-			
-			$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_banks_current` SET
+				WHERE `banks_saving_sn`    	              = 	    '".$Settings_banks['banks_saving_sn']."' LIMIT 1 ");
+				
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
+						`banks_finance_open_balance`          =       '".$Settings_banks['banks_saving_open_balance']."',
+				WHERE `banks_finance_account_type` = 'saving' AND `banks_finance_bank_id`   =  '".$Settings_banks['banks_sn']."' AND `banks_finance_account_id` = '".$Settings_banks['banks_saving_sn']."' LIMIT 1 ");
+				
+			}else{
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_saving`
+				(`banks_saving_sn`, `banks_saving_bank_id`, `banks_saving_account_number`, `banks_saving_open_balance`, `banks_saving_interest_rate`, `banks_saving_duration_of_interest`) 
+				VALUES ( NULL ,'".$bank_id."','".$Settings_banks['banks_saving_account_number']."','".$Settings_banks['banks_saving_open_balance']."','".$Settings_banks['banks_saving_interest_rate']."','".$Settings_banks['banks_saving_duration_of_interest']."')");
+				
+				$save_id = $GLOBALS['db']->fetchLastInsertId();
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
+				(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
+				VALUES ( NULL ,'".$bank_id."','saving','".$save_id."','".$Settings_banks['banks_saving_open_balance']."',1)");
+				
+			}
+			if($Settings_banks['banks_saving_sn'] != 0)
+			{
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_banks_current` SET
 					`banks_current_account_number`         =       '".$Settings_banks['banks_current_account_number']."',
 					`banks_current_opening_balance`        =       '".$Settings_banks['banks_current_opening_balance']."'
-			  WHERE `banks_current_sn`    	               = 	    '".$Settings_banks['banks_current_sn']."' LIMIT 1 ");
-			
-			$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
+				WHERE `banks_current_sn`    	               = 	    '".$Settings_banks['banks_current_sn']."' LIMIT 1 ");
+				
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
 					`banks_finance_open_balance`          =       '".$Settings_banks['banks_current_opening_balance']."',
-					WHERE `banks_finance_account_type` = 'current' AND `banks_finance_bank_id`   =  '".$Settings_banks['banks_sn']."' AND `banks_finance_account_id` = '".$Settings_banks['banks_current_sn']."' LIMIT 1 ");
+				WHERE `banks_finance_account_type` = 'current' AND `banks_finance_bank_id`   =  '".$Settings_banks['banks_sn']."' AND `banks_finance_account_id` = '".$Settings_banks['banks_current_sn']."' LIMIT 1 ");
+				
+			}else{
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_current`
+				(`banks_current_sn`, `banks_current_bank_id`, `banks_current_account_number`, `banks_current_opening_balance`) 
+				VALUES ( NULL ,'".$bank_id."','".$Settings_banks['banks_current_account_number']."','".$Settings_banks['banks_current_opening_balance']."')");
+				$current_id = $GLOBALS['db']->fetchLastInsertId();
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
+				(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
+				VALUES ( NULL ,'".$bank_id."','current','".$current_id."','".$Settings_banks['banks_current_opening_balance']."',1)");
+
+			}
 			
 			
 			
@@ -247,27 +272,31 @@ class systemSettings_banks
 					VALUES ( NULL ,'".$bank_id."','credit','".$account_id."','".$Settings_banks['banks_credit_open_balance'][$cId]."',1)");
 				}
 			}
-			
-			$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_current`
-			(`banks_current_sn`, `banks_current_bank_id`, `banks_current_account_number`, `banks_current_opening_balance`) 
-			VALUES ( NULL ,'".$bank_id."','".$Settings_banks['banks_current_account_number']."','".$Settings_banks['banks_current_opening_balance']."')");
-			
-			$current_id = $GLOBALS['db']->fetchLastInsertId();
-			
-			
-			$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
-			(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
-			VALUES ( NULL ,'".$bank_id."','current','".$current_id."','".$Settings_banks['banks_current_opening_balance']."',1)");
-			
-			
-			$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_saving`
-			(`banks_saving_sn`, `banks_saving_bank_id`, `banks_saving_account_number`, `banks_saving_open_balance`, `banks_saving_interest_rate`, `banks_saving_duration_of_interest`) 
-			VALUES ( NULL ,'".$bank_id."','".$Settings_banks['banks_saving_account_number']."','".$Settings_banks['banks_saving_open_balance']."','".$Settings_banks['banks_saving_interest_rate']."','".$Settings_banks['banks_saving_duration_of_interest']."')");
-			
-			$save_id = $GLOBALS['db']->fetchLastInsertId();
-			$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
-			(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
-			VALUES ( NULL ,'".$bank_id."','saving','".$save_id."','".$Settings_banks['banks_saving_open_balance']."',1)");
+			if($Settings_banks['banks_current_account_number'] != "")
+			{
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_current`
+				(`banks_current_sn`, `banks_current_bank_id`, `banks_current_account_number`, `banks_current_opening_balance`) 
+				VALUES ( NULL ,'".$bank_id."','".$Settings_banks['banks_current_account_number']."','".$Settings_banks['banks_current_opening_balance']."')");
+				
+				$current_id = $GLOBALS['db']->fetchLastInsertId();
+				
+				
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
+				(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
+				VALUES ( NULL ,'".$bank_id."','current','".$current_id."','".$Settings_banks['banks_current_opening_balance']."',1)");
+			}
+			if($Settings_banks['banks_saving_account_number'] != "")
+			{
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_banks_saving`
+				(`banks_saving_sn`, `banks_saving_bank_id`, `banks_saving_account_number`, `banks_saving_open_balance`, `banks_saving_interest_rate`, `banks_saving_duration_of_interest`) 
+				VALUES ( NULL ,'".$bank_id."','".$Settings_banks['banks_saving_account_number']."','".$Settings_banks['banks_saving_open_balance']."','".$Settings_banks['banks_saving_interest_rate']."','".$Settings_banks['banks_saving_duration_of_interest']."')");
+				
+				$save_id = $GLOBALS['db']->fetchLastInsertId();
+				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
+				(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
+				VALUES ( NULL ,'".$bank_id."','saving','".$save_id."','".$Settings_banks['banks_saving_open_balance']."',1)");
+				
+			}
 			
 			return 1;
 
@@ -298,6 +327,30 @@ class systemSettings_banks
 		{
 			return($GLOBALS['db']->fetchlist());
 		
+		}else{
+			return null;
+		}
+	}
+
+
+	function Get_Account_data($id)
+	{
+		$query = $GLOBALS['db']->query("SELECT * FROM `settings_banks_credit` WHERE  `banks_credit_sn` = '".$id."' AND `banks_credit_status` != '0' LIMIT 1");
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+			$sitegroup = $GLOBALS['db']->fetchitem($query);
+			$data = array(
+                "banks_credit_repayment_period"			                   => 		   $sitegroup['banks_credit_repayment_period'],
+                "banks_credit_repayment_type"			                   => 		   $sitegroup['banks_credit_repayment_type'],
+				"banks_credit_interest_rate"                               =>          $sitegroup['banks_credit_interest_rate'],
+				"banks_credit_duration_of_interest"                        =>          $sitegroup['banks_credit_duration_of_interest'],
+				"banks_credit_limit_value"                                 =>          $sitegroup['banks_credit_limit_value'],
+				"banks_credit_cutting_ratio"                               =>          $sitegroup['banks_credit_cutting_ratio'],
+				"banks_credit_client"                                      =>          $sitegroup['banks_credit_client'],
+				"banks_credit_product"                                     =>          $sitegroup['banks_credit_product'],
+			);
+			return($data);
 		}else{
 			return null;
 		}

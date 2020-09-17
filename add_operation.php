@@ -176,7 +176,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-3"><?php echo $lang['OPERATIONS_DATE'];?></label>
                                     <div class="col-xs-5">
-                                        <input type="date" name="operations_date" class="form-control transactiondetailsInput">
+                                        <input type="date" id="operations_date" name="operations_date" class="form-control transactiondetailsInput">
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +230,7 @@
                                     <label class="col-xs-3"><?php echo $lang['OPERATIONS_PRODUCT'];?></label>
                                     <div class="col-xs-5">
                                         <div class="select" id="product_client">
-                                            <select name="operations_product" id="operations_product" class="operations_product form-control">
+                                            <select name="operations_product" id="operations_product" class="operations_product form-control transactiondetailsInput">
 												<?php if(isset($_SESSION['supplier']))
 													{
 														$products = $setting_operation->get_client_supplier_product($_SESSION['supplier'],$_SESSION['customer']);
@@ -274,7 +274,7 @@
 													<div class="form-group">
 														<label class="col-xs-3"><?php echo  $lang['OPERATIONS_SUPPLER_PRICE']?></label>
 														<div class="col-xs-5">
-															<input type="text" class="form-control" id="operations_supplier_price" name="operations_supplier_price"
+															<input type="text" class="cullc_price form-control" id="operations_supplier_price" name="operations_supplier_price"
 																readonly placeholder="0" value="">
 														</div>
 													</div>
@@ -302,38 +302,39 @@
 									<div id="bonus">
 										
 									</div>
-									<div class="row justify-content-start align-items-baseline mb-5 " id="mainInputs">
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="col-xs-3"><?php echo  $lang['OPERATIONS_QUANTITY'];?></label>
-											<div class="col-xs-5">
-												<input type="text" class="form-control" id="operations_quantity" name="operations_quantity"
-													placeholder="0">
-											</div>
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="col-xs-3"><?php echo  $lang['OPERATIONS_GENERAL_DIS'];?></label>
-											<div class="col-xs-5">
-												<input type="text" class="form-control" id="operations_general_discount" name="operations_general_discount"
-													placeholder="0">
-											</div>
-										</div>
-									</div>
-									<div class="col-md-2">
-										<div class="form-group">
-											<label class="col-xs-3"><?php echo  $lang['OPERATIONS_QUANTITY_AFTER'];?></label>
-											<div class="col-xs-5">
-												<input type="text" class="form-control" id="operations_net_quantity" name="operations_net_quantity" readonly placeholder="0">
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<!-- Quality Items container row  -->
-								<div class="mb-5" id="qualityItemsContainer">
-                        		</div>
+                                    <div id="calc">
+                                        <div class="row justify-content-start align-items-baseline mb-5 " id="mainInputs">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="col-xs-3"><?php echo  $lang['OPERATIONS_QUANTITY'];?></label>
+                                                    <div class="col-xs-5">
+                                                        <input type="text" class="cullc_price form-control" id="operations_quantity" name="operations_quantity"
+                                                            placeholder="0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="col-xs-3"><?php echo  $lang['OPERATIONS_GENERAL_DIS'];?></label>
+                                                    <div class="col-xs-5">
+                                                        <input type="text" class="form-control" id="operations_general_discount" name="operations_general_discount"
+                                                            placeholder="<?php echo  $lang['OPERATIONS_GENERAL_DIS'];?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label class="col-xs-3"><?php echo  $lang['OPERATIONS_QUANTITY_AFTER'];?></label>
+                                                    <div class="col-xs-5">
+                                                        <input type="text" class="cullc_price form-control" id="operations_net_quantity" name="operations_net_quantity" readonly placeholder="0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Quality Items container row  -->
+                                        <div class="mb-5" id="qualityItemsContainer">
+                                        </div>
+                                    </div>
 								<!-- end Quality Items container row -->
 
 								<div class="row">
@@ -513,28 +514,39 @@ include  './assets/layout/footer.php';?>
                 });
         }
 	});
-	
-	$('#product_client').on('change','select.operations_product',function(){
-        var id     = $(this).val();
-		var client   = $('#operations_customer').val();
-        var page   ="operations_js.php?do=product_rate";
-        if(id && client){
-
-            $.ajax({
-                type:'POST',
-                url:page,
-				dataType: "json",
-                data:{id:id,client:client},
-                success:function(responce)
-                {
-                    $('div#qualityItemsContainer').html(responce['products']);
-                    $('div#bonus').html(responce['bonus']);
-                    rate_count = responce['count'];
-					$('#transactionDetailsRow').removeClass('hideRow');
-                }
-                });
+     
+    $('.transactiondetailsInput').on('change', function () {
+        if ($('.transactiondetailsInput').filter(function () {
+            return $.trim($(this).val()).length == 0
+        }).length == 0) {
+            var id     = $('#operations_product').val();
+            var client = $('#operations_customer').val();
+            var date   = $('#operations_date').val();
+            var page   ="operations_js.php?do=product_rate";
+            if(id && client && date){
+                $.ajax({
+                        type:'POST',
+                        url:page,
+                        dataType: "json",
+                        data:{id:id,client:client,date:date},
+                        success:function(responce)
+                        {
+                            $('div#qualityItemsContainer').html(responce['products']);
+                            $('div#bonus').html(responce['bonus']);
+                            rate_count = responce['count'];
+                            $('#transactionDetailsRow').removeClass('hideRow');
+                        }
+                    });
+            }
+            
         }
-	});
+     });
+      
+	
+
+      
+      
+      
 	$('#supplier_div').on('change','select#supplier',function(){
 		
 		  $('#operations_customer').prop('selectedIndex',0);
@@ -543,14 +555,16 @@ include  './assets/layout/footer.php';?>
 	  });
 	
  	$('#operations_quantity').change(function(){
-	 var operations_quantity             =  $('#operations_quantity').val(); // c
+	 var operations_quantity                =  $('#operations_quantity').val(); // c
         var operations_general_discount     =  $('#operations_general_discount').val(); // d
 		var e                               =  operations_quantity - (operations_quantity * (operations_general_discount / 100));
         $('#operations_net_quantity').val(e); 
         cullc_price();
 	 });
+      
+      
 	$('#operations_general_discount').change(function(){
-		 var operations_quantity             =  $('#operations_quantity').val(); // c
+		 var operations_quantity            =  $('#operations_quantity').val(); // c
         var operations_general_discount     =  $('#operations_general_discount').val(); // d
 		var e                               =  operations_quantity - (operations_quantity * (operations_general_discount / 100));
         $('#operations_net_quantity').val(e); 
@@ -560,6 +574,7 @@ include  './assets/layout/footer.php';?>
 	var supplier_price = 0;
 	var customer_price = 0;
 	var i_actall = 0;
+      
 	$('#qualityItemsContainer').on('keyup','.rate_percentage',function(){ 
 
         var operations_quantity             =  $('#operations_quantity').val(); // c
@@ -624,9 +639,6 @@ include  './assets/layout/footer.php';?>
                                 var pre_quantity     =  (e_new*(rate_percentage_new/100));
                                 console.log("e_new"+e_new);
                             }
-                            
-                                            
-
                              all_quantity    += pre_quantity;
                         }
                         var rate_quantity    = all_quantity;
@@ -684,11 +696,16 @@ include  './assets/layout/footer.php';?>
 			s_price  +=parseInt(supplier_price);
 			c_price  +=parseInt(customer_price);
 		}
-
-
 		$('#operations_supplier_price').val(s_price);
 		$('#operations_customer_price').val(c_price);
-}
+   }
+      $('#calc').keyup(function(){
+          console.log(124);
+          $('#qualityItemsContainer').trigger('keyup');
+          $('.rate_percentage').trigger('change');    
+          cullc_price();
+          
+      });
 	  
 	  
 })

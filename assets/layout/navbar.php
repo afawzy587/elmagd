@@ -138,8 +138,39 @@
 								echo'</ul>
 							</li>';
 						?>
+						
+						
+					<?php
+						echo'<li class="nav-item dropdown '; if($page_name == "deposit"  ){echo 'active';}echo'">
+								<a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-file-invoice-dollar"></i>
+									'.$lang['BANKS_AND_SAVES'].'
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="dropdown4">';
+								if($group['deposit_check']  == 1)
+								{
+								  echo'<li class="dropdown-item" href="./deposits.php"><a>'.$lang['BANKS_DEPOSIT'].' </a></li>';
+								}
+								if($group['pull_money']  == 1)
+								{
+								  echo'<li class="dropdown-item" href="./pull_money.php"><a>'.$lang['BANKS_PULL'].' </a></li>';
+								}
+								if($group['transfar_money']  == 1)
+								{
+								  echo'<li class="dropdown-item" href="./transfar_money"><a >'.$lang['BANKS_TRANSFAR'].'</a></li>';
+								}
+								if($group['show_account']  == 1)
+								{
+								  echo'<li class="dropdown-item" href="./show_account.php"><a >  '.$lang['BANKS_SHOW_ACCOUNT'].'</a></li>';
+								}
+									
+								echo'</ul>
+							</li>';
+						?>	
 					
 					
+<!--
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
@@ -153,10 +184,10 @@
 								</a></li>
 							<li class="dropdown-item" href="./banks_operations_transfer"><a>تحويل
 								</a></li>
-							<li class="dropdown-item" href="./banks_credits_Details"><a>الاطلاع علي
-									الأرصدة </a></li>
+							<li class="dropdown-item" href="./banks_credits_Details"><a>الاطلاع علي الأرصدة </a></li>
 						</ul>
 					</li>
+-->
 					<li class="nav-item">
 						<a class="nav-link" href="./reminders">
 							<i class="fas fa-bell"></i>

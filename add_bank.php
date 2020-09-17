@@ -1217,69 +1217,69 @@ $(document).ready(function () {
                     }
                 }
             },
-            banks_saving_account_number: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_ACCOUNT_NUM'];?>'
-                    },
-                    digits: {
-                        message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-                    }
-                }
-            },
-            banks_saving_open_balance: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: '<?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
-            banks_saving_interest_rate: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo  $lang['SETTINGS_BAN_IN_RATE_INT'];?>  '
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
-            banks_saving_duration_of_interest: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_DUE_INT'];?>'
-                    },
-                    digits: {
-                        message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-                    }
-                }
-            },
-            banks_current_account_number: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_ACCOUNT_NUM'];?>  '
-                    },
-                    digits: {
-                        message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-                    }
-                }
-            },
-            banks_current_opening_balance: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
+            // banks_saving_account_number: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '<?php echo $lang['SETTINGS_BAN_IN_ACCOUNT_NUM'];?>'
+            //         },
+            //         digits: {
+            //             message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+            //         }
+            //     }
+            // },
+            // banks_saving_open_balance: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
+            //         },
+            //         regexp: {
+            //             regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+            //             message: '<?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+            //         }
+            //     }
+            // },
+            // banks_saving_interest_rate: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '<?php echo  $lang['SETTINGS_BAN_IN_RATE_INT'];?>  '
+            //         },
+            //         regexp: {
+            //             regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+            //             message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+            //         }
+            //     }
+            // },
+            // banks_saving_duration_of_interest: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '<?php echo $lang['SETTINGS_BAN_IN_DUE_INT'];?>'
+            //         },
+            //         digits: {
+            //             message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+            //         }
+            //     }
+            // },
+            // banks_current_account_number: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '<?php echo $lang['SETTINGS_BAN_IN_ACCOUNT_NUM'];?>  '
+            //         },
+            //         digits: {
+            //             message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+            //         }
+            //     }
+            // },
+            // banks_current_opening_balance: {
+            //     validators: {
+            //         notEmpty: {
+            //             message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
+            //         },
+            //         regexp: {
+            //             regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+            //             message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+            //         }
+            //     }
+            // },
         }
     }).on('success.form.bv', function (e) {
     })

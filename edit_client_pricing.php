@@ -291,7 +291,7 @@
                                                                 </div>
                                                             </div>';
 													}elseif($u['pricing_rate_type'] == 'extra'){
-														echo'<input class="pricing_rate_type form-check-input" type="text" name="pricing_rate_type" id="qualityDetail_1" value="extra" >';
+														echo'<input class="pricing_rate_type form-check-input" type="text" name="pricing_rate_type" id="qualityDetail_1" value="extra"  hidden>';
 													}else{
                                                         
                                                         echo'<input class="pricing_rate_type form-check-input" type="text" name="pricing_rate_type" id="qualityDetail_1" value="not" hidden>

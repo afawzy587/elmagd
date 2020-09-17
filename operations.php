@@ -9,7 +9,7 @@
     define("inside",true);
 	// get funcamental file which contain config and template files,settings.
 	include("./inc/fundamentals.php");
-	include("./inc/Classes/system-Operations.php");
+	include("./inc/Classes/system-operations.php");
 	$operations = new systemOperations();
 
     if($login->doCheck() == false)

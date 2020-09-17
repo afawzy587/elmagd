@@ -77,9 +77,10 @@
 			case"product_rate":
 				if($_POST)
 				{
-					$id = intval($_POST['id']);
-					$client = intval($_POST['client']);
-					$products = $setting_operation->get_client_product_rate($id,$client);
+					$id       = intval($_POST['id']);
+					$client   = intval($_POST['client']);
+					$date     = sanitize($_POST['date']);
+					$products = $setting_operation->get_client_product_rate($id,$client,$date);
 					if($products)
 					{
 						$count =count($products);
@@ -95,11 +96,11 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["SETTINGS_C_F_M_RATE"].$k.'</label>
 															<div class="col-xs-5">
-																<input type="text" class="form-control" name="qualityName1['.$k.']" readonly="" placeholder="" value="'.$p['clients_products_rate_name'].'" >
-																<input type="number" name="rates_product_rate_id['.$k.']"  value="'.$p['clients_products_rate_sn'].'" hidden>
-																<input type="text" name="pricing_supply_price['.$k.']" id="pricing_supply_price_'.$k.'" value="'.$p['pricing_supply_price'].'" hidden>
-																<input type="text" name="pricing_selling_price['.$k.']" id="pricing_selling_price_'.$k.'" value="'.$p['pricing_selling_price'].'" hidden>
-																<input type="text" name="rates_product_rate_excuse_price['.$k.']" id="pricing_excuse_price_'.$k.'" value="'.$p['pricing_excuse_price'].'" hidden>
+																<input type="text" class="cullc_price form-control" name="qualityName1['.$k.']" readonly="" placeholder="" value="'.$p['clients_products_rate_name'].'" >
+																<input type="number" class="cullc_price" name="rates_product_rate_id['.$k.']"  value="'.$p['clients_products_rate_sn'].'" hidden>
+																<input type="text" class="cullc_price" name="pricing_supply_price['.$k.']" id="pricing_supply_price_'.$k.'" value="'.$p['pricing_supply_price'].'" hidden>
+																<input type="text" class="cullc_price" name="pricing_selling_price['.$k.']" id="pricing_selling_price_'.$k.'" value="'.$p['pricing_selling_price'].'" hidden>
+																<input type="text" class="cullc_price" name="rates_product_rate_excuse_price['.$k.']" id="pricing_excuse_price_'.$k.'" value="'.$p['pricing_excuse_price'].'" hidden>
 															</div>
 														</div>
 													</div>
@@ -107,7 +108,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_RATE_DES_SUPPLIER"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="form-control" name="rates_supplier_discount_percentage['.$k.']" placeholder="0" value="'.$p['pricing_supply_percent'].'" >
+																<input type="text" class="cullc_price form-control" name="rates_supplier_discount_percentage['.$k.']" placeholder="0" value="'.$p['pricing_supply_percent'].'" >
 															</div>
 														</div>
 													</div>
@@ -115,7 +116,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_VALUE_DES_SUPPLIER"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="rate_percentage form-control" name="rates_supplier_discount_value['.$k.']" placeholder="0" value="'.$p['pricing_supply_price'].'" >
+																<input type="text" class="cullc_price rate_percentage form-control" name="rates_supplier_discount_value['.$k.']" placeholder="0" value="'.$p['pricing_supply_price'].'" >
 															</div>
 														</div>
 													</div>
@@ -125,9 +126,9 @@
 															<div class="form-group">
 																<label class="col-xs-3">'.$lang["SETTINGS_C_F_M_PERCENT"].'</label>
 																<div class="col-xs-5">
-																	<input type="text" class="rate_percentage form-control" id="rate_percentage_'.$k.'" name="rates_product_rate_percentage['.$k.']" ';if($p['pricing_rate_type'] == 'amount'){$html_rate .= 'max="'.$p['pricing_rate_percent'].'"  value = "'.$p['pricing_rate_percent'].'" '   ;}elseif($p['pricing_rate_type'] == 'extra'){ $html_rate .= ' value = "'.$p['pricing_rate_percent'].'"';}elseif($p['pricing_rate_type'] == 'not'){ $html_rate .= ' value = "0" hidden';} $html_rate .=' id="check_number" placeholder="0" >
-																	<input type="number" name="pricing_rate_percent['.$k.']" id="pricing_rate_percent_'.$k.'"  value="'.$p['pricing_rate_percent'].'" hidden >
-																	<input type="text" name="pricing_rate_type['.$k.']" id="pricing_rate_type_'.$k.'"  value="'.$p['pricing_rate_type'].'" hidden >
+																	<input type="text" class="cullc_price rate_percentage form-control" id="rate_percentage_'.$k.'" name="rates_product_rate_percentage['.$k.']" ';if($p['pricing_rate_type'] == 'amount'){$html_rate .= 'max="'.$p['pricing_rate_percent'].'"  value = "'.$p['pricing_rate_percent'].'" '   ;}elseif($p['pricing_rate_type'] == 'extra'){ $html_rate .= ' value = "'.$p['pricing_rate_percent'].'"';}elseif($p['pricing_rate_type'] == 'not'){ $html_rate .= ' value = "0" hidden';} $html_rate .=' id="check_number" placeholder="0" >
+																	<input type="number" name="cullc_price pricing_rate_percent['.$k.']" id="pricing_rate_percent_'.$k.'"  value="'.$p['pricing_rate_percent'].'" hidden >
+																	<input type="text" name="cullc_price pricing_rate_type['.$k.']" id="pricing_rate_type_'.$k.'"  value="'.$p['pricing_rate_type'].'" hidden >
 																</div>
 															</div>
 														</div>
@@ -135,7 +136,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_VALUE_PRECENT"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="rate_percentage  form-control" id="discount_percentage_'.$k.'" name="rates_product_rate_discount_percentage['.$k.']" placeholder="0" >
+																<input type="text" class="cullc_price rate_percentage  form-control" id="discount_percentage_'.$k.'" name="rates_product_rate_discount_percentage['.$k.']" placeholder="0" >
 															</div>
 														</div>
 													</div>
@@ -143,8 +144,8 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["SETTINGS_C_F_PERCENT_EXUCE"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="rate_percentage  form-control" id="excuse_percentage_'.$k.'" name="rates_product_rate_excuse_percentage['.$k.']" placeholder="0" ';if($p['pricing_excuse_active'] == 'on'){ $html_rate .= 'value="'.$p['pricing_excuse_percent'].'" max="'.$p['pricing_excuse_percent'].'"';}else{$html_rate .= ' value = "0" hidden';}; $html_rate .='>
-																<input type="text" class="pricing_excuse_price  form-control" id="pricing_excuse_price'.$k.'" name="pricing_excuse_price['.$k.']" placeholder="0" ';if($p['pricing_excuse_active'] == 'on'){ $html_rate .= 'value="'.$p['pricing_excuse_price'].'"  ' ;} $html_rate .='hidden>
+																<input type="text" class="cullc_price rate_percentage  form-control" id="excuse_percentage_'.$k.'" name="rates_product_rate_excuse_percentage['.$k.']" placeholder="0" ';if($p['pricing_excuse_active'] == 'on'){ $html_rate .= 'value="'.$p['pricing_excuse_percent'].'" max="'.$p['pricing_excuse_percent'].'"';}else{$html_rate .= ' value = "0" hidden';}; $html_rate .='>
+																<input type="text" class="cullc_price pricing_excuse_price  form-control" id="pricing_excuse_price'.$k.'" name="pricing_excuse_price['.$k.']" placeholder="0" ';if($p['pricing_excuse_active'] == 'on'){ $html_rate .= 'value="'.$p['pricing_excuse_price'].'"  ' ;} $html_rate .='hidden>
 															</div>
 														</div>
 													</div>
@@ -152,7 +153,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_RATE_QANTITY"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="form-control" id="rate_quantity_'.$k.'" name="rates_product_rate_quantity['.$k.']" readonly="" placeholder="0" >
+																<input type="text" class="cullc_price form-control" id="rate_quantity_'.$k.'" name="rates_product_rate_quantity['.$k.']" readonly="" placeholder="0" >
 															</div>
 														</div>
 													</div>
@@ -160,7 +161,7 @@
 															<div class="form-group">
 																<label class="col-xs-3">'.$lang['OPERATIONS_EXUCE_QANTITY'].'</label>
 																<div class="col-xs-5">
-																	<input type="text" class="form-control" id="excuse_quantity_'.$k.'" name="rates_product_rate_excuse_quantity['.$k.']" readonly="" placeholder="0" >
+																	<input type="text" class="cullc_price form-control" id="excuse_quantity_'.$k.'" name="rates_product_rate_excuse_quantity['.$k.']" readonly="" placeholder="0" >
 																</div>
 															</div>
 													</div>
@@ -178,7 +179,7 @@
 											<div class="col-xs-5 ">
 												<div class="col-xs-5  d-flex ">
 													<div class="form-check radioBtn d-inline-block">
-														<input class="form-check-input" type="radio"
+														<input class="cullc_price form-check-input" type="radio"
 															name="customerBouns" id="customerBouns1" value="yes"
 															checked>
 														<label class="form-check-label" for="customerBouns1">
@@ -186,7 +187,7 @@
 														</label>
 													</div>
 													<div class="form-check radioBtn d-inline-block ml-5">
-														<input class="form-check-input" type="radio"
+														<input class="cullc_price form-check-input" type="radio"
 															name="customerBouns" id="customerBouns2" value="no">
 														<label class="form-check-label " for="customerBouns2">
 															'. $lang['NO'].'
@@ -208,7 +209,7 @@
 										<div class="col-xs-5 ">
 											<div class="col-xs-5  d-flex ">
 												<div class="form-check radioBtn d-inline-block">
-													<input class="form-check-input" type="radio"
+													<input class="cullc_price form-check-input" type="radio"
 														name="supplierBouns" id="supplierBouns1" value="yes"
 														checked>
 													<label class="form-check-label" for="supplierBouns1">
@@ -216,7 +217,7 @@
 													</label>
 												</div>
 												<div class="form-check radioBtn d-inline-block ml-5">
-													<input class="form-check-input" type="radio"
+													<input class="cullc_price form-check-input" type="radio"
 														name="supplierBouns" id="supplierBouns2" value="no">
 													<label class="form-check-label " for="supplierBouns2">
 														'. $lang['NO'].'
