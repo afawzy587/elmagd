@@ -149,14 +149,17 @@ include './assets/layout/header.php';
                         } else {
                             echo '-----';
                         }
-                        echo ' </td>
-                              <td class="text-center tableaprove">';
-                        if ($u['deposits_insert_in'] == "bank" && $u['deposits_type'] != "cash") {
+                        echo
+                            ' </td>
+                              <td class="text-center tableaprove" id="collect_' . $u['deposits_sn'] . '">';
+                        if ($u['deposits_insert_in'] == "bank"  && $u['deposits_type'] != "cash") {
                             if ($u['deposits_collected'] == 1) {
                                 // <i class= "fas fa-money-check-alt"></i>
-                                echo '<i class="fas fa-thumbs-up fa-w-16 fa-2x  text-success" title="' .  _date_format($u['deposits_collected_date']) . '" id="' . $u['deposits_sn'] . '"></i>';
+                                echo '<i class="fas fa-thumbs-up fa-w-16 fa-2x  text-success" title="' .  _date_format($u['deposits_collected_date']) . '" id="collect_' . $u['deposits_sn'] . '"></i>';
                             } else {
-                                echo '<i class="collect far fa-thumbs-down fa-w-16 fa-2x grab text-warning " title="' . $lang['DEPOSITS_COLLECT'] . '" id="' . $u['deposits_sn'] . '"></i>';
+                                echo '<i class="collect far fa-thumbs-down fa-w-16 fa-2x grab text-warning " title="' . $lang['DEPOSITS_COLLECT'] . '" id="collect_' . $u['deposits_sn'] . '"';
+                                echo  $u['deposits_approved'] != "1" ? 'style="display:none;"' : '';
+                                echo '></i>';
                             }
                         } else {
                             echo '-----';
@@ -253,6 +256,50 @@ include './assets/layout/footer.php';
                         var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
                         $('i#approve_' + id).prop('title', date);
                         $('i#approve_' + id).addClass('far fa-check-circle fa-w-16 fa-2x  text-success');
+                        $('i#collect_' + id).css("display", "block");
+
+                    }
+                }
+
+            });
+        }
+    })
+
+
+    $('.collect').click(function() {
+        var id = $(this).attr('id').replace("collect_", "");
+        var page = "bank_js.php?do=collect";
+        if (id) {
+            $.ajax({
+                type: 'POST',
+                url: page,
+                data: {
+                    id: id,
+                },
+                success: function(responce) {
+                    if (responce == 100) {
+                        $("td#collect_" + id).animate({
+                            height: 'auto',
+                            opacity: '0.2'
+                        }, "slow");
+                        $("td#collect_" + id).animate({
+                            width: 'auto',
+                            opacity: '0.9'
+                        }, "slow");
+                        $("td#collect_" + id).animate({
+                            height: 'auto',
+                            opacity: '0.2'
+                        }, "slow");
+                        $("td#collect_" + id).animate({
+                            width: 'auto',
+                            opacity: '1'
+                        }, "slow");
+
+                        $('i#collect_' + id).removeClass('collect far fa-thumbs-down fa-w-16 fa-2x grab text-warning');
+                        var today = new Date();
+                        var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+                        $('i#collect_' + id).prop('title', date);
+                        $('i#collect_' + id).addClass('fas fa-thumbs-up fa-w-16 fa-2x  text-success');
                     }
                 }
 

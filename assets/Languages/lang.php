@@ -603,6 +603,7 @@ $lang['BANKS_DEPOSIT_TYPE']              =  "نوع الايداع";
 $lang['BANKS_CUT_VALUE']                 =  "قيمة القطع (ج.م)";
 $lang['BANKS_DEPOSIT_BUY_DATE']          =  "تاريخ السداد";
 $lang['BANKS_DEPOSIT_INVOICES']          =  "الفواتير المطلوب سدادها";
+$lang['INVOICES']                        =  "الفواتير";
 $lang['BANKS_BENFITS']                   =  "الفوائد";
 $lang['BANKS_TOTAL']                     =  "الاجمالى";
 $lang['BANKS_MONEY_PULL']                =  "المبلغ المسحوب";
@@ -618,6 +619,12 @@ $lang['DEPOSITS_COLLECTED']              =  "تحصيل الشيك";
 $lang['DEPOSITS_APPROVE']                =  "موافقة";
 $lang['DEPOSITS_COLLECT']                =  "تحصيل";
 $lang['DEPOSITS_']               =  " ";
+
+//************************Transfer money **************************//
+$lang['TRANSFER_LIST']               =  "الاطلاع على التحويلات";
+$lang['TRANSFER_ADD_NEW']            =  "اضافة تحويل جديد";
+$lang['TRANSFER_DATE']               =  "تاريخ التحويل";
+$lang['TRANSFER_TYPE']               =  "نوع التحويل";
 
 
 

@@ -33,8 +33,19 @@
 				}
 				exit;
 			}
+		case "collect":
+			if ($_POST) {
+				$id      = intval($_POST['id']);
+				$data    = $deposit->Bank_Collect($id);
+				if ($data == 1) {
+					echo 100;
+				} else {
+					echo 400;
+				}
+				exit;
+			}	
 
-            case"item_data":
+        case"item_data":
 			if($_POST)
 			{
 				$id      = intval($_POST['id']);
@@ -79,16 +90,17 @@
 					{
 						$html .= '<tr>
 									<td>
-										<input class="customized-checkbox" id="customized-checkbox-'.$i['deposits_sn'].'" type="checkbox" name="invoices_id['.$k.']" value="'.$i['deposits_sn'].'" >
-										<label class="customized-checkbox-label" for="customized-checkbox-'.$i['deposits_sn'].'"></label>
+										<input class="customized-checkbox" id="customized-checkbox-' . $i['deposits_sn'] . '" type="checkbox" name="invoices_id[]" value="' . $i['deposits_sn'] . '" >
+										<label class="customized-checkbox-label" for="customized-checkbox-' . $i['deposits_sn'] . '"></label>
+										<input type="text" id="max_' . $i['deposits_sn'] . '" value="' . ($i['deposits_cut_value'] - ($i['deposit_money_pull'])) . '" hidden>
 									</td>
-									<td>'._date_format($i['deposits_cheque_date']).'</td>
-									<td>'.$i['deposits_value'].'</td>
-									<td>'.$i['deposits_cut_value'].'</td>
-									<td>'.$i['deposit_money_pull'].'</td>
-									<td>'.$i['deposit_benefits'].'</td>
-									<td>'.($i['deposit_benefits']+$i['deposit_money_pull']).'</td>
-									<td>'.($i['deposits_value']-($i['deposit_benefits']+$i['deposit_money_pull'])).'</td>
+									<td>' . _date_format($i['deposits_cheque_date']) . '</td>
+									<td>' . $i['deposits_value'] . '</td>
+									<td>' . $i['deposits_cut_value'] . '</td>
+									<td>' . $i['deposit_money_pull'] . '</td>
+									<td>' . $i['deposit_benefits'] . '</td>
+									<td>' . ($i['deposit_benefits'] + $i['deposit_money_pull']) . '</td>
+									<td>' . ($i['deposits_cut_value'] - ($i['deposit_money_pull'])) . '</td>
 									<td>'.get_data('settings_clients','clients_name','clients_sn',$i['deposits_client_id']).'</td>
 									<td>'.get_client_product($i['deposits_product_id']).'</td>
 								 </tr>';

@@ -141,7 +141,11 @@
 						
 						
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "deposit"  ){echo 'active';}echo'">
+							echo '<li class="nav-item dropdown ';
+							if ($page_name == "deposit_list" || $page_name == "deposit" || $page_name == "transfer_money") {
+								echo 'active';
+							}
+							echo '">
 								<a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
 									<i class="fas fa-file-invoice-dollar"></i>
@@ -156,9 +160,9 @@
 								{
 								  echo'<li class="dropdown-item" href="./pull_money.php"><a>'.$lang['BANKS_PULL'].' </a></li>';
 								}
-								if($group['transfar_money']  == 1)
+							if ($group['bank_transfer']  == 1)
 								{
-								  echo'<li class="dropdown-item" href="./transfar_money"><a >'.$lang['BANKS_TRANSFAR'].'</a></li>';
+						echo '<li class="dropdown-item" href="./transfer_money.php"><a >' . $lang['BANKS_TRANSFAR'] . '</a></li>';
 								}
 								if($group['show_account']  == 1)
 								{

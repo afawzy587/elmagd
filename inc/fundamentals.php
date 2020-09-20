@@ -72,6 +72,7 @@
 		"operations"                          =>          1,
 		"expense"                             =>          1,
 		"deposit_check"                       =>          1,
+		"bank_transfer"                       =>          1,
 
 
 			);
@@ -99,7 +100,8 @@
 			"clients_payments"                   =>          $sitegroup['clients_payments'],
 			"operations"                         =>          $sitegroup['operations'],
 			"expense"                            =>          $sitegroup['expense'],
-			"deposit_check"                            =>          $sitegroup['expense'],
+			"deposit_check"                      =>          $sitegroup['deposit_check'],
+			"bank_transfer"                      =>          $sitegroup['bank_transfer'],
 
 				);
 
