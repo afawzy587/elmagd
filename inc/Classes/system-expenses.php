@@ -23,7 +23,7 @@ class systemExpenses
         }else{return null;}
 	}
 
-	function getTotalExpenses($addon = "")
+	function getTotalExpenses($addon = "", $q = "")
 	{
 		if($q != "")
 		{
@@ -188,22 +188,20 @@ class systemExpenses
         $bankfinanceTotal = $GLOBALS['db']->resultcount();
         if($bankfinanceTotal == 1)
         {
-            $sitebank = $GLOBALS['db']->fetchitem($query);
+			$sitebank = $GLOBALS['db']->fetchitem($bankfinance);
 			$new = $sitebank['banks_finance_credit'] - $Expenses['expenses_amount'];
 			$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
 			`banks_finance_credit`		 =	'".$new."'
 			WHERE `banks_finance_sn`     = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
 		}else
 		{
-			
-			if($Expenses['expenses_bank_account_type'] == 'saving')
-			{
-				echo "SELECT * FROM `settings_banks_saving` WHERE `banks_saving_bank_id` = '".$Expenses['expenses_bank_id']."' LIMIT 1";
+
+			if ($Expenses['expenses_bank_account_type'] == 'saving') {
 				$bankfinance = $GLOBALS['db']->query("SELECT * FROM `settings_banks_saving` WHERE `banks_saving_bank_id` = '".$Expenses['expenses_bank_id']."' LIMIT 1 ");
 				$Total = $GLOBALS['db']->resultcount();
 				if($Total > 0)
 				{
-					$account = $GLOBALS['db']->fetchitem($query);
+					$account = $GLOBALS['db']->fetchitem($bankfinance);
 					$id      = $account['banks_saving_sn'];
 					$open    = $account['banks_saving_open_balance'];
 				}
@@ -213,7 +211,7 @@ class systemExpenses
 				$Total = $GLOBALS['db']->resultcount();
 				if($Total > 0)
 				{
-					$account = $GLOBALS['db']->fetchitem($query);
+					$account = $GLOBALS['db']->fetchitem($bankfinance);
 					$id = $account['banks_current_sn'];
 					$open = $account['banks_current_opening_balance'];
 				}
@@ -276,7 +274,7 @@ class systemExpenses
 		}
 		
 		$GLOBALS['db']->query("UPDATE LOW_PRIORITY `".$this->tableName."` SET
-					`expenses_status`               =       '".$Expenses['expenses_status']."'
+					`expenses_status`               =       '" . $sitegroup['expenses_status'] . "'
 			  WHERE `expenses_sn`    	            = 	    '".$id."' LIMIT 1 ");
 		return 1;
 	}

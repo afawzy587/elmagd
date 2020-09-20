@@ -6,6 +6,17 @@ if(!isset($_SESSION))
 class systemDeposits
 {
     var $tableName 	= "deposits";
+
+    function getsiteDepoists($addon = "")
+    {
+        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `deposits_status` != '0'  ORDER BY `deposits_sn`  DESC " . $addon);
+        $queryTotal = $GLOBALS['db']->resultcount($query);
+        if ($queryTotal > 0) {
+            return ($GLOBALS['db']->fetchlist());
+        } else {
+            return null;
+        }
+    }
     
 	function Add_Deposits($Deposits)
 	{
@@ -53,12 +64,9 @@ class systemDeposits
                 }
 
             }elseif($Deposits['deposits_account_type']=='credit'){
-                $account_query=$GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$Deposits['deposits_bank_id']."' AND `banks_finance_account_type` = '".$Deposits['deposits_account_type']."' AND `banks_finance_account_id` = '".$Deposits['deposits_account_id']."'");
-               
+                $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $Deposits['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $Deposits['deposits_account_type'] . "' AND `banks_finance_account_id` = '" . $Deposits['deposits_account_id'] . "'");
                 $siteaccount = $GLOBALS['db']->fetchitem($account_query);
-                if($Deposits['deposits_type']== 'cash'){
-
-
+                if ($Deposits['deposits_type'] == 'cash') {
                     if(is_array($Deposits['invoices_id']))
                     {
                         $deposits_value = $Deposits['deposits_value'];
@@ -85,24 +93,27 @@ class systemDeposits
                             }else{
                                 $banks_finance_credit = $deposits_value;
                             }
-                            
-                            $account_query=$GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
-                                `banks_finance_credit`    = '".$banks_finance_credit."'
-                                WHERE `banks_finance_sn` = '".$siteaccount['banks_finance_sn']."'");
 
-                            
-                            
-
-                            
+                            $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET `banks_finance_credit`    = '" . $banks_finance_credit . "' WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                         }
-
+                    } else {
+                        $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $Deposits['deposits_value'];
+                        $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
+                        `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                            WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                     }
-
                 }
             }
         }
-          
 
+        if ($Deposits['deposits_type'] == "cheque") {
+
+            $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($Deposits['expenses_cheque_date'])));
+            $GLOBALS['db']->query("INSERT INTO `reminders`
+			(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_start_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`) 
+			VALUES
+			(NULL ,'deposits','" . $deposits_id . "','" . $Deposits['deposits_cheque_date'] . "','day','7','" . $reminders_remember_date . "','" . $reminders_remember_date . "',1)");
+        }
       
       return 1;
 
@@ -113,12 +124,41 @@ class systemDeposits
         $query = $GLOBALS['db']->query("SELECT * FROM `deposits` 
         WHERE `deposits_bank_id`= '".$bank."' AND `deposits_account_type` ='".$acount."' 
         AND `deposits_account_id` ='".$acount_id."' AND `deposits_approved` = '1' AND `deposits_collected` = '0'");
-         $queryTotal = $GLOBALS['db']->resultcount();
+        $queryTotal = $GLOBALS['db']->resultcount($query);
          if($queryTotal > 0)
          {
              return($GLOBALS['db']->fetchlist());
          }else{return null;}
 
+    }
+
+    function Bank_Approved($id)
+    {
+        $query = $GLOBALS['db']->query("SELECT * FROM `deposits` 
+        WHERE `deposits_sn`= '" . $id . "'   AND `deposits_approved` = '0' AND `deposits_status` = '1'");
+        $queryTotal = $GLOBALS['db']->resultcount($query);
+        if ($queryTotal > 0) {
+            $deposit = $GLOBALS['db']->fetchitem($query);
+            $GLOBALS['db']->query("UPDATE `deposits` SET `deposits_approved`=1,`deposits_approved_date`=NOW() WHERE `deposits_sn` = '" . $id . "'");
+            if ($deposit['deposits_account_type'] == 'current' || $deposit['deposits_account_type'] == 'saving') {
+                $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $deposit['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $deposit['deposits_account_type'] . "' ");
+                $siteaccount = $GLOBALS['db']->fetchitem($account_query);
+                $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $deposit['deposits_value'];
+                $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
+                 `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
+            } elseif ($deposit['deposits_account_type'] == 'credit') {
+                $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $deposit['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $deposit['deposits_account_type'] . "' ");
+                $siteaccount = $GLOBALS['db']->fetchitem($account_query);
+                $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $deposit['deposits_cut_value'];
+                $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
+                 `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
+            }
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 

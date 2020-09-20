@@ -22,6 +22,18 @@
     }else{
 		switch($_GET['do'])
 		{
+		case "bank_approve":
+			if ($_POST) {
+				$id      = intval($_POST['id']);
+				$data    = $deposit->Bank_Approved($id);
+				if ($data == 1) {
+					echo 100;
+				} else {
+					echo 400;
+				}
+				exit;
+			}
+
             case"item_data":
 			if($_POST)
 			{

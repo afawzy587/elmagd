@@ -608,7 +608,17 @@ $lang['BANKS_TOTAL']                     =  "الاجمالى";
 $lang['BANKS_MONEY_PULL']                =  "المبلغ المسحوب";
 $lang['BANKS_MONEY_DIS']                 =  "المبلغ المخصوم";
 $lang['BANKS_MONEY_REMIN']               =  "المتبقى";
+$lang['SHOW_DEPOSITS']                   =  "اطلاع علي الايداعات";
 $lang['NO_INVOICES']                     =  "لا توجد فواتير";
+$lang['DEPOSITS_LISTS']                  =  "الأطلاع على الايداعات";
+$lang['BACK']                            =  "عودة";
+$lang['DEPOSITS_BANK_IN']                =  "الى رصيد";
+$lang['DEPOSITS_BANK_APPROVE']           =  "موافقة البنك";
+$lang['DEPOSITS_COLLECTED']              =  "تحصيل الشيك";
+$lang['DEPOSITS_APPROVE']                =  "موافقة";
+$lang['DEPOSITS_COLLECT']                =  "تحصيل";
+$lang['DEPOSITS_']               =  " ";
+
 
 
 
