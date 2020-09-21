@@ -311,7 +311,7 @@ class systemSettings_banks
 		$query = $GLOBALS['db']->query("
 		SELECT b.banks_name,(SUM(`banks_finance_open_balance`) + SUM(`banks_finance_credit`)) AS credit  FROM `settings_banks` b 
 		INNER JOIN `setiings_banks_finance` bf ON b.`banks_sn` = bf.`banks_finance_bank_id`
-		WHERE  bf.`banks_finance_status` != 0 ORDER BY b.`banks_sn`  DESC ");
+		WHERE  bf.`banks_finance_status` != 0 GROUP BY bf.`banks_finance_bank_id`  ORDER BY b.`banks_sn`  DESC ");
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
         {

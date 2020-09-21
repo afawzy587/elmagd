@@ -8,8 +8,9 @@ ob_start("ob_gzhandler");
 define("inside", true);
 // get funcamental file which contain config and template files,settings.
 include("./inc/fundamentals.php");
-include("./inc/Classes/system-transfer.php");
-$deposit = new systemTransfer();
+ $_SESSION['page']  = $basename;
+include("./inc/Classes/system-money_transfers.php");
+$deposit = new systemMoney_transfers();
 
 include("./inc/Classes/system-settings_banks.php");
 $setting_bank = new systemSettings_banks();
@@ -29,28 +30,29 @@ if ($login->doCheck() == false) {
         $banks         = $setting_bank->getaccountsSettings_banks();
         $clients       = $setting_client->getsiteSettings_clients();
         if ($_POST) {
-            print_r($_POST);
-            $_deposit['transfer_date']                     =       sanitize($_POST["transfer_date"]);
-            $_deposit['transfer_from']                     =       sanitize($_POST["transfer_from"]);
-            $_deposit['transfer_account_type_from']        =       sanitize($_POST["transfer_account_type_from"]);
-            $_deposit['transfer_account_id_from']          =       sanitize($_POST["transfer_account_id_from"]);
-            $_deposit['transfer_client_id_from']           =       sanitize($_POST["transfer_client_id_from"]);
-            $_deposit['transfer_product_id_from']          =       sanitize($_POST["transfer_product_id_from"]);
-            $_deposit['transfer_value']                    =       sanitize($_POST["transfer_value"]);
-            $_deposit['transfer_type']                     =       sanitize($_POST["transfer_type"]);
-            $_deposit['transfer_cheque_date']              =       sanitize($_POST["transfer_cheque_date"]);
-            $_deposit['transfer_cheque_number']            =       sanitize($_POST["transfer_cheque_number"]);
-            $_deposit['transfer_to']                       =       sanitize($_POST["transfer_to"]);
-            $_deposit['transfer_account_type_to']          =       sanitize($_POST["transfer_account_type_to"]);
-            $_deposit['transfer_account_id_to']            =       sanitize($_POST["transfer_account_id_to"]);
-            $_deposit['transfer_client_id_to']             =       sanitize($_POST["transfer_client_id_to"]);
-            $_deposit['transfer_product_id_to']            =       sanitize($_POST["transfer_product_id_to"]);
-            $_deposit['transfer_cut_precent']              =       sanitize($_POST["transfer_cut_precent"]);
-            $_deposit['transfer_cut_value']                =       sanitize($_POST["transfer_cut_value"]);
-            $_deposit['transfer_days']                     =       sanitize($_POST["transfer_days"]);
-            $_deposit['transfer_date_pay']                 =       sanitize($_POST["transfer_date_pay"]);
-            $_deposit['invoices_id']                       =       intval($_POST["invoices_id"]);
-            // $add = $deposit->Add_transfer($_deposit);
+            $_transfer['transfers_date']                     =       sanitize($_POST["transfers_date"]);
+            $_transfer['transfers_from']                     =       sanitize($_POST["transfer_from"]);
+            $_transfer['transfers_account_type_from']        =       sanitize($_POST["transfer_account_type_from"]);
+            $_transfer['transfers_account_id_from']          =       sanitize($_POST["transfer_account_id_from"]);
+            $_transfer['transfers_client_id_from']           =       sanitize($_POST["transfer_client_id_from"]);
+            $_transfer['transfers_product_id_from']          =       sanitize($_POST["transfer_product_id_from"]);
+            $_transfer['transfers_value']                    =       sanitize($_POST["transfer_value"]);
+            $_transfer['transfers_type']                     =       sanitize($_POST["transfer_type"]);
+            $_transfer['transfers_cheque_date']              =       sanitize($_POST["transfer_cheque_date"]);
+            $_transfer['transfers_cheque_number']            =       sanitize($_POST["transfer_cheque_number"]);
+            $_transfer['transfers_to']                       =       sanitize($_POST["transfer_to"]);
+            $_transfer['transfers_account_type_to']          =       sanitize($_POST["transfer_account_type_to"]);
+            $_transfer['transfers_account_id_to']            =       sanitize($_POST["transfer_account_id_to"]);
+            $_transfer['transfers_client_id_to']             =       sanitize($_POST["transfer_client_id_to"]);
+            $_transfer['transfers_product_id_to']            =       sanitize($_POST["transfer_product_id_to"]);
+            $_transfer['transfers_cut_precent']              =       sanitize($_POST["transfer_cut_precent"]);
+            $_transfer['transfers_cut_value']                =       sanitize($_POST["transfer_cut_value"]);
+            $_transfer['transfers_days']                     =       sanitize($_POST["transfer_days"]);
+            $_transfer['transfers_date_pay']                 =       format_data_base($_POST["transfers_date_pay"]);
+            $_transfer['invoices_id']                       =       intval($_POST["invoices_id"]);
+            
+            print_r($_transfer);
+             $add = $deposit->Add_Money_Transfer($_transfer);
             // if ($add == 1) {
 
             //     $logs->addLog(
@@ -144,7 +146,12 @@ include './assets/layout/header.php';
                             </div>
 
                         </div>
-                        <div class="col-md-6 d-flex justify-content-end">
+                        <div class="col-md-3 d-flex justify-content-end">
+                            <a href="deposits_list.php" class="btn roundedBtn">
+                                <?php echo $lang['SHOW_DEPOSITS'];?>
+                            </a>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-end">
                             <a href="transfers.php" class="btn roundedBtn">
                                 <?php echo $lang['TRANSFER_LIST']; ?>
                             </a>
@@ -156,7 +163,11 @@ include './assets/layout/header.php';
             </div>
             <!-- end account details row -->
             <form method="post" id="customersAccountsPaymentForm" enctype="multipart/form-data">
-
+                   <?php 
+						if($add == 1){
+							echo alert_message("success",$lang['DEPOSITS_SUCCESS']);
+						}
+					?>
                 <h5><?php echo $lang['TRANSFER_ADD_NEW']; ?></h5>
                 <div class="darker-bg centerDarkerDiv formCenterDiv">
                     <div class="row">
@@ -164,13 +175,13 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['TRANSFER_DATE']; ?></label>
                                 <div class="col-xs-5">
-                                    <input type="date" id="transfer_date" name="transfer_date" class="transfer_cut_precent form-control">
+                                    <input type="date" id="transfers_date" name="transfers_date" class="transfer_cut_precent form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ADD_TO']; ?></label>
+                                <label class="col-xs-3"> <?php echo $lang['TRANSFER_FROM']; ?></label>
                                 <div class="col-xs-5">
                                     <div class="select">
                                         <select name="transfer_from" id="transfer_from" class="bank invoices form-control">
@@ -318,7 +329,7 @@ include './assets/layout/header.php';
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ADD_TO']; ?></label>
+                                <label class="col-xs-3"> <?php echo $lang['TRANSFER_TO']; ?></label>
                                 <div class="col-xs-5">
                                     <div class="select">
                                         <select name="transfer_to" id="transfer_to" class="bank  form-control">
@@ -438,7 +449,7 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"><?php echo $lang['BANKS_DEPOSIT_BUY_DATE']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <input type="text" class="form-control" id="transfer_date_pay" name="transfer_date_pay" placeholder="0/00/0000" readonly>
+                                    <input type="text" class="form-control" id="transfers_date_pay" name="transfers_date_pay" placeholder="0/00/0000" readonly>
                                 </div>
                             </div>
                         </div>
@@ -498,7 +509,7 @@ include './assets/layout/footer.php'; ?>
         $('#customersAccountsPaymentForm').formValidation({
             excluded: [':disabled'],
             fields: {
-                transfer_date: {
+                transfers_date: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_INSERT_DATE']; ?>'
@@ -574,35 +585,9 @@ include './assets/layout/footer.php'; ?>
                             message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN']; ?>'
                         }
                     }
-                },
-                transfer_client_id: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?>'
-                        }
-                    }
-                },
-                transfer_product_id: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT']; ?>'
-                        }
-                    }
-                },
-                transfer_client_id_from: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?>'
-                        }
-                    }
-                },
-                transfer_product_id_to: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT']; ?>'
-                        }
-                    }
-                },
+                }
+             
+                
 
             }
         }).on('success.form.bv', function(e) {
@@ -698,7 +683,7 @@ include './assets/layout/footer.php'; ?>
         $('.type').on('change', 'select.account_type', function() {
             var type = $(this).val();
             var type_id = $(this).attr('id').replace('account_type_', '');
-            var id = $('select.bank').val();
+            var id = $('select#transfer_'+type_id).val();
             if (type == 'credit') {
                 var transfer_account_id = $('#transfer_account_id_' + type_id).prop("disabled", false)
                 transfer_account_id.parent().siblings('.help-block').hide();
@@ -733,6 +718,7 @@ include './assets/layout/footer.php'; ?>
                     return $.trim($(this).val()).length == 0
                 }).length == 0) {
                 var id = $('#transfer_account_id_to').val();
+                console.log(id)
                 var page = "bank_js.php?do=item_data";
                 if (id) {
                     $.ajax({
@@ -747,21 +733,21 @@ include './assets/layout/footer.php'; ?>
                                 $('input#transfer_cut_precent').val(responce['banks_credit_cutting_ratio']);
                                 if (responce['banks_credit_repayment_type'] == "day") {
                                     $('input#transfer_days').val(responce['banks_credit_repayment_period']);
-                                    var transfer_date = $('input#transfer_date').val();
+                                    var transfers_date = $('input#transfers_date').val();
                                     var days = parseInt(responce['banks_credit_repayment_period']);
-                                    var date = new Date(transfer_date);
+                                    var date = new Date(transfers_date);
                                     date.setDate(date.getDate() + days);
-                                    var transfer_date = GetFormattedDate(date);
-                                    $('input#transfer_date_pay').val(transfer_date);
+                                    var transfers_date = GetFormattedDate(date);
+                                    $('input#transfers_date_pay').val(transfers_date);
                                 } else {
-                                    var transfer_date = $('input#transfer_date').val();
+                                    var transfers_date = $('input#transfers_date').val();
                                     var transfer_cheque_date = $('input#transfer_cheque_date').val();
-                                    date1 = new Date(transfer_date);
+                                    date1 = new Date(transfers_date);
                                     date2 = new Date(transfer_cheque_date);
                                     const diffTime = Math.abs(date2 - date1);
                                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                                     $('input#transfer_days').val(diffDays);
-                                    $('input#transfer_date_pay').val(transfer_cheque_date);
+                                    $('input#transfers_date_pay').val(transfer_cheque_date);
                                 }
                                 var transfer_value = parseInt($('input#transfer_value').val());
                                 var transfer_cut_value = (transfer_value * (parseInt(responce['banks_credit_cutting_ratio']) / 100));

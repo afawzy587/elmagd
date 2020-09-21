@@ -29,12 +29,21 @@ if ($login->doCheck() == false) {
         $banks         = $setting_bank->getaccountsSettings_banks();
         $clients       = $setting_client->getsiteSettings_clients();
         if ($_POST) {
+<<<<<<< HEAD
+            $_deposit['transfer_date']                     =       sanitize($_POST["transfer_date"]);
+            $_deposit['transfer_from']                     =       sanitize($_POST["transfer_from"]);
+            $_deposit['transfer_account_type_from']                    =       sanitize($_POST["transfer_account_type_from"]);
+            $_deposit['transfer_account_id_from']              =       sanitize($_POST["transfer_account_id_from"]);
+            $_deposit['transfer_client_id_from']            =       sanitize($_POST["transfer_client_id_from"]);
+            $_deposit['transfer_product_id_from']                  =       sanitize($_POST["transfer_product_id_from"]);
+=======
             $_deposit['deposits_date']                     =       sanitize($_POST["deposits_date"]);
             $_deposit['deposits_type']                     =       sanitize($_POST["deposits_type"]);
             $_deposit['deposits_value']                    =       sanitize($_POST["deposits_value"]);
             $_deposit['deposits_cheque_date']              =       sanitize($_POST["deposits_cheque_date"]);
             $_deposit['deposits_cheque_number']            =       sanitize($_POST["deposits_cheque_number"]);
             $_deposit['deposits_bank_id']                  =       sanitize($_POST["deposits_bank_id"]);
+>>>>>>> 0f3bae5d21ff29c054f9da022ff64fd3914b1a40
             $_deposit['deposits_account_type']             =       sanitize($_POST["deposits_account_type"]);
             $_deposit['deposits_account_id']               =       sanitize($_POST["deposits_account_id"]);
             $_deposit['deposits_client_id']                =       sanitize($_POST["deposits_client_id"]);
@@ -140,6 +149,14 @@ include './assets/layout/header.php';
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
                             <a href="deposits_list.php" class="btn roundedBtn">
+<<<<<<< HEAD
+                                <?php echo $lang['SHOW_DEPOSITS'];?>
+                            </a>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <a href="deposits_list.php" class="btn roundedBtn">
+=======
+>>>>>>> 0f3bae5d21ff29c054f9da022ff64fd3914b1a40
                                 <?php echo $lang['SHOW_DEPOSITS']; ?>
                             </a>
                         </div>

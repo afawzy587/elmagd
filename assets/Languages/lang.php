@@ -618,7 +618,21 @@ $lang['DEPOSITS_BANK_APPROVE']           =  "موافقة البنك";
 $lang['DEPOSITS_COLLECTED']              =  "تحصيل الشيك";
 $lang['DEPOSITS_APPROVE']                =  "موافقة";
 $lang['DEPOSITS_COLLECT']                =  "تحصيل";
+$lang['DEPOSITS_SUCCESS']               =  "تم اضافة ايداع جديد";
 $lang['DEPOSITS_']               =  " ";
+$lang['DEPOSITS_']               =  " ";
+$lang['DEPOSITS_']               =  " ";
+
+//************************Transfer money **************************//
+$lang['TRANSFER_LIST']               =  "الاطلاع على التحويلات";
+$lang['TRANSFER_ADD_NEW']            =  "اضافة تحويل جديد";
+$lang['TRANSFER_DATE']               =  "تاريخ التحويل";
+$lang['TRANSFER_TYPE']               =  "نوع التحويل";
+$lang['TRANSFER_SUCCESS']            =  "تم اضافة تحويل جديد";
+$lang['TRANSFER_FROM']               =  "من رصيد";
+$lang['TRANSFER_TO']               =  "الى رصيد";
+$lang['TRANSFER_']               =  " ";
+$lang['TRANSFER_']               =  " ";
 
 //************************Transfer money **************************//
 $lang['TRANSFER_LIST']               =  "الاطلاع على التحويلات";

@@ -142,7 +142,11 @@
 						
 					<?php
 							echo '<li class="nav-item dropdown ';
+<<<<<<< HEAD
+							if ($page_name == "deposit_list" || $page_name == "deposit" ||$page_name == "deposits_list" || $page_name == "transfer_money") {
+=======
 							if ($page_name == "deposit_list" || $page_name == "deposit" || $page_name == "transfer_money") {
+>>>>>>> 0f3bae5d21ff29c054f9da022ff64fd3914b1a40
 								echo 'active';
 							}
 							echo '">

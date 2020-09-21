@@ -174,7 +174,7 @@ include './assets/layout/header.php';
             <div class="row">
                 <div class="row mt-2 mb-5">
                     <div class="col d-flex justify-content-end">
-                        <a class="btn roundedBtn mr-2" href="deposits.php"><?php echo $lang['BACK']; ?></a>
+                        <a class="btn roundedBtn mr-2" href="<?php echo $_SESSION['page'];?>"><?php echo $lang['BACK']; ?></a>
                     </div>
                 </div>
             </div>

@@ -72,27 +72,36 @@ class systemDeposits
                         $deposits_value = $Deposits['deposits_value'];
                         foreach($Deposits['invoices_id'] as $k => $i){
                             $id= intval($i);
-                            $account_query=$GLOBALS['db']->query("`SELECT * FROM `deposits` WHERE `deposits_sn` = = '".$id."' ");
+                            $account_query=$GLOBALS['db']->query("SELECT * FROM `deposits` WHERE `deposits_sn` =  '".$id."' ");
                             $siteaccount = $GLOBALS['db']->fetchitem($account_query);
-                            if($deposits_value > $siteaccount['deposits_value'])
+                            if($deposits_value > $siteaccount['deposits_pull_total'])
                             {
-                                $paid           = $siteaccount['deposits_value'];
-                                $deposits_value = $Deposits['deposits_value'] - $siteaccount['deposits_value'];
-                                $remin = ($siteaccount['deposits_value'] -($siteaccount['deposit_money_pull'] +$siteaccount['deposit_benefits']));
+                                $paid           = $siteaccount['deposits_pull_total'];
+                                $deposits_value = $Deposits['deposits_value'] - $siteaccount['deposits_pull_total'];
                                 
-                                $account_query=$GLOBALS['db']->query("UPDATE `deposits` SET
-                                `deposits_collected`     ='1',
+                                 $account_query=$GLOBALS['db']->query("UPDATE `deposits` SET
+                                `deposits_collected`           ='1',
                                 `deposits_collected_value`     ='".$paid."',
+                                `deposits_pull_total`          ='0',
                                 `deposits_collected_date`=NOW()
                                  WHERE `deposits_sn` = '".$siteaccount['deposits_sn']."'");
+                            }else{
+                                $paid   = $deposits_value;
+                                $deposits_pull_total = $siteaccount['deposits_pull_total'] - $deposits_value;
+                                $deposit_money_pull = $siteaccount['deposit_money_pull'] - $deposits_value;
+                                 $account_query=$GLOBALS['db']->query("UPDATE `deposits` SET
+                                `deposits_collected_value`     = '".$paid."',
+                                `deposit_money_pull`           = '".$deposit_money_pull."',
+                                `deposits_pull_total`          = '".$deposits_pull_total."'
+                                 WHERE `deposits_sn` = '".$siteaccount['deposits_sn']."'");
+                            }
+                            
                                  $GLOBALS['db']->query("INSERT INTO `deposits_invoices`
                                  (`deposits_invoices_sn`, `deposits_id`, `invoices_id`, `value`, `paid`) 
                                  VALUES (NULL,'".$deposits_id."','".$id."','".$siteaccount['deposits_value']."' ,'".$paid."')");
      
                                 $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $remin;
-                            }else{
-                                $banks_finance_credit = $deposits_value;
-                            }
+
 
                             $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET `banks_finance_credit`    = '" . $banks_finance_credit . "' WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                         }

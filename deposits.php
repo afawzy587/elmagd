@@ -8,6 +8,7 @@ ob_start("ob_gzhandler");
 define("inside", true);
 // get funcamental file which contain config and template files,settings.
 include("./inc/fundamentals.php");
+$_SESSION['page']  = $basename;
 include("./inc/Classes/system-deposits.php");
 $deposit = new systemDeposits();
 
@@ -42,7 +43,7 @@ if ($login->doCheck() == false) {
             $_deposit['deposits_cut_precent']              =       sanitize($_POST["deposits_cut_precent"]);
             $_deposit['deposits_cut_value']                =       sanitize($_POST["deposits_cut_value"]);
             $_deposit['deposits_days']                     =       sanitize($_POST["deposits_days"]);
-            $_deposit['deposits_date_pay']                 =       sanitize($_POST["deposits_date_pay"]);
+            $_deposit['deposits_date_pay']                 =       format_data_base($_POST["deposits_date_pay"]);
             $_deposit['invoices_id']                       =       $_POST["invoices_id"];
             $add = $deposit->Add_Deposits($_deposit);
             if($add == 1)
@@ -56,7 +57,7 @@ if ($login->doCheck() == false) {
                         "id" 	        	=>	$_SESSION['id'],
                     ),"admin",$_SESSION['id'],1
                     );
-                     header("Location:./deposits.php");
+                     header("Location:./deposits.php?action=add");
                     
                     exit;
             }
@@ -147,7 +148,11 @@ include './assets/layout/header.php';
             </div>
             <!-- end account details row -->
             <form method="post" id="customersAccountsPaymentForm" enctype="multipart/form-data">
-
+                <?php 
+						if($_GET['action'] == 'add'){
+							echo alert_message("success",$lang['DEPOSITS_SUCCESS']);
+						}
+					?>
                 <h5><?php echo $lang['BANKS_ADD_NEW_DEPOSIT']; ?></h5>
                 <div class="darker-bg centerDarkerDiv formCenterDiv">
                     <div class="row">
@@ -461,20 +466,20 @@ include './assets/layout/footer.php'; ?>
                         }
                     }
                 },
-                deposits_client_id: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?>'
-                        }
-                    }
-                },
-                deposits_product_id: {
-                    validators: {
-                        notEmpty: {
-                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT']; ?>'
-                        }
-                    }
-                },
+//                deposits_client_id: {
+//                    validators: {
+//                        notEmpty: {
+//                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?>'
+//                        }
+//                    }
+//                },
+//                deposits_product_id: {
+//                    validators: {
+//                        notEmpty: {
+//                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT']; ?>'
+//                        }
+//                    }
+//                },
 
             }
         }).on('success.form.bv', function(e) {

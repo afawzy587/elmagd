@@ -1708,3 +1708,126 @@ July 19, 2020, 11:58 pmLOGS :  User => Ahmed fawzy Id =>1  Module =>products  Pa
 ------------------------------
 [ September 20, 2020, 7:21 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
 ------------------------------
+<<<<<<< HEAD
+[ September 21, 2020, 2:20 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 21, 2020, 2:20 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 21, 2020, 2:20 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:33 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 2:33 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 2:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:43 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 2:43 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:48 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 2:48 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:54 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => add_banks
+------------------------------
+[ September 21, 2020, 2:56 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => add_banks
+------------------------------
+[ September 21, 2020, 2:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 2:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 2:58 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:00 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:00 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:01 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:06 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 3:18 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 21, 2020, 4:03 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 4:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 4:17 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 4:17 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 4:17 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 4:18 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 4:18 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 4:22 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 4:23 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 4:24 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 4:25 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 5:07 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:09 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:12 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:12 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:12 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 5:19 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:21 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:21 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:21 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:53 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:54 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:56 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 5:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 5:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 6:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 21, 2020, 6:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 6:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 6:13 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>departments  Page => addd_departments
+------------------------------
+[ September 21, 2020, 6:24 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 6:24 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 21, 2020, 11:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>login  Page => login
+------------------------------
+[ September 22, 2020, 12:01 am ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 22, 2020, 12:01 am ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+=======
+>>>>>>> 0f3bae5d21ff29c054f9da022ff64fd3914b1a40
