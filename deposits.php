@@ -120,7 +120,7 @@ include './assets/layout/header.php';
                                     if ($f['credit'] < 0) {
                                         echo 'warning';
                                     }
-                                    echo 'w-100 ltrDir">' . number_format($f['credit']) . '</h5>
+                                    echo ' w-100 ltrDir">' . number_format($f['credit']) . '</h5>
                                 </div>';
                                 $total_finance += $f['credit'];
                             }

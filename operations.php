@@ -76,7 +76,7 @@
          <!-- search bar row -->
         <div class="row d-flex justify-content-end">
             <div class="col-md-3">
-                <form id="$_operationsearchForm" action="./Operations.php">
+                <form id="$_operationsearchForm" action="./operations.php">
                     <div class="form-group has-search">
                         <label for=""><?php echo $lang['SEARCH'];?></label>
                         <button class="btn btn-info form-control-feedback" type="submit"><i class="fas fa-search"></i></button>

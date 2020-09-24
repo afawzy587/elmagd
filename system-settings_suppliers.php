@@ -192,17 +192,6 @@ class systemSettings_suppliers
 
 		}
 	}
-	
-	function get_supplier_product($Id)
-	{
-		$query = $GLOBALS['db']->query("SELECT * FROM `settings_suppliers_products` INNER JOIN `settings_products` ON `suppliers_products_product_id` = `products_sn` 
-		WHERE `suppliers_products_supplier_id` =  '".$Id."' AND `products_status` != '0'");
-        $queryTotal = $GLOBALS['db']->resultcount();
-        if($queryTotal > 0)
-        {
-            return($GLOBALS['db']->fetchlist());
-        }else{return null;}
-	}
 
 
 

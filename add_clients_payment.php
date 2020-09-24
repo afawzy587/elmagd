@@ -9,8 +9,8 @@
     define("inside",true);
 	// get funcamental file which contain config and template files,settings.
 	include("./inc/fundamentals.php");
-	include("./inc/Classes/system-clients_pricing.php");
-	$pricing = new systemClients_pricing();
+	include("./inc/Classes/system-clients_collectible.php");
+	$pricing = new systemClients_collectible();
 
 	include("./inc/Classes/system-settings_banks.php");
 	$setting_bank = new systemSettings_banks();
@@ -25,9 +25,9 @@
 			exit;
 		}else
 		{
-			if (intval($_GET['id']) != 0)
+			if (intval($_GET['client']) != 0)
 			{
-				$mId =intval($_GET['id']);
+				$mId =intval($_GET['client']);
 				$banks_finance=$setting_bank->get_banks_finance();
 				$banks        = $setting_bank->getaccountsSettings_banks();
 				if($_POST)
@@ -42,7 +42,7 @@
 					$_payment['collectible_account_type']             =       sanitize($_POST["collectible_account_type"]);
 					$_payment['collectible_account_id']               =       sanitize($_POST["collectible_account_id"]);
 
-					$add = $pricing->add_clients_collectible($_payment);
+					$add = $pricing->add_clients_collectible($_payment,$_GET);
 					if($add == 1)
 					{
 						
@@ -85,8 +85,7 @@
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
                     <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_C_F_CLIENT'];?></span>
-<!--                  href="./clients_finances.php"-->
-                      <a class="blueSky" ><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_FINANCES'];?> </a>
+                      <a class="blueSky" href="./client_search.php" ><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_FINANCES'];?> </a>
                     <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_CLIENT_COLLECT'];?> </span>
                 </p>
             </div>
@@ -192,7 +191,7 @@
                                     <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY'];?></label>
                                     <div class="col-xs-5">
                                         <input type="text" class="form-control" name="collectible_value"
-                                            placeholder="00000">
+                                            placeholder="-----">
                                     </div>
                                 </div>
 
@@ -212,7 +211,7 @@
                                     <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM'];?></label>
                                     <div class="col-xs-5">
                                         <input type="text" class="form-control" name="collectible_cheque_number" id="check_number"
-                                        placeholder="00000">
+                                        placeholder="-----">
                                     </div>
                                 </div>
                             </div>
@@ -223,6 +222,7 @@
                                         <div class="select" id="banks">
                                             <select name="collectible_bank_id" class="bank form-control">
                                                 <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK'];?></option>
+                                                <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                                 <?php 
 													if($banks)
 													{
@@ -451,14 +451,17 @@ $(document).ready(function () {
     });
 	
 		$('#banks').on('change','select.bank',function(){
-			var collectible_account_type =$('#account_type').prop("disabled", false);
-			 $('#customersAccountsPaymentForm').formValidation('addField', collectible_account_type, {
+			var type = $(this).val();
+            if (type != "safe") {
+				var collectible_account_type =$('#account_type').prop("disabled", false);
+			 	$('#customersAccountsPaymentForm').formValidation('addField', collectible_account_type, {
                         validators: {
                             notEmpty: {
                                 message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
                             }
                         }
                     })
+			}
 		});
 			
 			

@@ -8,7 +8,7 @@ class systemMoney_transfers
 
     function getsiteMoney_transfers($addon = "")
     {
-        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `transfer_status` != '0'  ORDER BY `transfer_sn`  DESC " . $addon);
+        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `transfers_status` != '0'  ORDER BY `transfers_sn`  DESC " . $addon);
         $queryTotal = $GLOBALS['db']->resultcount($query);
         if ($queryTotal > 0) {
             return ($GLOBALS['db']->fetchlist());
@@ -42,6 +42,7 @@ class systemMoney_transfers
             ,'" . $Transfer['transfers_to_in'] . "','" . $Transfer['transfers_to'] . "','" . $Transfer['transfers_account_type_to'] . "','" . $Transfer['transfers_account_id_to'] . "','" . $Transfer['transfers_client_id_to'] . "','" . $Transfer['transfers_product_id_to'] . "','" . $Transfer['transfers_cut_precent'] . "'
             ,'" . $Transfer['transfers_cut_value'] . "','" . $Transfer['transfers_days'] . "','" . $Transfer['transfers_date_pay'] . "','" . $Transfer['invoices_id'] . "')
         ");
+		$transfer_id=$GLOBALS['db']->fetchLastInsertId();
         // ***************** PULL FROM SAFE *******************//
         if ($Transfer['transfers_from'] == 'safe') {
             $company_query = $GLOBALS['db']->query("SELECT * FROM `settings_companyinfo` LIMIT 1");
@@ -73,15 +74,15 @@ class systemMoney_transfers
                 }
             } elseif ($Transfer['transfers_account_type_from'] == 'credit') {
                 if ($Transfer['invoices_id'] > 0) {
-                    $account_query = $GLOBALS['db']->query("SELECT * FROM `deposits` WHERE `deposits_sn` =  '" . $Transfer['invoices_id'] . "' ");
+                    $account_query = $GLOBALS['db']->query("SELECT * FROM `transfers` WHERE `transfers_sn` =  '" . $Transfer['invoices_id'] . "' ");
                     $siteaccount = $GLOBALS['db']->fetchitem($account_query);
-                    $deposit_money_pull   = $siteaccount['deposit_money_pull'] + $Transfer['transfers_value'];
-                    $Transfer_pull_total   = $siteaccount['deposits_pull_total'] + $Transfer['transfers_value'];
+                    $transfer_money_pull   = $siteaccount['deposit_money_pull'] + $Transfer['transfers_value'];
+                    $Transfer_pull_total   = $siteaccount['transfers_pull_total'] + $Transfer['transfers_value'];
 
-                    $account_query = $GLOBALS['db']->query("UPDATE `deposits` SET
-                        `deposit_money_pull`           ='" . $deposit_money_pull . "',
-                        `deposits_pull_total`          ='" . $Transfer_pull_total . "'
-                         WHERE `deposits_sn` = '" . $siteaccount['deposits_sn'] . "'");
+                    $account_query = $GLOBALS['db']->query("UPDATE `transfers` SET
+                        `deposit_money_pull`           ='" . $transfer_money_pull . "',
+                        `transfers_pull_total`          ='" . $Transfer_pull_total . "'
+                         WHERE `transfers_sn` = '" . $siteaccount['transfers_sn'] . "'");
                 } else {
 
                     $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $Transfer['transfers_from'] . "' AND `banks_finance_account_type` = '" . $Transfer['transfers_account_type_from'] . "' AND `banks_finance_account_id` = '" . $Transfer['transfers_account_id_from'] . "'");
@@ -128,8 +129,8 @@ class systemMoney_transfers
                 }
             } elseif ($Transfer['transfers_account_type_to'] == 'credit') {
                 if ($Transfer['transfers_type'] == 'cheque') {
-                    $GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `deposits`
-                         (`deposits_sn`, `deposits_date`, `deposits_type`, `deposits_value`, `deposits_cheque_date`, `deposits_cheque_number`, `deposits_insert_in`, `deposits_bank_id`, `deposits_account_type`, `deposits_account_id`, `deposits_client_id`, `deposits_product_id`,`deposits_cut_precent`, `deposits_cut_value`, `deposits_days`, `deposit_date_pay`, `deposits_status`) 
+                    $GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `transfers`
+                         (`transfers_sn`, `transfers_date`, `transfers_type`, `transfers_value`, `transfers_cheque_date`, `transfers_cheque_number`, `transfers_insert_in`, `transfers_bank_id`, `transfers_account_type`, `transfers_account_id`, `transfers_client_id`, `transfers_product_id`,`transfers_cut_precent`, `transfers_cut_value`, `transfers_days`, `deposit_date_pay`, `transfers_status`) 
                         VALUES ( NULL ,'" . $Transfer['transfers_date'] . "','" . $Transfer['transfers_type'] . "','" . $Transfer['transfers_value'] . "','" . $Transfer['transfers_cheque_date'] . "', '" . $Transfer['transfers_cheque_number'] . "','bank','" . $Transfer['transfers_to'] . "','" . $Transfer['transfers_account_type_to'] . "','" . $Transfer['transfers_account_id_to'] . "','" . $Transfer['transfers_client_id_to'] . "','" . $Transfer['transfers_product_id_to'] . "','" . $Transfer['transfers_cut_precent'] . "','" . $Transfer['transfers_cut_value'] . "','" . $Transfer['transfers_days'] . "','" . $Transfer['transfers_date_pay'] . "',1)");
                 } else {
 
@@ -145,5 +146,37 @@ class systemMoney_transfers
                 }
             }
         }
+		if ($Transfer['transfers_type'] == "cheque") {
+
+            $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($Transfer['transfers_cheque_date'])));
+            $GLOBALS['db']->query("INSERT INTO `reminders`
+			(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_start_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`) 
+			VALUES
+			(NULL ,'transfer','" . $transfer_id . "','" . $Transfer['transfers_cheque_date'] . "','day','7','" . $reminders_remember_date . "','" . $reminders_remember_date . "',1)");
+        }
+		return 1;
     }
+	
+	function Bank_Approved($id)
+    {
+        $query = $GLOBALS['db']->query("SELECT * FROM `money_transfers` 
+        WHERE `transfers_sn`= '" . $id . "'   AND `transfers_bank_approved` = '0' AND `transfers_status` = '1'");
+        $queryTotal = $GLOBALS['db']->resultcount($query);
+        if ($queryTotal > 0) {
+            $transfer = $GLOBALS['db']->fetchitem($query);
+            $GLOBALS['db']->query("UPDATE `money_transfers` SET `transfers_bank_approved`=1,`transfers_bank_approved_date`=NOW() WHERE `transfers_sn` = '" . $id . "'");
+            if ($transfer['transfers_account_type_to'] == 'current' || $transfer['transfers_account_type_to'] == 'saving') {
+                $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $transfer['transfers_to'] . "' AND `banks_finance_account_type` = '" . $transfer['transfers_account_type_to'] . "' ");
+                $siteaccount = $GLOBALS['db']->fetchitem($account_query);
+                $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $transfer['transfers_value'];
+                $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
+                 `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
+            } 
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }

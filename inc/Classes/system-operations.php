@@ -113,9 +113,9 @@ class systemOperations
 	function addOperations($Operations)
 	{
 		$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `".$this->tableName."`
-		(`operations_sn`, `operations_receipt`, `operations_code`, `operations_card_number`,`operations_date`, `operations_supplier`, `operations_customer`, `operations_product`,	`operations_supplier_price`, `operations_customer_price`, `operations_quantity`, `operations_general_discount`,`operations_net_quantity`, `operations_card_front_photo`, `operations_card_back_photo`, `operations_status`)
+		(`operations_sn`, `operations_receipt`, `operations_code`, `operations_card_number`,`operations_date`, `operations_supplier`, `operations_customer`, `operations_product`,	`operations_supplier_price`, `operations_customer_price`, `operations_quantity`, `operations_general_discount`,`operations_net_quantity`, `operations_card_front_photo`, `operations_card_back_photo`,`operations_customer_remain`,`operations_supplier_remain`, `operations_status`)
 		VALUES
-		( NULL ,'".$Operations['operations_receipt']."','".$Operations['operations_code']."','".$Operations['operations_card_number']."','".$Operations['operations_date']."' ,'".$Operations['operations_supplier']."','".$Operations['operations_customer']."','".$Operations['operations_product']."','".$Operations['operations_supplier_price']."' ,'".$Operations['operations_customer_price']."','".$Operations['operations_quantity']."','".$Operations['operations_general_discount']."','".$Operations['operations_net_quantity']."' ,'".$Operations['operations_card_front_photo']."','".$Operations['operations_card_back_photo']."',1)");
+		( NULL ,'".$Operations['operations_receipt']."','".$Operations['operations_code']."','".$Operations['operations_card_number']."','".$Operations['operations_date']."' ,'".$Operations['operations_supplier']."','".$Operations['operations_customer']."','".$Operations['operations_product']."','".$Operations['operations_supplier_price']."' ,'".$Operations['operations_customer_price']."','".$Operations['operations_quantity']."','".$Operations['operations_general_discount']."','".$Operations['operations_net_quantity']."' ,'".$Operations['operations_card_front_photo']."','".$Operations['operations_card_back_photo']."','".$Operations['operations_customer_price']."','".$Operations['operations_supplier_price']."',1)");
 		
 		$opertion_id = $GLOBALS['db']->fetchLastInsertId();
 		
@@ -127,12 +127,12 @@ class systemOperations
 			{
 
 				$sitefinance = $GLOBALS['db']->fetchitem($finance);
-				$new = $sitefinance['clients_finance_credit'] - $Operations['operations_customer_price'];
+				$new = $sitefinance['clients_finance_credit'] + $Operations['operations_customer_price'];
 				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
 				`clients_finance_credit`		 =	'".$new."'
 				WHERE `clients_finance_sn` 		 = 	'".$sitefinance['clients_finance_sn']."' LIMIT 1 ");
 			}else{
-				$new  = - $Operations['operations_customer_price'];
+				$new  =  $Operations['operations_customer_price'];
 				$GLOBALS['db']->query("INSERT INTO `clients_finance`
 				(`clients_finance_sn`, `clients_finance_client_id`, `clients_finance_credit`, `clients_status`)
 				VALUES

@@ -541,12 +541,6 @@ include  './assets/layout/footer.php';?>
             
         }
      });
-      
-	
-
-      
-      
-      
 	$('#supplier_div').on('change','select#supplier',function(){
 		
 		  $('#operations_customer').prop('selectedIndex',0);

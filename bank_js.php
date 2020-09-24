@@ -13,6 +13,7 @@
 	include("./inc/fundamentals.php");
     include("./inc/Classes/system-settings_banks.php");
 	$setting_bank = new systemSettings_banks();
+	
 	include("./inc/Classes/system-deposits.php");
 	$deposit = new systemDeposits();
     if($login->doCheck() == false)
@@ -22,7 +23,20 @@
     }else{
 		switch($_GET['do'])
 		{
-		case "bank_approve":
+		case "bank_approve_transfer":
+			if ($_POST) {
+				include("./inc/Classes/system-money_transfers.php");
+				$trensfer = new systemMoney_transfers();
+				$id      = intval($_POST['id']);
+				$data    = $trensfer->Bank_Approved($id);
+				if ($data == 1) {
+					echo 100;
+				} else {
+					echo 400;
+				}
+				exit;
+			}
+	 case "bank_approve":
 			if ($_POST) {
 				$id      = intval($_POST['id']);
 				$data    = $deposit->Bank_Approved($id);

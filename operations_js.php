@@ -262,6 +262,7 @@
 					$products = $setting_clients->get_client_product_rate($id);
 					if ($products)
 					{
+						echo '<option selected disabled>'.$lang["SETTINGS_BAN_CHOOSE_PRODUCT"].'</option>';
 						foreach($products as $k => $p)
 						{
 							echo '<option value="'.$p["clients_products_rate_sn"].'">'.$p["clients_products_rate_name"].'</option>';

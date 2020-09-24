@@ -50,27 +50,25 @@ if ($login->doCheck() == false) {
             $_transfer['transfers_days']                     =       sanitize($_POST["transfer_days"]);
             $_transfer['transfers_date_pay']                 =       format_data_base($_POST["transfers_date_pay"]);
             $_transfer['invoices_id']                       =       intval($_POST["invoices_id"]);
-            
-            print_r($_transfer);
              $add = $deposit->Add_Money_Transfer($_transfer);
-            // if ($add == 1) {
+             if ($add == 1) {
 
-            //     $logs->addLog(
-            //         NULL,
-            //         array(
-            //             "type"                 =>     "users",
-            //             "module"             =>     "transfer",
-            //             "mode"                 =>     "add_transfer",
-            //             "id"                 =>    $_SESSION['id'],
-            //         ),
-            //         "admin",
-            //         $_SESSION['id'],
-            //         1
-            //     );
-            //     header("Location:./transfer.php");
+                 $logs->addLog(
+                     NULL,
+                     array(
+                         "type"                 =>     "users",
+                         "module"               =>     "transfer_money",
+                         "mode"                 =>     "add_transfer",
+                         "id"                   =>    $_SESSION['id'],
+                     ),
+                     "admin",
+                     $_SESSION['id'],
+                     1
+                 );
+                 header("Location:./transfers.php?action=add");
 
-            //     exit;
-            // }
+                 exit;
+             }
         }
     }
 }
@@ -92,16 +90,7 @@ include './assets/layout/header.php';
             </p>
         </div>
     </div>
-    <!-- end links row -->
-    <!-- search btn row -->
-    <!-- <div class="row">
-        <div class="col d-flex justify-content-end">
-            <a href="./banks_operations_search.html">
-                <button class="btn widerBtn searchbtn" type="submit"><?php echo $lang['SEARCH']; ?></button>
-            </a>
-        </div>
-    </div> -->
-    <!-- end search btn row -->
+ 
     <!-- add/edit product row -->
     <div class="row centerContent">
         <div class="col">
@@ -130,7 +119,7 @@ include './assets/layout/header.php';
                                 if ($f['credit'] < 0) {
                                     echo 'warning';
                                 }
-                                echo 'w-100 ltrDir">' . number_format($f['credit']) . '</h5>
+                                echo ' w-100 ltrDir">' . number_format($f['credit']) . '</h5>
                                 </div>';
                                 $total_finance += $f['credit'];
                             }
@@ -164,8 +153,8 @@ include './assets/layout/header.php';
             <!-- end account details row -->
             <form method="post" id="customersAccountsPaymentForm" enctype="multipart/form-data">
                    <?php 
-						if($add == 1){
-							echo alert_message("success",$lang['DEPOSITS_SUCCESS']);
+						if($_GET['action']=="add"){
+							echo alert_message("success",$lang['TRANSFER_SUCCESS']);
 						}
 					?>
                 <h5><?php echo $lang['TRANSFER_ADD_NEW']; ?></h5>

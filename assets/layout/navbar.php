@@ -94,28 +94,26 @@
 							{
 							  echo'<li class="dropdown-item" href="./add_expense.php"><a>'.$lang['OPERATIONS_DROP_TITLE_2'].'</a></li>';
 							}
-							if($group['expense']  == 1)
-							{
-							  echo'<li class="dropdown-item" href="./add_expense.php"><a> '.$lang['OPERATIONS_DROP_TITLE_3'].'</a></li>';
-							}
+//							if($group['expense']  == 1)
+//							{
+//							  echo'<li class="dropdown-item" href="./add_expense.php"><a> '.$lang['OPERATIONS_DROP_TITLE_3'].'</a></li>';
+//							}
 						echo'</ul>
 					</li>';
 						?>
-					<li class="nav-item dropdown ">
+					<?php
+						echo'<li class="nav-item dropdown '; if($page_name == "supplier_search" ){echo 'active';}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-user-friends"></i>
-							موردين
+							'.$lang['SETTINGS_SU_SUPPLIERS'].'
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown2">
-							<li class="dropdown-item" href="./suppliers_accounts_search"><a>حسابات
-									الموردين</a></li>
-							<li class="dropdown-item" href="./suppliers_pricing_search"><a>تسعير سابق</a>
-							</li>
+							<li class="dropdown-item" href="./supplier_search.php"><a>'.$lang['SETTINGS_C_F_SUPPLIERS_FINANCE'].'</a></li>
 						</ul>
-					</li>
+					</li>';?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "pricing_search" ||$page_name == "add_client_pricing" ||$page_name == "pricing_search" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "pricing_search" ||$page_name == "add_client_pricing" ||$page_name == "pricing_search"||$page_name == "client_search" ){echo 'active';}echo'">
 								<a class="nav-link dropdown-toggle" id="dropdown3" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
 									<i class="fas fa-chart-line"></i>
@@ -128,7 +126,7 @@
 								}
 								if($group['clients_finance']  == 1)
 								{
-								  echo'<li class="dropdown-item" href="./customers_accounts_search"><a >'.$lang['SETTINGS_C_F_FINANCES'].'</a></li>';
+								  echo'<li class="dropdown-item" href="./client_search.php"><a >'.$lang['SETTINGS_C_F_FINANCES'].'</a></li>';
 								}
 								if($group['clients_old_pricing']  == 1)
 								{
@@ -142,11 +140,7 @@
 						
 					<?php
 							echo '<li class="nav-item dropdown ';
-<<<<<<< HEAD
 							if ($page_name == "deposit_list" || $page_name == "deposit" ||$page_name == "deposits_list" || $page_name == "transfer_money") {
-=======
-							if ($page_name == "deposit_list" || $page_name == "deposit" || $page_name == "transfer_money") {
->>>>>>> 0f3bae5d21ff29c054f9da022ff64fd3914b1a40
 								echo 'active';
 							}
 							echo '">
@@ -164,9 +158,9 @@
 								{
 								  echo'<li class="dropdown-item" href="./pull_money.php"><a>'.$lang['BANKS_PULL'].' </a></li>';
 								}
-							if ($group['bank_transfer']  == 1)
+								if ($group['bank_transfer']  == 1)
 								{
-						echo '<li class="dropdown-item" href="./transfer_money.php"><a >' . $lang['BANKS_TRANSFAR'] . '</a></li>';
+									echo '<li class="dropdown-item" href="./transfer_money.php"><a >' . $lang['BANKS_TRANSFAR'] . '</a></li>';
 								}
 								if($group['show_account']  == 1)
 								{
@@ -176,26 +170,7 @@
 								echo'</ul>
 							</li>';
 						?>	
-					
-					
-<!--
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" id="dropdown4" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-file-invoice-dollar"></i>
-							خزنة وبنوك
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown4">
-							<li class="dropdown-item" href="./banks_operations_deposit"><a>ايداع
-								</a></li>
-							<li class="dropdown-item" href="./banks_operations_withdrawal"><a>سحب
-								</a></li>
-							<li class="dropdown-item" href="./banks_operations_transfer"><a>تحويل
-								</a></li>
-							<li class="dropdown-item" href="./banks_credits_Details"><a>الاطلاع علي الأرصدة </a></li>
-						</ul>
-					</li>
--->
+
 					<li class="nav-item">
 						<a class="nav-link" href="./reminders">
 							<i class="fas fa-bell"></i>
@@ -269,8 +244,9 @@
 							echo'<li class="dropdown-item" href="./add_user.php"><a>'.$lang['SETTINGS_US_USERS'].'</a></li>';
 						  }
 							
-							echo '<li class="dropdown-item" href="./settings_access"><a>صلاحيات
-									النظام</a></li>
+							echo '
+//							<li class="dropdown-item" href="./settings_access"><a>صلاحيات
+//									النظام</a></li>
 						</ul>
 					</li>';?>
 

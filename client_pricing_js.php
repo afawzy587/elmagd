@@ -395,6 +395,28 @@
 				}
 				
 			}
+				
+			case"supplier_product":
+			if($_POST)
+			{
+				include("./inc/Classes/system-settings_suppliers.php");
+				$setting_supplier = new systemSettings_suppliers();
+				$id = intval($_POST['id']);
+				$products = $setting_supplier->get_supplier_product($id);
+				if ($products)
+				{
+					echo'<option selected disabled>'.$lang["SETTINGS_BAN_CHOOSE_PRODUCT"].'</option>';
+					foreach($products as $k => $p)
+					{
+						echo '<option value="'.$p["clients_products_sn"].'">'.$p["products_name"].'</option>';
+					}
+				}else{
+					echo '<option selected disabled>'.$lang["NO_CLIENT_PRODUCT"].'</option>';
+				}
+				
+				
+				exit;
+			}
 		}
     }
 

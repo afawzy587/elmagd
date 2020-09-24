@@ -7,6 +7,7 @@ $lang['CHOOSE']                    =      " اخــــــــــتـــــ
 $lang['dir']                       =      "rtl";
 $lang['SEARCH']                    =      "البحث";
 $lang['PRINT']                     =      "طباعة";
+$lang['SHOW']                      =      "عرض";
 $lang['CURRENCY']                  =      "جنيه";
 $lang['LITER']                     =      "لتر";
 $lang['SAT']                       =      "السبت";
@@ -69,6 +70,8 @@ $lang['SEARCH_MUST']               =      "يجب كتابة كلمات البح
 $lang['SEARCH_RESULT']             =      "نتائج البحث";
 $lang['DETAILS']                   =      "التفاصيل";
 $lang['IN']                        =      "فى";
+$lang['FROM']                      =      "من";
+$lang['TO']                        =      "الى";
 $lang['NO_SEACH_RESULT']           =      "لا توجد نتائج";
 $lang['LOGS']                      =      "سجلات الدخول على الموقع";
 $lang['PASSWORD']                  =      "كلمة المرور";
@@ -466,6 +469,7 @@ $lang['SETTINGS_C_F_M_SUP_BOU']           =   "بونص مورد (كجم)";
 $lang['SETTINGS_D_EDIT_PRICING']          =   "تعديل التسعير";
 $lang['SETTINGS_C_F_SEARCH_TITLE']        =   "بحث تسعير سابق لعميل";
 $lang['SETTINGS_C_F_SUPPLIERS']           =   "الموردين";
+$lang['SETTINGS_C_F_SUPPLIERS_FINANCE']   =   "حسابات  الموردين ";
 $lang['SETTINGS_C_F_CHOOSE_SUPLLIER']     =   "اختر المورد";
 $lang['SETTINGS_C_F_RATES']               =   "الدرجات";
 $lang['SETTINGS_C_F_CHOOSE_RATE']         =   "اختر الدرجة";
@@ -504,6 +508,7 @@ $lang['SETTINGS_C_F_NUMBER_ON']           =   "يجب أن يكون أرقام �
 $lang['SETTINGS_C_F_ACCOUNT_TYPE']        =   "اختر نوع الحساب";
 $lang['SETTINGS_C_F_ACO_IN']              =   "اختر الوعاء";
 $lang['NO_COUNT']                         =   "لا يوجد وعاء";
+
 
 //*************operations*******************//
 $lang['OPERATIONS_NAV_TITLE']             =   "عمليات";
@@ -630,7 +635,9 @@ $lang['TRANSFER_DATE']               =  "تاريخ التحويل";
 $lang['TRANSFER_TYPE']               =  "نوع التحويل";
 $lang['TRANSFER_SUCCESS']            =  "تم اضافة تحويل جديد";
 $lang['TRANSFER_FROM']               =  "من رصيد";
-$lang['TRANSFER_TO']               =  "الى رصيد";
+$lang['TRANSFER_TO']                 =  "الى رصيد";
+$lang['TRANSFER_INVOICE']            =  "فاتورة رقم ";
+$lang['TRANSFER_ADD_TO_DEPOSITS']    =  "تم الاضافة لايداعات";
 $lang['TRANSFER_']               =  " ";
 $lang['TRANSFER_']               =  " ";
 
@@ -639,6 +646,30 @@ $lang['TRANSFER_LIST']               =  "الاطلاع على التحويلا�
 $lang['TRANSFER_ADD_NEW']            =  "اضافة تحويل جديد";
 $lang['TRANSFER_DATE']               =  "تاريخ التحويل";
 $lang['TRANSFER_TYPE']               =  "نوع التحويل";
+
+//**************** CLIENT SEARCH ********************//
+$lang['C_S_TOTAL_REMAIN']            = "اجمالي متبقي لدي العملاء";
+$lang['C_S_SEARCH_CLIENT']           = "بحث حساب عميل";
+$lang['C_S_SEARCH_SUPPLIER']         = "بحث حساب مورد";
+$lang['C_S_DEGREES']                 = "الدرجات أو التصنيف ";
+$lang['C_S_FROM_SERIAL']             = "من مسلسل";
+$lang['C_S_TO_SERIAL']               = "الى مسلسل";
+$lang['C_S_INVOICES_FROM']           = "من فاتورة رقم";
+$lang['C_S_INVOICES_TO']             = "الى فاتورة رقم";
+$lang['C_S_MONEY_OPERATION']         = "عمليات مالية";
+$lang['C_S_SEARCH_RESULT']           = "عرض حساب عميل (نتيجة بحث عن عميل)";
+$lang['C_S_TOTAL']                   = "قيمة التوريد(ج.م)";
+$lang['C_S_PAID']                    = "المدفوع (ج.م)";
+$lang['C_S_REMAIN']                  = "الباقي (ج.م)";
+$lang['C_S_DATE']                    = "تاريخ الفاتورة";
+$lang['C_S_TOTAL_AMOUNT']            = " كمية قبل الخصم (كجم)";
+$lang['C_S_CLIENT_PRICE']            = "حساب العميل (ج.م)";
+$lang['C_S_CLIENT_COLLECT']          = "المحصل";
+$lang['C_S_CLIENT_REMIEN']           = " الباقي (ج.م)";
+$lang['C_S_CLIENT_PAYMENT']    = "محاسبة العميل";
+$lang['C_S_']    = "";
+$lang['C_S_']    = "";
+$lang['C_S_']    = "";
 
 
 

@@ -43,9 +43,10 @@
 //************** page name ********************//
     $basename      =   basename($_SERVER['PHP_SELF']);
     $page_name     =   str_replace(".php","",$basename);
-
-	$actual_link   = substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
-
+	$actual_link   =   substr($_SERVER['REQUEST_URI'], strrpos($_SERVER['REQUEST_URI'], '/') + 1);
+	$parts         =   parse_url($actual_link);
+	$url_get_parts =  $parts['query'];
+	
 	$from 				= 	date('Y-m-01');
 	$to			        = 	date('Y-m-01',strtotime('+3 month',strtotime($from)));
 
