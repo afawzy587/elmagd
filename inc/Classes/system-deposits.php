@@ -7,9 +7,14 @@ class systemDeposits
 {
     var $tableName 	= "deposits";
 
-    function getsiteDepoists($addon = "")
+    function getsiteDepoists($addon = "",$id=0)
     {
-        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `deposits_status` != '0'  ORDER BY `deposits_sn`  DESC " . $addon);
+		if($id > 0){
+			$id = " AND `deposits_sn` = '".$id."'";
+		}else{
+			$id = "" ;
+		}
+        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `deposits_status` != '0' ".$id."  ORDER BY `deposits_sn`  DESC " . $addon);
         $queryTotal = $GLOBALS['db']->resultcount($query);
         if ($queryTotal > 0) {
             return ($GLOBALS['db']->fetchlist());
@@ -119,7 +124,7 @@ class systemDeposits
 
             $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($Deposits['expenses_cheque_date'])));
             $GLOBALS['db']->query("INSERT INTO `reminders`
-			(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_start_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`) 
+			(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`)
 			VALUES
 			(NULL ,'deposits','" . $deposits_id . "','" . $Deposits['deposits_cheque_date'] . "','day','7','" . $reminders_remember_date . "','" . $reminders_remember_date . "',1)");
         }

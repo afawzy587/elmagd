@@ -694,7 +694,6 @@ include  './assets/layout/footer.php';?>
 		$('#operations_customer_price').val(c_price);
    }
       $('#calc').keyup(function(){
-          console.log(124);
           $('#qualityItemsContainer').trigger('keyup');
           $('.rate_percentage').trigger('change');    
           cullc_price();

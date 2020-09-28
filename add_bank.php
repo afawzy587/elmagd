@@ -1203,20 +1203,20 @@ $(document).ready(function () {
                     }
                 }
             },
-            "banks_credit_client[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?>'
-                    }
-                }
-            },
-            "banks_credit_product[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?>'
-                    }
-                }
-            },
+//            "banks_credit_client[0]": {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?>'
+//                    }
+//                }
+//            },
+//            "banks_credit_product[0]": {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?>'
+//                    }
+//                }
+//            },
             // banks_saving_account_number: {
             //     validators: {
             //         notEmpty: {

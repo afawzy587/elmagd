@@ -190,6 +190,14 @@ class systemClients_collectible
                 $GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
                  `companyinfo_opening_balance_cheques`= '".$cheque."'
                  WHERE `companyinfo_sn` = '".$sitecompany['companyinfo_sn']."'");
+				if($_collectible['collectible_cheque_date'])
+				{
+					$reminders_remember_date  = date('Y-m-d',strtotime('-7days',strtotime($_collectible['collectible_cheque_date'])));
+					$GLOBALS['db']->query("INSERT INTO `reminders`
+					(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`)
+					VALUES
+					(NULL ,'safe','".$collect_id."','".$_collectible['collectible_cheque_date']."','day','7','".$reminders_remember_date."','".$reminders_remember_date."',1)");
+				}
             }
             
         }else{
@@ -204,54 +212,64 @@ class systemClients_collectible
 			$bankfinanceTotal = $GLOBALS['db']->resultcount();
 			if($bankfinanceTotal > 0)
 			{
-
-				$sitebank = $GLOBALS['db']->fetchitem($query);
-				$new = $sitebank['banks_finance_credit'] + $_collectible['collectible_value'];
-				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
-				`banks_finance_credit`		 =	'".$new."'
-				WHERE `banks_finance_sn` 		 = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
-			}else
-			{
-
-				if($_collectible['collectible_account_type'] == 'saving')
-				{
-					$bankfinance = $GLOBALS['db']->query("SELECT * FROM `settings_banks_saving` WHERE `banks_saving_bank_id` = '".$_collectible['collectible_bank_id']."' LIMIT 1 ");
-					$Total = $GLOBALS['db']->resultcount();
-					if($Total > 0)
+//				if($_collectible['collectible_account_type'] == 'saving' || $_collectible['collectible_account_type'] == 'saving' )
+//				{
+					if($_collectible['collectible_type']== 'cash')
 					{
-						$account = $GLOBALS['db']->fetchitem($query);
-						$id = $account['banks_saving_sn'];
-						$open = $account['banks_saving_open_balance'];
-					}
-
-				}elseif($_collectible['collectible_account_type'] == 'current'){
-					$bankfinance = $GLOBALS['db']->query("SELECT * FROM `settings_banks_current` WHERE `banks_current_bank_id` = '".$_collectible['collectible_bank_id']."' LIMIT 1 ");
-					$Total = $GLOBALS['db']->resultcount();
-					if($Total > 0)
+						$sitebank = $GLOBALS['db']->fetchitem($query);
+						$new = $sitebank['banks_finance_credit'] + $_collectible['collectible_value'];
+						$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
+						`banks_finance_credit`		 =	'".$new."'
+						WHERE `banks_finance_sn` 		 = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
+					}elseif($_collectible['collectible_type']== 'cheque')
 					{
-						$account = $GLOBALS['db']->fetchitem($query);
-						$id = $account['banks_current_sn'];
-						$open = $account['banks_current_opening_balance'];
-					}
-				}
+						if($_collectible['collectible_account_type'] != 'credit')
+						{
+							$deposits_cut_precent = 0;
+							$deposits_cut_value   = 0;
+							$deposits_days        = 0;
+							$deposit_date_pay     = 0;
 
+						}else{
+							$account_query = $GLOBALS['db']->query("SELECT * FROM `settings_banks_credit` WHERE `banks_credit_sn` = '".$_collectible['collectible_account_id']."'");
+							$siteaccount = $GLOBALS['db']->fetchitem($account_query);
 
-				$GLOBALS['db']->query("INSERT INTO `setiings_banks_finance`
-				(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`,`banks_finance_open_balance`,`banks_finance_credit`, `banks_finance_status`)
-				VALUES
-				(NULL , '".$_collectible['collectible_bank_id']."' , '".$_collectible['collectible_account_type']."', '".$id."', '".$open."', '".$_collectible['collectible_value']."',1)
-				");
+							$deposits_cut_precent = $siteaccount['banks_credit_cutting_ratio'];
+							$deposits_cut_value   = ($siteaccount['banks_credit_cutting_ratio']/100) * $_collectible['collectible_value'] ;
+							if($siteaccount['banks_credit_repayment_type'] == 'day')
+							{
+								$deposits_days        = $siteaccount['banks_credit_repayment_period'];
+								$deposit_date_pay     = $reminders_remember_date  = date('Y-m-d',strtotime('+'.$deposits_days.'days',strtotime($_collectible['collectible_date'])));;
+							}else{
+								$now = time();
+								$your_date = strtotime($_collectible['collectible_cheque_date']);
+								$datediff = $now - $your_date;
+								$deposits_days            = round($datediff / (60 * 60 * 24));
+							    $deposit_date_pay         = $_collectible['collectible_cheque_date'];
+							}
+
+						}
+						$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `deposits`
+						(`deposits_sn`, `deposits_date`, `deposits_type`, `deposits_value`, `deposits_cheque_date`,
+						`deposits_cheque_number`, `deposits_insert_in`, `deposits_bank_id`, `deposits_account_type`,
+						`deposits_account_id`,`deposits_cut_precent`, `deposits_cut_value`, `deposits_days`,
+						`deposit_date_pay`,`deposits_status`)
+						VALUES ( NULL ,'".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$_collectible['collectible_value']."','".$_collectible['collectible_cheque_date']."',
+						'".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."','".$_collectible['collectible_account_type']."',
+						'".$_collectible['collectible_account_id']."','".$deposits_cut_precent."','".$deposits_cut_value."','".$deposits_days."','".$deposit_date_pay."',1)");
+						$deposits_id=$GLOBALS['db']->fetchLastInsertId();
+
+						$reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($_collectible['collectible_cheque_date'])));
+						$GLOBALS['db']->query("INSERT INTO `reminders`
+						(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`)
+						VALUES
+						(NULL ,'deposits','" . $deposits_id . "','" . $_collectible['collectible_cheque_date'] . "','day','7','" . $reminders_remember_date . "','" . $reminders_remember_date . "',1)");
+
+								}
+//				}
 			}
 		}
-		if($_collectible['collectible_cheque_date'])
-		{
-			
-			$reminders_remember_date  = date('Y-m-d',strtotime('-7days',strtotime($_collectible['collectible_cheque_date'])));
-			$GLOBALS['db']->query("INSERT INTO `reminders`
-			(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_start_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`) 
-			VALUES
-			(NULL ,'clients_collectible','".$collect_id."','".$_collectible['collectible_cheque_date']."','day','7','".$reminders_remember_date."','".$reminders_remember_date."',1)");
-		}
+
 		
 		
 		

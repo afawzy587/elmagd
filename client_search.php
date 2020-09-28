@@ -57,7 +57,7 @@ include './assets/layout/header.php';
                 <i class="fas fa-info-circle"></i>
                 <a class="blueSky" href="./index.php"><?php echo $lang['SETTINGS_TITLE']; ?></a>
                 <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_CL_CLIENTS']; ?> </span>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_FINANCES']; ?></span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_CL_CLIENTS_FINANCES']; ?></span>
             </p>
         </div>
     </div>
@@ -149,7 +149,7 @@ include './assets/layout/header.php';
 													{
 														foreach($suppliers as $sId=> $s)
 														{
-															echo '<option value="'.$s["suppliers_sn"].'"';if(isset($_SESSION['supplier'])){if($s["suppliers_sn"] == $_SESSION['supplier']){echo ' selected';}}echo'>'.$s["suppliers_name"].'</option>';
+															echo '<option value="'.$s["suppliers_sn"].'" >'.$s["suppliers_name"].'</option>';
 														}
 													}
 												?>

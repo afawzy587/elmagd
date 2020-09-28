@@ -71,7 +71,7 @@
 					echo'<option selected disabled>'.$lang["SETTINGS_BAN_CHOOSE_PRODUCT"].'</option>';
 					foreach($products as $k => $p)
 					{
-						echo '<option value="'.$p["clients_products_sn"].'">'.$p["products_name"].'</option>';
+						echo '<option value="'.$p["clients_products_product_id"].'">'.$p["products_name"].'</option>';
 					}
 				}else{
 					echo '<option selected disabled>'.$lang["NO_CLIENT_PRODUCT"].'</option>';
@@ -408,7 +408,7 @@
 					echo'<option selected disabled>'.$lang["SETTINGS_BAN_CHOOSE_PRODUCT"].'</option>';
 					foreach($products as $k => $p)
 					{
-						echo '<option value="'.$p["clients_products_sn"].'">'.$p["products_name"].'</option>';
+						echo '<option value="'.$p["suppliers_products_product_id"].'">'.$p["products_name"].'</option>';
 					}
 				}else{
 					echo '<option selected disabled>'.$lang["NO_CLIENT_PRODUCT"].'</option>';

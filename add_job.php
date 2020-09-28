@@ -66,7 +66,6 @@
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['Settings_jobs'];?></span>
                     <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_J_TITLE'];?></span>
                 </p>
             </div>

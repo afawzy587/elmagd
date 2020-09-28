@@ -224,7 +224,7 @@
         <div class="row mt-5 mb-5">
             <div class="col d-flex justify-content-end">
                 <button class="btn roundedBtn mr-2" type="submit"><?php echo $lang['PRINT'];?></button>
-                <a href="./transactions_trade_supplier_payments.html">
+                <a href="./supplier_search_result.php?<?php echo 'supplier='.$operations[0]['operations_supplier'].'&code='.$q;?>">
                     <button class="btn roundedBtn mr-2" type="button"> <?php echo $lang['OPERATIONS_SUPPULIER_FINANCE'];?></button>
                 </a>
 

@@ -11,14 +11,7 @@
 		<i class="fas fa-bell cool-grey mobmenuBell"></i>
 	</a>
 	<div class="dropdown-menu notifiDropdown mobileNoti_dp" aria-labelledby="noti">
-		<a class="dropdown-item" href="#">
-			لقد تم .. .. .. .. .. .. .. .. ..
-			<div><small>منذ 3 ساعات</small></div>
-		</a>
-		<a class="dropdown-item" href="#">
-			يوجد اشعار .. ..
-			<div><small>أمس 09:10 AM</small></div>
-		</a>
+
 	</div>
 	<!-- end only mob menu items-->
 	<div class="collapse navbar-collapse flex-column" id="navbar">
@@ -31,23 +24,18 @@
 				</a>
 
 				<div class="userNav-info mt-2 mt-md-0 top_nav">
-					<span>
-						<a class="nav-link dropdown-toggle notificationIcon" href="#" id="noti" role="button"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-								class="fas fa-bell cool-grey mainBell"></i>
-						</a>
-						<div class="dropdown-menu notifiDropdown" aria-labelledby="noti">
-							<a class="dropdown-item" href="#">
-								لقد تم .. .. .. .. .. .. .. .. ..
-								<div><small>منذ 3 ساعات</small></div>
-							</a>
-							<a class="dropdown-item" href="#">
-								يوجد اشعار .. ..
-								<div><small>أمس 09:10 AM</small></div>
-							</a>
-						</div>
+					 <span>
+                            <a class="nav-link dropdown-toggle notificationIcon" href="#" id="noti" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 <i class="fas fa-bell cool-grey mainBell"></i>
+                                	<span class="badge badge-notify count"></span>
 
-					</span>
+                            </a>
+
+                            <div class="dropdown-menu notifiDropdown" aria-labelledby="noti">
+
+                            </div>
+
+                        </span>
 
 					<hr>
 					<span>
@@ -102,7 +90,7 @@
 					</li>';
 						?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "supplier_search" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "supplier_search" || $page_name == "add_suppliers_payment" ){echo 'active';}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-user-friends"></i>
@@ -113,11 +101,11 @@
 						</ul>
 					</li>';?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "pricing_search" ||$page_name == "add_client_pricing" ||$page_name == "pricing_search"||$page_name == "client_search" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "pricing_search" ||$page_name == "add_client_pricing"||$page_name == "client_search_result"||$page_name == "add_clients_payment" ||$page_name == "clients_pricing"||$page_name == "client_search" ){echo 'active';}echo'">
 								<a class="nav-link dropdown-toggle" id="dropdown3" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
 									<i class="fas fa-chart-line"></i>
-									'.$lang['SETTINGS_C_F_CLIENT'].'
+									'.$lang['SETTINGS_CL_CLIENTS'].'
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="dropdown3">';
 								if($group['clients_pricing']  == 1)
@@ -126,7 +114,7 @@
 								}
 								if($group['clients_finance']  == 1)
 								{
-								  echo'<li class="dropdown-item" href="./client_search.php"><a >'.$lang['SETTINGS_C_F_FINANCES'].'</a></li>';
+								  echo'<li class="dropdown-item" href="./client_search.php"><a >'.$lang['SETTINGS_CL_CLIENTS_FINANCES'].'</a></li>';
 								}
 								if($group['clients_old_pricing']  == 1)
 								{
@@ -140,7 +128,7 @@
 						
 					<?php
 							echo '<li class="nav-item dropdown ';
-							if ($page_name == "deposit_list" || $page_name == "deposit" ||$page_name == "deposits_list" || $page_name == "transfer_money") {
+							if ($page_name == "deposit_list" || $page_name == "deposits" ||$page_name == "deposits_list" || $page_name == "transfer_money") {
 								echo 'active';
 							}
 							echo '">
@@ -243,10 +231,10 @@
 						  {
 							echo'<li class="dropdown-item" href="./add_user.php"><a>'.$lang['SETTINGS_US_USERS'].'</a></li>';
 						  }
-							
-							echo '
 //							<li class="dropdown-item" href="./settings_access"><a>صلاحيات
 //									النظام</a></li>
+							echo '
+
 						</ul>
 					</li>';?>
 

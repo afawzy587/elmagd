@@ -194,7 +194,7 @@ hr {
 }
 
 .dropdown-menu.notifiDropdown{
-    width: 250px;
+    width: auto;
     /* overflow: wrap; */
 }
 
@@ -802,3 +802,16 @@ label.customized-checkbox-label:before{
 #customersPricingAddEditForm label:not(.smallerFont){
     font-size: 1.2rem;
 }
+.badge-notify{
+   background:red;
+   position:relative;
+   top: -10px;
+   left: 2%;
+}
+
+.unread{
+   background-color: rgba(10,15,83,1);
+}
+
+
+

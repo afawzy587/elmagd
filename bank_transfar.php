@@ -8,9 +8,8 @@ ob_start("ob_gzhandler");
 define("inside", true);
 // get funcamental file which contain config and template files,settings.
 include("./inc/fundamentals.php");
- $_SESSION['page']  = $basename;
-include("./inc/Classes/system-money_transfers.php");
-$deposit = new systemMoney_transfers();
+include("./inc/Classes/system-deposits.php");
+$deposit = new systemDeposits();
 
 include("./inc/Classes/system-settings_banks.php");
 $setting_bank = new systemSettings_banks();
@@ -22,7 +21,7 @@ if ($login->doCheck() == false) {
     header("Location:./login.php");
     exit;
 } else {
-    if ($group['bank_transfer'] == 0) {
+    if ($group['bank_transfar'] == 0) {
         header("Location:./permission.php");
         exit;
     } else {
@@ -30,45 +29,40 @@ if ($login->doCheck() == false) {
         $banks         = $setting_bank->getaccountsSettings_banks();
         $clients       = $setting_client->getsiteSettings_clients();
         if ($_POST) {
-            $_transfer['transfers_date']                     =       sanitize($_POST["transfers_date"]);
-            $_transfer['transfers_from']                     =       sanitize($_POST["transfer_from"]);
-            $_transfer['transfers_account_type_from']        =       sanitize($_POST["transfer_account_type_from"]);
-            $_transfer['transfers_account_id_from']          =       sanitize($_POST["transfer_account_id_from"]);
-            $_transfer['transfers_client_id_from']           =       sanitize($_POST["transfer_client_id_from"]);
-            $_transfer['transfers_product_id_from']          =       sanitize($_POST["transfer_product_id_from"]);
-            $_transfer['transfers_value']                    =       sanitize($_POST["transfer_value"]);
-            $_transfer['transfers_type']                     =       sanitize($_POST["transfer_type"]);
-            $_transfer['transfers_cheque_date']              =       sanitize($_POST["transfer_cheque_date"]);
-            $_transfer['transfers_cheque_number']            =       sanitize($_POST["transfer_cheque_number"]);
-            $_transfer['transfers_to']                       =       sanitize($_POST["transfer_to"]);
-            $_transfer['transfers_account_type_to']          =       sanitize($_POST["transfer_account_type_to"]);
-            $_transfer['transfers_account_id_to']            =       sanitize($_POST["transfer_account_id_to"]);
-            $_transfer['transfers_client_id_to']             =       sanitize($_POST["transfer_client_id_to"]);
-            $_transfer['transfers_product_id_to']            =       sanitize($_POST["transfer_product_id_to"]);
-            $_transfer['transfers_cut_precent']              =       sanitize($_POST["transfer_cut_precent"]);
-            $_transfer['transfers_cut_value']                =       sanitize($_POST["transfer_cut_value"]);
-            $_transfer['transfers_days']                     =       sanitize($_POST["transfer_days"]);
-            $_transfer['transfers_date_pay']                 =       format_data_base($_POST["transfers_date_pay"]);
-            $_transfer['invoices_id']                        =       $_POST["invoices_id"][0];
-            $add = $deposit->Add_Money_Transfer($_transfer);
-             if ($add == 1) {
+            $_deposit['transfer_date']                     =       sanitize($_POST["transfer_date"]);
+            $_deposit['transfer_from']                     =       sanitize($_POST["transfer_from"]);
+            $_deposit['transfer_account_type_from']                    =       sanitize($_POST["transfer_account_type_from"]);
+            $_deposit['transfer_account_id_from']              =       sanitize($_POST["transfer_account_id_from"]);
+            $_deposit['transfer_client_id_from']            =       sanitize($_POST["transfer_client_id_from"]);
+            $_deposit['transfer_product_id_from']                  =       sanitize($_POST["transfer_product_id_from"]);
+            $_deposit['deposits_account_type']             =       sanitize($_POST["deposits_account_type"]);
+            $_deposit['deposits_account_id']               =       sanitize($_POST["deposits_account_id"]);
+            $_deposit['deposits_client_id']                =       sanitize($_POST["deposits_client_id"]);
+            $_deposit['deposits_product_id']               =       sanitize($_POST["deposits_product_id"]);
+            $_deposit['deposits_cut_precent']              =       sanitize($_POST["deposits_cut_precent"]);
+            $_deposit['deposits_cut_value']                =       sanitize($_POST["deposits_cut_value"]);
+            $_deposit['deposits_days']                     =       sanitize($_POST["deposits_days"]);
+            $_deposit['deposits_date_pay']                 =       sanitize($_POST["deposits_date_pay"]);
+            $_deposit['invoices_id']                       =       $_POST["invoices_id"];
+            $add = $deposit->Add_Deposits($_deposit);
+            if ($add == 1) {
 
-                 $logs->addLog(
-                     NULL,
-                     array(
-                         "type"                 =>     "users",
-                         "module"               =>     "transfer_money",
-                         "mode"                 =>     "add_transfer",
-                         "id"                   =>    $_SESSION['id'],
-                     ),
-                     "admin",
-                     $_SESSION['id'],
-                     1
-                 );
-                 header("Location:./transfers.php?action=add");
+                $logs->addLog(
+                    NULL,
+                    array(
+                        "type"                 =>     "users",
+                        "module"             =>     "deposits",
+                        "mode"                 =>     "add_deposits",
+                        "id"                 =>    $_SESSION['id'],
+                    ),
+                    "admin",
+                    $_SESSION['id'],
+                    1
+                );
+                header("Location:./deposits.php");
 
-                 exit;
-             }
+                exit;
+            }
         }
     }
 }
@@ -90,7 +84,16 @@ include './assets/layout/header.php';
             </p>
         </div>
     </div>
- 
+    <!-- end links row -->
+    <!-- search btn row -->
+    <!-- <div class="row">
+        <div class="col d-flex justify-content-end">
+            <a href="./banks_operations_search.html">
+                <button class="btn widerBtn searchbtn" type="submit"><?php echo $lang['SEARCH']; ?></button>
+            </a>
+        </div>
+    </div> -->
+    <!-- end search btn row -->
     <!-- add/edit product row -->
     <div class="row centerContent">
         <div class="col">
@@ -119,7 +122,7 @@ include './assets/layout/header.php';
                                 if ($f['credit'] < 0) {
                                     echo 'warning';
                                 }
-                                echo ' w-100 ltrDir">' . number_format($f['credit']) . '</h5>
+                                echo 'w-100 ltrDir">' . number_format($f['credit']) . '</h5>
                                 </div>';
                                 $total_finance += $f['credit'];
                             }
@@ -135,14 +138,14 @@ include './assets/layout/header.php';
                             </div>
 
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end">
+                        <div class="col-md-6 d-flex justify-content-end">
                             <a href="deposits_list.php" class="btn roundedBtn">
                                 <?php echo $lang['SHOW_DEPOSITS'];?>
                             </a>
                         </div>
-                        <div class="col-md-3 d-flex justify-content-end">
-                            <a href="transfers.php" class="btn roundedBtn">
-                                <?php echo $lang['TRANSFER_LIST']; ?>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            <a href="deposits_list.php" class="btn roundedBtn">
+                                <?php echo $lang['SHOW_DEPOSITS']; ?>
                             </a>
                         </div>
                     </div>
@@ -152,107 +155,33 @@ include './assets/layout/header.php';
             </div>
             <!-- end account details row -->
             <form method="post" id="customersAccountsPaymentForm" enctype="multipart/form-data">
-                   <?php 
-						if($_GET['action']=="add"){
-							echo alert_message("success",$lang['TRANSFER_SUCCESS']);
-						}
-					?>
-                <h5><?php echo $lang['TRANSFER_ADD_NEW']; ?></h5>
+
+                <h5><?php echo $lang['BANKS_ADD_NEW_DEPOSIT']; ?></h5>
                 <div class="darker-bg centerDarkerDiv formCenterDiv">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['TRANSFER_DATE']; ?></label>
+                                <label class="col-xs-3"> <?php echo $lang['BANKS_DEPOSIT_DATE']; ?></label>
                                 <div class="col-xs-5">
-                                    <input type="date" id="transfers_date" name="transfers_date" class="transfer_cut_precent form-control">
+                                    <input type="date" id="deposits_date" name="deposits_date" class="deposits_cut_precent form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['TRANSFER_FROM']; ?></label>
-                                <div class="col-xs-5">
-                                    <div class="select">
-                                        <select name="transfer_from" id="transfer_from" class="bank invoices form-control">
-                                            <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK']; ?></option>
-                                            <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
-                                            <?php
-                                            if ($banks) {
-                                                foreach ($banks as $k => $b) {
-                                                    echo '<option value="' . $b['banks_sn'] . '">' . $b['banks_name'] . '</option>';
-                                                }
-                                            }
-
-                                            ?>
-                                        </select>
+                                <label class="col-xs-3"> <?php echo $lang['BANKS_DEPOSIT_TYPE']; ?></label>
+                                <div class="col-xs-5  d-flex space_between">
+                                    <div class="form-check radioBtn d-inline-block">
+                                        <input class="invoices  form-check-input" type="radio" name="deposits_type" id="cashPaymentMethod" value="cash">
+                                        <label class="form-check-label" for="cashPaymentMethod">
+                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH']; ?>
+                                        </label>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?></label>
-                                <div class="col-xs-5 ">
-                                    <div class="select type">
-                                        <select name="transfer_account_type_from" id="account_type_from" class="invoices account_type form-control" disabled>
-                                            <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_BANK_FIRST']; ?></option>
-                                            <option value="credit"><?php echo $lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU']; ?></option>
-                                            <option value="saving"><?php echo $lang['SETTINGS_BAN_SAVE']; ?></option>
-                                            <option value="current"><?php echo $lang['SETTINGS_BAN_CURRENT']; ?></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_T']; ?></label>
-                                <div class="col-xs-5 ">
-                                    <div class="select bank_item">
-                                        <select name="transfer_account_id_from" class="invoices form-control" id="transfer_account_id_from" disabled>
-                                            <option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST']; ?></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_CLI'] ?></label>
-                                <div class="col-xs-5 ">
-                                    <div class="select">
-                                        <select name="transfer_client_id_from" id="transfer_client_id_from" class="transfer_client form-control">
-                                            <option selected disabled><?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?></option>
-                                            <?php
-                                            if ($clients) {
-                                                foreach ($clients as $cId => $c) {
-                                                    echo '<option value="' . $c["clients_sn"] . '"';
-                                                    if ($_bank) {
-                                                        if ($c["clients_sn"] == $_bank['banks_credit_client'][0]) {
-                                                            echo 'selected';
-                                                        }
-                                                    }
-                                                    echo '>' . $c["clients_name"] . '</option>';
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PRODUCT'] ?></label>
-                                <div class="col-xs-5 ">
-                                    <div class="select">
-                                        <select name="transfer_product_id_from" id="transfer_product_id_from" class="form-control">
-                                            <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'] ?></option>
-                                        </select>
+                                    <div class="form-check radioBtn d-inline-block">
+                                        <input class="form-check-input" type="radio" checked name="deposits_type" id="checkPaymentMethod" value="cheque">
+                                        <label class="form-check-label " for="checkPaymentMethod">
+                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE']; ?>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -263,65 +192,35 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
                                 <div class="col-xs-5">
-                                    <input type="text" class="transfer_cut_precent  form-control" name="transfer_value" id="transfer_value" placeholder="------">
+                                    <input type="text" class="deposits_cut_precent  form-control" name="deposits_value" id="deposits_value" placeholder="------">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-5" id="invoices" style="display: none;">
-                            <div class="form-group">
-                                <label class="col-xs-3"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><?php echo $lang['INVOICES']; ?></button></label>
-                                <div class="col-xs-5">
-                                    <input type="number" name="max_value" id="max_value" disabled>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['transfer_TYPE']; ?></label>
-                                <div class="col-xs-5  d-flex space_between">
-                                    <div class="form-check radioBtn d-inline-block">
-                                        <input class="form-check-input" type="radio" name="transfer_type" id="cashPaymentMethod" value="cash">
-                                        <label class="form-check-label" for="cashPaymentMethod">
-                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH']; ?>
-                                        </label>
-                                    </div>
-                                    <div class="form-check radioBtn d-inline-block">
-                                        <input class="form-check-input" type="radio" checked name="transfer_type" id="checkPaymentMethod" value="cheque">
-                                        <label class="form-check-label " for="checkPaymentMethod">
-                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE']; ?>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM']; ?></label>
-                                <div class="col-xs-5">
-                                    <input type="text" class="form-control" name="transfer_cheque_number" id="check_number" placeholder="------">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_DATE_CHEQUE']; ?></label>
                                 <div class="col-xs-5">
-                                    <input type="date" id="transfer_cheque_date" name="transfer_cheque_date" class="transfer_cut_precent form-control">
+                                    <input type="date" id="deposits_cheque_date" name="deposits_cheque_date" class="deposits_cut_precent form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM']; ?></label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="form-control" name="deposits_cheque_number" id="check_number" placeholder="------">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['TRANSFER_TO']; ?></label>
+                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ADD_TO']; ?></label>
                                 <div class="col-xs-5">
-                                    <div class="select">
-                                        <select name="transfer_to" id="transfer_to" class="bank  form-control">
+                                    <div class="select" id="banks">
+                                        <select name="deposits_bank_id" id="deposits_bank_id" class="bank invoices form-control">
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK']; ?></option>
                                             <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                             <?php
@@ -343,8 +242,8 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <div class="select type">
-                                        <select name="transfer_account_type_to" id="account_type_to" class="account_type form-control" disabled>
+                                    <div class="select" id="type">
+                                        <select name="deposits_account_type" id="account_type" class="invoices form-control" disabled>
                                             <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_BANK_FIRST']; ?></option>
                                             <option value="credit"><?php echo $lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU']; ?></option>
                                             <option value="saving"><?php echo $lang['SETTINGS_BAN_SAVE']; ?></option>
@@ -358,8 +257,8 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_T']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <div class="select bank_item">
-                                        <select name="transfer_account_id_to" class="transfer_cut_precent  form-control" id="transfer_account_id_to" disabled>
+                                    <div class="select" id="bank_item">
+                                        <select name="deposits_account_id" class="deposits_cut_precent invoices form-control" id="deposits_account_id" disabled>
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST']; ?></option>
                                         </select>
                                     </div>
@@ -373,7 +272,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_CLI'] ?></label>
                                 <div class="col-xs-5 ">
                                     <div class="select">
-                                        <select name="transfer_client_id_to" id="transfer_client_id_to" class="transfer_client form-control">
+                                        <select name="deposits_client_id" id="deposits_client_id" class="form-control">
                                             <option selected disabled><?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?></option>
                                             <?php
                                             if ($clients) {
@@ -398,11 +297,20 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PRODUCT'] ?></label>
                                 <div class="col-xs-5 ">
                                     <div class="select">
-                                        <select name="transfer_product_id_to" id="transfer_product_id_to" class="form-control">
+                                        <select name="deposits_product_id" id="deposits_product_id" class="form-control">
                                             <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'] ?></option>
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" id="invoices" style="display: none;">
+                            <div class="form-group">
+                                <!-- <label class="col-xs-3"><?php echo $lang['BANKS_DEPOSIT_INVOICES']; ?></label> -->
+                                <div class="col-xs-5">
+                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><?php echo $lang['BANKS_DEPOSIT_INVOICES']; ?></button>
+                                </div>
+
                             </div>
                         </div>
 
@@ -412,7 +320,7 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CUTT_VALUE']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <input type="text" class="form-control" id="transfer_cut_precent" name="transfer_cut_precent" placeholder="0" value="0" readonly>
+                                    <input type="text" class="form-control" id="deposits_cut_precent" name="deposits_cut_precent" placeholder="0" value="0" readonly>
                                 </div>
                             </div>
                         </div>
@@ -420,7 +328,7 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['BANKS_CUT_VALUE']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <input type="text" class="form-control" id="transfer_cut_value" name="transfer_cut_value" placeholder="0" readonly>
+                                    <input type="text" class="form-control" id="deposits_cut_value" name="deposits_cut_value" placeholder="0" readonly>
                                 </div>
                             </div>
                         </div>
@@ -430,7 +338,7 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_REPAYMENT']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <input type="text" class="form-control" id="transfer_days" name="transfer_days" placeholder="0" readonly>
+                                    <input type="text" class="form-control" id="deposits_days" name="deposits_days" placeholder="0" readonly>
                                 </div>
                             </div>
                         </div>
@@ -438,7 +346,7 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"><?php echo $lang['BANKS_DEPOSIT_BUY_DATE']; ?></label>
                                 <div class="col-xs-5 ">
-                                    <input type="text" class="form-control" id="transfers_date_pay" name="transfers_date_pay" placeholder="0/00/0000" readonly>
+                                    <input type="text" class="form-control" id="deposits_date_pay" name="deposits_date_pay" placeholder="0/00/0000" readonly>
                                 </div>
                             </div>
                         </div>
@@ -498,21 +406,21 @@ include './assets/layout/footer.php'; ?>
         $('#customersAccountsPaymentForm').formValidation({
             excluded: [':disabled'],
             fields: {
-                transfers_date: {
+                deposits_date: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_INSERT_DATE']; ?>'
                         }
                     }
                 },
-                transfer_type: {
+                deposits_type: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_INSERT_TYPE']; ?>'
                         }
                     }
                 },
-                transfer_value: {
+                deposits_value: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_INSERT_VALUE']; ?> '
@@ -523,14 +431,14 @@ include './assets/layout/footer.php'; ?>
                         }
                     }
                 },
-                transfer_cheque_date: {
+                deposits_cheque_date: {
                     validators: {
                         notEmpty: {
                             message: '  <?php echo $lang['SETTINGS_C_F_CHEQUE_DATE']; ?>'
                         }
                     }
                 },
-                transfer_cheque_number: {
+                deposits_cheque_number: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_CHEQUE_NUM']; ?>'
@@ -540,43 +448,41 @@ include './assets/layout/footer.php'; ?>
                         }
                     }
                 },
-                transfer_from: {
+                deposits_bank_id: {
                     validators: {
                         notEmpty: {
                             message: '  <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK']; ?>'
                         }
                     }
                 },
-                transfer_account_type_from: {
+                deposits_account_type: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?>'
                         }
                     }
                 },
-                transfer_account_type_to: {
-                    validators: {
-                        notEmpty: {
-                            message: ' <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?>'
-                        }
-                    }
-                },
-                transfer_account_id_from: {
+                deposits_account_id: {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN']; ?>'
                         }
                     }
                 },
-                transfer_account_id_to: {
+                deposits_client_id: {
                     validators: {
                         notEmpty: {
-                            message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN']; ?>'
+                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?>'
                         }
                     }
-                }
-             
-                
+                },
+                deposits_product_id: {
+                    validators: {
+                        notEmpty: {
+                            message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT']; ?>'
+                        }
+                    }
+                },
 
             }
         }).on('success.form.bv', function(e) {
@@ -584,24 +490,25 @@ include './assets/layout/footer.php'; ?>
 
         })
 
-        $('input[name="transfer_type"]').on('change', function() {
+        $('input[name="deposits_type"]').on('change', function() {
             key = $(this).val();
             switch (key) {
                 case 'cheque':
-                    var transfer_cheque_date = $('#transfer_cheque_date').removeClass('form-control').addClass('transfer_cut_precent form-control').prop("disabled", false);
-                    var transfer_cheque_number = $('#check_number').prop("disabled", false);
-                    //                var transfer_account_type = $('#account_type').prop("disabled", false);
-                    //                var transfer_account_id = $('#bank_item').prop("disabled", false);
+                    var deposits_cheque_date = $('#deposits_cheque_date').removeClass('form-control').addClass('deposits_cut_precent form-control').prop("disabled", false);
+                    var deposits_cheque_number = $('#check_number').prop("disabled", false);
+                    $('div#invoices').css("display", "none");
+                    //                var deposits_account_type = $('#account_type').prop("disabled", false);
+                    //                var deposits_account_id = $('#bank_item').prop("disabled", false);
 
                     $('#customersAccountsPaymentForm')
-                        .formValidation('addField', transfer_cheque_date, {
+                        .formValidation('addField', deposits_cheque_date, {
                             validators: {
                                 notEmpty: {
                                     message: '<?php echo $lang['SETTINGS_C_F_CHEQUE_DATE']; ?>'
                                 }
                             }
                         })
-                        .formValidation('addField', transfer_cheque_number, {
+                        .formValidation('addField', deposits_cheque_number, {
                             validators: {
                                 notEmpty: {
                                     message: ' <?php echo $lang['SETTINGS_C_F_CHEQUE_NUM']; ?>'
@@ -611,14 +518,14 @@ include './assets/layout/footer.php'; ?>
                                 }
                             }
                         })
-                    //                    .formValidation('addField', transfer_account_type, {
+                    //                    .formValidation('addField', deposits_account_type, {
                     //                        validators: {
                     //                            notEmpty: {
                     //                                message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?>'
                     //                            }
                     //                        }
                     //                    })
-                    //                    .formValidation('addField', transfer_account_id, {
+                    //                    .formValidation('addField', deposits_account_id, {
                     //                        validators: {
                     //                            notEmpty: {
                     //                                message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN']; ?>'
@@ -628,21 +535,21 @@ include './assets/layout/footer.php'; ?>
                     break;
 
                 case 'cash':
-                    var transfer_cheque_date = $('#transfer_cheque_date').removeClass('transfer_cut_precent form-control').addClass('form-control').prop("disabled", true);
-                    var transfer_cheque_number = $('#check_number').prop("disabled", true);
-                    //                var transfer_account_type = $('#account_type').prop("disabled", true);
-                    //                var transfer_account_id = $('#bank_item').prop("disabled", true);
+                    var deposits_cheque_date = $('#deposits_cheque_date').removeClass('deposits_cut_precent form-control').addClass('form-control').prop("disabled", true);
+                    var deposits_cheque_number = $('#check_number').prop("disabled", true);
+                    //                var deposits_account_type = $('#account_type').prop("disabled", true);
+                    //                var deposits_account_id = $('#bank_item').prop("disabled", true);
 
-                    transfer_cheque_date.siblings('.help-block').hide();
-                    transfer_cheque_number.siblings('.help-block').hide();
-                    //                transfer_account_type.parent().siblings('.help-block').hide();
-                    //                transfer_account_id.parent().siblings('.help-block').hide();
+                    deposits_cheque_date.siblings('.help-block').hide();
+                    deposits_cheque_number.siblings('.help-block').hide();
+                    //                deposits_account_type.parent().siblings('.help-block').hide();
+                    //                deposits_account_id.parent().siblings('.help-block').hide();
 
                     $('#customersAccountsPaymentForm')
-                        .formValidation('removeField', transfer_cheque_date)
-                        .formValidation('removeField', transfer_cheque_number)
-                    //                    .formValidation('removeField', transfer_account_type)
-                    //                    .formValidation('removeField', transfer_account_id)
+                        .formValidation('removeField', deposits_cheque_date)
+                        .formValidation('removeField', deposits_cheque_number)
+                    //                    .formValidation('removeField', deposits_account_type)
+                    //                    .formValidation('removeField', deposits_account_id)
                     break;
 
                 default:
@@ -650,36 +557,32 @@ include './assets/layout/footer.php'; ?>
             }
 
         });
-        $('.bank').change(function() {
-            var id = $(this).attr('id').replace('transfer_', '');
+
+        $('#banks').on('change', 'select.bank', function() {
             var type = $(this).val();
-            if (type == "safe") {
-                var transfer_account_type = $('#account_type_' + id).prop("disabled", true);
-            } else {
-                var transfer_account_type = $('#account_type_' + id).prop("disabled", false);
-                $('#customersAccountsPaymentForm').formValidation('addField', transfer_account_type, {
+            if (type != "safe") {
+                var deposits_account_type = $('#account_type').prop("disabled", false);
+                $('#customersAccountsPaymentForm').formValidation('addField', deposits_account_type, {
                     validators: {
                         notEmpty: {
                             message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?>'
                         }
                     }
                 })
-
             }
 
         });
 
-        $('.type').on('change', 'select.account_type', function() {
+        $('#type').on('change', 'select#account_type', function() {
             var type = $(this).val();
-            var type_id = $(this).attr('id').replace('account_type_', '');
-            var id = $('select#transfer_'+type_id).val();
+            var id = $('select.bank').val();
             if (type == 'credit') {
-                var transfer_account_id = $('#transfer_account_id_' + type_id).prop("disabled", false)
-                transfer_account_id.parent().siblings('.help-block').hide();
-                $('#customersAccountsPaymentForm').formValidation('removeField', transfer_account_id)
+                var deposits_account_id = $('#deposits_account_id').prop("disabled", false)
+                deposits_account_id.parent().siblings('.help-block').hide();
+                $('#customersAccountsPaymentForm').formValidation('removeField', deposits_account_id)
             } else {
-                var transfer_account_id = $('#transfer_account_id_' + type_id).prop("disabled", true)
-                $('#customersAccountsPaymentForm').formValidation('addField', transfer_account_id, {
+                var deposits_account_id = $('#deposits_account_id').prop("disabled", true)
+                $('#customersAccountsPaymentForm').formValidation('addField', deposits_account_id, {
                     validators: {
                         notEmpty: {
                             message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN']; ?>'
@@ -697,17 +600,16 @@ include './assets/layout/footer.php'; ?>
                         type: type
                     },
                     success: function(html) {
-                        $('select#transfer_account_id_' + type_id).html(html);
+                        $('select#deposits_account_id').html(html);
                     }
                 });
             }
         });
-        $('#customersAccountsPaymentForm').on('change', '.transfer_cut_precent', function() {
-            if ($('.transfer_cut_precent').filter(function() {
+        $('#customersAccountsPaymentForm').on('change', '.deposits_cut_precent', function() {
+            if ($('.deposits_cut_precent').filter(function() {
                     return $.trim($(this).val()).length == 0
                 }).length == 0) {
-                var id = $('#transfer_account_id_to').val();
-                console.log(id)
+                var id = $('#deposits_account_id').val();
                 var page = "bank_js.php?do=item_data";
                 if (id) {
                     $.ajax({
@@ -718,29 +620,30 @@ include './assets/layout/footer.php'; ?>
                             id: id
                         },
                         success: function(responce) {
-                            if (responce != "400") {
-                                $('input#transfer_cut_precent').val(responce['banks_credit_cutting_ratio']);
+                            if (responce !== "400") {
+                                $('input#deposits_cut_precent').val(responce['banks_credit_cutting_ratio']);
                                 if (responce['banks_credit_repayment_type'] == "day") {
-                                    $('input#transfer_days').val(responce['banks_credit_repayment_period']);
-                                    var transfers_date = $('input#transfers_date').val();
+                                    $('input#deposits_days').val(responce['banks_credit_repayment_period']);
+                                    var deposits_date = $('input#deposits_date').val();
                                     var days = parseInt(responce['banks_credit_repayment_period']);
-                                    var date = new Date(transfers_date);
+                                    var date = new Date(deposits_date);
                                     date.setDate(date.getDate() + days);
-                                    var transfers_date = GetFormattedDate(date);
-                                    $('input#transfers_date_pay').val(transfers_date);
+                                    var deposits_date = GetFormattedDate(date);
+                                    $('input#deposits_date_pay').val(deposits_date);
                                 } else {
-                                    var transfers_date = $('input#transfers_date').val();
-                                    var transfer_cheque_date = $('input#transfer_cheque_date').val();
-                                    date1 = new Date(transfers_date);
-                                    date2 = new Date(transfer_cheque_date);
+                                    var deposits_date = $('input#deposits_date').val();
+                                    var deposits_cheque_date = $('input#deposits_cheque_date').val();
+                                    date1 = new Date(deposits_date);
+                                    date2 = new Date(deposits_cheque_date);
                                     const diffTime = Math.abs(date2 - date1);
                                     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                                    $('input#transfer_days').val(diffDays);
-                                    $('input#transfers_date_pay').val(transfer_cheque_date);
+                                    $('input#deposits_days').val(diffDays);
+                                    $('input#deposits_date_pay').val(deposits_cheque_date);
                                 }
-                                var transfer_value = parseInt($('input#transfer_value').val());
-                                var transfer_cut_value = (transfer_value * (parseInt(responce['banks_credit_cutting_ratio']) / 100));
-                                $('input#transfer_cut_value').val(transfer_cut_value);
+                                var deposits_value = parseInt($('input#deposits_value').val());
+                                var deposits_cut_value = (deposits_value * (parseInt(responce['banks_credit_cutting_ratio']) / 100));
+                                console.log(deposits_cut_value);
+                                $('input#deposits_cut_value').val(deposits_cut_value);
 
                             }
                         }
@@ -749,8 +652,7 @@ include './assets/layout/footer.php'; ?>
             }
         })
 
-        $('.transfer_client').change(function() {
-            var type = $(this).attr('id').replace('transfer_client_id_', '');
+        $('#deposits_client_id').change(function() {
             var id = $(this).val();
             var page = "client_pricing_js.php?do=client_product";
             if (id) {
@@ -761,7 +663,7 @@ include './assets/layout/footer.php'; ?>
                         id: id
                     },
                     success: function(html) {
-                        $('select#transfer_product_id_' + type).html(html);
+                        $('select#deposits_product_id').html(html);
                     }
                 });
             }
@@ -772,10 +674,12 @@ include './assets/layout/footer.php'; ?>
             if ($('.invoices').filter(function() {
                     return $.trim($(this).val()).length == 0
                 }).length == 0) {
-                $('div#invoices').css("display", "block");
-                var bank = $('#transfer_from').val();
-                var acount_type = $('#account_type_from').val();
-                var acount_id = $('#transfer_account_id_from').val();
+                if ($('#cashPaymentMethod').is(':checked') && $('#cashPaymentMethod').val() == 'cash') {
+                    $('div#invoices').css("display", "block");
+                }
+                var bank = $('#deposits_bank_id').val();
+                var acount_type = $('#account_type').val();
+                var acount_id = $('#deposits_account_id').val();
                 var page = "bank_js.php?do=get_invoices";
                 if (bank && acount_type && acount_id) {
                     $.ajax({
@@ -787,6 +691,7 @@ include './assets/layout/footer.php'; ?>
                             acount_id: acount_id
                         },
                         success: function(html) {
+                            console.log(html);
                             $('div#invoices_items').html(html);
                         }
                     });
@@ -803,25 +708,5 @@ include './assets/layout/footer.php'; ?>
             var year = (todayTime.getFullYear());
             return month + "/" + day + "/" + year;
         }
-
-        $('#invoices_items').on('click', "input:checkbox", function() {
-
-            var $box = $(this);
-            if ($box.is(":checked")) {
-                // the name of the box is retrieved using the .attr() method
-                // as it is assumed and expected to be immutable
-                var group = "input:checkbox[name='" + $box.attr("name") + "']";
-                // the checked state of the group/box on the other hand will change
-                // and the current value is retrieved using .prop() method
-                console.log(group);
-                $(group).prop("checked", false);
-                $box.prop("checked", true);
-            } else {
-                $box.prop("checked", false);
-            }
-            var id = $(this).attr('id').replace('customized-checkbox-', '');
-            var max_value = $('input#max_' + id).val();
-            $('#max_value').val(max_value);
-        });
     })
 </SCRIPT>

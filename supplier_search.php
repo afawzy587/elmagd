@@ -25,7 +25,7 @@ if ($login->doCheck() == false) {
     header("Location:./login.php");
     exit;
 } else {
-    if ($group['deposit_check'] == 0) {
+    if ($group['supplier_payment'] == 0) {
         header("Location:./permission.php");
         exit;
     } else {

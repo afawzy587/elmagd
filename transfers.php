@@ -20,7 +20,7 @@ if ($login->doCheck() == false) {
         exit;
     } else {
 
-
+		$id 		 = intval($_GET['id']);
         //			include("./inc/Classes/pager.class.php");
         //			$page;
         //			$pager       = new pager();
@@ -30,7 +30,7 @@ if ($login->doCheck() == false) {
         //			$thispage    = $pager->getPage();
         //			$limitmequry = " LIMIT ".($thispage-1) * $basicLimit .",". $basicLimit;
         //			$pager       = $pager->getAnalysis();
-        $money_transfers   = $trensfer->getsiteMoney_transfers($limitmequry);
+        $money_transfers   = $trensfer->getsiteMoney_transfers($limitmequry,$id);
 
         $logs->addLog(
             NULL,
@@ -154,7 +154,7 @@ include './assets/layout/header.php';
 									echo '<i class="approve fas fa-check fa-w-16 fa-2x grab text-warning " title="' . $lang['DEPOSITS_BANK_APPROVE'] . '" id="approve_' . $u['transfers_sn'] . '"></i>';
 								}
 							} else {
-								if($u['transfers_account_type_to'] == "credit")
+								if($u['transfers_account_type_to'] == "credit" && $u['transfers_type'] == "cheque")
 								{
 									echo $lang['TRANSFER_ADD_TO_DEPOSITS'];
 								}

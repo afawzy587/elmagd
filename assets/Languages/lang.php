@@ -9,6 +9,7 @@ $lang['SEARCH']                    =      "البحث";
 $lang['PRINT']                     =      "طباعة";
 $lang['SHOW']                      =      "عرض";
 $lang['CURRENCY']                  =      "جنيه";
+$lang['NO_NOTIFICATION']           =      "لا توجد أشعارات جديدة";
 $lang['LITER']                     =      "لتر";
 $lang['SAT']                       =      "السبت";
 $lang['SUN']                       =      "الأحد";
@@ -282,6 +283,7 @@ $lang['SETTINGS_ST_']              =   "";
 //********************* CLIENTS ***************//
 
 $lang['SETTINGS_CL_CLIENTS']                      =   "العملاء";
+$lang['SETTINGS_CL_CLIENTS_FINANCES']             =   "حساب العملاء";
 $lang['SETTINGS_CL_CLIENT']                       =   "العميل";
 $lang['SETTINGS_CL_ADD_CLIENTS']                  =   "اضافة عميل ";
 $lang['SETTINGS_CL_EDIT_CLIENTS']                 =   "تعديل عميل ";
@@ -414,11 +416,12 @@ $lang['SETTINGS_BAN_']              =   "";
 
 // ************************* clients_finance **************//
 
-$lang['SETTINGS_C_F_CLIENT_COLLECT']              =   "تحصيل من عميل";
-$lang['SETTINGS_C_F_CLIENT']              =   "عملاء";
+$lang['SETTINGS_CL_CLIENT_COLLECT']       =   "تحصيل من العميل";
+$lang['SETTINGS_C_F_CLIENT_COLLECT']      =   "دفع ل المورد";
+$lang['SETTINGS_C_F_CLIENT']              =   "موردين";
 $lang['SETTINGS_C_F_PRICE']               =   "تسعير";
 $lang['SETTINGS_C_F_SUCCESS']             =   "تم اضافة تسعير جديد";
-$lang['SETTINGS_C_F_FINANCES']            =   "حسابات العملاء";
+$lang['SETTINGS_C_F_FINANCES']            =   "حسابات الموردين";
 $lang['SETTINGS_C_F_PREFICE_PRICE']       =   "تسعير سابق";
 $lang['SETTINGS_C_F_ADD']                 =   "اضافة سعر بيع منتج";
 $lang['SETTINGS_C_F_EDIT']                =   "تعديل سعر بيع منتج";
@@ -485,7 +488,8 @@ $lang['SETTINGS_C_F_CLIENT_CREDIT']       =   "حساب العميل: ";
 $lang['SETTINGS_C_F_AVAL_CREDIT']         =   "الرصيد المتاح";
 $lang['SETTINGS_C_F_CHEQE_SAFE']          =   "خزنة الشيكات";
 $lang['SETTINGS_C_F_SAFE']                =   "الخزنة";
-$lang['SETTINGS_C_F_DATE_PAYMENT']        =   "تاريخ التحصيل";
+$lang['SETTINGS_CL_DATE_PAYMENT']        =   "تاريخ التحصيل";
+$lang['SETTINGS_C_F_DATE_PAYMENT']        =   "تاريخ الدفع";
 $lang['SETTINGS_C_F_PAYMENT_TYPE']        =   "نوع المعاملة";
 $lang['SETTINGS_C_F_PAYMENT_CASH']        =   " نقدي";
 $lang['SETTINGS_C_F_PAYMENT_CHEQUE']      =   " شيك";
@@ -657,7 +661,8 @@ $lang['C_S_TO_SERIAL']               = "الى مسلسل";
 $lang['C_S_INVOICES_FROM']           = "من فاتورة رقم";
 $lang['C_S_INVOICES_TO']             = "الى فاتورة رقم";
 $lang['C_S_MONEY_OPERATION']         = "عمليات مالية";
-$lang['C_S_SEARCH_RESULT']           = "عرض حساب عميل (نتيجة بحث عن عميل)";
+$lang['C_S_SEARCH_RESULT']           = "عرض حساب المورد (نتيجة بحث عن مورد)";
+$lang['C_SEARCH_RESULT']           = "عرض حساب العميل (نتيجة بحث عن العميل)";
 $lang['C_S_TOTAL']                   = "قيمة التوريد(ج.م)";
 $lang['C_S_PAID']                    = "المدفوع (ج.م)";
 $lang['C_S_REMAIN']                  = "الباقي (ج.م)";
@@ -666,11 +671,28 @@ $lang['C_S_TOTAL_AMOUNT']            = " كمية قبل الخصم (كجم)";
 $lang['C_S_CLIENT_PRICE']            = "حساب العميل (ج.م)";
 $lang['C_S_CLIENT_COLLECT']          = "المحصل";
 $lang['C_S_CLIENT_REMIEN']           = " الباقي (ج.م)";
-$lang['C_S_CLIENT_PAYMENT']    = "محاسبة العميل";
+$lang['C_S_CLIENT_PAYMENT']          = "محاسبة العميل";
 $lang['C_S_']    = "";
 $lang['C_S_']    = "";
 $lang['C_S_']    = "";
 
+/********* SUPPLIER PAYMENTS**********/
+$lang['P_S_PAYMENTS']           = "حسابات الموردين";
+$lang['P_S_PAY_TO_SUPPLIER']    = "محاسبة المورد";
+$lang['P_S_RECIPIENT']          = "المستلم";
+$lang['P_S_PAID']               = "تسديد";
+$lang['P_S_PAID_REASION']               = "سبب الدفع";
+$lang['P_S_LATER']              = "دفعة مقدمة";
+$lang['P_S_RESOEN']             = "اختر سبب الدفع";
+$lang['P_S_RECIPIENT_IN']       = "ادخل اسم المستلم";
+
+
+/****************** NOTIFICATION *****************/
+$lang['NOT_DEPOSITS_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل الايدعات ";
+$lang['NOT_TRANSFERS_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل التحويلات ";
+$lang['NOT_SAFES_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل الخزنة ";
+$lang['NOT_DEPOSITS_DATE']                = " تاريخ التحصيل";
+$lang['']                = "";
 
 
 

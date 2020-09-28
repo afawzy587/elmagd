@@ -63,7 +63,6 @@
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['Settings_products'];?></span>
                     <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_P_PRODUCTS'];?></span>
                 </p>
             </div>

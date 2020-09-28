@@ -20,6 +20,7 @@ if ($login->doCheck() == false) {
         exit;
     } else {
 
+		$id 		 = intval($_GET['id']);
 
         //			include("./inc/Classes/pager.class.php");
         //			$page;
@@ -30,7 +31,7 @@ if ($login->doCheck() == false) {
         //			$thispage    = $pager->getPage();
         //			$limitmequry = " LIMIT ".($thispage-1) * $basicLimit .",". $basicLimit;
         //			$pager       = $pager->getAnalysis();
-        $deposits   = $deposit->getsiteDepoists($limitmequry);
+        $deposits   = $deposit->getsiteDepoists($limitmequry,$id);
         $logs->addLog(
             NULL,
             array(

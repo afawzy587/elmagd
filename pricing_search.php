@@ -54,7 +54,7 @@
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_C_F_CLIENT'];?></span>
+                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_CL_CLIENTS'];?></span>
                     <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_C_F_PREFICE_PRICE'];?></span>
                 </p>
             </div>

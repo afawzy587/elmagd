@@ -1,16 +1,16 @@
 <?php
-    if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+    if(!isset($_SESSION))
+    {
+        session_start();
+    }
     // output buffer..
 	ob_start("ob_gzhandler");
     // my system key cheker..
     define("inside",true);
 	// get funcamental file which contain config and template files,settings.
 	include("./inc/fundamentals.php");
-	include("./inc/Classes/system-clients_collectible.php");
-	$pricing = new systemClients_collectible();
+	include("./inc/Classes/system-suppliers_collectible.php");
+	$suppliers_collectible = new systemSuppliers_collectible();
 
 	include("./inc/Classes/system-settings_banks.php");
 	$setting_bank = new systemSettings_banks();
@@ -25,14 +25,15 @@
 			exit;
 		}else
 		{
-			if (intval($_GET['client']) != 0)
+			if (intval($_GET['supplier']) != 0)
 			{
-				$mId =intval($_GET['client']);
+				$mId =intval($_GET['supplier']);
+				$supplier = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
 				$banks_finance=$setting_bank->get_banks_finance();
 				$banks        = $setting_bank->getaccountsSettings_banks();
 				if($_POST)
 				{
-					$_payment['collectible_client_id']                =       $mId;
+					$_payment['collectible_supplier_id']                =       $mId;
 					$_payment['collectible_date']                     =       sanitize($_POST["collectible_date"]);
 					$_payment['collectible_type']                     =       sanitize($_POST["collectible_type"]);
 					$_payment['collectible_value']                    =       sanitize($_POST["collectible_value"]);
@@ -41,23 +42,24 @@
 					$_payment['collectible_bank_id']                  =       sanitize($_POST["collectible_bank_id"]);
 					$_payment['collectible_account_type']             =       sanitize($_POST["collectible_account_type"]);
 					$_payment['collectible_account_id']               =       sanitize($_POST["collectible_account_id"]);
+					$_payment['collectible_payment_case']             =       sanitize($_POST["collectible_payment_case"]);
+					$_payment['collectible_recipient']                =       sanitize($_POST["collectible_recipient"]);
 
-					$add = $pricing->add_clients_collectible($_payment,$_GET);
+					$add = $suppliers_collectible->add_suppliers_collectible($_payment,$_GET);
 					if($add == 1)
 					{
-						
+
 						$logs->addLog(NULL,
 							array(
 								"type" 		        => 	"users",
-								"module" 	        => 	"clients",
-								"mode" 		        => 	"clients_payment",
-								"item" 		        => 	$mId,
+								"module" 	        => 	"suppliers",
+								"mode" 		        => 	"suppliers_payment",
 								"id" 	        	=>	$_SESSION['id'],
 							),"admin",$_SESSION['id'],1
 							);
 							if(intval($_POST["add_other"]) == 1)
 							{
-								header("Location:./add_clients_payment.php?".$url_get_parts);
+								header("Location:./add_suppliers_payment.php?".$url_get_parts);
 							}else{
 								header("Location:./".$_SESSION['page']);
 							}
@@ -69,7 +71,7 @@
 				exit;
 			}
 		}
-		
+
     }
     include './assets/layout/header.php';
 
@@ -84,31 +86,29 @@
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_CL_CLIENTS'];?></span>
-                      <a class="blueSky" href="./client_search.php" ><strong> &gt; </strong> <?php echo $lang['SETTINGS_CL_CLIENTS_FINANCES'];?> </a>
-                    <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_CL_CLIENT_COLLECT'];?> </span>
+                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_C_F_SUPPLIERS'];?></span>
+                      <a class="blueSky" href="./supplier_search.php" ><strong> &gt; </strong> <?php echo $lang['P_S_PAYMENTS'];?> </a>
+                    <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['P_S_PAY_TO_SUPPLIER'];?> </span>
                 </p>
             </div>
         </div>
         <!-- end links row -->
-        
-     
+
+
 
         <!-- add/edit product row -->
         <div class="row centerContent">
             <div class="col">
                 <form  method="post" id="customersAccountsPaymentForm" enctype="multipart/form-data">
-                   
-                
+
+
                      <!-- account details row -->
 					<div class="row justify-content-center mb-5">
 						<div class="col">
 							<div class="row">
 								<div class="col text-center">
-									<h5> <?php echo $lang['SETTINGS_C_F_CLIENT_CREDIT'];?><strong class="blueSky"><?php echo get_data('settings_clients','clients_name','clients_sn',$mId)?></strong></h5>
-									<h4 class="d-inline-block bg_text text_height <?php if(get_client_credit($mId) < 0){ echo 'warning';}?>  ltrDir"><?php echo get_client_credit($mId);?></h4>
-									<!-- INFO ==> remove warning class for positive values  -->
-									<!-- <h4 class="d-inline-block bg_text text_height ltrDir">- 10,000</h4>  -->
+									<h5> <?php echo $lang['OPERATIONS_M_SU_FINANCE'] ;?> <strong class="blueSky"> <?php echo  $supplier['name'];?></strong></h5>
+									<h4 class="d-inline-block bg_text text_height <?php if($supplier['credit']< 0){ echo 'warning';}?>  ltrDir"><?php echo number_format($supplier['credit']);?></h4>
 								</div>
 							</div>
 
@@ -121,7 +121,7 @@
 									<h5 class="d-inline-block bg_text2 text_height2 w-100"><?php echo $lang['SETTINGS_C_F_CHEQE_SAFE'];?></h5>
 									<h5 class="d-inline-block bg_text2 text_height2  <?php if($companyinfo['companyinfo_opening_balance_cheques'] < 0){echo 'warming';}?> w-100 ltrDir">  <?php echo number_format($companyinfo['companyinfo_opening_balance_cheques']);?></h5>
 								</div>
-								<?php 
+								<?php
 								if($banks_finance)
 								{
 									foreach($banks_finance as $k => $f)
@@ -147,12 +147,12 @@
 						</div>
 					</div>
 					<!-- end account details row -->
-                    
+
                     <div class="darker-bg centerDarkerDiv formCenterDiv">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="col-xs-3"> <?php echo $lang['SETTINGS_CL_DATE_PAYMENT'];?></label>
+                                    <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_DATE_PAYMENT'];?></label>
                                     <div class="col-xs-5">
                                         <input type="date" name="collectible_date" class="form-control">
                                     </div>
@@ -165,7 +165,7 @@
                                         <!-- <div class="form-group"> -->
                                             <div class="form-check radioBtn d-inline-block">
                                                 <input class="form-check-input" type="radio"
-                                                    name="collectible_type" id="cashPaymentMethod" value="cash" 
+                                                    name="collectible_type" id="cashPaymentMethod" value="cash"
                                                         >
                                                 <label class="form-check-label" for="cashPaymentMethod">
                                                      <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH'];?>
@@ -223,7 +223,7 @@
                                             <select name="collectible_bank_id" class="bank form-control">
                                                 <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK'];?></option>
                                                 <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
-                                                <?php 
+                                                <?php
 													if($banks)
 													{
 														foreach($banks as $k => $b)
@@ -231,7 +231,7 @@
 															echo '<option value="'.$b['banks_sn'].'">'.$b['banks_name'].'</option>';
 														}
 													}
-												
+
 												?>
                                               </select>
                                         </div>
@@ -262,10 +262,41 @@
                                     <div class="col-xs-5 ">
                                         <div class="select">
 <!--                                           id="bank_item"-->
-                                            <select name="collectible_account_id" class="form-control" id="bank_item" disabled > 
+                                            <select name="collectible_account_id" class="form-control" id="bank_item" disabled >
                                                 <option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST'];?></option>
                                             </select>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-xs-3"><?php echo $lang['P_S_PAID_REASION'];?></label>
+                                    <div class="col-xs-5">
+                                        <div class="col-xs-5 d-flex space_between">
+                                                <div class="form-check radioBtn d-inline-block">
+                                                    <input class="form-check-input" type="radio" name="collectible_payment_case" id="paymentCase" value="paid" checked>
+                                                    <label class="form-check-label" for="paymentCase">
+                                                        <?php echo $lang['P_S_PAID'];?>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check radioBtn d-inline-block">
+                                                    <input class="form-check-input" type="radio" name="collectible_payment_case" id="paymentCase2" value="later">
+                                                    <label class="form-check-label" for="paymentCase2">
+                                                        <?php echo $lang['P_S_LATER'];?>
+                                                    </label>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-xs-3"><?php echo $lang['P_S_RECIPIENT'];?></label>
+                                    <div class="col-xs-5 ">
+                                        <input type="text" class="form-control" name="collectible_recipient" placeholder="-------">
                                     </div>
                                 </div>
                             </div>
@@ -375,6 +406,19 @@ $(document).ready(function () {
                         message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN'];?>'
                     }
                 }
+            },collectible_payment_case: {
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $lang['P_S_RESOEN'];?>'
+                    }
+                }
+            },
+            collectible_recipient: {
+                validators: {
+                    notEmpty: {
+                        message: '<?php echo $lang['P_S_RECIPIENT_IN'];?>'
+                    }
+                }
             },
 
         }
@@ -449,7 +493,7 @@ $(document).ready(function () {
         }
 
     });
-	
+
 		$('#banks').on('change','select.bank',function(){
 			var type = $(this).val();
             if (type != "safe") {
@@ -463,9 +507,9 @@ $(document).ready(function () {
                     })
 			}
 		});
-			
-			
-			
+
+
+
 		$('#type').on('change','select#account_type',function(){
 			var type     = $(this).val();
 			var id       = $('select.bank').val();
@@ -492,10 +536,10 @@ $(document).ready(function () {
 					data:{id:id,type:type},
 					success:function(html)
 					{
-					   $('select#bank_item').html(html); 
+					   $('select#bank_item').html(html);
 					}
 					});
-			}	
+			}
 		});
 })
 
