@@ -43,7 +43,7 @@
 				$_bank['banks_credit_repayment_period']                 =       $_POST["banks_credit_repayment_period"];
 				$_bank['banks_credit_interest_rate']                    =       $_POST["banks_credit_interest_rate"];
 				$_bank['banks_credit_duration_of_interest']             =       $_POST["banks_credit_duration_of_interest"];
-				$_bank['banks_credit_limit_value']                      =       $_POST["banks_credit_duration_of_interest"];
+				$_bank['banks_credit_limit_value']                      =       $_POST["banks_credit_limit_value"];
 				$_bank['banks_credit_cutting_ratio']                    =       $_POST["banks_credit_cutting_ratio"];
 				$_bank['banks_credit_repayment_type']                   =       $_POST["banks_credit_repayment_type"];
 				$_bank['banks_credit_client']                           =       $_POST["banks_credit_client"];
@@ -54,7 +54,6 @@
 				$_bank['banks_saving_duration_of_interest']             =       sanitize($_POST["banks_saving_duration_of_interest"]);
 				$_bank['banks_current_account_number']                  =       sanitize($_POST["banks_current_account_number"]);
 				$_bank['banks_current_opening_balance']                 =       sanitize($_POST["banks_current_opening_balance"]);
-								print_r($_bank);
 
 				$add = $setting_bank->addSettings_banks($_bank);
 				if($add == 1)
@@ -179,7 +178,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control openingCreditInput" name="banks_credit_open_balance[0]"  value="<?php if($_bank){echo $_bank['banks_credit_open_balance'][0];}?>"
-                                                                        placeholder="0000">
+                                                                        placeholder="-----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -188,7 +187,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_REPAYMENT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_repayment_period[0]" value="<?php if($_bank){echo $_bank['banks_credit_repayment_period'][0];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -204,7 +203,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_RATE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_interest_rate[0]" value="<?php if($_bank){echo $_bank['banks_credit_interest_rate'][0];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -213,7 +212,7 @@
                                                                 <label class="col-xs-3">  <?php echo $lang['SETTINGS_BAN_DUE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_duration_of_interest[0]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][0];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -227,7 +226,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_LIMIT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control creditLineInput" name="banks_credit_limit_value[0]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][0];}?>"
-                                                                        placeholder="000">
+                                                                        placeholder="----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -236,7 +235,7 @@
                                                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CUTT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_cutting_ratio[0]" value="<?php if($_bank){echo $_bank['banks_credit_cutting_ratio'][0];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -342,7 +341,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control openingCreditInput" name="banks_credit_open_balance[1]"  value="<?php if($_bank){echo $_bank['banks_credit_open_balance'][1];}?>"
-                                                                        placeholder="0000">
+                                                                        placeholder="-----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -351,7 +350,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_REPAYMENT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_repayment_period[1]" value="<?php if($_bank){echo $_bank['banks_credit_repayment_period'][1];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -367,7 +366,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_RATE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_interest_rate[1]" value="<?php if($_bank){echo $_bank['banks_credit_interest_rate'][1];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -376,7 +375,7 @@
                                                                 <label class="col-xs-3">  <?php echo $lang['SETTINGS_BAN_DUE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_duration_of_interest[1]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][1];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -390,7 +389,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_LIMIT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control creditLineInput" name="banks_credit_limit_value[1]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][1];}?>"
-                                                                        placeholder="000">
+                                                                        placeholder="----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -399,7 +398,7 @@
                                                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CUTT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_cutting_ratio[1]" value="<?php if($_bank){echo $_bank['banks_credit_cutting_ratio'][1];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -506,7 +505,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control openingCreditInput" name="banks_credit_open_balance[2]"  value="<?php if($_bank){echo $_bank['banks_credit_open_balance'][2];}?>"
-                                                                        placeholder="0000">
+                                                                        placeholder="-----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -515,7 +514,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_REPAYMENT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_repayment_period[2]" value="<?php if($_bank){echo $_bank['banks_credit_repayment_period'][2];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -531,7 +530,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_RATE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_interest_rate[2]" value="<?php if($_bank){echo $_bank['banks_credit_interest_rate'][2];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -540,7 +539,7 @@
                                                                 <label class="col-xs-3">  <?php echo $lang['SETTINGS_BAN_DUE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_duration_of_interest[2]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][2];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -554,7 +553,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_LIMIT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control creditLineInput" name="banks_credit_limit_value[2]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][2];}?>"
-                                                                        placeholder="000">
+                                                                        placeholder="----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -563,7 +562,7 @@
                                                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CUTT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_cutting_ratio[2]" value="<?php if($_bank){echo $_bank['banks_credit_cutting_ratio'][2];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -670,7 +669,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control openingCreditInput" name="banks_credit_open_balance[3]"  value="<?php if($_bank){echo $_bank['banks_credit_open_balance'][3];}?>"
-                                                                        placeholder="0000">
+                                                                        placeholder="-----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -679,7 +678,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_REPAYMENT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_repayment_period[3]" value="<?php if($_bank){echo $_bank['banks_credit_repayment_period'][3];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -695,7 +694,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_RATE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_interest_rate[3]" value="<?php if($_bank){echo $_bank['banks_credit_interest_rate'][3];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -704,7 +703,7 @@
                                                                 <label class="col-xs-3">  <?php echo $lang['SETTINGS_BAN_DUE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_duration_of_interest[3]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][3];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -718,7 +717,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_LIMIT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control creditLineInput" name="banks_credit_limit_value[3]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][3];}?>"
-                                                                        placeholder="000">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -727,7 +726,7 @@
                                                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CUTT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_cutting_ratio[3]" value="<?php if($_bank){echo $_bank['banks_credit_cutting_ratio'][3];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -833,7 +832,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control openingCreditInput" name="banks_credit_open_balance[4]"  value="<?php if($_bank){echo $_bank['banks_credit_open_balance'][4];}?>"
-                                                                        placeholder="0000">
+                                                                        placeholder="-----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -842,7 +841,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_REPAYMENT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_repayment_period[4]" value="<?php if($_bank){echo $_bank['banks_credit_repayment_period'][4];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -858,7 +857,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_RATE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_interest_rate[4]" value="<?php if($_bank){echo $_bank['banks_credit_interest_rate'][4];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -867,7 +866,7 @@
                                                                 <label class="col-xs-3">  <?php echo $lang['SETTINGS_BAN_DUE_INT'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_duration_of_interest[4]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][4];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -881,7 +880,7 @@
                                                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_LIMIT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control creditLineInput" name="banks_credit_limit_value[4]" value="<?php if($_bank){echo $_bank['banks_credit_duration_of_interest'][4];}?>"
-                                                                        placeholder="000">
+                                                                        placeholder="----">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -890,7 +889,7 @@
                                                                 <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CUTT_VALUE'];?></label>
                                                                 <div class="col-xs-5">
                                                                     <input type="text" class="form-control" name="banks_credit_cutting_ratio[4]" value="<?php if($_bank){echo $_bank['banks_credit_cutting_ratio'][4];}?>"
-                                                                        placeholder="00">
+                                                                        placeholder="--">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1011,7 +1010,7 @@
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_CUR_CODE'];?></label>
                                                             <div class="col-xs-5">
                                                                 <input type="text" class="form-control" name="banks_saving_account_number" value="<?php if($_bank){echo $_bank['banks_saving_account_number'];}?>"
-                                                                    placeholder="00">
+                                                                    placeholder="--">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1020,7 +1019,7 @@
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                             <div class="col-xs-5">
                                                                 <input type="text" class="form-control" name="banks_saving_open_balance" value="<?php if($_bank){echo $_bank['banks_saving_account_number'];}?>"
-                                                                    placeholder="00">
+                                                                    placeholder="--">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1031,7 +1030,7 @@
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_RATE_INT'];?></label>
                                                             <div class="col-xs-5">
                                                                 <input type="text" class="form-control" name="banks_saving_interest_rate" value="<?php if($_bank){echo $_bank['banks_saving_account_number'];}?>"
-                                                                    placeholder="00">
+                                                                    placeholder="--">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1040,7 +1039,7 @@
                                                             <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_DUE_INT'];?></label>
                                                             <div class="col-xs-5">
                                                                 <input type="text" class="form-control" name="banks_saving_duration_of_interest" value="<?php if($_bank){echo $_bank['banks_saving_account_number'];}?>"
-                                                                    placeholder="00">
+                                                                    placeholder="--">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1064,7 +1063,7 @@
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_CUR_CODE'];?></label>
                                                             <div class="col-xs-5">
                                                                 <input type="text" class="form-control" name="banks_current_account_number" value="<?php if($_bank){echo $_bank['banks_current_account_number'];}?>"
-                                                                    placeholder="00"> 
+                                                                    placeholder="--">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1073,7 +1072,7 @@
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_OPEN_PALANCE'];?></label>
                                                             <div class="col-xs-5">
                                                                 <input type="text" class="form-control" name="banks_current_opening_balance" value="<?php if($_bank){echo $_bank['banks_current_opening_balance'];}?>"
-                                                                    placeholder="00">
+                                                                    placeholder="--">
                                                             </div>
                                                         </div>
                                                     </div>

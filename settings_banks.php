@@ -65,7 +65,7 @@
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_ST_bankS'];?></span>
+                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_BAN_BANKS'];?></span>
                     <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['LIST'];?></span>
                 </p>
             </div>
@@ -139,17 +139,15 @@
 									{
 										if($c['type'] == 'credit')
 										{
-											echo '
-
-												<td>'.$lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'].'</td>
+											echo '<td>'.$lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'].'</td>
 												<td>'.$c['banks_credit_code'].'</td>
 												<td>'.$c['banks_credit_name'].'</td>
 												<td>'.get_data('settings_clients','clients_name','clients_sn',$c['banks_credit_client']).'</td>
 												<td>'.get_data('settings_products','products_name','products_sn',$c['banks_credit_product']).'</td>
-												<td>'.$c['banks_credit_open_balance'].'</td>
+												<td>'.($c['banks_credit_limit_value']-$c['banks_credit_open_balance']).'</td>
 												<td class="text-center tableActions" >
 													<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i></a>
-													<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="credit_'.$c['banks_credit_sn'].'"></i>
+													<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="credit_'.$c['banks_credit_sn'].'"></i>
 												</td>
 											  ';
 										}else{
@@ -164,7 +162,7 @@
 														<td class="text-center tableActions" >
 															<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i>
 															</a>
-															<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="save_'.$c['banks_credit_sn'].'"></i>
+															<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="save_'.$c['banks_credit_sn'].'"></i>
 															';
 											}elseif($c['type'] == 'current')
 											{
@@ -177,7 +175,7 @@
 														<td class="text-center tableActions" >
 															<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i>
 															</a>
-															<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="current_'.$c['banks_current_sn'].'"></i>';
+															<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="current_'.$c['banks_current_sn'].'"></i>';
 											}
 											echo'</td>';
 										}
@@ -185,16 +183,16 @@
 									}else{
 										if($c['type'] == 'credit')
 										{
-											echo '<tr id=tr_'.$c['banks_credit_sn'].'>
+											echo '<tr id=credit_'.$c['banks_credit_sn'].'>
 													<td>'.$lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'].'</td>
 													<td>'.$c['banks_credit_code'].'</td>
 													<td>'.$c['banks_credit_name'].'</td>
 													<td>'.get_data('settings_clients','clients_name','clients_sn',$c['banks_credit_client']).'</td>
 													<td>'.get_data('settings_products','products_name','products_sn',$c['banks_credit_product']).'</td>
-													<td>'.$c['banks_credit_open_balance'].'</td>
+													<td>'.($c['banks_credit_limit_value']-$c['banks_credit_open_balance']).'</td>
 													<td class="text-center tableActions" >
 														<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i></a>
-														<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="credit_'.$c['banks_credit_sn'].'"></i>
+														<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="credit_'.$c['banks_credit_sn'].'"></i>
 													</td>
 												</tr>
 											  '
@@ -204,7 +202,7 @@
 											if($c['type'] == 'save')
 											{
 
-												echo '<tr id=tr_'.$c['banks_saving_sn'].'>
+												echo '<tr id=save_'.$c['banks_saving_sn'].'>
 													<td>'.$lang['SETTINGS_BAN_SAVE'].'</td>
 													<td>'.$c['banks_saving_account_number'].'</td>
 													<td></td>
@@ -213,7 +211,7 @@
 													<td>'.$c['banks_saving_open_balance'].'</td>
 													<td class="text-center tableActions" >
 														<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i></a>
-														<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="save_'.$c['banks_saving_sn'].'"></i>
+														<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="save_'.$c['banks_saving_sn'].'"></i>
 													</td>
 												</tr>
 											  '
@@ -221,7 +219,7 @@
 												
 											}elseif($c['type'] == 'current')
 											{
-												echo '<tr id=tr_'.$c['banks_current_sn'].'>
+												echo '<tr id=current_'.$c['banks_current_sn'].'>
 													<td>'.$lang['SETTINGS_BAN_CURRENT_ACCOUNT'].'</td>
 													<td>'.$c['banks_current_account_number'].'</td>
 													<td></td>
@@ -230,7 +228,7 @@
 													<td>'.$c['banks_current_opening_balance'].'</td>
 													<td class="text-center tableActions" >
 														<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i></a>
-														<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="current_'.$c['banks_current_sn'].'"></i>
+														<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="current_'.$c['banks_current_sn'].'"></i>
 													</td>
 												</tr>
 											  ';
@@ -270,17 +268,47 @@
 				<script src="https://cdn.rtlcss.com/bootstrap/v4.2.1/js/bootstrap.min.js"  integrity="sha384-a9xOd0rz8w0J8zqj1qJic7GPFfyMfoiuDjC9rqXlVOcGO/dmRqzMn34gZYDTel8k"
 					crossorigin="anonymous"></script>
 				<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-				<script src="./assets/js/framework/bootstrap.js"></script>
 				<script src="./assets/js/main.js"></script>
 				<script src="./assets/js/navbar.js"></script>
 				<script src="./assets/js/list-controls.js"></script>
 				';
 
+
 	include './assets/layout/footer.php';
 ?>
 <SCRIPT>
 $(document).ready( function () {
-    $('#bankTable').DataTable({
+
+
+    $('i.delete_bank').click(function(){
+
+		var id               = $(this).attr('id');
+        var page             = "bank_js.php?do=delete";
+		if (id != 0)
+		{
+			$.ajax( {
+				async :true,
+				type :"POST",
+				url :page,
+				data: "&id=" + id,
+				success : function(responce) {
+                    if(responce == 100)
+                     {
+							$("#"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("#"+id).animate({width: 'auto', opacity: '0.9'}, "slow");
+							$("#"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("#"+id).animate({width: 'auto', opacity: '1'}, "slow");
+							$("#"+id).fadeTo(400, 0, function () { $("#" + id).slideUp(400);});
+                      }
+				},
+				error : function() {
+					return true;
+				}
+			});
+		}
+	});
+
+ $('#bankTable').DataTable({
         "searching": false,
         "ordering": false,
         "lengthChange": false,
@@ -292,7 +320,6 @@ $(document).ready( function () {
             }
           }
     });
-
 } );
 </SCRIPT>
 

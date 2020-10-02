@@ -218,8 +218,10 @@ class systemClients_collectible
 					{
 						$sitebank = $GLOBALS['db']->fetchitem($query);
 						$new = $sitebank['banks_finance_credit'] + $_collectible['collectible_value'];
+						$banks_total_with_benefits = $sitebank['banks_total_with_benefits'] + $_collectible['collectible_value'];
 						$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
-						`banks_finance_credit`		 =	'".$new."'
+						`banks_finance_credit`		 =	'".$new."',
+						`banks_total_with_benefits`		 =	'".$banks_total_with_benefits."'
 						WHERE `banks_finance_sn` 		 = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
 					}elseif($_collectible['collectible_type']== 'cheque')
 					{

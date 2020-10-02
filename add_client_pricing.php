@@ -245,7 +245,7 @@ $(document).ready(function (){
 	
 	$('#client').on('change','select.client',function(){
         var id     = $(this).val();
-        var page   ="client_pricing_js.php?do=client_product";
+        var page   ="client_pricing_js.php?do=price_product";
         if(id){
             $.ajax({
                 type:'POST',

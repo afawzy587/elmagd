@@ -178,7 +178,7 @@
 					</li>
 					
 				<?php 
-				echo '<li class="nav-item dropdown '; if($page_name == "settings_company" ||$page_name == "settings_departments"||$page_name == "add_department"||$page_name == "edit_department" ||$page_name == "setting_jobs" ||$page_name == "add_job" ||$page_name == "edit_job" ||$page_name == "setting_products" ||$page_name == "add_product" ||$page_name == "edit_product" ||$page_name == "settings_users" ||$page_name == "add_user" ||$page_name == "edit_user" ||$page_name == "add_stock" ||$page_name == "edit_stock" ||$page_name == "setting_stocks"||$page_name == "add_client" ||$page_name == "edit_client" ||$page_name == "settings_clients" ||$page_name == "add_supplier" ||$page_name == "edit_supplier" ||$page_name == "settings_suppliers"||$page_name == "add_bank" ||$page_name == "edit_bank" ||$page_name == "settings_banks"  ){echo "active";}echo'">
+				echo '<li class="nav-item dropdown '; if($page_name == "settings_user_group" ||$page_name == "add_group" ||$page_name == "edit_group" ||$page_name == "settings_company" ||$page_name == "settings_departments"||$page_name == "add_department"||$page_name == "edit_department" ||$page_name == "setting_jobs" ||$page_name == "add_job" ||$page_name == "edit_job" ||$page_name == "setting_products" ||$page_name == "add_product" ||$page_name == "edit_product" ||$page_name == "settings_users" ||$page_name == "add_user" ||$page_name == "edit_user" ||$page_name == "add_stock" ||$page_name == "edit_stock" ||$page_name == "setting_stocks"||$page_name == "add_client" ||$page_name == "edit_client" ||$page_name == "settings_clients" ||$page_name == "add_supplier" ||$page_name == "edit_supplier" ||$page_name == "settings_suppliers"||$page_name == "add_bank" ||$page_name == "edit_bank" ||$page_name == "settings_banks"  ){echo "active";}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown6" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-cog"></i>
@@ -231,8 +231,11 @@
 						  {
 							echo'<li class="dropdown-item" href="./add_user.php"><a>'.$lang['SETTINGS_US_USERS'].'</a></li>';
 						  }
-//							<li class="dropdown-item" href="./settings_access"><a>صلاحيات
-//									النظام</a></li>
+						 if($group['settings_user_group']  == 1 )
+						  {
+							echo'<li class="dropdown-item" href="./add_group.php"><a>'.$lang['GROUP_TITLE'].'</a></li>';
+						  }
+
 							echo '
 
 						</ul>

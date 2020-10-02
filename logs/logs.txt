@@ -3040,3 +3040,407 @@ July 19, 2020, 11:58 pmLOGS :  User => Ahmed fawzy Id =>1  Module =>products  Pa
 ------------------------------
 [ September 28, 2020, 6:36 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
 ------------------------------
+[ September 29, 2020, 2:34 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>login  Page => login
+------------------------------
+[ September 29, 2020, 2:40 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 2:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 2:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 2:51 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ September 29, 2020, 2:51 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ September 29, 2020, 2:51 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 29, 2020, 2:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ September 29, 2020, 2:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ September 29, 2020, 2:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 29, 2020, 2:56 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 29, 2020, 2:56 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 29, 2020, 2:58 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ September 29, 2020, 2:59 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 29, 2020, 3:01 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 3:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 29, 2020, 3:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 29, 2020, 4:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ September 29, 2020, 4:10 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ September 29, 2020, 4:17 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:34 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => add_banks
+------------------------------
+[ September 29, 2020, 4:34 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ September 29, 2020, 4:47 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ September 29, 2020, 4:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:57 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 4:59 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 29, 2020, 4:59 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 29, 2020, 5:30 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>groups  Page => add_groups
+------------------------------
+[ September 29, 2020, 5:30 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:32 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:32 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:32 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:32 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:34 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:37 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:38 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:38 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:38 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 29, 2020, 5:38 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ September 29, 2020, 5:40 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:43 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 29, 2020, 5:55 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 30, 2020, 5:28 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>login  Page => login
+------------------------------
+[ September 30, 2020, 5:28 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 30, 2020, 5:30 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => list
+------------------------------
+[ September 30, 2020, 5:31 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => edit_client
+------------------------------
+ / item:2[ September 30, 2020, 5:31 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => list
+------------------------------
+[ September 30, 2020, 5:34 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>jobs  Page => list
+------------------------------
+[ September 30, 2020, 5:34 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>jobs  Page => list
+------------------------------
+[ September 30, 2020, 6:11 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 30, 2020, 6:11 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 30, 2020, 6:12 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ September 30, 2020, 6:12 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ September 30, 2020, 6:12 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ September 30, 2020, 6:13 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => list
+------------------------------
+[ September 30, 2020, 6:13 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ September 30, 2020, 6:16 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>pricing_search  Page => pricing_search
+------------------------------
+[ September 30, 2020, 6:30 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 30, 2020, 6:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>group  Page => edit_user_group
+------------------------------
+[ September 30, 2020, 6:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 30, 2020, 6:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 30, 2020, 6:40 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>user_group  Page => list
+------------------------------
+[ September 30, 2020, 7:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ September 30, 2020, 7:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ September 30, 2020, 7:04 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 4:15 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>login  Page => login
+------------------------------
+[ October 1, 2020, 4:16 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => add_banks
+------------------------------
+[ October 1, 2020, 4:16 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 4:19 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ October 1, 2020, 4:19 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => list
+------------------------------
+[ October 1, 2020, 4:33 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 1, 2020, 4:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 1, 2020, 4:35 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 1, 2020, 4:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 1, 2020, 4:39 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 1, 2020, 4:40 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 1, 2020, 4:40 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 1, 2020, 4:41 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 4:42 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 1, 2020, 4:42 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 4:43 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 1, 2020, 4:43 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 1, 2020, 4:44 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => edit_client
+------------------------------
+ / item:1[ October 1, 2020, 4:44 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 1, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 1, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 1, 2020, 4:45 pm ] LOGS :  User => Ahmed fawzy Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ October 1, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 1, 2020, 5:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 5:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 5:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 5:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 5:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:16 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 5:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>departments  Page => list
+------------------------------
+[ October 1, 2020, 6:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>departments  Page => list
+------------------------------
+[ October 1, 2020, 6:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>products  Page => list
+------------------------------
+[ October 1, 2020, 6:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>products  Page => list
+------------------------------
+[ October 1, 2020, 6:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => add_banks
+------------------------------
+[ October 1, 2020, 6:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 6:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 6:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:31 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:42 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:46 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 1, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:55 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 6:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:05 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:26 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:26 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:26 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 1, 2020, 7:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:28 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:30 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:30 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:31 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 1, 2020, 7:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 2, 2020, 8:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 2, 2020, 8:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 2, 2020, 8:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>departments  Page => addd_departments
+------------------------------
+[ October 2, 2020, 8:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>jobs  Page => list
+------------------------------
+[ October 2, 2020, 8:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_pricings  Page => edit_client_pricings
+------------------------------
+[ October 2, 2020, 8:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>jobs  Page => list
+------------------------------

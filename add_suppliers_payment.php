@@ -20,7 +20,7 @@
         header("Location:./login.php");
         exit;
     }else{
-		if($group['clients_payments'] == 0){
+		if($group['supplier_payment'] == 0){
 			header("Location:./permission.php");
 			exit;
 		}else

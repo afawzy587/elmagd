@@ -695,6 +695,41 @@ $lang['NOT_DEPOSITS_DATE']                = " تاريخ التحصيل";
 $lang['']                = "";
 
 
+/**************** USER GROUPS *********************/
+$lang['GROUP_TITLE']                   =   "صلاحيات النظام";
+$lang['GROUP_GROUP']                   =   "صلاحية";
+$lang['GROUP_ADD_GROUPS']              =   "اضافة صلاحية ";
+$lang['GROUP_EDIT_GROUPS']             =   "تعديل صلاحية ";
+$lang['GROUP_NAME']                    =   "اسم الصلاحية ";
+$lang['GROUP_DESCRIPTION']             =   "الوصف";
+$lang['GROUP_DESCRIPTION_HOLDER']      =   "وصف الصلاحية ";
+$lang['GROUP_INSERT_NAME']             =   "ادخل اسم صلاحية";
+$lang['GROUP_INSERT_DES']              =   "ادخل وصف صلاحية";
+$lang['GROUP_SUCCESS']                 =   "تم اضافة ادارة جديدة";
+$lang['GROUP_INSERT_BEFORE']           =   "تم اضافة هذه صلاحية سابقا";
+$lang['GROUP_EDIT_SUCCESS']            =   "تم تعديل صلاحية بنجاح";
+$lang['GROUP_setting_company']         =   "التحكم فى بيانات الشركة";
+$lang['GROUP_settings_department']     =   "التحكم فى الادارات";
+$lang['GROUP_setting_jobs']            =   " التحكم فى الوظائف";
+$lang['GROUP_setting_stocks']          =   "التحكم فى المخازن";
+$lang['GROUP_settings_products']       =   "التحكم فى المنتجات";
+$lang['GROUP_settings_users']          =   "التحكم فى مستخدمى التظام";
+$lang['GROUP_settings_clients']        =   "التحكم فى العملاء";
+$lang['GROUP_settings_suppliers']      =   "التحكم فى الموردين";
+$lang['GROUP_settings_banks']          =   "التحكم فى البنوك";
+$lang['GROUP_clients_pricing']         =   "التحكم فى التسعير";
+$lang['GROUP_clients_finance']         =   "حساب العملاء";
+$lang['GROUP_clients_payments']        =   "التحصيل (محاسبة) من العميل";
+$lang['GROUP_clients_old_pricing']     =   "اظهار التسعير السابق";
+$lang['GROUP_operations']              =   " التحكم فى العمليات";
+$lang['GROUP_expense']                 =   " التحكم فى المصروفات الداخلية";
+$lang['GROUP_deposit_check']           =   " امكانية الايداع فى البنك";
+$lang['GROUP_bank_transfer']           =   " التحكم فى تحويلات البنوك";
+$lang['GROUP_supplier_payment']        =   "محاسبة الموردين";
+$lang['GROUP_settings_user_group']     =   "التحكم فى صلاحيات النظام ";
+$lang['GROUP_']              =   " ";
+
+
 
 
 

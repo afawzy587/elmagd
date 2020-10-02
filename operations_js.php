@@ -25,7 +25,7 @@
 		{
 			case"delete_expence":
 				if($_POST)
-					{
+				{
 						include("./inc/Classes/system-expenses.php");
 						$expenses = new systemExpenses();
 						$id = intval($_POST['id']);
@@ -98,7 +98,6 @@
 															<div class="col-xs-5">
 																<input type="text" class="cullc_price form-control" name="qualityName1['.$k.']" readonly="" placeholder="" value="'.$p['clients_products_rate_name'].'" >
 																<input type="number" class="cullc_price" name="rates_product_rate_id['.$k.']"  value="'.$p['clients_products_rate_sn'].'" hidden>
-																<input type="text" class="cullc_price" name="pricing_supply_price['.$k.']" id="pricing_supply_price_'.$k.'" value="'.$p['pricing_supply_price'].'" hidden>
 																<input type="text" class="cullc_price" name="pricing_selling_price['.$k.']" id="pricing_selling_price_'.$k.'" value="'.$p['pricing_selling_price'].'" hidden>
 																<input type="text" class="cullc_price" name="rates_product_rate_excuse_price['.$k.']" id="pricing_excuse_price_'.$k.'" value="'.$p['pricing_excuse_price'].'" hidden>
 															</div>
@@ -108,7 +107,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_RATE_DES_SUPPLIER"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="cullc_price form-control" name="rates_supplier_discount_percentage['.$k.']" placeholder="0" value="'.$p['pricing_supply_percent'].'" >
+																<input type="text" class="cullc_price rate_percentage form-control" name="rates_supplier_discount_percentage['.$k.']" id="pricing_supply_rate_'.$k.'"  placeholder="0" value="'.$p['pricing_supply_percent'].'" >
 															</div>
 														</div>
 													</div>
@@ -116,7 +115,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_VALUE_DES_SUPPLIER"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="cullc_price rate_percentage form-control" name="rates_supplier_discount_value['.$k.']" placeholder="0" value="'.$p['pricing_supply_price'].'" >
+																<input type="text" class="cullc_price rate_percentage form-control" name="rates_supplier_discount_value['.$k.']" id="pricing_supply_price_'.$k.'" placeholder="0" value="'.$p['pricing_supply_price'].'" readonly>
 															</div>
 														</div>
 													</div>
@@ -136,7 +135,7 @@
 														<div class="form-group">
 															<label class="col-xs-3">'.$lang["OPERATIONS_VALUE_PRECENT"].'</label>
 															<div class="col-xs-5">
-																<input type="text" class="cullc_price rate_percentage  form-control" id="discount_percentage_'.$k.'" name="rates_product_rate_discount_percentage['.$k.']" placeholder="0" >
+																<input type="text" class="cullc_price rate_percentage  form-control" id="discount_percentage_'.$k.'" name="rates_product_rate_discount_percentage['.$k.']" placeholder="---" >
 															</div>
 														</div>
 													</div>

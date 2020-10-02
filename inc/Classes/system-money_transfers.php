@@ -94,10 +94,12 @@ class systemMoney_transfers
 
                     $siteaccount = $GLOBALS['db']->fetchitem($account_query);
 
-                    $banks_finance_credit =  $siteaccount['banks_finance_credit'] - $Transfer['transfers_value'];
+                    $banks_finance_credit      =  $siteaccount['banks_finance_credit'] - $Transfer['transfers_value'];
+                    $banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] - $Transfer['transfers_value'];
 
                     $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
-                            `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                            `banks_finance_credit`         = '" . $banks_finance_credit . "',
+                            `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
                          WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                 }
             }
@@ -127,9 +129,11 @@ class systemMoney_transfers
                     $siteaccount = $GLOBALS['db']->fetchitem($account_query);
 
                     $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $Transfer['transfers_value'];
+                    $banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] + $Transfer['transfers_value'];
 
                     $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
-                        `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                        `banks_finance_credit`    = '" . $banks_finance_credit . "',
+                        `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
                             WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                 }
             } elseif ($Transfer['transfers_account_type_to'] == 'credit') {
@@ -162,9 +166,11 @@ class systemMoney_transfers
                     $siteaccount = $GLOBALS['db']->fetchitem($account_query);
 
                     $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $Transfer['transfers_value'];
+                    $banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] + $Transfer['transfers_value'];
 
                     $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
-                            `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                            `banks_finance_credit`    = '" . $banks_finance_credit . "',
+                            `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
                          WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                 }
             }
@@ -192,8 +198,10 @@ class systemMoney_transfers
                 $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $transfer['transfers_to'] . "' AND `banks_finance_account_type` = '" . $transfer['transfers_account_type_to'] . "' ");
                 $siteaccount = $GLOBALS['db']->fetchitem($account_query);
                 $banks_finance_credit =  $siteaccount['banks_finance_credit'] + $transfer['transfers_value'];
+                $banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] + $transfer['transfers_value'];
                 $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
-                 `banks_finance_credit`    = '" . $banks_finance_credit . "'
+                 `banks_finance_credit`         = '" . $banks_finance_credit . "',
+                 `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "',
                 WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
             } 
             return 1;

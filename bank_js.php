@@ -36,7 +36,7 @@
 				}
 				exit;
 			}
-	 case "bank_approve":
+	    case "bank_approve":
 			if ($_POST) {
 				$id      = intval($_POST['id']);
 				$data    = $deposit->Bank_Approved($id);
@@ -57,8 +57,7 @@
 					echo 400;
 				}
 				exit;
-			}	
-
+			}
         case"item_data":
 			if($_POST)
 			{
@@ -73,8 +72,7 @@
 				}
 				exit;
 			}
-
-			case"get_invoices":
+		case"get_invoices":
 			if($_POST)
 			{
 				$bank         = intval($_POST['bank']);
@@ -125,6 +123,18 @@
 					$html ='<h5>'.$lang['NO_INVOICES'].'</h5>';
 				}
 				echo $html;
+			}
+		case"delete":
+			if($_POST)
+			{
+				$id      = sanitize($_POST['id']);
+				$delete  = $setting_bank->Delete_bank($id);
+				if($delete == 1)
+				{
+					echo 100;
+				}else{
+					echo 400;
+				}
 			}
 		}
     }

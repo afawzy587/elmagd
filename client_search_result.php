@@ -18,7 +18,7 @@
         header("Location:./login.php");
         exit;
     }else{
-		if($group['settings_department'] == 0){
+		if($group['clients_finance'] == 0){
 			header("Location:./permission.php");
 			exit;
 		}else

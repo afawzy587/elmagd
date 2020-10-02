@@ -74,8 +74,9 @@
 		"expense"                             =>          1,
 		"deposit_check"                       =>          1,
 		"bank_transfer"                       =>          1,
-		"supplier_payment"                     =>          1,
-		"client_payment"                     =>          1,
+		"supplier_payment"                    =>          1,
+		"client_payment"                      =>          1,
+		"settings_user_group"                      =>          1,
 
 
 			);
@@ -105,8 +106,9 @@
 			"expense"                            =>          $sitegroup['expense'],
 			"deposit_check"                      =>          $sitegroup['deposit_check'],
 			"bank_transfer"                      =>          $sitegroup['bank_transfer'],
-			"client_payment"                      =>          $sitegroup['client_payment'],
-			"supplier_payment"                      =>          $sitegroup['supplier_payment'],
+			"client_payment"                     =>          $sitegroup['client_payment'],
+			"supplier_payment"                   =>          $sitegroup['supplier_payment'],
+			"settings_user_group"                =>          $sitegroup['settings_user_group'],
 
 				);
 

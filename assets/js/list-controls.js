@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	
-    $('i.delete').click(function(e){
+$('i.delete').click(function(e){
         e.preventDefault();
 		var table            = $('#table').val();
 		var permission       = $('#permission').val();

@@ -296,6 +296,15 @@
 		}
 	}
 
+	 function group_check($id,$value)
+	{
+		echo '<div class="col-md-4">
+				<input class="customized-checkbox" id="'.$id.'" type="checkbox" name="'.$id.'" value="1"';if($value == 1){echo 'checked';} echo'>
+				<label class="customized-checkbox-label" for="'.$id.'">'.$GLOBALS['lang']['GROUP_'.$id].'</label>
+			 </div>
+		';
+	}
+
 	
 
 

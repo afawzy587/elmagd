@@ -60,6 +60,25 @@
 				
 				exit;
 			}
+			case"price_product":
+			if($_POST)
+			{
+				$id = intval($_POST['id']);
+				$products = $setting_clients->get_client_product($id);
+				if ($products)
+				{
+					echo'<option selected disabled>'.$lang["SETTINGS_BAN_CHOOSE_PRODUCT"].'</option>';
+					foreach($products as $k => $p)
+					{
+						echo '<option value="'.$p["clients_products_sn"].'">'.$p["products_name"].'</option>';
+					}
+				}else{
+					echo '<option selected disabled>'.$lang["NO_CLIENT_PRODUCT"].'</option>';
+				}
+
+
+				exit;
+			}
 				
             case"client_product":
 			if($_POST)

@@ -54,6 +54,34 @@
 
 
 
+		                        /************************************ Update penfits value in CREDIT ACCOUNT *****************************************/
+
+        $query_CREDIT = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_account_type` = 'credit' AND `banks_finance_credit` < 0");
+        $Totalcredits= $GLOBALS['db']->resultcount($query_CREDIT);
+        if($Totalcredits > 0)
+        {
+			$account = $GLOBALS['db']->fetchlist();
+			foreach($account as $k => $d)
+			{
+                $query_credits = $GLOBALS['db']->query("SELECT * FROM `settings_banks_credit` WHERE `banks_credit_sn` ='".$d['banks_finance_account_id']."' AND `banks_credit_status` !='0' ");
+                $Totalcredits = $GLOBALS['db']->resultcount($query_Deposits);
+                if($Totalcredits > 0)
+                {
+                    $credits =$GLOBALS['db']->fetchitem($query_credits);
+                    $benefits     = $d['banks_finance_credit'] * (($credits['banks_credit_interest_rate']/100)/$credits['banks_credit_duration_of_interest']);
+                    $new_benefits = $d['banks_benefits'] + $benefits ;
+                    $deposits_pull_total = $d['banks_finance_credit'] +  $new_benefits ;
+                    $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET
+                    `banks_benefits`            =     '".$new_benefits."',
+                    `banks_total_with_benefits`   =     '".$deposits_pull_total."'
+                    WHERE `banks_finance_sn` ='".$d['banks_finance_sn']."'
+                    ");
+                }
+            }
+        }
+
+
+
     $db->disconnect();
 	ob_end_flush();
 

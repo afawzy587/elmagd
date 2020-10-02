@@ -264,7 +264,7 @@
 												<label class="col-xs-3"><?php echo  $lang['OPERATIONS_RECIEPT']?></label>
 												<div class="col-xs-5">
 													<input type="text" class="form-control" name="operations_receipt" readonly
-														placeholder="0" value="<?php echo  get_last_reseipt()?>">
+														placeholder="----" value="<?php echo  get_last_reseipt()?>">
 												</div>
 											</div>
 										</div>
@@ -275,7 +275,7 @@
 														<label class="col-xs-3"><?php echo  $lang['OPERATIONS_SUPPLER_PRICE']?></label>
 														<div class="col-xs-5">
 															<input type="text" class="cullc_price form-control" id="operations_supplier_price" name="operations_supplier_price"
-																readonly placeholder="0" value="">
+																readonly placeholder="----" value="">
 														</div>
 													</div>
 												</div>
@@ -284,7 +284,7 @@
 														<label class="col-xs-3"> <?php echo  $lang['OPERATIONS_CLIENT_PRICE']?></label>
 														<div class="col-xs-5">
 															<input type="text" class="form-control" id="operations_customer_price" name="operations_customer_price"
-																readonly placeholder="0" value="0">
+																readonly placeholder="----" value="">
 														</div>
 													</div>
 												</div>
@@ -294,7 +294,7 @@
 											<div class="form-group">
 												<label class="col-xs-3"><?php echo  $lang['OPERATIONS_CARD_SERIAL']?></label>
 												<div class="col-xs-5">
-													<input type="text" class="form-control" name="operations_card_number" placeholder="<?php echo  $lang['OPERATIONS_CARD_SERIAL']?>">
+													<input type="text" class="form-control" name="operations_card_number" placeholder="-----">
 												</div>
 											</div>
 										</div>
@@ -309,7 +309,7 @@
                                                     <label class="col-xs-3"><?php echo  $lang['OPERATIONS_QUANTITY'];?></label>
                                                     <div class="col-xs-5">
                                                         <input type="text" class="cullc_price form-control" id="operations_quantity" name="operations_quantity"
-                                                            placeholder="0">
+                                                            placeholder="----">
                                                     </div>
                                                 </div>
                                             </div>
@@ -318,7 +318,7 @@
                                                     <label class="col-xs-3"><?php echo  $lang['OPERATIONS_GENERAL_DIS'];?></label>
                                                     <div class="col-xs-5">
                                                         <input type="text" class="form-control" id="operations_general_discount" name="operations_general_discount"
-                                                            placeholder="<?php echo  $lang['OPERATIONS_GENERAL_DIS'];?>">
+                                                            placeholder="----">
                                                     </div>
                                                 </div>
                                             </div>
@@ -326,7 +326,7 @@
                                                 <div class="form-group">
                                                     <label class="col-xs-3"><?php echo  $lang['OPERATIONS_QUANTITY_AFTER'];?></label>
                                                     <div class="col-xs-5">
-                                                        <input type="text" class="cullc_price form-control" id="operations_net_quantity" name="operations_net_quantity" readonly placeholder="0">
+                                                        <input type="text" class="cullc_price form-control" id="operations_net_quantity" name="operations_net_quantity" readonly placeholder="----">
                                                     </div>
                                                 </div>
                                             </div>
@@ -388,10 +388,12 @@
                         <div class="col d-flex justify-content-end">
                            <span>
                                 <button class="btn roundedBtn mr-2" type="submit"> <?php echo $lang['SETTINGS_C_SAVE'];?></button>
-<!--                                <button class="btn roundedBtn mr-2" type="submit"> <?php echo $lang['OPERATIONS_SUM'];?></button>-->
+                                <button class="add_other btn roundedBtn mr-2" type="submit"> <?php echo $lang['OPERATIONS_SUM'];?></button>
+<!--
                                 <a href="./operation_sum.php?code=<?php echo $_GET['o'];?>" >
                                     <button class="add_other btn roundedBtn" type="button"> <?php echo $lang['OPERATIONS_SUM'];?></button>
                                 </a>
+-->
                             </span>
                         </div>
                     </div>
@@ -579,7 +581,9 @@ include  './assets/layout/footer.php';?>
 		var pricing_rate_type               =  $('#pricing_rate_type_'+rate_id).val();
 		var a                               =  $('#pricing_rate_percent_'+rate_id).val();
 		var pricing_selling_price           =  $('#pricing_selling_price_'+rate_id).val();
-		var pricing_supply_price            =  $('#pricing_supply_price_'+rate_id).val();
+		var pricing_supply_rate             =  $('#pricing_supply_rate_'+rate_id).val();
+		var pricing_supply_price            =  pricing_selling_price - (pricing_selling_price * (pricing_supply_rate/100)).toFixed(2);
+		$('#pricing_supply_price_'+rate_id).val(pricing_supply_price);
 		var pricing_excuse_price            =  $('#pricing_excuse_price_'+rate_id).val();
 		if(pricing_rate_type == 'amount' || pricing_rate_type == 'not')
 		{
@@ -631,7 +635,6 @@ include  './assets/layout/footer.php';?>
 					            var rate_percentage_new  =  $('#rate_percentage_'+k).val()-a_al_new;
                                 var e_new            =  e -((e*(rate_percentage_new/100)));
                                 var pre_quantity     =  (e_new*(rate_percentage_new/100));
-                                console.log("e_new"+e_new);
                             }
                              all_quantity    += pre_quantity;
                         }
@@ -682,9 +685,11 @@ include  './assets/layout/footer.php';?>
 		{
 			var rate_quantity               =  parseInt($('#rate_quantity_'+i).val()) || 0;
 			var excuse_quantity             =  parseInt($('#excuse_quantity_'+i).val()) || 0;  // j
-			var selling_price               =  parseInt($('#pricing_selling_price_'+i).val()) || 0;
-			var supply_price                =  parseInt($('#pricing_supply_price_'+i).val())|| 0;
-			var excuse_price                =  parseInt($('#pricing_excuse_price_'+i).val()) * excuse_quantity;
+			var selling_price               =  $('#pricing_selling_price_'+i).val() || 0;
+			var pricing_supply_rate         =  $('#pricing_supply_rate_'+i).val();
+			var supply_price                =  selling_price - (selling_price * (pricing_supply_rate/100)).toFixed(2);
+			$('#pricing_supply_price_'+i).val(supply_price);
+			var excuse_price                =  $('#pricing_excuse_price_'+i).val() * excuse_quantity;
 			supplier_price                  =  parseInt(((rate_quantity*supply_price)+(excuse_price))).toFixed(2);
 			customer_price                  =  parseInt(((rate_quantity*selling_price)+(excuse_price))).toFixed(2);
 			s_price  +=parseInt(supplier_price);
@@ -693,12 +698,12 @@ include  './assets/layout/footer.php';?>
 		$('#operations_supplier_price').val(s_price);
 		$('#operations_customer_price').val(c_price);
    }
-      $('#calc').keyup(function(){
-          $('#qualityItemsContainer').trigger('keyup');
-          $('.rate_percentage').trigger('change');    
-          cullc_price();
-          
-      });
+//   $('#calc').keyup(function(){
+//          $('#qualityItemsContainer').trigger('keyup');
+//          $('.rate_percentage').trigger('change');
+//          cullc_price();
+//
+//      });
 	  
 	  
 })
