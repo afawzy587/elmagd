@@ -51,7 +51,7 @@
 					$_operation['rates_product_rate_percentage']               =       $_POST["rates_product_rate_percentage"];
 					$_operation['rates_product_rate_discount_percentage']      =       $_POST["rates_product_rate_discount_percentage"];
 					$_operation['rates_product_rate_excuse_percentage']        =       $_POST["rates_product_rate_excuse_percentage"];
-					$_operation['rates_product_rate_supply_price']             =       $_POST["pricing_supply_price"];
+					$_operation['rates_product_rate_supply_price']             =       $_POST["rates_supplier_discount_value"];
 					$_operation['rates_product_rate_excuse_price']             =       $_POST["rates_product_rate_excuse_price"];
 					$_operation['rates_product_rate_quantity']                 =       $_POST["rates_product_rate_quantity"];
 					$_operation['rates_product_rate_excuse_quantity']          =       $_POST["rates_product_rate_excuse_quantity"];
@@ -593,9 +593,9 @@ include  './assets/layout/footer.php';?>
 			var h                           =  $('#excuse_percentage_'+rate_id).val();  // h
 			var i_alfa                      =  ((f-h)/100) * e_alfa;
 			var j_alfa                      =  ((h/100)* e_alfa);
-			var i                           =  (i_alfa -(i_alfa*(g/100))) + e_alfa //i
+			var i                           =  ((i_alfa -(i_alfa*(g/100))) + e_alfa ).toFixed(2)//i
 			var rate_quantity               =  $('#rate_quantity_'+rate_id).val(i);  // i
-			var j							=  j_alfa - (j_alfa*(g/100));
+			var j							=  j_alfa - (j_alfa*(g/100)).toFixed(2);
 			var excuse_quantity             =  $('#excuse_quantity_'+rate_id).val(j);  // j
 			 excuse_price                =  (j * pricing_excuse_price);
 			 supplier_price              =  (i*pricing_supply_price )+excuse_price;
