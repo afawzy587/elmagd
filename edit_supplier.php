@@ -290,7 +290,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-3"> <?php echo $lang['SETTINGS_US_PASS'];?></label>
                                     <div class="col-xs-5">
-                                        <input type="password" class="form-control" name="suppliers_password"  autocomplete="new-password"
+                                        <input type="text" class="form-control" name="suppliers_password"  autocomplete="new-password"
                                             placeholder="********">
                                             <p class="help-block"><?php echo $lang['NOCHANGEINPASS'];?></p>
                                     </div>
@@ -352,17 +352,17 @@ $(document).ready(function () {
                     }
                 }
             },
-            suppliers_phone_two: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
-                    },
-                    regexp: {
-                        regexp: /^01[0-2]{1}[0-9]{8}/,
-                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
-                    }
-                }
-            },
+//            suppliers_phone_two: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
+//                    },
+//                    regexp: {
+//                        regexp: /^01[0-2]{1}[0-9]{8}/,
+//                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
+//                    }
+//                }
+//            },
 //            suppliers_photo: {
 //                validators: {
 //                    notEmpty: {

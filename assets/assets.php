@@ -296,7 +296,7 @@
 		}
 	}
 
-	 function group_check($id,$value)
+   function group_check($id,$value)
 	{
 		echo '<div class="col-md-4">
 				<input class="customized-checkbox" id="'.$id.'" type="checkbox" name="'.$id.'" value="1"';if($value == 1){echo 'checked';} echo'>
@@ -304,6 +304,17 @@
 			 </div>
 		';
 	}
+
+    function get_Operation_product($id)
+    {
+        $GLOBALS['db']->query("SELECT *  FROM `operations_rates` WHERE
+		`rates_operation_id` = '".$id."'");
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            return($GLOBALS['db']->fetchlist());
+        }else{return null;}
+    }
 
 	
 

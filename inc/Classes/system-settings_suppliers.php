@@ -72,14 +72,14 @@ class systemSettings_suppliers
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal == 0)
         {
-			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE (`suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_one']."' || `suppliers_phone_two` = '".$Settings_suppliers['suppliers_phone_one']."'   ) AND `suppliers_sn` !='".$Settings_suppliers['suppliers_sn']."' AND suppliers_status != 0  LIMIT 1 ");
+			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE (`suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_one']."' ) AND `suppliers_sn` !='".$Settings_suppliers['suppliers_sn']."' AND suppliers_status != 0  LIMIT 1 ");
 			$quTotal = $GLOBALS['db']->resultcount();
 			if($quTotal == 0)
 			{
-				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE (`suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_two']."' || `suppliers_phone_two` = '".$Settings_suppliers['suppliers_phone_two']."'  )  AND `suppliers_sn` !='".$Settings_suppliers['suppliers_sn']."' AND suppliers_status != 0  LIMIT 1 ");
-				$quTotal = $GLOBALS['db']->resultcount();
-				if($quTotal == 0)
-				{
+//				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE (`suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_two']."' || `suppliers_phone_two` = '".$Settings_suppliers['suppliers_phone_two']."'  )  AND `suppliers_sn` !='".$Settings_suppliers['suppliers_sn']."' AND suppliers_status != 0  LIMIT 1 ");
+//				$quTotal = $GLOBALS['db']->resultcount();
+//				if($quTotal == 0)
+//				{
 						if($Settings_suppliers['suppliers_photo'] != "")
 						{
 							$suppliers_photo = "`suppliers_photo`='".$Settings_suppliers['suppliers_photo']."',";
@@ -136,9 +136,9 @@ class systemSettings_suppliers
 								}
 						}
 						 return 1;
-				}else{
-					return 'phone_two';
-				}
+//				}else{
+//					return 'phone_two';
+//				}
 			}else{
 				return 'phone_one';
 			}
@@ -156,14 +156,14 @@ class systemSettings_suppliers
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal == 0)
         {
-			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_one']."' || `suppliers_phone_two` = '".$Settings_suppliers['suppliers_phone_one']."'  AND suppliers_status != 0  LIMIT 1 ");
+			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_one']."'   AND suppliers_status != 0  LIMIT 1 ");
 			$quTotal = $GLOBALS['db']->resultcount();
 			if($quTotal == 0)
 			{
-				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_two']."' || `suppliers_phone_two` = '".$Settings_suppliers['suppliers_phone_two']."'  AND suppliers_status != 0  LIMIT 1 ");
-				$quTotal = $GLOBALS['db']->resultcount();
-				if($quTotal == 0)
-				{
+//				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `suppliers_phone_one` = '".$Settings_suppliers['suppliers_phone_two']."'   AND suppliers_status != 0  LIMIT 1 ");
+//				$quTotal = $GLOBALS['db']->resultcount();
+//				if($quTotal == 0)
+//				{
 					$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `".$this->tableName."`
 					(`suppliers_sn`, `suppliers_name`, `suppliers_phone_one`, `suppliers_phone_two`, `suppliers_address`,`suppliers_photo`,`suppliers_doc`, `suppliers_status`) 
 					VALUES ( NULL ,'".$Settings_suppliers['suppliers_name']."','".$Settings_suppliers['suppliers_phone_one']."','".$Settings_suppliers['suppliers_phone_two']."','".$Settings_suppliers['suppliers_address']."','".$Settings_suppliers['suppliers_photo']."','".$Settings_suppliers['suppliers_doc']."',1)");
@@ -181,9 +181,9 @@ class systemSettings_suppliers
 					}
 					 return 1;
 					
-				}else{
-					return 'phone_two';
-				}
+//				}else{
+//					return 'phone_two';
+//				}
 			}else{
 				return 'phone_one';
 			}

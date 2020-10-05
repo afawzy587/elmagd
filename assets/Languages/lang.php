@@ -551,6 +551,7 @@ $lang['OPERATIONS_GENERAL_DIS_IN']        =    "أدخل الخصم العام";
 $lang['OPERATIONS_CARD_FRONT_IN']         =    "أرفع صورة وجه الكارت";
 $lang['OPERATIONS_CARD_BACK_IN']          =    "أرفع صورة ظهر الكارت";
 $lang['OPERATIONS_RATE_DES_SUPPLIER']     =    "(%) نسبة الخصم علي المورد";
+$lang['OPERATION_RATE_DES_SUPPLIER']     =    "(%) نسبة الخصم";
 $lang['OPERATIONS_VALUE_DES_SUPPLIER']    =    "قيمة الخصم من المورد (ج.م)";
 $lang['OPERATIONS_VALUE_PRECENT']         =    "(%) نسبة خصم الدرجة";
 $lang['OPERATIONS_RATE_QANTITY']          =    "كمية الدرجة (كجم)";
@@ -572,6 +573,7 @@ $lang['OPERATIONS_M_RATE_DI']             =    "نسبة خصم الدرجة";
 $lang['OPERATIONS_M_EX_PRE']              =    "نسبة السماح";
 $lang['OPERATIONS_M_EX_UAN']              =    "كمية السماح";
 $lang['OPERATIONS_M_UAN_AFTR']            =    "كمية بعد الخصم ";
+$lang['OPERATIONS_M_DIC']            =    "كمية الخصم ";
 $lang['OPERATIONS_M_EX_PRICE']            =    "سعر السماح";
 $lang['OPERATIONS_M_SU_PRICE']            =    "سعر المورد";
 $lang['OPERATIONS_M_SU_FINANCE']          =    "حساب المورد";
@@ -627,9 +629,14 @@ $lang['DEPOSITS_BANK_APPROVE']           =  "موافقة البنك";
 $lang['DEPOSITS_COLLECTED']              =  "تحصيل الشيك";
 $lang['DEPOSITS_APPROVE']                =  "موافقة";
 $lang['DEPOSITS_COLLECT']                =  "تحصيل";
-$lang['DEPOSITS_SUCCESS']               =  "تم اضافة ايداع جديد";
-$lang['DEPOSITS_']               =  " ";
-$lang['DEPOSITS_']               =  " ";
+$lang['DEPOSITS_COLLECT_START']          =  "رقم النهاية يجب أن يكون أكبر من رقم البداية";
+$lang['DEPOSITS_COLLECT_END']            =  "رقم البداية يجب أن يكون أصغر من رقم النهاية";
+$lang['DEPOSITS_SUCCESS']                =  "تم اضافة ايداع جديد";
+$lang['DEPOSITS_STARTVALUE']               =  "من القيمة (ج.م)";
+$lang['DEPOSITS_ENDVALUE']               =  "الي القيمة (ج.م)";
+$lang['DEPOSITS_SEARCH_DETAILS']               =  "بحث متقدم";
+$lang['DEPOSITS_SEARCH_TITLE']               =  "بحث ايداعات مالية";
+$lang['TRANSFERS_SEARCH_TITLE']               =  "بحث تحويلات مالية";
 $lang['DEPOSITS_']               =  " ";
 
 //************************Transfer money **************************//
@@ -681,7 +688,7 @@ $lang['P_S_PAYMENTS']           = "حسابات الموردين";
 $lang['P_S_PAY_TO_SUPPLIER']    = "محاسبة المورد";
 $lang['P_S_RECIPIENT']          = "المستلم";
 $lang['P_S_PAID']               = "تسديد";
-$lang['P_S_PAID_REASION']               = "سبب الدفع";
+$lang['P_S_PAID_REASION']       = "سبب الدفع";
 $lang['P_S_LATER']              = "دفعة مقدمة";
 $lang['P_S_RESOEN']             = "اختر سبب الدفع";
 $lang['P_S_RECIPIENT_IN']       = "ادخل اسم المستلم";
@@ -728,6 +735,15 @@ $lang['GROUP_bank_transfer']           =   " التحكم فى تحويلات ا
 $lang['GROUP_supplier_payment']        =   "محاسبة الموردين";
 $lang['GROUP_settings_user_group']     =   "التحكم فى صلاحيات النظام ";
 $lang['GROUP_']              =   " ";
+$lang['GROUP_']              =   " ";
+
+/**********************************************/
+$lang['CARD_REPEATED']                =   "رقم الكارت مسجل سابقا";
+$lang['MOUNT_TOTAL']                  =   "صافي اجمالي الكمية (كجم) ";
+$lang['FINNACE_TOTAL']                =   "اجمالي الحساب  (ج.م)";
+$lang['COLLECTED_TOTAL']              =   "اجمالي لتحصيل   (ج.م)";
+$lang['REMAIN_TOTAL']                 =   "الباقى   (ج.م)";
+$lang['']              =   "";
 
 
 

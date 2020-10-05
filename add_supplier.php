@@ -253,7 +253,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-3"> <?php echo $lang['SETTINGS_US_PASS'];?></label>
                                     <div class="col-xs-5">
-                                        <input type="password" class="form-control" name="suppliers_password"  autocomplete="new-password"
+                                        <input type="text" class="form-control" name="suppliers_password"  autocomplete="new-password"
                                             placeholder="********">
                                     </div>
                                 </div>
@@ -314,53 +314,53 @@ $(document).ready(function () {
                     }
                 }
             },
-            suppliers_phone_two: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
-                    },
-                    regexp: {
-                        regexp: /^01[0-2]{1}[0-9]{8}/,
-                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
-                    }
-                }
-            },
-            suppliers_photo: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_SU_PHOTO'];?>'
-                    }
-                }
-            },
-            suppliers_doc: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_SU_IN_DOC'];?>'
-                    }
-                }
-            },
-            suppliers_password: {
-                validators: {
-                    notEmpty: {
-                        message: ' <?php echo $lang['SETTINGS_US_IN_PASS'];?>'
-                    },
-                    stringLength: {
-                        min: 8,
-                        message: '<?php echo $lang['SETTINGS_US_MIN_8'];?>'
-                    }
-                }
-            },
-            confirmsuppliers_password: {
-                 validators: {
-                    notEmpty: {
-                        message: '  <?php echo $lang['SETTINGS_US_IN_PASS_AGAIN'];?>'
-                    },
-                    identical: {
-                        field: 'users_password',
-                        message: '<?php echo $lang['SETTINGS_US_IN_NOT_SAME'];?>'
-                    }
-                }
-            }
+//            suppliers_phone_two: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
+//                    },
+//                    regexp: {
+//                        regexp: /^01[0-2]{1}[0-9]{8}/,
+//                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
+//                    }
+//                }
+//            },
+//            suppliers_photo: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_SU_PHOTO'];?>'
+//                    }
+//                }
+//            },
+//            suppliers_doc: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_SU_IN_DOC'];?>'
+//                    }
+//                }
+//            },
+//            suppliers_password: {
+//                validators: {
+//                    notEmpty: {
+//                        message: ' <?php echo $lang['SETTINGS_US_IN_PASS'];?>'
+//                    },
+//                    stringLength: {
+//                        min: 8,
+//                        message: '<?php echo $lang['SETTINGS_US_MIN_8'];?>'
+//                    }
+//                }
+//            },
+//            confirmsuppliers_password: {
+//                 validators: {
+//                    notEmpty: {
+//                        message: '  <?php echo $lang['SETTINGS_US_IN_PASS_AGAIN'];?>'
+//                    },
+//                    identical: {
+//                        field: 'users_password',
+//                        message: '<?php echo $lang['SETTINGS_US_IN_NOT_SAME'];?>'
+//                    }
+//                }
+//            }
         }
     }).on('success.form.bv', function (e) {
 

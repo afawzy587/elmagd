@@ -86,10 +86,19 @@ include './assets/layout/header.php';
                 <i class="fas fa-info-circle"></i>
                 <a class="blueSky" href="./index.php"><?php echo $lang['SETTINGS_TITLE']; ?></a>
                 <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['BANKS_AND_SAVES']; ?> </span>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['BANKS_DEPOSIT']; ?> </span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['BANKS_TRANSFAR']; ?> </span>
             </p>
         </div>
     </div>
+    <!-- search btn row -->
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <a href="./transfers_search.php">
+                    <button class="btn widerBtn searchbtn" ><?php echo $lang['SEARCH']; ?></button>
+                </a>
+            </div>
+        </div>
+    <!-- end search btn row -->
  
     <!-- add/edit product row -->
     <div class="row centerContent">

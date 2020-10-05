@@ -7,14 +7,78 @@ class systemDeposits
 {
     var $tableName 	= "deposits";
 
-    function getsiteDepoists($addon = "",$id=0)
+    function getsiteDepoists($addon = "",$search = "")
     {
-		if($id > 0){
-			$id = " AND `deposits_sn` = '".$id."'";
-		}else{
-			$id = "" ;
+		if($search != "")
+		{
+			if($search['id'] > 0){
+				$id = " AND `deposits_sn` = '".$search['id']."'";
+			}else{
+				$id = "" ;
+			}
+			
+			if($search['startDate'] != ""){
+				$startDate = " AND `deposits_date` >= '".$search['startDate']."'";
+			}else{
+				$startDate = "" ;
+			}
+			
+			if($search['endDate'] != ""){
+				$endDate = " AND `deposits_date` <= '".$search['endDate']."'";
+			}else{
+				$endDate = "" ;
+			}
+			
+			if($search['client_id'] != 0){
+				$client_id = " AND `deposits_client_id` = '".$search['client_id']."'";
+			}else{
+				$client_id = "" ;
+			}
+			
+			if($search['prroduct_client_id'] != 0){
+				$product_id = " AND `deposits_product_id` = '".$search['prroduct_client_id']."'";
+			}else{
+				$product_id = "" ;
+			}
+			
+			if($search['startValue'] != 0){
+				$startValue= " AND `deposits_value` >= '".$search['startValue']."'";
+			}else{
+				$startValue= "" ;
+			}
+			
+			if($search['endValue'] != 0){
+				$endValue = " AND `deposits_value` <= '".$search['endValue']."'";
+			}else{
+				$endValue = "" ;
+			}
+			
+			if($search['bank'] != ""){
+				if($search['bank'] == "safe")
+				{
+					$bank = " AND `deposits_insert_in` = '".$search['bank']."'";
+				}else{
+					$bank = " AND `deposits_bank_id` = '".$search['bank']."'";
+
+				}
+			}else{
+				$bank = "" ;
+			}
+			
+			if($search['account'] != 0){
+				$account = " AND `deposits_account_id` = '".$search['account']."'";
+			}else{
+				$account = "" ;
+			}
+			
+			if($search['cheque'] != ""){
+				$cheque = " AND `deposits_cheque_number` = '".$search['cheque']."'";
+			}else{
+				$cheque = "" ;
+			}
 		}
-        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `deposits_status` != '0' ".$id."  ORDER BY `deposits_sn`  DESC " . $addon);
+		
+        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `deposits_status` != '0' ".$id.$cheque.$startDate.$endDate.$client_id.$product_id.$startValue.$endValue.$bank.$account."  ORDER BY `deposits_sn`  DESC " . $addon);
         $queryTotal = $GLOBALS['db']->resultcount($query);
         if ($queryTotal > 0) {
             return ($GLOBALS['db']->fetchlist());

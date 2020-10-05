@@ -581,28 +581,28 @@ $(document).ready(function () {
                     }
                 }
             },
-            clients_phone_one: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
-                    },
-                    regexp: {
-                        regexp: /^01[0-2]{1}[0-9]{8}/,
-                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
-                    }
-                }
-            },
-            clients_phone_two: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
-                    },
-                    regexp: {
-                        regexp: /^01[0-2]{1}[0-9]{8}/,
-                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
-                    }
-                }
-            },
+//            clients_phone_one: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
+//                    },
+//                    regexp: {
+//                        regexp: /^01[0-2]{1}[0-9]{8}/,
+//                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
+//                    }
+//                }
+//            },
+//            clients_phone_two: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_US_IN_PHONE'];?>'
+//                    },
+//                    regexp: {
+//                        regexp: /^01[0-2]{1}[0-9]{8}/,
+//                        message: '<?php echo $lang['INSERT_CORRECT_PHONE'];?>'
+//                    }
+//                }
+//            },
             clients_manager_name: {
                 validators: {
                     notEmpty: {
@@ -621,26 +621,26 @@ $(document).ready(function () {
                     }
                 }
             },
-            clients_email: {
-                validators: {
-                     notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_CL_IN_EMAIL'];?>'
-                    },
-                    emailAddress: {
-                        message: '<?php echo $lang['SETTINGS_CL_IN_EMAIL_CORRECT'];?>'
-                    }
-                }
-            },
-			clients_manager_email: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_US_IN_EMAIL'];?>'
-                    },
-                    emailAddress: {
-                        message: '<?php echo $lang['SETTINGS_US_IN_EMAIL_CORRECT'];?>'
-                    }
-                }
-            },
+//            clients_email: {
+//                validators: {
+//                     notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_CL_IN_EMAIL'];?>'
+//                    },
+//                    emailAddress: {
+//                        message: '<?php echo $lang['SETTINGS_CL_IN_EMAIL_CORRECT'];?>'
+//                    }
+//                }
+//            },
+//			clients_manager_email: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_US_IN_EMAIL'];?>'
+//                    },
+//                    emailAddress: {
+//                        message: '<?php echo $lang['SETTINGS_US_IN_EMAIL_CORRECT'];?>'
+//                    }
+//                }
+//            },
         }
     }).on('success.form.bv', function (e) {
 

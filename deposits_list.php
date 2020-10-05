@@ -19,8 +19,19 @@ if ($login->doCheck() == false) {
         header("Location:./permission.php");
         exit;
     } else {
+		if($_GET){
+			$search['id'] 		                 = intval($_GET['id']);
+			$search['startDate'] 		         = sanitize($_GET['startDate']);
+			$search['endDate'] 		             = sanitize($_GET['endDate']);
+			$search['client_id'] 		         = intval($_GET['client_id']);
+			$search['prroduct_client_id'] 		 = intval($_GET['prroduct_client_id']);
+			$search['startValue']                = sanitize($_GET['startValue']);
+			$search['endValue']                  = sanitize($_GET['endValue']);
+			$search['bank'] 		             = sanitize($_GET['bank']);
+			$search['cheque'] 		             = sanitize($_GET['cheque']);
+			$search['account'] 		             = intval($_GET['account']);
 
-		$id 		 = intval($_GET['id']);
+		}
 
         //			include("./inc/Classes/pager.class.php");
         //			$page;
@@ -31,7 +42,7 @@ if ($login->doCheck() == false) {
         //			$thispage    = $pager->getPage();
         //			$limitmequry = " LIMIT ".($thispage-1) * $basicLimit .",". $basicLimit;
         //			$pager       = $pager->getAnalysis();
-        $deposits   = $deposit->getsiteDepoists($limitmequry,$id);
+        $deposits   = $deposit->getsiteDepoists($limitmequry,$search);
         $logs->addLog(
             NULL,
             array(

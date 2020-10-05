@@ -112,79 +112,86 @@ class systemOperations
 	
 	function addOperations($Operations)
 	{
-		$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `".$this->tableName."`
-		(`operations_sn`, `operations_receipt`, `operations_code`, `operations_card_number`,`operations_date`, `operations_supplier`, `operations_customer`, `operations_product`,	`operations_supplier_price`, `operations_customer_price`, `operations_quantity`, `operations_general_discount`,`operations_net_quantity`, `operations_card_front_photo`, `operations_card_back_photo`,`operations_customer_remain`,`operations_supplier_remain`, `operations_status`)
-		VALUES
-		( NULL ,'".$Operations['operations_receipt']."','".$Operations['operations_code']."','".$Operations['operations_card_number']."','".$Operations['operations_date']."' ,'".$Operations['operations_supplier']."','".$Operations['operations_customer']."','".$Operations['operations_product']."','".$Operations['operations_supplier_price']."' ,'".$Operations['operations_customer_price']."','".$Operations['operations_quantity']."','".$Operations['operations_general_discount']."','".$Operations['operations_net_quantity']."' ,'".$Operations['operations_card_front_photo']."','".$Operations['operations_card_back_photo']."','".$Operations['operations_customer_price']."','".$Operations['operations_supplier_price']."',1)");
-		
-		$opertion_id = $GLOBALS['db']->fetchLastInsertId();
-		
-		if($opertion_id > 0)
-		{
-			$finance = $GLOBALS['db']->query("SELECT * FROM `clients_finance` WHERE `clients_finance_client_id` = '".$Operations['operations_customer']."'  LIMIT 1 ");
-        	$financeTotal = $GLOBALS['db']->resultcount();
-			if($financeTotal > 0)
-			{
+        $query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `operations_card_number` = '".$Operations['operations_card_number']."' AND  operations_status != 0  LIMIT 1 ");
+        $quTotal = $GLOBALS['db']->resultcount();
+        if($quTotal == 0)
+        {
+            $GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `".$this->tableName."`
+            (`operations_sn`, `operations_receipt`, `operations_code`, `operations_card_number`,`operations_date`, `operations_supplier`, `operations_customer`, `operations_product`,	`operations_supplier_price`, `operations_customer_price`, `operations_quantity`, `operations_general_discount`,`operations_net_quantity`, `operations_card_front_photo`, `operations_card_back_photo`,`operations_customer_remain`,`operations_supplier_remain`, `operations_status`)
+            VALUES
+            ( NULL ,'".$Operations['operations_receipt']."','".$Operations['operations_code']."','".$Operations['operations_card_number']."','".$Operations['operations_date']."' ,'".$Operations['operations_supplier']."','".$Operations['operations_customer']."','".$Operations['operations_product']."','".$Operations['operations_supplier_price']."' ,'".$Operations['operations_customer_price']."','".$Operations['operations_quantity']."','".$Operations['operations_general_discount']."','".$Operations['operations_net_quantity']."' ,'".$Operations['operations_card_front_photo']."','".$Operations['operations_card_back_photo']."','".$Operations['operations_customer_price']."','".$Operations['operations_supplier_price']."',1)");
 
-				$sitefinance = $GLOBALS['db']->fetchitem($finance);
-				$new = $sitefinance['clients_finance_credit'] + $Operations['operations_customer_price'];
-				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
-				`clients_finance_credit`		 =	'".$new."'
-				WHERE `clients_finance_sn` 		 = 	'".$sitefinance['clients_finance_sn']."' LIMIT 1 ");
-			}else{
-				$new  =  $Operations['operations_customer_price'];
-				$GLOBALS['db']->query("INSERT INTO `clients_finance`
-				(`clients_finance_sn`, `clients_finance_client_id`, `clients_finance_credit`, `clients_status`)
-				VALUES
-				(NULL , '".$Operations['operations_customer']."' , '".$new."',1)
-				");
-			}
-			// *************** add to supllier finance **************//
-			$finance_supplier = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$Operations['operations_supplier']."'  LIMIT 1 ");
-        	$finance_supplierTotal = $GLOBALS['db']->resultcount();
-			if($finance_supplierTotal > 0)
-			{
+            $opertion_id = $GLOBALS['db']->fetchLastInsertId();
 
-				$sitefinance_supplier = $GLOBALS['db']->fetchitem($finance_supplier);
-				$new = $sitefinance_supplier['suppliers_finance_credit'] + $Operations['operations_supplier_price'];
-				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `suppliers_finance` SET
-				`suppliers_finance_credit`		 =	'".$new."'
-				WHERE `suppliers_finance_sn` 		 = 	'".$sitefinance_supplier['suppliers_finance_sn']."' LIMIT 1 ");
-			}else{
-				$new  =  $Operations['operations_supplier_price'];
-				$GLOBALS['db']->query("INSERT INTO `suppliers_finance`
-				(`suppliers_finance_sn`, `suppliers_finance_supplier_id`, `suppliers_finance_credit`, `suppliers_status`)
-				VALUES
-				(NULL , '".$Operations['operations_customer']."' , '".$new."',1)
-				");
-			}
+            if($opertion_id > 0)
+            {
+                $finance = $GLOBALS['db']->query("SELECT * FROM `clients_finance` WHERE `clients_finance_client_id` = '".$Operations['operations_customer']."'  LIMIT 1 ");
+                $financeTotal = $GLOBALS['db']->resultcount();
+                if($financeTotal > 0)
+                {
+
+                    $sitefinance = $GLOBALS['db']->fetchitem($finance);
+                    $new = $sitefinance['clients_finance_credit'] + $Operations['operations_customer_price'];
+                    $GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
+                    `clients_finance_credit`		 =	'".$new."'
+                    WHERE `clients_finance_sn` 		 = 	'".$sitefinance['clients_finance_sn']."' LIMIT 1 ");
+                }else{
+                    $new  =  $Operations['operations_customer_price'];
+                    $GLOBALS['db']->query("INSERT INTO `clients_finance`
+                    (`clients_finance_sn`, `clients_finance_client_id`, `clients_finance_credit`, `clients_status`)
+                    VALUES
+                    (NULL , '".$Operations['operations_customer']."' , '".$new."',1)
+                    ");
+                }
+                // *************** add to supllier finance **************//
+                $finance_supplier = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$Operations['operations_supplier']."'  LIMIT 1 ");
+                $finance_supplierTotal = $GLOBALS['db']->resultcount();
+                if($finance_supplierTotal > 0)
+                {
+
+                    $sitefinance_supplier = $GLOBALS['db']->fetchitem($finance_supplier);
+                    $new = $sitefinance_supplier['suppliers_finance_credit'] + $Operations['operations_supplier_price'];
+                    $GLOBALS['db']->query("UPDATE LOW_PRIORITY `suppliers_finance` SET
+                    `suppliers_finance_credit`		 =	'".$new."'
+                    WHERE `suppliers_finance_sn` 		 = 	'".$sitefinance_supplier['suppliers_finance_sn']."' LIMIT 1 ");
+                }else{
+                    $new  =  $Operations['operations_supplier_price'];
+                    $GLOBALS['db']->query("INSERT INTO `suppliers_finance`
+                    (`suppliers_finance_sn`, `suppliers_finance_supplier_id`, `suppliers_finance_credit`, `suppliers_status`)
+                    VALUES
+                    (NULL , '".$Operations['operations_supplier']."' , '".$new."',1)
+                    ");
+                }
 
 
-			foreach($Operations['rates_product_rate_id'] as $oId => $o)
-			{
-				$rates_product_rate_id = intval($o);
-				$rates_supplier_discount_percentage     = sanitize($Operations['rates_supplier_discount_percentage'][$oId]);
-				$rates_supplier_discount_value          = sanitize($Operations['rates_supplier_discount_value'][$oId]);
-				$rates_product_rate_percentage          = sanitize($Operations['rates_product_rate_percentage'][$oId]);
-				$rates_product_rate_discount_percentage = sanitize($Operations['rates_product_rate_discount_percentage'][$oId]);
-				$rates_product_rate_excuse_percentage   = sanitize($Operations['rates_product_rate_excuse_percentage'][$oId]);
-				$rates_product_rate_excuse_price        = sanitize($Operations['rates_product_rate_excuse_price'][$oId]);
-				$rates_product_rate_quantity            = sanitize($Operations['rates_product_rate_quantity'][$oId]);
-				$rates_product_rate_excuse_quantity     = sanitize($Operations['rates_product_rate_excuse_quantity'][$oId]);
-				$rates_product_rate_supply_price        = sanitize($Operations['rates_product_rate_supply_price'][$oId]);
-				$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO  `operations_rates`
-				(`rates_sn`, `rates_operation_id`, `rates_product_rate_id`, `rates_supplier_discount_percentage`, `rates_supplier_discount_value`, `rates_product_rate_percentage`, `rates_product_rate_discount_percentage`, `rates_product_rate_excuse_percentage`, `rates_product_rate_excuse_price`,`rates_product_rate_supply_price`, `rates_product_rate_quantity`, `rates_product_rate_excuse_quantity`)
-				VALUES
-				(NULL,'".$opertion_id."','".$rates_product_rate_id."','".$rates_supplier_discount_percentage."','".$rates_supplier_discount_value."','".$rates_product_rate_percentage."','".$rates_product_rate_discount_percentage."','".$rates_product_rate_excuse_percentage."','".$rates_product_rate_excuse_price."','".$rates_product_rate_supply_price."','".$rates_product_rate_quantity."','".$rates_product_rate_excuse_quantity."')
+                foreach($Operations['rates_product_rate_id'] as $oId => $o)
+                {
+                    $rates_product_rate_id = intval($o);
+                    $rates_supplier_discount_percentage     = sanitize($Operations['rates_supplier_discount_percentage'][$oId]);
+                    $rates_supplier_discount_value          = sanitize($Operations['rates_supplier_discount_value'][$oId]);
+                    $rates_product_rate_percentage          = sanitize($Operations['rates_product_rate_percentage'][$oId]);
+                    $rates_product_rate_discount_percentage = sanitize($Operations['rates_product_rate_discount_percentage'][$oId]);
+                    $rates_product_rate_excuse_percentage   = sanitize($Operations['rates_product_rate_excuse_percentage'][$oId]);
+                    $rates_product_rate_excuse_price        = sanitize($Operations['rates_product_rate_excuse_price'][$oId]);
+                    $rates_product_rate_quantity            = sanitize($Operations['rates_product_rate_quantity'][$oId]);
+                    $rates_product_rate_excuse_quantity     = sanitize($Operations['rates_product_rate_excuse_quantity'][$oId]);
+                    $rates_product_rate_supply_price        = sanitize($Operations['rates_product_rate_supply_price'][$oId]);
+                    $GLOBALS['db']->query("INSERT LOW_PRIORITY INTO  `operations_rates`
+                    (`rates_sn`, `rates_operation_id`, `rates_product_rate_id`, `rates_supplier_discount_percentage`, `rates_supplier_discount_value`, `rates_product_rate_percentage`, `rates_product_rate_discount_percentage`, `rates_product_rate_excuse_percentage`, `rates_product_rate_excuse_price`,`rates_product_rate_supply_price`, `rates_product_rate_quantity`, `rates_product_rate_excuse_quantity`)
+                    VALUES
+                    (NULL,'".$opertion_id."','".$rates_product_rate_id."','".$rates_supplier_discount_percentage."','".$rates_supplier_discount_value."','".$rates_product_rate_percentage."','".$rates_product_rate_discount_percentage."','".$rates_product_rate_excuse_percentage."','".$rates_product_rate_excuse_price."','".$rates_product_rate_supply_price."','".$rates_product_rate_quantity."','".$rates_product_rate_excuse_quantity."')
 
-				");
-			}
+                    ");
+                }
 
-			return 1;
-		}else{
-			return 2;
+                return 1;
+            }else{
+                return 2;
 
-		}
+            }
+        }else{
+            return 'card_repeated';
+        }
 	}
 	
 	function get_client_supplier_product($supplier,$client)

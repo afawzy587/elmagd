@@ -167,7 +167,9 @@
 							echo alert_message("success",$lang['OPERATIONS_SUCCESS']);
 						}elseif($add == 2){
 							echo alert_message("danger",$lang['OPERATIONS_FAILD']);
-						}
+						}elseif($add == 'card_repeated'){
+                            echo alert_message("danger",$lang['CARD_REPEATED']);
+                        }
 					?>
                      <h5 ><?php echo $lang['OPERATIONS_ADD'];?></h5>
                     <div class="darker-bg centerDarkerDiv formCenterDiv">

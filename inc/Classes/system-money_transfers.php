@@ -6,14 +6,96 @@ class systemMoney_transfers
 {
     var $tableName     = "money_transfers";
 
-    function getsiteMoney_transfers($addon = "",$id=0)
+    function getsiteMoney_transfers($addon = "",$search= "")
     {
-		if($id > 0){
-			$id = " AND `transfers_sn` = '".$id."'";
-		}else{
-			$id = "" ;
+		
+		if($search != "")
+		{
+			if($search['id'] > 0){
+				$id = " AND `transfers_sn` = '".$search['id']."'";
+			}else{
+				$id = "" ;
+			}
+			
+			if($search['startDate'] != ""){
+				$startDate = " AND `transfers_date` >= '".$search['startDate']."'";
+			}else{
+				$startDate = "" ;
+			}
+			
+			if($search['endDate'] != ""){
+				$endDate = " AND `transfers_date` <= '".$search['endDate']."'";
+			}else{
+				$endDate = "" ;
+			}
+			
+			if($search['client_id'] != 0){
+				$client_id = " AND (`transfers_client_id_from` = '".$search['client_id']."' OR `transfers_client_id_to` = '".$search['client_id']."' )";
+			}else{
+				$client_id = "" ;
+			}
+			
+			if($search['prroduct_client_id'] != 0){
+				$product_id = " AND (`transfers_product_id_from` = '".$search['prroduct_client_id']."' OR `transfers_product_id_to` = '".$search['prroduct_client_id']."' )";
+			}else{
+				$product_id = "" ;
+			}
+			
+			if($search['startValue'] != 0){
+				$startValue= " AND `transfers_value` >= '".$search['startValue']."'";
+			}else{
+				$startValue= "" ;
+			}
+			
+			if($search['endValue'] != 0){
+				$endValue = " AND `transfers_value` <= '".$search['endValue']."'";
+			}else{
+				$endValue = "" ;
+			}
+			
+			if($search['bank'] != ""){
+				if($search['bank'] == "safe")
+				{
+					$bank = " AND `transfers_from_in` = '".$search['bank']."'";
+				}else{
+					$bank = " AND `transfers_from` = '".$search['bank']."'";
+
+				}
+			}else{
+				$bank = "" ;
+			}
+			
+			if($search['account'] != 0){
+				$account = " AND `transfers_client_id_from` = '".$search['account']."'";
+			}else{
+				$account = "" ;
+			}
+			
+			if($search['bank_to'] != ""){
+				if($search['bank_to'] == "safe")
+				{
+					$bank_to = " AND `transfers_to_in` = '".$search['bank_to']."'";
+				}else{
+					$bank_to = " AND `transfers_to` = '".$search['bank_to']."'";
+
+				}
+			}else{
+				$bank_to = "" ;
+			}
+			
+			if($search['account_to'] != 0){
+				$account_to = " AND `transfers_account_id_to` = '".$search['account_to']."'";
+			}else{
+				$account_to = "" ;
+			}
+			
+			if($search['cheque'] != ""){
+				$cheque = " AND `transfers_cheque_number` = '".$search['cheque']."'";
+			}else{
+				$cheque = "" ;
+			}
 		}
-        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `transfers_status` != '0'   ".$id."  ORDER BY `transfers_sn`  DESC " . $addon);
+        $query = $GLOBALS['db']->query("SELECT * FROM `" . $this->tableName . "` WHERE `transfers_status` != '0'   ".$id.$cheque.$startDate.$endDate.$client_id.$product_id.$startValue.$endValue.$bank.$bank_to.$account.$account_to."  ORDER BY `transfers_sn`  DESC " . $addon);
         $queryTotal = $GLOBALS['db']->resultcount($query);
         if ($queryTotal > 0) {
             return ($GLOBALS['db']->fetchlist());
@@ -114,10 +196,17 @@ class systemMoney_transfers
                      `companyinfo_opening_balance_safe`   =  '" . $cash . "'
                      WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
             } else {
-                $cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $Transfer['transfers_value'];
-                $GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
-                     `companyinfo_opening_balance_cheques`= '" . $cheque . "'
+				if ($Transfer['transfers_from'] == 'safe') {
+                	$cash = $sitecompany['companyinfo_opening_balance_safe'] + $Transfer['transfers_value'];
+                	$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+                     `companyinfo_opening_balance_safe`   =  '" . $cash . "'
                      WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+				}else{
+					$cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $Transfer['transfers_value'];
+					$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+						 `companyinfo_opening_balance_cheques`= '" . $cheque . "'
+						 WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+				}
             }
         } else {
 
@@ -175,7 +264,7 @@ class systemMoney_transfers
                 }
             }
         }
-		if ($Transfer['transfers_type'] == "cheque" && $Transfer['transfers_account_type_to'] != 'credit') {
+		if ($Transfer['transfers_type'] == "cheque" && $Transfer['transfers_account_type_to'] != 'credit' && $Transfer['transfers_from'] != 'safe' && $Transfer['transfers_to'] != 'safe' ) {
 
             $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($Transfer['transfers_cheque_date'])));
             $GLOBALS['db']->query("INSERT INTO `reminders`

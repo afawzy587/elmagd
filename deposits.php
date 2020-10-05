@@ -82,16 +82,17 @@ include './assets/layout/header.php';
             </p>
         </div>
     </div>
-    <!-- end links row -->
+    
     <!-- search btn row -->
-    <!-- <div class="row">
-        <div class="col d-flex justify-content-end">
-            <a href="./banks_operations_search.html">
-                <button class="btn widerBtn searchbtn" type="submit"><?php echo $lang['SEARCH']; ?></button>
-            </a>
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <a href="./deposits_search.php">
+                    <button class="btn widerBtn searchbtn" ><?php echo $lang['SEARCH']; ?></button>
+                </a>
+            </div>
         </div>
-    </div> -->
     <!-- end search btn row -->
+
     <!-- add/edit product row -->
     <div class="row centerContent">
         <div class="col">

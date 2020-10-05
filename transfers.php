@@ -20,7 +20,21 @@ if ($login->doCheck() == false) {
         exit;
     } else {
 
-		$id 		 = intval($_GET['id']);
+		if($_GET){
+			$search['id'] 		                 = intval($_GET['id']);
+			$search['startDate'] 		         = sanitize($_GET['startDate']);
+			$search['endDate'] 		             = sanitize($_GET['endDate']);
+			$search['client_id'] 		         = intval($_GET['client_id']);
+			$search['prroduct_client_id'] 		 = intval($_GET['prroduct_client_id']);
+			$search['startValue']                = sanitize($_GET['startValue']);
+			$search['endValue']                  = sanitize($_GET['endValue']);
+			$search['bank'] 		             = sanitize($_GET['bank']);
+			$search['cheque'] 		             = sanitize($_GET['cheque']);
+			$search['bank_to'] 		             = sanitize($_GET['bank_to']);
+			$search['account_to'] 		         = sanitize($_GET['account_to']);
+			$search['account'] 		             = intval($_GET['account']);
+
+		}
         //			include("./inc/Classes/pager.class.php");
         //			$page;
         //			$pager       = new pager();
@@ -30,7 +44,7 @@ if ($login->doCheck() == false) {
         //			$thispage    = $pager->getPage();
         //			$limitmequry = " LIMIT ".($thispage-1) * $basicLimit .",". $basicLimit;
         //			$pager       = $pager->getAnalysis();
-        $money_transfers   = $trensfer->getsiteMoney_transfers($limitmequry,$id);
+        $money_transfers   = $trensfer->getsiteMoney_transfers($limitmequry,$search);
 
         $logs->addLog(
             NULL,
@@ -66,6 +80,15 @@ include './assets/layout/header.php';
         </div>
     </div>
     <!-- end links row -->
+    <!-- search btn row -->
+        <div class="row">
+            <div class="col d-flex justify-content-end">
+                <a href="./transfers_search.php">
+                    <button class="btn widerBtn searchbtn" ><?php echo $lang['SEARCH']; ?></button>
+                </a>
+            </div>
+        </div>
+    <!-- end search btn row -->
 
     <!-- table row -->
     <div class="row">

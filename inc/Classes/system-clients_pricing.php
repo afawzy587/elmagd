@@ -233,10 +233,11 @@ class systemClients_pricing
 			if($queryTotal > 0)
 			{
             	$sitegroup = $GLOBALS['db']->fetchitem($query);
+                $end_date  = date('Y-m-d',strtotime('-1days',strtotime($pricing_start_date)));
 //				if($sitegroup['pricing_end_date'] == '0000-00-00')
 //				{
 					$GLOBALS['db']->query("UPDATE `".$this->tableName."` SET
-					  `pricing_end_date` = NOW()
+					  `pricing_end_date` = '".$end_date."'
 					WHERE  `pricing_sn`=  '".$sitegroup['pricing_sn']."'");
 //				}
 			}

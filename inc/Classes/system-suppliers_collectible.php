@@ -14,7 +14,7 @@ class systemSuppliers_collectible
         if($queryTotal > 0)
         {
             return($GLOBALS['db']->fetchlist());
-        }else{return null;}
+    }else{return null;}
 	}
 
 	public function GetSupplierFinanceByid($id){
@@ -155,11 +155,17 @@ class systemSuppliers_collectible
         }else{
             $_collectible['collectible_insert_in']  = 'bank';
         }
+        
 		$GLOBALS['db']->query("INSERT INTO `".$this->tableName."`
-		(`collectible_sn`, `collectible_supplier_id`, `collectible_date`, `collectible_type`, `collectible_value`, `collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`, `collectible_account_type`, `collectible_account_id`,`collectible_operations`,`collectible_payment_case`,`collectible_recipient`, `collectible_status`)
+		(`collectible_sn`, `collectible_supplier_id`, `collectible_date`, `collectible_type`, `collectible_value`, 
+        `collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`,
+        `collectible_account_type`, `collectible_account_id`,`collectible_operations`,`collectible_payment_case`,`collectible_recipient`, `collectible_status`)
 		VALUES
-		(NULL,'".$_collectible['collectible_supplier_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$_collectible['collectible_value']."','".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."','".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','".$operations_paid."',1)");
-		$collect_id =$GLOBALS['db']->fetchLastInsertId();
+		(NULL,'".$_collectible['collectible_supplier_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$_collectible['collectible_value']."',
+        '".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."',
+        '".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','".$operations_paid."','".$_collectible['collectible_payment_case']."','".$_collectible['collectible_recipient']."',1)");
+	
+        $collect_id =$GLOBALS['db']->fetchLastInsertId();
 
 		$finance = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$_collectible['collectible_supplier_id']."'  LIMIT 1 ");
         $financeTotal = $GLOBALS['db']->resultcount();
@@ -196,7 +202,8 @@ class systemSuppliers_collectible
                  WHERE `companyinfo_sn` = '".$sitecompany['companyinfo_sn']."'");
             }
 
-        }else{
+        }else
+        {
 			if($_collectible['collectible_account_id'] != 0)
 			{
 				$q= "AND`banks_finance_account_id` = '".$_collectible['collectible_account_id']."' " ;

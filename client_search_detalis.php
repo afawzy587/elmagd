@@ -55,9 +55,9 @@
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_C_F_CLIENT'];?></span>
-                    <a class="blueSky" href="<?php echo $_SESSION['page'];?>"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_C_F_FINANCES'];?></a>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['C_S_SEARCH_RESULT'];?></span>
+                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_CL_CLIENTS'];?></span>
+                    <a class="blueSky" href="<?php echo $_SESSION['page'];?>"><strong> &gt; </strong>   <?php echo $lang['SETTINGS_CL_CLIENTS_FINANCES'];?></a>
+                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['C_SEARCH_RESULT'];?></span>
                 </p>
             </div>
         </div>
@@ -131,14 +131,52 @@
 													</table>
 												</div>
 											</div>
-											
+                                            <div class="row">
+												<div class="col table-responsive">
+													<table class="table table-fluid accountDetailsTable" id="">
+														<thead>
+															<tr>
+																<th class="smallFont">'.$lang['SETTINGS_C_F_M_RATE'].'</th>
+																<th class="smallFont">'.$lang['SETTINGS_C_F_M_PERCENT'].'</th>
+																<th class="smallFont">'.$lang['OPERATION_RATE_DES_SUPPLIER'].'</th>
+																<th class="smallFont">'.$lang['OPERATIONS_M_DIC'].'</th>
+																<th class="smallFont">'.$lang['SETTINGS_C_F_M_EXUCE'].'</th>
+																<th class="smallFont">'.$lang['OPERATIONS_EXUCE_QANTITY'].'</th>
+																<th class="smallFont">'.$lang['OPERATIONS_RATE_QANTITY'].'</th>
+																<th class="smallFont">'.$lang['SETTINGS_C_F_M_EXUCE_PRICE'].'</th>
+																<th class="smallFont">'.$lang['OPERATIONS_SUPPLER_PRICE'].'</th>
+																<th class="smallFont">'.$lang['OPERATIONS_CLIENT_PRICE'].'</th>
+															</tr>
+														</thead>
+														<tbody>';
+                                                        $product_rate = get_Operation_product($o['operations_sn']);
+                                                        foreach($product_rate as $k => $p){
+                                                            echo'<tr>
+																    <td>'.get_data('settings_clients_products_rate','clients_products_rate_name','clients_products_rate_sn',$p['rates_product_rate_id']).'</td>
+																    <td>'.$p['rates_product_rate_percentage'].'</td>
+																    <td>'.$p['rates_supplier_discount_percentage'].'</td>
+																    <td>'.$p['rates_supplier_discount_value'].'</td>
+																    <td>'.$p['rates_product_rate_excuse_percentage'].'</td>
+																    <td>'.$p['rates_product_rate_excuse_quantity'].'</td>
+																    <td>'.$p['rates_product_rate_quantity'].'</td>
+																    <td>'.$p['rates_product_rate_excuse_price'].'</td>
+																    <td>'.$p['rates_product_rate_supply_price'].'</td>
+																    <td>'.round((($p['rates_supplier_discount_percentage']/100)*$p['rates_product_rate_supply_price'])+$p['rates_product_rate_supply_price'],2).'</td>
+															     </tr>';
+                                                        }
+															
+								                    echo'</tbody>
+													</table>
+												</div>
+											</div>
+											<div class="lightDivider"></div>
 									';
 			  $operations_net_quantity    += $o['operations_net_quantity'];
 			  $operations_supplier_price   += $o['operations_supplier_price'];
 			  $operations_supplier_paid   += $o['operations_supplier_paid'];
 			  $operations_supplier_remain += $o['operations_supplier_remain'];
 		  }
-		echo '<div class="lightDivider"></div>
+		echo '
 				<div class="row">
 					<div class="col table-responsive">
 						<table class="table table-fluid accountDetailsTable" id="">
@@ -147,10 +185,10 @@
 									<th></th>
 									<th></th>
 									<th></th>
-									<th class="smallFont"> صافي اجمالي الكمية (كجم)</th>
-									<th class="smallFont"> اجمالي حساب العميل (ج.م)</th>
-									<th class="smallFont"> اجمالي تحصيل من العميل (ج.م) </th>
-									<th class="smallFont"> باقي علي العميل (ج.م)</th>
+									<th class="smallFont">'.$lang['MOUNT_TOTAL'] .'</th>
+									<th class="smallFont">'.$lang['FINNACE_TOTAL'] .'</th>
+									<th class="smallFont">'.$lang['COLLECTED_TOTAL'] .'</th>
+									<th class="smallFont">'.$lang['REMAIN_TOTAL'] .'</th>
 
 
 								</tr>

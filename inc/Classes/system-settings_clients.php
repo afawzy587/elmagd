@@ -93,33 +93,32 @@ class systemSettings_clients
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal == 0)
         {
-			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_email` = '".$Settings_clients['clients_email']."' AND `clients_sn` !='".$Settings_clients['clients_sn']."' AND clients_status != 0  LIMIT 1 ");
-			$queryTotal = $GLOBALS['db']->resultcount();
-			if($queryTotal == 0)
-			{
+//			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_email` = '".$Settings_clients['clients_email']."' AND `clients_sn` !='".$Settings_clients['clients_sn']."' AND clients_status != 0  LIMIT 1 ");
+//			$queryTotal = $GLOBALS['db']->resultcount();
+//			if($queryTotal == 0)
+//			{
 				
 				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE
-				((`clients_phone_one` = '".$Settings_clients['clients_phone_one']."' || `clients_phone_two` = '".$Settings_clients['clients_phone_one']."' || `clients_manager_phone` = '".$Settings_clients['clients_phone_one']."'  ) AND `clients_sn` !='".$Settings_clients['clients_sn']."')
-				|| ((`clients_phone_two` = '".$Settings_clients['clients_phone_one']."' || `clients_manager_phone` = '".$Settings_clients['clients_phone_one']."'  ) AND `clients_sn` ='".$Settings_clients['clients_sn']."')
+				`clients_manager_phone` = '".$Settings_clients['clients_manager_phone']."' AND `clients_sn` !='".$Settings_clients['clients_sn']."'
 				AND clients_status != 0  LIMIT 1 ");
 				$quTotal = $GLOBALS['db']->resultcount();
 				if($quTotal == 0)
 				{
 					
-					$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE
-					((`clients_phone_one` = '".$Settings_clients['clients_phone_two']."' || `clients_phone_two` = '".$Settings_clients['clients_phone_two']."' || `clients_manager_phone` = '".$Settings_clients['clients_phone_two']."' )  AND `clients_sn` !='".$Settings_clients['clients_sn']."')
-					|| ((`clients_phone_one` = '".$Settings_clients['clients_phone_two']."' || `clients_manager_phone` = '".$Settings_clients['clients_phone_two']."' )  AND `clients_sn` ='".$Settings_clients['clients_sn']."')
-					AND clients_status != 0  LIMIT 1 ");
-					$quTotal = $GLOBALS['db']->resultcount();
-					if($quTotal == 0)
-					{
-						$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE
-						((`clients_phone_one` = '".$Settings_clients['clients_manager_phone']."' || `clients_phone_two` = '".$Settings_clients['clients_manager_phone']."' || `clients_manager_phone` = '".$Settings_clients['clients_manager_phone']."'  ) AND `clients_sn` !='".$Settings_clients['clients_sn']."')
-						|| ((`clients_phone_one` = '".$Settings_clients['clients_manager_phone']."' || `clients_phone_two` = '".$Settings_clients['clients_manager_phone']."' ) AND `clients_sn` ='".$Settings_clients['clients_sn']."')
-						AND clients_status != 0  LIMIT 1 ");
-						$quTotal = $GLOBALS['db']->resultcount();
-						if($quTotal == 0)
-						{
+//					$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE
+//					((`clients_phone_one` = '".$Settings_clients['clients_phone_two']."' || `clients_phone_two` = '".$Settings_clients['clients_phone_two']."' || `clients_manager_phone` = '".$Settings_clients['clients_phone_two']."' )  AND `clients_sn` !='".$Settings_clients['clients_sn']."')
+//					|| ((`clients_phone_one` = '".$Settings_clients['clients_phone_two']."' || `clients_manager_phone` = '".$Settings_clients['clients_phone_two']."' )  AND `clients_sn` ='".$Settings_clients['clients_sn']."')
+//					AND clients_status != 0  LIMIT 1 ");
+//					$quTotal = $GLOBALS['db']->resultcount();
+//					if($quTotal == 0)
+//					{
+//						$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE
+//						((`clients_phone_one` = '".$Settings_clients['clients_manager_phone']."' || `clients_phone_two` = '".$Settings_clients['clients_manager_phone']."' || `clients_manager_phone` = '".$Settings_clients['clients_manager_phone']."'  ) AND `clients_sn` !='".$Settings_clients['clients_sn']."')
+//						|| ((`clients_phone_one` = '".$Settings_clients['clients_manager_phone']."' || `clients_phone_two` = '".$Settings_clients['clients_manager_phone']."' ) AND `clients_sn` ='".$Settings_clients['clients_sn']."')
+//						AND clients_status != 0  LIMIT 1 ");
+//						$quTotal = $GLOBALS['db']->resultcount();
+//						if($quTotal == 0)
+//						{
 							if($Settings_clients['clients_commercial_register'] != "")
 							{
 								$clients_commercial_register = "`clients_commercial_register`='".$Settings_clients['clients_commercial_register']."',";
@@ -227,20 +226,20 @@ class systemSettings_clients
 								  WHERE `clients_payments_sn`    	        = 	    '".$payment_id."' LIMIT 1 ");
 							}
 							 return 1;
-						}else{
-							return 'manager_phone';
-						}
-
-					}else{
-						return 'phone_two';
-					}
+//						}else{
+//							return 'manager_phone';
+//						}
+//
+//					}else{
+//						return 'phone_two';
+//					}
 				}else{
 					return 'phone_one';
 				}
 
-			}else{
-				return 'clients_email';
-			}
+//			}else{
+//				return 'clients_email';
+//			}
 		}else{
 			return 'clients_name';
 
@@ -253,22 +252,23 @@ class systemSettings_clients
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal == 0)
         {
-			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_email` = '".$Settings_clients['clients_email']."' AND clients_status != 0  LIMIT 1 ");
-			$queryTotal = $GLOBALS['db']->resultcount();
-			if($queryTotal == 0)
-			{
-				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_phone_one` LIKE '".$Settings_clients['clients_phone_one']."' || `clients_phone_two` LIKE '".$Settings_clients['clients_phone_one']."' || `clients_manager_phone` LIKE '".$Settings_clients['clients_phone_one']."' AND clients_status != 0  LIMIT 1 ");
+//			$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_email` = '".$Settings_clients['clients_email']."' AND clients_status != 0  LIMIT 1 ");
+//			$queryTotal = $GLOBALS['db']->resultcount();
+//			if($queryTotal == 0)
+//			{
+				$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_manager_phone` = '".$Settings_clients['clients_manager_phone']."'  AND clients_status != 0  LIMIT 1 ");
+
 				$quTotal = $GLOBALS['db']->resultcount();
 				if($quTotal == 0)
 				{
-					$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_phone_one` LIKE '".$Settings_clients['clients_phone_two']."' || `clients_phone_two` LIKE '".$Settings_clients['clients_phone_two']."' || `clients_manager_phone` LIKE '".$Settings_clients['clients_phone_two']."' AND clients_status != 0  LIMIT 1 ");
-					$quTotal = $GLOBALS['db']->resultcount();
-					if($quTotal == 0)
-					{
-						$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_phone_one` LIKE '".$Settings_clients['clients_manager_phone']."' || `clients_phone_two` LIKE '".$Settings_clients['clients_manager_phone']."' || `clients_manager_phone` LIKE '".$Settings_clients['clients_manager_phone']."' AND clients_status != 0  LIMIT 1 ");
-						$quTotal = $GLOBALS['db']->resultcount();
-						if($quTotal == 0)
-						{
+//					$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_phone_one` LIKE '".$Settings_clients['clients_phone_two']."' || `clients_phone_two` LIKE '".$Settings_clients['clients_phone_two']."' || `clients_manager_phone` LIKE '".$Settings_clients['clients_phone_two']."' AND clients_status != 0  LIMIT 1 ");
+//					$quTotal = $GLOBALS['db']->resultcount();
+//					if($quTotal == 0)
+//					{
+//						$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `clients_phone_one` LIKE '".$Settings_clients['clients_manager_phone']."' || `clients_phone_two` LIKE '".$Settings_clients['clients_manager_phone']."' || `clients_manager_phone` LIKE '".$Settings_clients['clients_manager_phone']."' AND clients_status != 0  LIMIT 1 ");
+//						$quTotal = $GLOBALS['db']->resultcount();
+//						if($quTotal == 0)
+//						{
 							$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `".$this->tableName."`
 							(`clients_sn`, `clients_name`, `clients_manager_name`, `clients_manager_email`, `clients_phone_one`, `clients_phone_two`, `clients_email`, `clients_manager_phone`,`clients_address`,`clients_tex_card`,`clients_commercial_register`, `clients_status`) 
 							VALUES ( NULL ,'".$Settings_clients['clients_name']."','".$Settings_clients['clients_manager_name']."','".$Settings_clients['clients_manager_email']."','".$Settings_clients['clients_phone_one']."','".$Settings_clients['clients_phone_two']."','".$Settings_clients['clients_email']."','".$Settings_clients['clients_manager_phone']."','".$Settings_clients['clients_address']."','".$Settings_clients['clients_tex_card']."','".$Settings_clients['clients_commercial_register']."',1)");
@@ -303,20 +303,20 @@ class systemSettings_clients
 									VALUES( NULL ,'".$client_id."','".$d."','".$precent."')");
 							}
 							 return 1;
-						}else{
-							return 'manager_phone';
-						}
+//						}else{
+//							return 'manager_phone';
+//						}
 
-					}else{
-						return 'phone_two';
-					}
+//					}else{
+//						return 'phone_two';
+//					}
 				}else{
 					return 'phone_one';
 				}
 
-			}else{
-				return 'clients_email';
-			}
+//			}else{
+//				return 'clients_email';
+//			}
 		}else{
 			return 'clients_name';
 

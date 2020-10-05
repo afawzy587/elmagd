@@ -128,7 +128,7 @@
 						
 					<?php
 							echo '<li class="nav-item dropdown ';
-							if ($page_name == "deposit_list" || $page_name == "deposits" ||$page_name == "deposits_list" || $page_name == "transfer_money") {
+							if ($page_name == "deposit_list" || $page_name == "deposits"|| $page_name == "deposits_search"|| $page_name == "transfers_search"|| $page_name == "transfers" ||$page_name == "deposits_list" || $page_name == "transfer_money") {
 								echo 'active';
 							}
 							echo '">
