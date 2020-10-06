@@ -696,9 +696,13 @@ $lang['P_S_RECIPIENT_IN']       = "ادخل اسم المستلم";
 
 /****************** NOTIFICATION *****************/
 $lang['NOT_DEPOSITS_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل الايدعات ";
-$lang['NOT_TRANSFERS_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل التحويلات ";
-$lang['NOT_SAFES_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل الخزنة ";
-$lang['NOT_DEPOSITS_DATE']                = " تاريخ التحصيل";
+$lang['NOT_TRANSFERS_MESSAGE']             = "التذكير بتاريخ تحصيل الشيك داخل التحويلات ";
+$lang['NOT_SAFES_MESSAGE']                 = "التذكير بتاريخ تحصيل الشيك داخل الخزنة ";
+$lang['NOT_EXPENSES_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل المصروفات ";
+$lang['NOT_DEPOSITS_DATE']                 = " تاريخ التحصيل";
+$lang['NOT_CLIENT_PAY']                    = "استحقاق مبلغ";
+$lang['NOT_CLIENT_DAY']                = "يوم ";
+$lang['']                = "";
 $lang['']                = "";
 
 

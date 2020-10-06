@@ -311,7 +311,19 @@ class systemSettings_banks
 
 		}
 	}
-	function get_banks_finance()
+	function get_banks_finance_details()
+	{
+		$query = $GLOBALS['db']->query("SELECT bf.* FROM `settings_banks` b
+		INNER JOIN `setiings_banks_finance` bf ON b.`banks_sn` = bf.`banks_finance_bank_id`
+		WHERE  bf.`banks_finance_status` != 0   ORDER BY b.`banks_sn`  DESC  ");
+        $queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            return($GLOBALS['db']->fetchlist());
+        }else{return null;}
+	}
+
+    function get_banks_finance()
 	{
 		$query = $GLOBALS['db']->query("
 		SELECT b.banks_name,(  SUM(`banks_finance_open_balance`) + SUM(`banks_total_with_benefits`)) AS credit  FROM `settings_banks` b

@@ -26,7 +26,7 @@ if ($login->doCheck() == false) {
         header("Location:./permission.php");
         exit;
     } else {
-        $banks_finance = $setting_bank->get_banks_finance();
+        $banks_finance = $setting_bank->get_banks_finance_details();
         $banks         = $setting_bank->getaccountsSettings_banks();
         $clients       = $setting_client->getsiteSettings_clients();
         if ($_POST) {
@@ -115,15 +115,26 @@ include './assets/layout/header.php';
                         <?php
                             if ($banks_finance) {
                                 foreach ($banks_finance as $k => $f) {
+                                     $credit = $f['banks_finance_open_balance'] + $f['banks_total_with_benefits'];
                                     echo '<div class="col-md-2 text-center">
-                                    <h5 class="d-inline-block bg_text2 text_height2 w-100">' . $f['banks_name'] . '</h5>
+                                    <h5 class="d-inline-block bg_text2 text_height2 w-100">' . get_data('settings_banks','banks_name','banks_sn',$f['banks_finance_bank_id']) . ' - ';
+                                    if($f['banks_finance_account_type'] = 'credit')
+                                    {
+                                         echo get_data('settings_banks_credit','banks_credit_name','banks_credit_sn',$f['banks_finance_account_id']);
+                                    }elseif($f['banks_finance_account_type'] = 'current'){
+                                        echo $lang['SETTINGS_BAN_CURRENT'];
+                                    }elseif($f['banks_finance_account_type'] = 'saving'){
+                                        echo $lang['SETTINGS_BAN_SAVE'];
+                                    }
+                                    echo '</h5>
                                     <h5 class="d-inline-block bg_text2 text_height2 ';
                                     if ($f['credit'] < 0) {
                                         echo 'warning';
                                     }
-                                    echo ' w-100 ltrDir">' . number_format($f['credit']) . '</h5>
+                                    echo ' w-100 ltrDir">' . number_format($credit) . '</h5>
                                 </div>';
-                                $total_finance += $f['credit'];
+
+                                $total_finance += $credit;
                             }
                         }
                         ?>

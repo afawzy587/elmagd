@@ -170,6 +170,17 @@ class systemMoney_transfers
                         `deposit_money_pull`           ='" . $transfer_money_pull . "',
                         `deposits_pull_total`          ='" . $Transfer_pull_total . "'
                          WHERE `deposits_sn` = '" . $siteaccount['deposits_sn'] . "'");
+                    $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $Transfer['transfers_from'] . "' AND `banks_finance_account_type` = '" . $Transfer['transfers_account_type_from'] . "' AND `banks_finance_account_id` = '" . $Transfer['transfers_account_id_from'] . "'");
+
+                    $siteaccount = $GLOBALS['db']->fetchitem($account_query);
+
+                    $banks_finance_credit      =  $siteaccount['banks_finance_credit'] - $Transfer['transfers_value'];
+                    $banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] - $Transfer['transfers_value'];
+
+                    $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET
+                            `banks_finance_credit`         = '" . $banks_finance_credit . "',
+                            `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
+                         WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
                 } else {
 
                     $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $Transfer['transfers_from'] . "' AND `banks_finance_account_type` = '" . $Transfer['transfers_account_type_from'] . "' AND `banks_finance_account_id` = '" . $Transfer['transfers_account_id_from'] . "'");

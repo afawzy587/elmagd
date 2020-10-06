@@ -376,8 +376,8 @@
 											<div class="row">
 												<div class="col">
 													<div class="form-group">
-														<label class="col-xs-3">'.$lang['SETTINGS_C_F_PERCENT_EXTRA'].'
-															(<span class="blueSky">'.$lang['SETTINGS_C_F_YES'].'</span>)</label>
+														<label class="col-xs-3">'.$lang['SETTINGS_C_F_AMOUNT'].'<span class="blueSky">'.$lang['SETTINGS_C_F_DALY'].'</span>
+															'.$lang['SETTINGS_C_F_KG_A'].'</label>
 														<div class="col-xs-5">
 															<input type="text" name="pricing_supply_bonus_amount['.$k.']" id="pricing_supply_bonus_amount_'.$k.'"
 																class="form-control">

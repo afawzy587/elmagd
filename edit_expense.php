@@ -180,6 +180,7 @@
                                         <div class="select" id="banks">
                                             <select name="expenses_bank_id" class="bank form-control">
                                                  <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK'];?></option>
+                                                <option value="safe" <?php if( $u['expenses_in'] == "safe" ){echo 'selected';} ?> ><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                                 <?php 
 													if($banks)
 													{

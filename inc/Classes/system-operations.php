@@ -125,6 +125,8 @@ class systemOperations
 
             if($opertion_id > 0)
             {
+
+
                 $finance = $GLOBALS['db']->query("SELECT * FROM `clients_finance` WHERE `clients_finance_client_id` = '".$Operations['operations_customer']."'  LIMIT 1 ");
                 $financeTotal = $GLOBALS['db']->resultcount();
                 if($financeTotal > 0)
@@ -182,6 +184,23 @@ class systemOperations
                     (NULL,'".$opertion_id."','".$rates_product_rate_id."','".$rates_supplier_discount_percentage."','".$rates_supplier_discount_value."','".$rates_product_rate_percentage."','".$rates_product_rate_discount_percentage."','".$rates_product_rate_excuse_percentage."','".$rates_product_rate_excuse_price."','".$rates_product_rate_supply_price."','".$rates_product_rate_quantity."','".$rates_product_rate_excuse_quantity."')
 
                     ");
+                }
+
+                //******************** add reminders for operation ***************************//
+                $pay = $GLOBALS['db']->query("SELECT * FROM `settings_clients_payments` WHERE `clients_payments_client_id` = '".$Operations['operations_customer']."' AND  `clients_payments_days` !='0'");
+                $payTotal = $GLOBALS['db']->resultcount();
+                if($payTotal > 0)
+                {
+                    $pays = $GLOBALS['db']->fetchlist();
+                    foreach($pays as $k => $p){
+                        $value = ($p['clients_payments_percent']/100)*$Operations['operations_customer_price'];
+                        $reminders_date  = date('Y-m-d', strtotime($p['clients_payments_days'].'days', strtotime($Operations['operations_date'])));
+                        $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($reminders_date)));
+                        $GLOBALS['db']->query("INSERT INTO `reminders`
+                        (`reminders_sn`, `reminders_type`, `client_id`,`product_id`,`title`, `reminders_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`)
+                        VALUES
+                        (NULL ,'clients_pay','".$Operations['operations_customer']."','".$Operations['operations_product']."','".$value."','" . $reminders_date . "','day','7','" . $reminders_remember_date . "','" . $reminders_remember_date . "',1)");
+                    }
                 }
 
                 return 1;

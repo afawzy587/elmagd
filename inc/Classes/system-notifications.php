@@ -46,6 +46,20 @@ class systemnotifications
 								</a>
 								</span>';
 
+				}elseif($r['reminders_type'] == 'expenses'){
+					$output .= '<a  href="./expenses.php?id='.$r['reminders_type_id'].'" id='.$r['reminders_sn'].' class="read" >
+									'.$GLOBALS['lang']['NOT_SAFES_MESSAGE'].'
+									<div><small>'.$GLOBALS['lang']['NOT_DEPOSITS_DATE'].' : '._date_format($r['reminders_date']).'</small></div>
+								</a>
+								</span>';
+
+				}elseif($r['reminders_type'] == 'clients_pay'){
+					$output .= '<a href="#" id='.$r['reminders_sn'].' class="read" >
+									'.$GLOBALS['lang']['NOT_CLIENT_PAY'].' ('.number_format($r['title']).') '.$GLOBALS['lang']['NOT_CLIENT_DAY'].' : '._date_format($r['reminders_date']).'
+									<div><small>'.$GLOBALS['lang']['OPERATIONS_CLIENT'].'(  '.get_data('settings_clients','clients_name','clients_sn',$r['client_id']).') '.$GLOBALS['lang']['OPERATIONS_PRODUCT'].' : ' .get_data('settings_products','products_name','products_sn',$r['product_id']).' </small></div>
+								</a>
+								</span>';
+
 				}
 			}
 		}else{

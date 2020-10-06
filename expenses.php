@@ -22,22 +22,26 @@
 			exit;
 		}else
 		{
+            if($_GET){
+			 $search['id']		                 = intval($_GET['id']);
+			 $search['q']		                 = intval($_GET['q']);
+            }
 			
-			$q = $_GET['q'];
-			if($q != ""){
-				$paginationDialm = 'true';
-				$search= "?q=".$q;
-			 }
+//			$q = $_GET['q'];
+//			if($q != ""){
+//				$paginationDialm = 'true';
+//				$search= "?q=".$q;
+//			 }
 //			include("./inc/Classes/pager.class.php");
 //			$page;
 //			$pager       = new pager();
 //			$page 		 = intval($_GET['page']);
-			$total       = $expenses->getTotalExpenses($q);
+//			$total       = $expenses->getTotalExpenses($q);
 //			$pager->doAnalysisPager("page",$page,$basicLimit,$total,"Expenses.php".$search.$paginationAddons,$paginationDialm);
 //			$thispage    = $pager->getPage();
 //			$limitmequry = " LIMIT ".($thispage-1) * $basicLimit .",". $basicLimit;
 //			$pager       = $pager->getAnalysis();
-			$expenses   = $expenses->getsiteExpenses($limitmequry,$q);
+			$expenses   = $expenses->getsiteExpenses($limitmequry,$search);
 			$logs->addLog(NULL,
 					array(
 						"type" 		        => 	"user",

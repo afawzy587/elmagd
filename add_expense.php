@@ -175,6 +175,7 @@
                                         <div class="select" id="banks">
                                             <select name="expenses_bank_id" class="bank form-control">
                                                  <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK'];?></option>
+                                                 <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                                 <?php 
 													if($banks)
 													{
@@ -419,14 +420,16 @@ $(document).ready(function () {
     });
 	
 		$('#banks').on('change','select.bank',function(){
-			var expenses_account_type =$('#account_type').prop("disabled", false);
-			 $('#addInternalExpensesForm').formValidation('addField', expenses_account_type, {
-                        validators: {
-                            notEmpty: {
-                                message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
+            if($(this.val() != "safe"){
+                var expenses_account_type =$('#account_type').prop("disabled", false);
+                 $('#addInternalExpensesForm').formValidation('addField', expenses_account_type, {
+                            validators: {
+                                notEmpty: {
+                                    message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
+                                }
                             }
-                        }
-                    })
+                        })
+            }
 		});
 			
 	$('#type').on('change','select#account_type',function(){
