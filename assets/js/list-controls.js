@@ -108,5 +108,27 @@ function load_unseen_notification(view = '')
 	  load_unseen_notification();;
 	 }, 5000);
 
-	
+	$('.notifiDropdown').on('click','a.delete_reminders',function ()
+	 {
+         var id = $(this).attr('id');
+		  var page ="notification_js.php?do=delete";
+		  jQuery.ajax({
+		    async :true,
+			type :"POST",
+			dataType: "json",
+			url :page,
+			data: {id:id},
+			success : function(responce) {
+				if(responce == 100)
+                     {
+							$("a#"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("a#"+id).animate({width: 'auto', opacity: '0.9'}, "slow");
+							$("a#"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("a#"+id).animate({width: 'auto', opacity: '1'}, "slow");
+							$("a#"+id).fadeTo(400, 0, function () { $("a#" + id).slideUp(400);});
+                      }
+
+		   }
+		  });
+    });
 });

@@ -118,12 +118,12 @@ include './assets/layout/header.php';
                                      $credit = $f['banks_finance_open_balance'] + $f['banks_total_with_benefits'];
                                     echo '<div class="col-md-2 text-center">
                                     <h5 class="d-inline-block bg_text2 text_height2 w-100">' . get_data('settings_banks','banks_name','banks_sn',$f['banks_finance_bank_id']) . ' - ';
-                                    if($f['banks_finance_account_type'] = 'credit')
+                                    if($f['banks_finance_account_type'] == 'credit')
                                     {
                                          echo get_data('settings_banks_credit','banks_credit_name','banks_credit_sn',$f['banks_finance_account_id']);
-                                    }elseif($f['banks_finance_account_type'] = 'current'){
+                                    }elseif($f['banks_finance_account_type'] == 'current'){
                                         echo $lang['SETTINGS_BAN_CURRENT'];
-                                    }elseif($f['banks_finance_account_type'] = 'saving'){
+                                    }elseif($f['banks_finance_account_type'] == 'saving'){
                                         echo $lang['SETTINGS_BAN_SAVE'];
                                     }
                                     echo '</h5>
@@ -199,12 +199,11 @@ include './assets/layout/header.php';
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
+                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM']; ?></label>
                                 <div class="col-xs-5">
-                                    <input type="text" class="deposits_cut_precent  form-control" name="deposits_value" id="deposits_value" placeholder="------">
+                                    <input type="text" class="form-control" name="deposits_cheque_number" id="check_number" placeholder="------">
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
@@ -216,14 +215,6 @@ include './assets/layout/header.php';
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM']; ?></label>
-                                <div class="col-xs-5">
-                                    <input type="text" class="form-control" name="deposits_cheque_number" id="check_number" placeholder="------">
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ADD_TO']; ?></label>
@@ -245,9 +236,7 @@ include './assets/layout/header.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
+                         <div class="col-md-5">
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?></label>
                                 <div class="col-xs-5 ">
@@ -262,6 +251,9 @@ include './assets/layout/header.php';
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                       
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_T']; ?></label>
@@ -271,6 +263,14 @@ include './assets/layout/header.php';
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST']; ?></option>
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="deposits_cut_precent  form-control" name="deposits_value" id="deposits_value" placeholder="------">
                                 </div>
                             </div>
                         </div>
@@ -578,6 +578,19 @@ include './assets/layout/footer.php'; ?>
                         }
                     }
                 })
+				 var page = "bank_js.php?do=account";
+				if (type) {
+                    $.ajax({
+                        type: 'POST',
+                        url: page,
+                        data: {
+                            bank: type
+                        },
+                        success: function(html) {
+                            $('#account_type').html(html);
+                        }
+                    });
+                }
             }
 
         });

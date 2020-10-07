@@ -214,7 +214,7 @@ class systemSettings_banks
 					VALUES ( NULL ,'".$bank_id."','saving','".$save_id."','".$Settings_banks['banks_saving_open_balance']."',1)");
 				}
 			}
-			if($Settings_banks['banks_saving_sn'] != 0)
+			if($Settings_banks['banks_current_sn'] != 0)
 			{
 				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_banks_current` SET
 					`banks_current_account_number`         =       '".$Settings_banks['banks_current_account_number']."',
@@ -313,16 +313,15 @@ class systemSettings_banks
 	}
 	function get_banks_finance_details()
 	{
-		$query = $GLOBALS['db']->query("SELECT bf.* FROM `settings_banks` b
+		$query = $GLOBALS['db']->query("SELECT DISTINCT bf.* FROM `settings_banks` b
 		INNER JOIN `setiings_banks_finance` bf ON b.`banks_sn` = bf.`banks_finance_bank_id`
-		WHERE  bf.`banks_finance_status` != 0   ORDER BY b.`banks_sn`  DESC  ");
+		WHERE  `banks_sn` != 0   ORDER BY b.`banks_sn`  DESC ");
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
         {
             return($GLOBALS['db']->fetchlist());
         }else{return null;}
 	}
-
     function get_banks_finance()
 	{
 		$query = $GLOBALS['db']->query("
@@ -384,6 +383,47 @@ class systemSettings_banks
 			$GLOBALS['db']->query("DELETE FROM `setiings_banks_finance` WHERE `banks_finance_account_id` = '".$data[1]."' AND  `banks_finance_account_type`= 'saving'");
 		}
 		return 1;
+	}
+	
+	function Delete_bank_main($id)
+	{
+			$GLOBALS['db']->query("DELETE FROM `settings_banks` WHERE `banks_sn` = '".$id."'");
+			$GLOBALS['db']->query("DELETE FROM `settings_banks_credit` WHERE `banks_credit_bank_id` = '".$id."'");
+			$GLOBALS['db']->query("DELETE FROM `settings_banks_current` WHERE `banks_current_bank_id` = '".$id."' ");
+			$GLOBALS['db']->query("DELETE FROM `settings_banks_saving` WHERE `banks_saving_bank_id` = '".$id."'");
+			$GLOBALS['db']->query("DELETE FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$id."'");
+
+		return 1;
+	}
+	
+	function Get_Max_Value($data)
+	{
+		if($data['bank'] == 'safe'){
+			$company_query=$GLOBALS['db']->query("SELECT * FROM `settings_companyinfo` LIMIT 1");
+			$sitecompany = $GLOBALS['db']->fetchitem($company_query);
+			if($data['transfer_type']== 'cash'){
+				$value = $sitecompany['companyinfo_opening_balance_safe'];
+			}elseif($data['transfer_type']== 'cheque'){
+				$value = $sitecompany['companyinfo_opening_balance_cheques'];
+			}
+		}else{
+			if($data['account_type'] == 'credit'){
+				$account_query=$GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$data['bank']."' AND `banks_finance_account_type` = '".$data['account_type']."' AND `banks_finance_account_id` = '" . $Deposits['acount_id'] . "' ");
+                $siteaccount = $GLOBALS['db']->fetchitem($account_query);
+                $value =  $siteaccount['banks_total_with_benefits'];
+				if($value > 0)
+				{
+					$value;
+				}else{
+					$value = 0;
+				}
+			}elseif($data['account_type'] == 'current' || $data['account_type'] == 'saving'){
+				$account_query=$GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$data['bank']."' AND `banks_finance_account_type` = '".$data['account_type']."' ");
+                $siteaccount = $GLOBALS['db']->fetchitem($account_query);
+                $value =  $siteaccount['banks_finance_open_balance']+ $siteaccount['banks_total_with_benefits'];
+			}
+		}
+		return $value;
 	}
 
 }

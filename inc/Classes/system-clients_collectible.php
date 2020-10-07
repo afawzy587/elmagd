@@ -109,6 +109,20 @@ class systemClients_collectible
 		$invoice_from = $invoice_from ? " AND `operations_code` >=  '".$invoice_from."'" : "";
 		$invoice_to   = $invoice_to ? " AND `operations_code` <=  '".$invoice_to."'" : "";
 		
+		
+		if($_collectible['collectible_bank_id']== 'safe')
+        {
+            $_collectible['collectible_insert_in']  = 'safe';
+            $_collectible['collectible_bank_id']    = 0 ;
+        }else{
+            $_collectible['collectible_insert_in']  = 'bank';
+        }
+		$GLOBALS['db']->query("INSERT INTO `".$this->tableName."`
+		(`collectible_sn`, `collectible_client_id`, `collectible_date`, `collectible_type`, `collectible_value`, `collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`, `collectible_account_type`, `collectible_account_id`, `collectible_status`) 
+		VALUES
+		(NULL,'".$_collectible['collectible_client_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$_collectible['collectible_value']."','".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."','".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."',1)");
+		$collect_id =$GLOBALS['db']->fetchLastInsertId();
+		/********************************** insert payed in operation ***********************/
 		$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE `operations_customer` = '".$client_id."'".$supplier.$product.$start_date.$end_date.$serial_from.$serial_to.$invoice_from.$invoice_to." AND `operations_customer_remain` != '0' AND `operations_status` != '0'");
 		$queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
@@ -127,7 +141,6 @@ class systemClients_collectible
 					`operations_customer_paid`  ='".$paid."',
 					`operations_customer_remain`='".$remain."' 
 					WHERE `operations_sn` ='".$operation['operations_sn']."'");
-					array_push($invoices ,$operation['operations_sn']);
 				}elseif($collectible_value != 0 && $collectible_value < $operation['operations_customer_remain']){
 					$paid   = $operation['operations_customer_paid'] + $collectible_value ;
 					$remain = $operation['operations_customer_remain'] - $collectible_value;
@@ -136,26 +149,14 @@ class systemClients_collectible
 					`operations_customer_paid`  ='".$paid."',
 					`operations_customer_remain`='".$remain."' 
 					WHERE `operations_sn` ='".$operation['operations_sn']."'");
-					array_push($invoices ,$operation['operations_sn']);
 				}
-				
+				$GLOBALS['db']->query("INSERT INTO `clients_collectible_operations`
+				(`id`, `collectible_id`, `operations_id`, `value`)
+				VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','".$paid."')");
 			}
-			$operations_paid = implode(",", $invoices);
         }
 		
 		
-		if($_collectible['collectible_bank_id']== 'safe')
-        {
-            $_collectible['collectible_insert_in']  = 'safe';
-            $_collectible['collectible_bank_id']    = 0 ;
-        }else{
-            $_collectible['collectible_insert_in']  = 'bank';
-        }
-		$GLOBALS['db']->query("INSERT INTO `".$this->tableName."`
-		(`collectible_sn`, `collectible_client_id`, `collectible_date`, `collectible_type`, `collectible_value`, `collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`, `collectible_account_type`, `collectible_account_id`,`collectible_operations`, `collectible_status`) 
-		VALUES
-		(NULL,'".$_collectible['collectible_client_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$_collectible['collectible_value']."','".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."','".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','".$operations_paid."',1)");
-		$collect_id =$GLOBALS['db']->fetchLastInsertId();
 		
 		$finance = $GLOBALS['db']->query("SELECT * FROM `clients_finance` WHERE `clients_finance_client_id` = '".$_collectible['collectible_client_id']."'  LIMIT 1 ");
         $financeTotal = $GLOBALS['db']->resultcount();

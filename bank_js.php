@@ -80,7 +80,6 @@
 				$acount_id     = intval($_POST['acount_id']);
 				$invoices = $deposit->Get_invoices($bank,$acount,$acount_id);
 				if($invoices){
-
 					$html =' <table class="table .table-bordered">
 								<thead>
 									<tr>
@@ -123,6 +122,7 @@
 					$html ='<h5>'.$lang['NO_INVOICES'].'</h5>';
 				}
 				echo $html;
+				exit;
 			}
 		case"delete":
 			if($_POST)
@@ -132,9 +132,60 @@
 				if($delete == 1)
 				{
 					echo 100;
+					exit;
 				}else{
 					echo 400;
+					exit;
 				}
+				
+			}
+		case"delete_bank":
+			if($_POST)
+			{
+				$id      = sanitize($_POST['id']);
+				$delete  = $setting_bank->Delete_bank_main($id);
+				if($delete == 1)
+				{
+					echo 100;
+					exit;
+				}else{
+					echo 400;
+					exit;
+				}
+			}
+		case"account":
+			if($_POST)
+			{
+				$id       = intval($_POST['bank']);
+				$credit   = get_banks_credit_account($id);
+				$saving   = get_banks_saving_account($id);
+				$current  = get_banks_current_account($id);
+				$html = '<option selected disabled>'.$lang['SETTINGS_C_F_CHOOSE_BANK_FIRST'].'</option>';
+				if($credit >0)
+				{
+					$html .= '<option value="credit">'.$lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'].'</option>';
+				}
+				if($saving >0)
+				{
+					$html .= '<option value="saving">'.$lang['SETTINGS_BAN_SAVE'].'</option>';
+				}
+				if($current >0)
+				{
+					$html .= '<option value="current">'.$lang['SETTINGS_BAN_CURRENT'].'</option>';
+				}
+				echo $html;
+				exit;
+			}
+		case"max_value":
+			if($_POST)
+			{
+				$data['bank']             = sanitize($_POST['bank']);
+				$data['transfer_type']    = sanitize($_POST['transfer_type']);
+				$data['account_type']     = sanitize($_POST['account_type']);
+				$data['account_id']       = sanitize($_POST['account_id']);
+				$value                    = $setting_bank->Get_Max_Value($data);
+				echo floatval($value);
+				exit;
 			}
 		}
     }

@@ -24,11 +24,11 @@
 		{
 			
 			$q = $_GET['q'];
-			if($q != ""){
-				$paginationDialm = 'true';
-				$search= "?q=".$q;
-			 }
-//			include("./inc/Classes/pager.class.php");
+//			if($q != ""){
+//				$paginationDialm = 'true';
+//				$search= "?q=".$q;
+//			 }
+////			include("./inc/Classes/pager.class.php");
 //			$page;
 //			$pager       = new pager();
 //			$page 		 = intval($_GET['page']);
@@ -105,6 +105,7 @@
 						echo '
 						<thead>
 							<tr>
+							    <th></th>
 								<th>'.$lang['SETTINGS_BAN_NAME'].'</th>
 								<th>'.$lang['SETTINGS_BAN_ACCOUNT_NUM'].'</th>
 								<th>'.$lang['SETTINGS_BAN_ACCONT_TYPE'].'</th>
@@ -126,11 +127,15 @@
 							if($count > 1)
 							{
 								$rowspan = 'rowspan="'.$count.'" class="rowspanTd"';
+								$rowspan_delete = 'rowspan="'.$count.'" class="rowspanTd text-center tableaprove"';
 							}else{
 								$rowspan = "";
 							}
 
-						 echo'<tr id=tr_'.$u['banks_sn'].'>
+						 echo'<tr id=tr_'.$u['banks_sn'].' class="bank_'.$u['banks_sn'].'">
+							    <td '.$rowspan_delete.' class="text-center tableaprove">
+									<i class="delete_bank_main fas fa-trash rose" title="'.$lang['DELETE'].'" id="bank_'.$u['banks_sn'].'"></i>
+								</td>
 								<td '.$rowspan.'>'.$u['banks_name'].' </td>
 								<td '.$rowspan.'>'.$u['banks_account_number'].'</td>';
 								foreach($u['banks_accounts'] as $cId => $c)
@@ -147,7 +152,7 @@
 												<td>'.($c['banks_credit_limit_value']-$c['banks_credit_open_balance']).'</td>
 												<td class="text-center tableActions" >
 													<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i></a>
-													<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="credit_'.$c['banks_credit_sn'].'"></i>
+													<!-- <i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="credit_'.$c['banks_credit_sn'].'"></i> -->
 												</td>
 											  ';
 										}else{
@@ -162,7 +167,7 @@
 														<td class="text-center tableActions" >
 															<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i>
 															</a>
-															<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="save_'.$c['banks_credit_sn'].'"></i>
+															<!--<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="save_'.$c['banks_credit_sn'].'"></i>-->
 															';
 											}elseif($c['type'] == 'current')
 											{
@@ -175,7 +180,7 @@
 														<td class="text-center tableActions" >
 															<a href="./edit_bank.php?id='.$u['banks_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i>
 															</a>
-															<i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="current_'.$c['banks_current_sn'].'"></i>';
+															<!-- <i class="delete_bank fas fa-trash rose" title="'.$lang['DELETE'].'" id="current_'.$c['banks_current_sn'].'"></i>-->';
 											}
 											echo'</td>';
 										}
@@ -183,7 +188,7 @@
 									}else{
 										if($c['type'] == 'credit')
 										{
-											echo '<tr id=credit_'.$c['banks_credit_sn'].'>
+											echo '<tr id=credit_'.$c['banks_credit_sn'].' class="bank_'.$u['banks_sn'].'">
 													<td>'.$lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'].'</td>
 													<td>'.$c['banks_credit_code'].'</td>
 													<td>'.$c['banks_credit_name'].'</td>
@@ -202,7 +207,7 @@
 											if($c['type'] == 'save')
 											{
 
-												echo '<tr id=save_'.$c['banks_saving_sn'].'>
+												echo '<tr id=save_'.$c['banks_saving_sn'].' class="bank_'.$u['banks_sn'].'">
 													<td>'.$lang['SETTINGS_BAN_SAVE'].'</td>
 													<td>'.$c['banks_saving_account_number'].'</td>
 													<td></td>
@@ -219,7 +224,7 @@
 												
 											}elseif($c['type'] == 'current')
 											{
-												echo '<tr id=current_'.$c['banks_current_sn'].'>
+												echo '<tr id=current_'.$c['banks_current_sn'].' class="bank_'.$u['banks_sn'].'">
 													<td>'.$lang['SETTINGS_BAN_CURRENT_ACCOUNT'].'</td>
 													<td>'.$c['banks_current_account_number'].'</td>
 													<td></td>
@@ -239,6 +244,7 @@
 									}
 									
 								}
+							   
 								
 						echo'
 							</tr>';
@@ -280,7 +286,7 @@
 $(document).ready( function () {
 
 
-    $('i.delete_bank').click(function(){
+ $('i.delete_bank').click(function(){
 
 		var id               = $(this).attr('id');
         var page             = "bank_js.php?do=delete";
@@ -298,7 +304,37 @@ $(document).ready( function () {
 							$("#"+id).animate({width: 'auto', opacity: '0.9'}, "slow");
 							$("#"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
 							$("#"+id).animate({width: 'auto', opacity: '1'}, "slow");
-							$("#"+id).fadeTo(400, 0, function () { $("#" + id).slideUp(400);});
+							$("#"+id).fadeTo("slow", 0.4, function () { $("#" + id).css({'background-color': color});});
+                      }
+				},
+				error : function() {
+					return true;
+				}
+			});
+		}
+	});
+
+ $('i.delete_bank_main ').click(function(){
+
+		var bank              = $(this).attr('id');
+		var id               = $(this).attr('id').replace('bank_','');
+        var page             = "bank_js.php?do=delete_bank";
+		if (id != 0)
+		{
+			$.ajax( {
+				async :true,
+				type :"POST",
+				url :page,
+				data: "&id=" + id,
+				success : function(responce) {
+					console.log(responce);
+                    if(responce == 100)
+                     {
+							$("."+bank).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("."+bank).animate({width: 'auto', opacity: '0.9'}, "slow");
+							$("."+bank).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("."+bank).animate({width: 'auto', opacity: '1'}, "slow");
+							$("."+bank).fadeTo(400, .4, function () { $("." + bank).css({'background-color': color});});
                       }
 				},
 				error : function() {

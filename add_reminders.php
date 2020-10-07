@@ -1,23 +1,23 @@
 <?php
-    if(!isset($_SESSION))
-    {
-        session_start();
-    }
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     // output buffer..
 	ob_start("ob_gzhandler");
     // my system key cheker..
     define("inside",true);
 	// get funcamental file which contain config and template files,settings.
 	include("./inc/fundamentals.php");
-	include("./inc/Classes/system-settings_user_group.php");
-	$user_group = new systemSettings_user_group();
+	include("./inc/Classes/system-reminders.php");
+	$reminder = new systemReminders();
 
     if($login->doCheck() == false)
     {
         header("Location:./login.php");
         exit;
     }else{
-		if($group['settings_user_group'] == 0){
+		if($group['reminders'] == 0){
 			header("Location:./permission.php");
 			exit;
 		}else
@@ -28,93 +28,92 @@
 			}
 			if($_POST)
 			{
-				$_group['group_name']                        =       sanitize($_POST["group_name"]);
-				$_group['group_description']                 =       sanitize($_POST["group_description"]);
-
-				$add = $user_group->addSettings_user_group($_group);
-//				if($add == 1)
-//				{
-//					$logs->addLog(NULL,
-//						array(
-//							"type" 		        => 	"users",
-//							"module" 	        => 	"groups",
-//							"mode" 		        => 	"add_groups",
-//							"id" 	        	=>	$_SESSION['id'],
-//						),"admin",$_SESSION['id'],1
-//						);
-//
-//						header("Location:./add_group.php?action=add");
-//						exit;
-//				}
+				$_reminder['reminders_date']                        =       sanitize($_POST["reminders_date"]);
+				$_reminder['title']                 =       sanitize($_POST["title"]);
+				
+				$add = $reminder->addReminders($_reminder);
+				if($add == 1)
+				{
+					$logs->addLog(NULL,
+						array(
+							"type" 		        => 	"users",
+							"module" 	        => 	"reminders",
+							"mode" 		        => 	"add_reminders",
+							"id" 	        	=>	$_SESSION['id'],
+						),"admin",$_SESSION['id'],1
+						);
+					
+						header("Location:./add_reminders.php?action=add");
+						exit;
+				}
 			}
 		}
-
+		
     }
     include './assets/layout/header.php';
 
 ?>
-<?php $footer = 'true'; include './assets/layout/navbar.php';?>
+<?php include './assets/layout/navbar.php';?>
  <!-- page content -->
     <div class="container mainPageContainer">
 
         <!-- links row -->
+<!--
         <div class="row mt-5">
             <div class="col">
                 <p class="blueSky">
                     <i class="fas fa-info-circle"></i>
                     <span class="blueSky"><?php echo $lang['SETTINGS_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['GROUP_TITLE'];?></span>
-                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['GROUP_ADD_GROUPS'];?></span>
+                    <span class="blueSky"><strong> &gt; </strong>   <?php echo $lang['Reminders'];?></span>
                 </p>
             </div>
         </div>
+-->
         <!-- end links row -->
-
+        
          <!-- search bar row -->
         <div class="row d-flex justify-content-end">
             <div class="col-md-3">
-                <form id="groupSearchForm" method="get" action="./settings_user_group.php">
+                <form id="remindersearchForm" method="get" action="./reminders.php">
                     <div class="form-group has-search">
                         <label for=""><?php echo $lang['SEARCH'];?></label>
                         <button class="btn btn-info form-control-feedback" type="submit"><i class="fas fa-search"></i></button>
-                        <input type="text" class="form-control" placeholder="" id="groupSearch" name="q">
+                        <input type="text" class="form-control" placeholder="" id="remindersearch" name="q">
                     </div>
                 </form>
             </div>
         </div>
         <!-- end search bar row -->
 
-        <!-- add/edit group row -->
+        <!-- add/edit department row -->
         <div class="row centerContent">
             <div class="col">
                 <form  method="post" id="companyDetailsForm" enctype="multipart/form-data">
-
-                    <?php
+                   
+                    <?php 
 						if($add == 1){
-							echo alert_message("success",$lang['GROUP_SUCCESS']);
-						}elseif($add == 2){
-							echo alert_message("danger",$lang['GROUP_INSERT_BEFORE']);
+							echo alert_message("success",$lang['Reminders_SUCCESS']);
 						}
 					?>
-                     <h5><?php echo $lang['GROUP_ADD_GROUPS'];?></h5>
+                     <h5><?php echo $lang['Reminders_ADD'];?></h5>
                     <div class="darker-bg centerDarkerDiv formCenterDiv">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="col-xs-3"> <?php echo $lang['GROUP_NAME'];?></label>
+                                    <label class="col-xs-3"> <?php echo $lang['Reminders_DATE'];?></label>
                                     <div class="col-xs-5">
-                                        <input type="text" class="form-control" name="group_name" placeholder="<?php echo $lang['GROUP_NAME'];?>" value="<?php echo $_group['group_name'];?>">
+                                       <input type="date" name="reminders_date" class="form-control" >
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="col-xs-3"><?php echo $lang['GROUP_DESCRIPTION'];?></label>
-                                    <input type="text" class="form-control" name="group_description" placeholder="<?php echo $lang['GROUP_DESCRIPTION_HOLDER'];?>" value="<?php echo $_group['group_description'];?>">
+                                    <label class="col-xs-3"><?php echo $lang['Reminders_DESCRIPTION'];?></label>
+                                    <input type="text" class="form-control" name="title" placeholder="<?php echo $lang['Reminders_DESCRIPTION'];?>" value="<?php echo $_reminder['title'];?>">
                                 </div>
                             </div>
                         </div>
-
+                     
                     </div>
                     <div class="row mt-2 mb-5">
                         <div class="col d-flex justify-content-end">
@@ -124,20 +123,23 @@
                 </form>
             </div>
         </div>
-        <!-- end add/edit group row -->
+        <!-- end add/edit department row -->
     </div>
     <!-- end page content -->
 
-<?php include './assets/layout/footer.php';?>
+<?php 
+$footer = 'true';
+include './assets/layout/footer.php';
+?>
 <SCRIPT>
 $(document).ready(function () {
 
-    $('#groupSearch').keypress(function (e) {
+    $('#remindersearch').keypress(function (e) {
         var key = e.which;
         if (key == 13) {
             // search input value =>> $(this)[0].value
             console.log($(this)[0].value);
-            $('#groupSearchForm').submit();
+            $('#remindersearchForm').submit();
 
             return false;
         }
@@ -147,25 +149,25 @@ $(document).ready(function () {
     $('#companyDetailsForm').formValidation({
         excluded: [':disabled'],
         fields: {
-            group_name: {
+            reminders_name: {
                 validators: {
                     notEmpty: {
-                        message: '<?php echo $lang['GROUP_INSERT_NAME'];?>'
+                        message: '<?php echo $lang['SETTINGS_D_INSERT_NAME'];?>'
                     }
                 }
             },
-            group_description: {
+            title: {
                 validators: {
                     notEmpty: {
-                        message: '<?php echo $lang['GROUP_INSERT_DES'];?>'
+                        message: '<?php echo $lang['SETTINGS_D_INSERT_DES'];?>'
                     }
                 }
             }
         }
     }).on('success.form.bv', function (e) {
 
-          input[name="group_name"].value = "";
-          input[name="group_description"].value = "";
+          input[name="reminders_name"].value = "";
+          input[name="title"].value = "";
     })
 })
 

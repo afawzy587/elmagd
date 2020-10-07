@@ -125,12 +125,12 @@ include './assets/layout/header.php';
                                      $credit = $f['banks_finance_open_balance'] + $f['banks_total_with_benefits'];
                                     echo '<div class="col-md-2 text-center">
                                     <h5 class="d-inline-block bg_text2 text_height2 w-100">' . get_data('settings_banks','banks_name','banks_sn',$f['banks_finance_bank_id']) . ' - ';
-                                    if($f['banks_finance_account_type'] = 'credit')
+                                    if($f['banks_finance_account_type'] == 'credit')
                                     {
                                          echo get_data('settings_banks_credit','banks_credit_name','banks_credit_sn',$f['banks_finance_account_id']);
-                                    }elseif($f['banks_finance_account_type'] = 'current'){
+                                    }elseif($f['banks_finance_account_type'] == 'current'){
                                         echo $lang['SETTINGS_BAN_CURRENT'];
-                                    }elseif($f['banks_finance_account_type'] = 'saving'){
+                                    }elseif($f['banks_finance_account_type'] == 'saving'){
                                         echo $lang['SETTINGS_BAN_SAVE'];
                                     }
                                     echo '</h5>
@@ -193,7 +193,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['TRANSFER_FROM']; ?></label>
                                 <div class="col-xs-5">
                                     <div class="select">
-                                        <select name="transfer_from" id="transfer_from" class="bank invoices form-control">
+                                        <select name="transfer_from" id="transfer_from" class="bank invoices max_value form-control">
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK']; ?></option>
                                             <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                             <?php
@@ -216,7 +216,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?></label>
                                 <div class="col-xs-5 ">
                                     <div class="select type">
-                                        <select name="transfer_account_type_from" id="account_type_from" class="invoices account_type form-control" disabled>
+                                        <select name="transfer_account_type_from" id="account_type_from" class="invoices account_type max_value form-control" disabled>
                                             <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_BANK_FIRST']; ?></option>
                                             <option value="credit"><?php echo $lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU']; ?></option>
                                             <option value="saving"><?php echo $lang['SETTINGS_BAN_SAVE']; ?></option>
@@ -231,7 +231,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_T']; ?></label>
                                 <div class="col-xs-5 ">
                                     <div class="select bank_item">
-                                        <select name="transfer_account_id_from" class="invoices form-control" id="transfer_account_id_from" disabled>
+                                        <select name="transfer_account_id_from" class="invoices max_value form-control" id="transfer_account_id_from" disabled>
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST']; ?></option>
                                         </select>
                                     </div>
@@ -281,13 +281,23 @@ include './assets/layout/header.php';
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
-                                <div class="col-xs-5">
-                                    <input type="text" class="transfer_cut_precent  form-control" name="transfer_value" id="transfer_value" placeholder="------">
+                                <label class="col-xs-3"> <?php echo $lang['transfer_TYPE']; ?></label>
+                                <div class="col-xs-5  d-flex space_between">
+                                    <div class="form-check radioBtn d-inline-block">
+                                        <input class="max_value form-check-input" type="radio" name="transfer_type" id="cashPaymentMethod" value="cash">
+                                        <label class="form-check-label" for="cashPaymentMethod">
+                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH']; ?>
+                                        </label>
+                                    </div>
+                                    <div class="form-check radioBtn d-inline-block">
+                                        <input class="max_value form-check-input" type="radio" checked name="transfer_type" id="checkPaymentMethod" value="cheque">
+                                        <label class="form-check-label " for="checkPaymentMethod">
+                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE']; ?>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-5" id="invoices" style="display: none;">
                             <div class="form-group">
                                 <label class="col-xs-3"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><?php echo $lang['INVOICES']; ?></button></label>
@@ -300,20 +310,9 @@ include './assets/layout/header.php';
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['transfer_TYPE']; ?></label>
-                                <div class="col-xs-5  d-flex space_between">
-                                    <div class="form-check radioBtn d-inline-block">
-                                        <input class="form-check-input" type="radio" name="transfer_type" id="cashPaymentMethod" value="cash">
-                                        <label class="form-check-label" for="cashPaymentMethod">
-                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH']; ?>
-                                        </label>
-                                    </div>
-                                    <div class="form-check radioBtn d-inline-block">
-                                        <input class="form-check-input" type="radio" checked name="transfer_type" id="checkPaymentMethod" value="cheque">
-                                        <label class="form-check-label " for="checkPaymentMethod">
-                                            <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE']; ?>
-                                        </label>
-                                    </div>
+                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
+                                <div class="col-xs-5">
+                                    <input type="text"  class="transfer_cut_precent  form-control" name="transfer_value" id="transfer_value" placeholder="------">
                                 </div>
                             </div>
                         </div>
@@ -672,6 +671,7 @@ include './assets/layout/footer.php'; ?>
         });
         $('.bank').change(function() {
             var id = $(this).attr('id').replace('transfer_', '');
+			var bank_id = $(this).val();
             var type = $(this).val();
             if (type == "safe") {
                 var transfer_account_type = $('#account_type_' + id).prop("disabled", true);
@@ -684,6 +684,19 @@ include './assets/layout/footer.php'; ?>
                         }
                     }
                 })
+				 var page = "bank_js.php?do=account";
+				if (bank_id) {
+                    $.ajax({
+                        type: 'POST',
+                        url: page,
+                        data: {
+                            bank: bank_id
+                        },
+                        success: function(html) {
+                            $('#account_type_' + id).html(html);
+                        }
+                    });
+                }
 
             }
 
@@ -833,7 +846,6 @@ include './assets/layout/footer.php'; ?>
                 var group = "input:checkbox[name='" + $box.attr("name") + "']";
                 // the checked state of the group/box on the other hand will change
                 // and the current value is retrieved using .prop() method
-                console.log(group);
                 $(group).prop("checked", false);
                 $box.prop("checked", true);
             } else {
@@ -842,6 +854,53 @@ include './assets/layout/footer.php'; ?>
             var id = $(this).attr('id').replace('customized-checkbox-', '');
             var max_value = $('input#max_' + id).val();
             $('#max_value').val(max_value);
+           valitate_transfer_value(max_value);
+			
         });
+		$('#customersAccountsPaymentForm').on('change', '.max_value', function() {
+			var bank            = $('#transfer_from').val();
+			var account_type    = $('#account_type_from').val();
+			var account_id      = $('#transfer_account_id_from').val();
+			var transfer_type   = $('input[name="transfer_type"]:checked').val();
+			var page = "bank_js.php?do=max_value";
+			if (bank && transfer_type) {
+				$.ajax({
+					type: 'POST',
+					url: page,
+					data: {
+						bank: bank,
+						transfer_type: transfer_type,
+						account_type: account_type,
+						account_id: account_id
+					},
+					success: function(responce) {
+						console.log(responce);
+						valitate_transfer_value(responce);
+					}
+				});
+			}
+			console.log("bank:"+bank);
+			console.log("account_type:"+account_type);
+			console.log("account_id:"+account_id);
+			console.log("transfer_type:"+transfer_type);
+		});
+		function valitate_transfer_value(max_value){
+			var transfer_value = $('#transfer_value');
+			$('#customersAccountsPaymentForm').formValidation('addField', transfer_value, {
+                            validators: {
+                                notEmpty: {
+                                    message: ' <?php echo $lang['SETTINGS_C_F_CHEQUE_NUM']; ?>'
+                                },
+                                digits: {
+                                    message: '<?php echo $lang['SETTINGS_C_F_NUMBER_ON']; ?>'
+                                },between: {
+									min: 1,
+									max: max_value,
+									message: '<?php echo $lang['VALUE_LESS_THAN']; ?> ' +max_value+ '<?php echo $lang['VALUE_GREATER_THAN']; ?>' + 0 ,
+
+								}
+                            }
+                        })
+		}
     })
 </SCRIPT>

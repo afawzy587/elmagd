@@ -29,7 +29,7 @@
 			{
 				$mId =intval($_GET['supplier']);
 				$supplier = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
-				$banks_finance=$setting_bank->get_banks_finance();
+				$banks_finance=$setting_bank->get_banks_finance_details();
 				$banks        = $setting_bank->getaccountsSettings_banks();
 				if($_POST)
 				{
@@ -122,15 +122,28 @@
 									<h5 class="d-inline-block bg_text2 text_height2  <?php if($companyinfo['companyinfo_opening_balance_cheques'] < 0){echo 'warming';}?> w-100 ltrDir">  <?php echo number_format($companyinfo['companyinfo_opening_balance_cheques']);?></h5>
 								</div>
 								<?php
-								if($banks_finance)
-								{
-									foreach($banks_finance as $k => $f)
-									{
-										echo'<div class="col-md-2 text-center">
-												<h5 class="d-inline-block bg_text2 text_height2 w-100">'.$f['banks_name'].'</h5>
-												<h5 class="d-inline-block bg_text2 text_height2 ';if($f['credit'] < 0){echo 'warning' ;} echo'w-100 ltrDir">'.number_format($f['credit']).'</h5>
-											</div>';
-										$total_finance += $f['credit'];
+									if ($banks_finance) {
+										foreach ($banks_finance as $k => $f) {
+											 $credit = $f['banks_finance_open_balance'] + $f['banks_total_with_benefits'];
+											echo '<div class="col-md-2 text-center">
+											<h5 class="d-inline-block bg_text2 text_height2 w-100">' . get_data('settings_banks','banks_name','banks_sn',$f['banks_finance_bank_id']) . ' - ';
+											if($f['banks_finance_account_type'] == 'credit')
+											{
+												 echo get_data('settings_banks_credit','banks_credit_name','banks_credit_sn',$f['banks_finance_account_id']);
+											}elseif($f['banks_finance_account_type'] == 'current'){
+												echo $lang['SETTINGS_BAN_CURRENT'];
+											}elseif($f['banks_finance_account_type'] == 'saving'){
+												echo $lang['SETTINGS_BAN_SAVE'];
+											}
+											echo '</h5>
+											<h5 class="d-inline-block bg_text2 text_height2 ';
+											if ($f['credit'] < 0) {
+												echo 'warning';
+											}
+											echo ' w-100 ltrDir">' . number_format($credit) . '</h5>
+										</div>';
+
+										$total_finance += $credit;
 									}
 								}
 								?>
@@ -337,9 +350,9 @@ $footer = '<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integr
 			<script src="./assets/js/framework/bootstrap.js"></script>
 			<script src="./assets/js/list-controls.js"></script>
 			';
-include './assets/layout/footer.php';?>
+include './assets/layout/footer.php'; ?>
 <SCRIPT>
-$(document).ready(function () {
+	$(document).ready(function () {
 
     $('#customersAccountsPaymentForm').formValidation({
         excluded: [':disabled'],
@@ -423,9 +436,7 @@ $(document).ready(function () {
 
         }
     }).on('success.form.bv', function (e) {
-
-
-    })
+    });
 
     $('input[name="collectible_type"]').on('change', function () {
         key = $(this).val();
@@ -494,7 +505,7 @@ $(document).ready(function () {
 
     });
 
-		$('#banks').on('change','select.bank',function(){
+	$('#banks').on('change','select.bank',function(){
 			var type = $(this).val();
             if (type != "safe") {
 				var collectible_account_type =$('#account_type').prop("disabled", false);
@@ -505,12 +516,29 @@ $(document).ready(function () {
                             }
                         }
                     })
+				var page = "bank_js.php?do=account";
+				if (type) {
+                    $.ajax({
+                        type: 'POST',
+                        url: page,
+                        data: {
+                            bank: type
+                        },
+                        success: function(html) {
+                            $('#account_type').html(html);
+                        }
+                    });
+                }
+			}else{
+				var expenses_bank_account_id =$('#bank_item').prop("disabled", true);
+				 var expenses_account_type =$('#account_type').prop("disabled", true);
+				$('#suppliersAccountsPaymentForm')
+                    .formValidation('removeField', expenses_bank_account_id)
+                    .formValidation('removeField', expenses_account_type)
 			}
 		});
 
-
-
-		$('#type').on('change','select#account_type',function(){
+	$('#type').on('change','select#account_type',function(){
 			var type     = $(this).val();
 			var id       = $('select.bank').val();
 			if(type == 'credit')

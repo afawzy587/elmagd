@@ -4495,3 +4495,485 @@ July 19, 2020, 11:58 pmLOGS :  User => Ahmed fawzy Id =>1  Module =>products  Pa
 ------------------------------
  / item:2[ October 6, 2020, 5:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
 ------------------------------
+[ October 7, 2020, 4:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 7, 2020, 4:39 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>setting_company  Page => edit_company
+------------------------------
+[ October 7, 2020, 4:39 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>setting_company  Page => edit_company
+------------------------------
+[ October 7, 2020, 4:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>setting_company  Page => edit_company
+------------------------------
+[ October 7, 2020, 4:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 4:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 4:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 4:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 4:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 4:56 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 4:56 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 4:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 4:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 4:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 4:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:03 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>suppliers  Page => suppliers_payment
+------------------------------
+[ October 7, 2020, 5:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 5:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ October 7, 2020, 5:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:07 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 5:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ October 7, 2020, 5:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 5:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>suppliers  Page => suppliers_payment
+------------------------------
+[ October 7, 2020, 5:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>operations  Page => add_operations
+------------------------------
+[ October 7, 2020, 5:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>operation_sum  Page => list
+------------------------------
+[ October 7, 2020, 5:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 5:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>suppliers  Page => suppliers_payment
+------------------------------
+[ October 7, 2020, 5:20 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>user_group  Page => list
+------------------------------
+[ October 7, 2020, 5:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => add_reminders
+------------------------------
+[ October 7, 2020, 5:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>suppliers  Page => list
+------------------------------
+[ October 7, 2020, 6:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 7, 2020, 6:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 7, 2020, 6:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 7, 2020, 6:03 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 7, 2020, 6:03 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 7, 2020, 6:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>clients  Page => list
+------------------------------
+[ October 7, 2020, 6:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 6:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 7, 2020, 6:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => deposits_search
+------------------------------
+[ October 7, 2020, 6:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:26 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:26 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:28 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:30 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:30 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:31 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:33 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:33 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:35 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:36 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:36 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:36 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:37 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:37 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:39 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:39 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:39 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:51 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:51 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:51 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => add_reminders
+------------------------------
+[ October 7, 2020, 6:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => list
+------------------------------
+[ October 7, 2020, 6:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>reminders  Page => add_reminders
+------------------------------
+[ October 7, 2020, 7:24 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => add_expense
+------------------------------
+[ October 7, 2020, 7:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => add_expense
+------------------------------
+[ October 7, 2020, 7:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:33 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:41 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => add_expense
+------------------------------
+[ October 7, 2020, 7:41 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 7, 2020, 7:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>operations  Page => list
+------------------------------
+[ October 7, 2020, 7:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => add_banks
+------------------------------
+[ October 7, 2020, 7:55 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 7:55 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:3[ October 7, 2020, 7:55 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 7:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:3[ October 7, 2020, 8:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:05 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 7, 2020, 8:05 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 7, 2020, 8:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 7, 2020, 8:06 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:07 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 7, 2020, 8:07 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 7, 2020, 8:09 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:2[ October 7, 2020, 8:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:12 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 8:12 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 8:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 8:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>supplier_search_result  Page => list
+------------------------------
+[ October 7, 2020, 8:18 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => deposits_search
+------------------------------
+[ October 7, 2020, 8:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:30 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:35 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => deposits_search
+------------------------------
+[ October 7, 2020, 8:35 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:36 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:43 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:43 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:43 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:43 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:45 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:45 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:45 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:45 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:45 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:3[ October 7, 2020, 8:48 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:53 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:54 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:57 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:58 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 8:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => list
+------------------------------
+[ October 7, 2020, 9:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 7, 2020, 9:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 9:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => list
+------------------------------
+[ October 7, 2020, 9:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => list
+------------------------------
+[ October 7, 2020, 9:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:04 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:11 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:12 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 9:59 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => edit_bank
+------------------------------
+ / item:1[ October 7, 2020, 10:00 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:01 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:02 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:08 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:12 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:12 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:14 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:17 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:17 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:17 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:18 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:19 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:23 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:25 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:26 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:27 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:30 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:31 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:32 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:33 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:33 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:34 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:39 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:41 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:41 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:42 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:42 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:43 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 10:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 11:13 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 11:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>banks  Page => list
+------------------------------
+[ October 7, 2020, 11:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 11:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 11:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 7, 2020, 11:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 7, 2020, 11:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 7, 2020, 11:42 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>expenses  Page => list
+------------------------------
+[ October 8, 2020, 12:00 am ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 8, 2020, 12:00 am ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => list
+------------------------------

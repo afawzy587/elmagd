@@ -330,31 +330,57 @@ class systemExpenses
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal == 1)
         {
+			
 			$sitegroup = $GLOBALS['db']->fetchitem($query);
-			if($sitegroup['expenses_account_id'] != 0)
+			if($sitegroup['expenses_in'] = "safe")
 			{
-				$q= "AND`banks_finance_account_id` = '".$sitegroup['expenses_account_idexpenses_account_id']."' " ;
+				$company_query = $GLOBALS['db']->query("SELECT * FROM `settings_companyinfo` LIMIT 1");
+				$sitecompany = $GLOBALS['db']->fetchitem($company_query);
+				if ($sitegroup['expenses_type'] == 'cash') {
+					$cash = $sitecompany['companyinfo_opening_balance_safe'] + $sitegroup['expenses_amount'];
+					$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+						 `companyinfo_opening_balance_safe`   =  '" . $cash . "'
+						 WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+				} else {
+					if ($sitegroup['expenses_type'] == 'safe') {
+						$cash = $sitecompany['companyinfo_opening_balance_safe'] + $sitegroup['expenses_amount'];
+						$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+						 `companyinfo_opening_balance_safe`   =  '" . $cash . "'
+						 WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+					}else{
+						$cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $Transfer['transfers_value'];
+						$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+							 `companyinfo_opening_balance_cheques`= '" . $cheque . "'
+							 WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+					}
+				}
+				
 			}else{
-				$q= "";
-			}
+				if($sitegroup['expenses_account_id'] != 0)
+				{
+					$q= "AND`banks_finance_account_id` = '".$sitegroup['expenses_account_idexpenses_account_id']."' " ;
+				}else{
+					$q= "";
+				}
 
-			$bankfinance = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance`
-			WHERE `banks_finance_bank_id` ='".$sitegroup['expenses_bank_id']."'  AND `banks_finance_account_type` = '".$sitegroup['expenses_bank_account_type']."' ".$q." AND `banks_finance_status` != 0 LIMIT 1 ");
-			$bankfinanceTotal = $GLOBALS['db']->resultcount();
-			if($bankfinanceTotal == 1)
-			{
-				$sitebank = $GLOBALS['db']->fetchitem($query);
-				$new = $sitebank['banks_finance_credit'] + $sitegroup['expenses_amount'];
+				$bankfinance = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance`
+				WHERE `banks_finance_bank_id` ='".$sitegroup['expenses_bank_id']."'  AND `banks_finance_account_type` = '".$sitegroup['expenses_bank_account_type']."' ".$q." AND `banks_finance_status` != 0 LIMIT 1 ");
+				$bankfinanceTotal = $GLOBALS['db']->resultcount();
+				if($bankfinanceTotal == 1)
+				{
+					$sitebank = $GLOBALS['db']->fetchitem($query);
+					$new = $sitebank['banks_finance_credit'] + $sitegroup['expenses_amount'];
 
-				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
-				`banks_finance_credit`		 =	'".$new."'
-				WHERE `banks_finance_sn`     = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
+					$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
+					`banks_finance_credit`		 =	'".$new."'
+					WHERE `banks_finance_sn`     = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
+				}
+				$GLOBALS['db']->query("DELETE FROM `reminders` WHERE `reminders_type` ='expenses' AND `reminders_type_id` = '".$id."' LIMIT 1");
 			}
-			$GLOBALS['db']->query("DELETE FROM `reminders` WHERE `reminders_type` ='expenses' AND `reminders_type_id` = '".$id."' LIMIT 1");
 		}
 		
 		$GLOBALS['db']->query("UPDATE LOW_PRIORITY `".$this->tableName."` SET
-					`expenses_status`               =       '" . $sitegroup['expenses_status'] . "'
+					`expenses_status`               =       '0'
 			  WHERE `expenses_sn`    	            = 	    '".$id."' LIMIT 1 ");
 		return 1;
 	}

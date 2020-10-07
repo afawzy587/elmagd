@@ -426,7 +426,9 @@
     </div>
     <!-- end page content -->
 
-<?php include './assets/layout/footer.php';?>
+<?php 
+$footer = 'true';
+include './assets/layout/footer.php';?>
 <SCRIPT>
 
 	

@@ -113,39 +113,7 @@ class systemSuppliers_collectible
 		$invoice_from = $invoice_from ? " AND `operations_code` >=  '".$invoice_from."'" : "";
 		$invoice_to   = $invoice_to ? " AND `operations_code` <=  '".$invoice_to."'" : "";
 
-		$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE `operations_supplier` = '".$supplier_id."'".$code.$client.$product.$start_date.$end_date.$serial_from.$serial_to.$invoice_from.$invoice_to." AND `operations_supplier_remain` != '0' AND `operations_status` != '0'");
-		$queryTotal = $GLOBALS['db']->resultcount();
-        if($queryTotal > 0)
-        {
-            $operations = $GLOBALS['db']->fetchlist();
-			$collectible_value = $_collectible['collectible_value'] ;
-			$invoices = [];
-			foreach($operations as $k => $operation)
-			{
-				if($collectible_value >= $operation['operations_supplier_remain'])
-				{
-					$paid   = $operation['operations_supplier_paid'] + $operation['operations_supplier_remain'];
-					$remain = 0;
-				 	$collectible_value = $collectible_value - $operation['operations_supplier_remain'];
-					$GLOBALS['db']->query("UPDATE `operations` SET
-					`operations_supplier_paid`  ='".$paid."',
-					`operations_supplier_remain`='".$remain."'
-					WHERE `operations_sn` ='".$operation['operations_sn']."'");
-					array_push($invoices ,$operation['operations_sn']);
-				}elseif($collectible_value != 0 && $collectible_value < $operation['operations_supplier_remain']){
-					$paid   = $operation['operations_supplier_paid'] + $collectible_value ;
-					$remain = $operation['operations_supplier_remain'] - $collectible_value;
-				    $collectible_value = 0;
-					$GLOBALS['db']->query("UPDATE `operations` SET
-					`operations_supplier_paid`  ='".$paid."',
-					`operations_supplier_remain`='".$remain."'
-					WHERE `operations_sn` ='".$operation['operations_sn']."'");
-					array_push($invoices ,$operation['operations_sn']);
-				}
-
-			}
-			$operations_paid = implode(",", $invoices);
-        }
+		
 
 
 		if($_collectible['collectible_bank_id']== 'safe')
@@ -166,6 +134,42 @@ class systemSuppliers_collectible
         '".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','".$operations_paid."','".$_collectible['collectible_payment_case']."','".$_collectible['collectible_recipient']."',1)");
 	
         $collect_id =$GLOBALS['db']->fetchLastInsertId();
+		
+		
+		/********************* insert value in operation *****************************/
+		$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE `operations_supplier` = '".$supplier_id."'".$code.$client.$product.$start_date.$end_date.$serial_from.$serial_to.$invoice_from.$invoice_to." AND `operations_supplier_remain` != '0' AND `operations_status` != '0'");
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            $operations = $GLOBALS['db']->fetchlist();
+			$collectible_value = $_collectible['collectible_value'] ;
+			$invoices = [];
+			foreach($operations as $k => $operation)
+			{
+				if($collectible_value >= $operation['operations_supplier_remain'])
+				{
+					$paid   = $operation['operations_supplier_paid'] + $operation['operations_supplier_remain'];
+					$remain = 0;
+				 	$collectible_value = $collectible_value - $operation['operations_supplier_remain'];
+					$GLOBALS['db']->query("UPDATE `operations` SET
+					`operations_supplier_paid`  ='".$paid."',
+					`operations_supplier_remain`='".$remain."'
+					WHERE `operations_sn` ='".$operation['operations_sn']."'");
+				}elseif($collectible_value != 0 && $collectible_value < $operation['operations_supplier_remain']){
+					$paid   = $operation['operations_supplier_paid'] + $collectible_value ;
+					$remain = $operation['operations_supplier_remain'] - $collectible_value;
+				    $collectible_value = 0;
+					$GLOBALS['db']->query("UPDATE `operations` SET
+					`operations_supplier_paid`  ='".$paid."',
+					`operations_supplier_remain`='".$remain."'
+					WHERE `operations_sn` ='".$operation['operations_sn']."'");
+				}
+				$GLOBALS['db']->query("INSERT INTO `supplier_collectible_operations`
+				(`id`, `collectible_id`, `operations_id`, `value`)
+				VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','".$paid."')");
+
+			}
+        }
 
 		$finance = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$_collectible['collectible_supplier_id']."'  LIMIT 1 ");
         $financeTotal = $GLOBALS['db']->resultcount();

@@ -203,7 +203,7 @@
                                     <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?></label>
                                     <div class="col-xs-5 ">
                                         <div class="select" id="type">
-                                            <select name="expenses_bank_account_type" class="form-control" id="account_type" >
+                                            <select name="expenses_bank_account_type" class="form-control" id="account_type" <?php if($u['expenses_in'] =='safe'){echo 'disabled';}?> >
                                                 <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_BANK_FIRST'];?></option>
                                                 <option value="credit" <?php if($u['expenses_bank_account_type'] == 'credit'){echo 'selected';}?> ><?php echo $lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'];?></option>
                                                 <option value="saving" <?php if($u['expenses_bank_account_type'] == 'saving'){echo 'selected';}?>><?php echo $lang['SETTINGS_BAN_SAVE'];?></option>
@@ -340,21 +340,22 @@ $(document).ready(function () {
                         message: '<?php echo $lang['SETTINGS_C_F_CHOOSE_BANK'];?>'
                     }
                 }
-            },
-            expenses_bank_account_type: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
-                    }
-                }
-            },
-            expenses_bank_account_id: {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_C_F_ACO_IN'];?>'
-                    }
-                }
-            },
+            }
+			,
+//            expenses_bank_account_type: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
+//                    }
+//                }
+//            },
+//            expenses_bank_account_id: {
+//                validators: {
+//                    notEmpty: {
+//                        message: '<?php echo $lang['SETTINGS_C_F_ACO_IN'];?>'
+//                    }
+//                }
+//            },
             expenses_title: {
                 validators: {
                     notEmpty: {
@@ -436,15 +437,33 @@ $(document).ready(function () {
 
     });
 	
-		$('#banks').on('change','select.bank',function(){
-			var expenses_account_type =$('#account_type').prop("disabled", false);
-			 $('#addInternalExpensesForm').formValidation('addField', expenses_account_type, {
-                        validators: {
-                            notEmpty: {
-                                message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
+	$('#banks').on('change','select.bank',function(){
+		var type = $(this).val();
+        if(type != "safe"){
+                var expenses_account_type =$('#account_type').prop("disabled", false);
+                $('#addInternalExpensesForm').formValidation('addField', expenses_account_type, {
+                            validators: {
+                                notEmpty: {
+                                    message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
+                                }
                             }
+                        })
+				var page = "bank_js.php?do=account";
+				if (type) {
+                    $.ajax({
+                        type: 'POST',
+                        url: page,
+                        data: {
+                            bank: type
+                        },
+                        success: function(html) {
+                            $('#account_type').html(html);
                         }
-                    })
+                    });
+                }
+            }else{
+				var expenses_account_type =$('#account_type').prop("disabled", true);
+			}
 		});
 			
 	$('#type').on('change','select#account_type',function(){
@@ -456,14 +475,11 @@ $(document).ready(function () {
 				expenses_bank_account_id.parent().siblings('.help-block').hide();
 				$('#addInternalExpensesForm').formValidation('removeField', expenses_bank_account_id)
 			}else{
-				var expenses_bank_account_id =$('#bank_item').prop("disabled", true)
-				$('#addInternalExpensesForm').formValidation('addField', expenses_bank_account_id, {
-                        validators: {
-                            notEmpty: {
-                                message: ' <?php echo $lang['SETTINGS_C_F_ACO_IN'];?>'
-                            }
-                        }
-                    })
+				var expenses_bank_account_id =$('#bank_item').prop("disabled", true);
+				 var expenses_account_type =$('#account_type').prop("disabled", true);
+				$('#suppliersAccountsPaymentForm')
+                    .formValidation('removeField', expenses_bank_account_id)
+                    .formValidation('removeField', expenses_account_type)
 			}
 			var page   ="client_pricing_js.php?do=bank_account";
 			if(id){

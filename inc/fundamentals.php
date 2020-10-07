@@ -76,7 +76,8 @@
 		"bank_transfer"                       =>          1,
 		"supplier_payment"                    =>          1,
 		"client_payment"                      =>          1,
-		"settings_user_group"                      =>          1,
+		"settings_user_group"                 =>          1,
+		"reminders"                           =>          1,
 
 
 			);
@@ -109,6 +110,7 @@
 			"client_payment"                     =>          $sitegroup['client_payment'],
 			"supplier_payment"                   =>          $sitegroup['supplier_payment'],
 			"settings_user_group"                =>          $sitegroup['settings_user_group'],
+			"reminders"                          =>          $sitegroup['reminders'],
 
 				);
 

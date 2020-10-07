@@ -2,7 +2,7 @@
 <footer>
 
 	<?php
-		if($footer)
+		if($footer != "")
 		{
 			echo $footer;
 		}else{

@@ -747,8 +747,18 @@ $lang['MOUNT_TOTAL']                  =   "صافي اجمالي الكمية (�
 $lang['FINNACE_TOTAL']                =   "اجمالي الحساب  (ج.م)";
 $lang['COLLECTED_TOTAL']              =   "اجمالي لتحصيل   (ج.م)";
 $lang['REMAIN_TOTAL']                 =   "الباقى   (ج.م)";
+$lang['VALUE_LESS_THAN']              =   " يجب ان يكون المبلغ اقل من ";
+$lang['VALUE_GREATER_THAN']           =   "و أكبر من ";
 $lang['']              =   "";
-
+/***************** Reminders **********************/
+$lang['Reminders']              =   "التذكيرات";
+$lang['Reminder']               =   "تذكير";
+$lang['Reminders_SUCCESS']      =   "تم اضافة التذكير بنجاح";
+$lang['Reminders_ADD']          =   "اضافة تذكير";
+$lang['Reminders_DATE']         =   "تاريخ التذكير";
+$lang['Reminders_DESCRIPTION']  =   "محتوى التذكير";
+$lang['Reminders_STOP']             =   "ايقاف";
+$lang['Reminders_']             =   "";
 
 
 

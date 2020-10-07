@@ -76,8 +76,8 @@
 							"id" 	        	=>	$_SESSION['id'],
 						),"admin",$_SESSION['id'],1
 						);
-//						header("Location:./settings_company.php");
-//						exit;
+						header("Location:./settings_company.php");
+						exit;
 				}
 			}
 		}
@@ -250,7 +250,8 @@ $(document).ready(function(){
                       message: '  <?php echo $lang['SETTINGS_C_MAX_NUM'];?>'
                     }
                 }
-            },
+            }
+			,
             old_companyinfo_document: {
                 validators: {
                     notEmpty: {

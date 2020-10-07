@@ -159,12 +159,17 @@
 							</li>';
 						?>	
 
-					<li class="nav-item">
-						<a class="nav-link" href="./reminders">
-							<i class="fas fa-bell"></i>
-							تذكيرات
-						</a>
-					</li>
+					<?php
+							echo '<li class="nav-item ';
+							if ($page_name == "add_reminders" || $page_name == "reminders") {
+								echo 'active';
+							}
+						echo'"><a class="nav-link" href="./add_reminders.php">
+									<i class="fas fa-bell"></i>
+									 '.$lang['Reminders'].'
+								</a>
+							</li>';
+					?>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" id="dropdown5" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">

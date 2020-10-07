@@ -316,6 +316,30 @@
         }else{return null;}
     }
 
+	function get_banks_credit_account($id)
+    {
+         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_credit` WHERE `banks_credit_bank_id` ='".$id."' LIMIT 1");
+        $queryTotal 		= $GLOBALS['db']->fetchrow();
+        $total 				= $queryTotal['total'];
+        return ($total);
+    }
+	
+	function get_banks_saving_account($id)
+    {
+         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_saving` WHERE `banks_saving_bank_id` ='".$id."' LIMIT 1");
+        $queryTotal 		= $GLOBALS['db']->fetchrow();
+        $total 				= $queryTotal['total'];
+        return ($total);
+    }
+
+	function get_banks_current_account($id)
+    {
+         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_current` WHERE `banks_current_bank_id` ='".$id."' LIMIT 1");
+        $queryTotal 		= $GLOBALS['db']->fetchrow();
+        $total 				= $queryTotal['total'];
+        return ($total);
+    }
+
 	
 
 

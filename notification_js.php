@@ -42,6 +42,20 @@
 					exit;
                 }
             break;
+			case"delete":
+                if($_POST)
+                {
+                    $id = intval($_POST['id']);
+                    $delete=$notifiactions -> delete_notification($id);
+					if($delete == 1)
+					{
+						echo 100;
+					}else{
+						echo 400;
+					}
+					exit;
+                }
+            break;
 
         }
 

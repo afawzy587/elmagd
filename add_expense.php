@@ -68,7 +68,7 @@
     include './assets/layout/header.php';
 
 ?>
-<?php include './assets/layout/navbar.php';?>
+<?php $footer = 'true'; include './assets/layout/navbar.php';?>
  <!-- page content -->
     <div class="container mainPageContainer">
 
@@ -419,17 +419,37 @@ $(document).ready(function () {
 
     });
 	
-		$('#banks').on('change','select.bank',function(){
-            if($(this.val() != "safe"){
+	$('#banks').on('change','select.bank',function(){
+		var type = $(this).val();
+            if(type != "safe"){
                 var expenses_account_type =$('#account_type').prop("disabled", false);
-                 $('#addInternalExpensesForm').formValidation('addField', expenses_account_type, {
+                $('#addInternalExpensesForm').formValidation('addField', expenses_account_type, {
                             validators: {
                                 notEmpty: {
                                     message: '<?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?>'
                                 }
                             }
                         })
-            }
+				var page = "bank_js.php?do=account";
+				if (type) {
+                    $.ajax({
+                        type: 'POST',
+                        url: page,
+                        data: {
+                            bank: type
+                        },
+                        success: function(html) {
+                            $('#account_type').html(html);
+                        }
+                    });
+                }
+            }else{
+				var expenses_bank_account_id =$('#bank_item').prop("disabled", true);
+				 var expenses_account_type =$('#account_type').prop("disabled", true);
+				$('#suppliersAccountsPaymentForm')
+                    .formValidation('removeField', expenses_bank_account_id)
+                    .formValidation('removeField', expenses_account_type)
+			}
 		});
 			
 	$('#type').on('change','select#account_type',function(){
@@ -463,7 +483,7 @@ $(document).ready(function () {
 					});
 			}	
 		});
-})
+});
 
 </SCRIPT>
 
