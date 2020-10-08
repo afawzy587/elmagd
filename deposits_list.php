@@ -164,14 +164,21 @@ include './assets/layout/header.php';
                         echo
                             ' </td>
                               <td class="text-center tableaprove" id="collect_' . $u['deposits_sn'] . '">';
-                        if ($u['deposits_insert_in'] == "bank"  && $u['deposits_type'] != "cash") {
-                            if ($u['deposits_collected'] == 1) {
+                        if ( $u['deposits_type'] != "cash") {
+                            if ($u['deposits_collected'] == 1 ) {
                                 // <i class= "fas fa-money-check-alt"></i>
                                 echo '<i class="fas fa-thumbs-up fa-w-16 fa-2x  text-success" title="' .  _date_format($u['deposits_collected_date']) . '" id="collect_' . $u['deposits_sn'] . '"></i>';
                             } else {
-                                echo '<i class="collect far fa-thumbs-down fa-w-16 fa-2x grab text-warning " title="' . $lang['DEPOSITS_COLLECT'] . '" id="collect_' . $u['deposits_sn'] . '"';
-                                echo  $u['deposits_approved'] != "1" ? 'style="display:none;"' : '';
-                                echo '></i>';
+								if($u['deposits_insert_in'] == "bank")
+								{
+									echo '<i class="collect far fa-thumbs-down fa-w-16 fa-2x grab text-warning " title="' . $lang['DEPOSITS_COLLECT'] . '" id="collect_' . $u['deposits_sn'] . '"';
+									echo  $u['deposits_approved'] != "1" ? 'style="display:none;"' : '';
+									echo '></i>';
+								}else{
+									echo '<i class="collect far fa-thumbs-down fa-w-16 fa-2x grab text-warning " title="' . $lang['DEPOSITS_COLLECT'] . '" id="collect_' . $u['deposits_sn'] . '"';
+									echo '></i>';
+								}
+
                             }
                         } else {
                             echo '-----';

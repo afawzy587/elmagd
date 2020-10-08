@@ -569,7 +569,9 @@ include './assets/layout/footer.php'; ?>
 
         $('#banks').on('change', 'select.bank', function() {
             var type = $(this).val();
-            if (type != "safe") {
+            if (type == "safe") {
+                var transfer_account_type = $('#account_type').prop("disabled", true);
+            } else {
                 var deposits_account_type = $('#account_type').prop("disabled", false);
                 $('#customersAccountsPaymentForm').formValidation('addField', deposits_account_type, {
                     validators: {

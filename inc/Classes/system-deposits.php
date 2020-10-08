@@ -260,34 +260,46 @@ class systemDeposits
         if ($queryTotal > 0) {
             $deposit = $GLOBALS['db']->fetchitem($query);
             $GLOBALS['db']->query("UPDATE `deposits` SET `deposits_collected`=1,`deposits_collected_date` = NOW() WHERE `deposits_sn` = '" . $id . "'");
-            if ($deposit['deposits_account_type'] == 'current' || $deposit['deposits_account_type'] == 'saving') {
+			if($deposit['deposits_insert_in'] == 'bank')
+			{
+				if ($deposit['deposits_account_type'] == 'current' || $deposit['deposits_account_type'] == 'saving') {
+					$account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $deposit['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $deposit['deposits_account_type'] . "' ");
 
-				$account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $deposit['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $deposit['deposits_account_type'] . "' ");
+					$siteaccount = $GLOBALS['db']->fetchitem($account_query);
 
-				$siteaccount = $GLOBALS['db']->fetchitem($account_query);
+					$banks_finance_credit =  $siteaccount['banks_finance_credit'] - $deposit['deposit_benefits'];
 
-                $banks_finance_credit =  $siteaccount['banks_finance_credit'] - $deposit['deposit_benefits'];
+					$banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] - $deposit['deposit_benefits'];
 
-                $banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] - $deposit['deposit_benefits'];
+					$account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET
+					 `banks_finance_credit`    = '" . $banks_finance_credit . "',
+					 `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
+					WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
+				} elseif ($deposit['deposits_account_type'] == 'credit') {
+					$account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $deposit['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $deposit['deposits_account_type'] . "' ");
 
-                $account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET 
-                 `banks_finance_credit`    = '" . $banks_finance_credit . "',
-                 `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
-                WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
-            } elseif ($deposit['deposits_account_type'] == 'credit') {
-                $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $deposit['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $deposit['deposits_account_type'] . "' ");
+					$siteaccount = $GLOBALS['db']->fetchitem($account_query);
 
-				$siteaccount = $GLOBALS['db']->fetchitem($account_query);
+					$banks_finance_credit =  $siteaccount['banks_finance_credit'] + ($deposit['deposits_value'] - ($deposit['deposit_benefits'] ));
 
-				$banks_finance_credit =  $siteaccount['banks_finance_credit'] + ($deposit['deposits_value'] - ($deposit['deposit_benefits'] ));
+					$banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] + ($deposit['deposits_value'] - ($deposit['deposit_benefits'] ));
 
-				$banks_total_with_benefits =  $siteaccount['banks_total_with_benefits'] + ($deposit['deposits_value'] - ($deposit['deposit_benefits'] ));
+					$account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET
+					 `banks_finance_credit`         = '" . $banks_finance_credit . "',
+					 `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
+					WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
+				}
+			}elseif($deposit['deposits_insert_in'] == 'safe'){
+				$company_query=$GLOBALS['db']->query("SELECT * FROM `settings_companyinfo` LIMIT 1");
+				$sitecompany = $GLOBALS['db']->fetchitem($company_query);
+				$cheque = $sitecompany['companyinfo_opening_balance_cheques'] - $deposit['deposits_value'];
+				$cash = $sitecompany['companyinfo_opening_balance_safe'] + $deposit['deposits_value'];
+				$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+				 `companyinfo_opening_balance_cheques`   =  '".$cheque."',
+				 `companyinfo_opening_balance_safe`   =  '".$cash."'
+				 WHERE `companyinfo_sn` = '".$sitecompany['companyinfo_sn']."'");
+			}
 
-				$account_query = $GLOBALS['db']->query("UPDATE `setiings_banks_finance` SET
-                 `banks_finance_credit`         = '" . $banks_finance_credit . "',
-                 `banks_total_with_benefits`    = '" . $banks_total_with_benefits . "'
-                WHERE `banks_finance_sn` = '" . $siteaccount['banks_finance_sn'] . "'");
-            }
             return 1;
         } else {
             return 0;

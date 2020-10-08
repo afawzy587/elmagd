@@ -156,58 +156,61 @@ class systemSettings_clients
 										$GLOBALS['db']->query("DELETE LOW_PRIORITY FROM `settings_clients_products` WHERE `clients_products_product_id` = '".$clients_products_id."' AND `clients_products_sn` = '".$clients_products."' LIMIT 1 ");
 									}
 								}
-								if(in_array($v,$Settings_clients['check']))
+								if(is_array($Settings_clients['check']))
 								{
-									$product_id = intval($v);
-									if($clients_products > 0)
+									if(in_array($v,$Settings_clients['check']))
 									{
-										for($i=0 ; $i < 6 ;$i++)
+										$product_id = intval($v);
+										if($clients_products > 0)
 										{
-
-
-											$rate_name  = sanitize($Settings_clients['clients_products_rate_'.$i.''][$k]);
-											$rate_sn  = sanitize($Settings_clients['clients_products_rate_sn_'.$i.''][$k]);
-
-											if($rate_name != "")
+											for($i=0 ; $i < 6 ;$i++)
 											{
+
+
+												$rate_name  = sanitize($Settings_clients['clients_products_rate_'.$i.''][$k]);
+												$rate_sn  = sanitize($Settings_clients['clients_products_rate_sn_'.$i.''][$k]);
+
+												if($rate_name != "")
+												{
+													if($rate_sn > 0)
+													{
+														if($rate_name !="")
+														{
+															$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_clients_products_rate` SET
+															  `clients_products_rate_name`               =       '".$rate_name."'
+															WHERE `clients_products_rate_sn`    	    = 	    '".$rate_sn."' LIMIT 1 ");
+														}
+													}else{
+														$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_clients_products_rate`
+														(`clients_products_rate_sn`, `clients_products_rate_product_id`, `clients_products_rate_name`, `clients_products_rate_status`)
+														VALUES( NULL ,'".$clients_products."','".$rate_name."',1)");
+													}
+
+											  }else{
 												if($rate_sn > 0)
 												{
-													if($rate_name !="")
-													{
-														$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_clients_products_rate` SET
-														  `clients_products_rate_name`               =       '".$rate_name."'
-														WHERE `clients_products_rate_sn`    	    = 	    '".$rate_sn."' LIMIT 1 ");
-													}
-												}else{
+													$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_clients_products_rate` SET
+															  `clients_products_rate_status`               =       '0'
+															WHERE `clients_products_rate_sn`    	    = 	    '".$rate_sn."' LIMIT 1 ");
+	//												$GLOBALS['db']->query("DELETE LOW_PRIORITY FROM `settings_clients_products_rate` WHERE `clients_products_rate_sn` = '".$rate_sn."'  LIMIT 1 ");
+												}
+											 }
+											}
+										}else
+										{
+											$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_clients_products`
+											(`clients_products_sn`, `clients_products_client_id`, `clients_products_product_id`)
+											VALUES( NULL ,'".$Settings_clients['clients_sn']."','".$product_id."')");
+											$rate_id = $GLOBALS['db']->fetchLastInsertId();
+											for($i=0 ; $i < 6 ;$i++)
+											{
+												$rate_name  = sanitize($Settings_clients['clients_products_rate_'.$i.''][$k]);
+												if($rate_name !== "")
+												{
 													$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_clients_products_rate`
 													(`clients_products_rate_sn`, `clients_products_rate_product_id`, `clients_products_rate_name`, `clients_products_rate_status`)
-													VALUES( NULL ,'".$clients_products."','".$rate_name."',1)");
+													VALUES( NULL ,'".$rate_id."','".$rate_name."',1)");
 												}
-
-										  }else{
-											if($rate_sn > 0)
-											{
-												$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_clients_products_rate` SET
-														  `clients_products_rate_status`               =       '0'
-														WHERE `clients_products_rate_sn`    	    = 	    '".$rate_sn."' LIMIT 1 ");
-//												$GLOBALS['db']->query("DELETE LOW_PRIORITY FROM `settings_clients_products_rate` WHERE `clients_products_rate_sn` = '".$rate_sn."'  LIMIT 1 ");
-											}
-										 }
-										}
-									}else
-									{
-										$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_clients_products`
-										(`clients_products_sn`, `clients_products_client_id`, `clients_products_product_id`)
-										VALUES( NULL ,'".$Settings_clients['clients_sn']."','".$product_id."')");
-										$rate_id = $GLOBALS['db']->fetchLastInsertId();
-										for($i=0 ; $i < 6 ;$i++)
-										{
-											$rate_name  = sanitize($Settings_clients['clients_products_rate_'.$i.''][$k]);
-											if($rate_name !== "")
-											{
-												$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `settings_clients_products_rate`
-												(`clients_products_rate_sn`, `clients_products_rate_product_id`, `clients_products_rate_name`, `clients_products_rate_status`)
-												VALUES( NULL ,'".$rate_id."','".$rate_name."',1)");
 											}
 										}
 									}
@@ -275,7 +278,8 @@ class systemSettings_clients
 							 $client_id = $GLOBALS['db']->fetchLastInsertId();
 							foreach($Settings_clients['product'] as $k => $v)
 							{
-								if(in_array($v,$Settings_clients['check']))
+
+								if(is_array($Settings_clients['check']) && in_array($v,$Settings_clients['check']))
 								{
 									
 									$product_id = intval($v);
