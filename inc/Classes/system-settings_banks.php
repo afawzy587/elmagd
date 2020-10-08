@@ -147,7 +147,6 @@ class systemSettings_banks
 			{
 				if($v>0)
 				{
-					echo
 					$GLOBALS['db']->query("UPDATE LOW_PRIORITY `settings_banks_credit` SET
 					`banks_credit_name`                   =       '".$Settings_banks['banks_credit_name'][$k]."',
 					`banks_credit_code`                   =       '".$Settings_banks['banks_credit_code'][$k]."',
@@ -175,14 +174,16 @@ class systemSettings_banks
 						`banks_credit_code`, `banks_credit_open_balance`, `banks_credit_repayment_period`, `banks_credit_repayment_type`, 
 						`banks_credit_interest_rate`, `banks_credit_duration_of_interest`, `banks_credit_limit_value`,
 						`banks_credit_cutting_ratio`, `banks_credit_client`, `banks_credit_product`) 
-						VALUES ( NULL ,'".$Settings_banks['banks_sn']."','".$Settings_banks['banks_credit_name'][$k]."'
+						VALUES
+						( NULL ,'".$Settings_banks['banks_sn']."','".$Settings_banks['banks_credit_name'][$k]."'
 						,'".$Settings_banks['banks_credit_code'][$k]."','".$Settings_banks['banks_credit_open_balance'][$k]."','".$Settings_banks['banks_credit_repayment_period'][$k]."','".$Settings_banks['banks_credit_repayment_type'][$k]."'
 						,'".$Settings_banks['banks_credit_interest_rate'][$k]."','".$Settings_banks['banks_credit_duration_of_interest'][$k]."','".$Settings_banks['banks_credit_limit_value'][$k]."'
 						,'".$Settings_banks['banks_credit_cutting_ratio'][$k]."','".$Settings_banks['banks_credit_client'][$k]."','".$Settings_banks['banks_credit_product'][$k]."')");
 						$credit_id = $GLOBALS['db']->fetchLastInsertId();
+						$banks_finance_open_balance = $Settings_banks['banks_credit_limit_value'][$k] - $Settings_banks['banks_credit_open_balance'][$k];
 						$GLOBALS['db']->query("INSERT LOW_PRIORITY INTO `setiings_banks_finance`
 						(`banks_finance_sn`, `banks_finance_bank_id`, `banks_finance_account_type`, `banks_finance_account_id`, `banks_finance_open_balance`, `banks_finance_status`)
-						VALUES ( NULL ,'".$bank_id."','credit','".$credit_id."','".$Settings_banks['banks_current_opening_balance']."',1)");
+						VALUES ( NULL ,'".$bank_id."','credit','".$credit_id."','".$banks_finance_open_balance."',1)");
 
 					}
 				}
@@ -408,15 +409,28 @@ class systemSettings_banks
 			}
 		}else{
 			if($data['account_type'] == 'credit'){
-				$account_query=$GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$data['bank']."' AND `banks_finance_account_type` = '".$data['account_type']."' AND `banks_finance_account_id` = '" . $Deposits['acount_id'] . "' ");
-                $siteaccount = $GLOBALS['db']->fetchitem($account_query);
-                $value =  $siteaccount['banks_total_with_benefits'];
-				if($value > 0)
-				{
-					$value;
-				}else{
-					$value = 0;
+				$account_query= $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$data['bank']."' AND `banks_finance_account_type` = '".$data['account_type']."' AND `banks_finance_account_id` = '" . $data['account_id'] . "' ");
+                $siteaccount  = $GLOBALS['db']->fetchitem($account_query);
+				$credit_query = $GLOBALS['db']->query("SELECT * FROM `settings_banks_credit` WHERE  `banks_credit_sn` = '" . $data['account_id'] . "' ");
+                $credit       = $GLOBALS['db']->fetchitem($credit_query);
+				if($credit['banks_credit_repayment_type'] == "date"){
+					$value =  $siteaccount['banks_total_with_benefits'];
+					if($value > 0)
+					{
+						$value;
+					}else{
+						$value = 0;
+					}
+				}elseif($credit['banks_credit_repayment_type'] == "day"){
+					$value =  $siteaccount['banks_finance_open_balance'] + $siteaccount['banks_total_with_benefits'];
+					if($value > 0)
+					{
+						$value;
+					}else{
+						$value = 0;
+					}
 				}
+
 			}elseif($data['account_type'] == 'current' || $data['account_type'] == 'saving'){
 				$account_query=$GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '".$data['bank']."' AND `banks_finance_account_type` = '".$data['account_type']."' ");
                 $siteaccount = $GLOBALS['db']->fetchitem($account_query);

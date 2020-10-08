@@ -874,15 +874,11 @@ include './assets/layout/footer.php'; ?>
 						account_id: account_id
 					},
 					success: function(responce) {
-						console.log(responce);
 						valitate_transfer_value(responce);
 					}
 				});
 			}
-			console.log("bank:"+bank);
-			console.log("account_type:"+account_type);
-			console.log("account_id:"+account_id);
-			console.log("transfer_type:"+transfer_type);
+
 		});
 		function valitate_transfer_value(max_value){
 			var transfer_value = $('#transfer_value');

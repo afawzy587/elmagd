@@ -194,7 +194,7 @@ class systemDeposits
 
         if ($Deposits['deposits_type'] == "cheque") {
 
-            $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($Deposits['expenses_cheque_date'])));
+            $reminders_remember_date  = date('Y-m-d', strtotime('-7days', strtotime($Deposits['deposits_cheque_date'])));
             $GLOBALS['db']->query("INSERT INTO `reminders`
 			(`reminders_sn`, `reminders_type`, `reminders_type_id`, `reminders_date`, `reminders_type_reminder`, `reminders_number_reminder`, `reminders_remember_date`, `reminders_notification_date`, `reminders_status`)
 			VALUES
