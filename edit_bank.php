@@ -168,7 +168,6 @@
                                                         <div class="col-xs-5">
                                                             <input type="text" class="form-control" name="banks_credit_name[0]" value="<?php if($_bank){echo $_bank['banks_credit_name'][0];}else{echo $u['banks_credit'][0]['banks_credit_name'];}?>"
                                                                 placeholder="<?php echo $lang['SETTINGS_BAN_CREDIT_NAME_1'];?>">
-                                                                
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,7 +281,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[0]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_client'][0] == 0){echo 'selected';}}else{if($u['banks_credit'][0]['banks_credit_client'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -303,7 +302,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[0]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_product'][0] == 0){echo 'selected';}}else{if($u['banks_credit'][0]['banks_credit_product'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -445,7 +444,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[1]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_client'][1] == 0){echo 'selected';}}else{if($u['banks_credit'][1]['banks_credit_client'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -466,7 +465,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[1]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_product'][1] == 0){echo 'selected';}}else{if($u['banks_credit'][1]['banks_credit_product'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -608,7 +607,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[2]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_client'][2] == 0){echo 'selected';}}else{if($u['banks_credit'][2]['banks_credit_client'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -629,7 +628,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[2]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_product'][2] == 0){echo 'selected';}}else{if($u['banks_credit'][2]['banks_credit_product'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -771,7 +770,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[3]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_client'][3] == 0){echo 'selected';}}else{if($u['banks_credit'][3]['banks_credit_client'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -792,7 +791,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[3]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_product'][3] == 0){echo 'selected';}}else{if($u['banks_credit'][3]['banks_credit_product'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -937,7 +936,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[4]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_client'][4] == 0){echo 'selected';}}else{if($u['banks_credit'][4]['banks_credit_client'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -958,7 +957,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[4]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option value="0" <?php if($_bank){if($_bank['banks_credit_product'][4] == 0){echo 'selected';}}else{if($u['banks_credit'][4]['banks_credit_product'] == 0 ){echo 'selected';}}?>> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{

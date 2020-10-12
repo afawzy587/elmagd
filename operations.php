@@ -24,10 +24,10 @@
 		{
 			
 			$q = $_GET['q'];
-			if($q != ""){
-				$paginationDialm = 'true';
-				$search= "?q=".$q;
-			 }
+//			if($q != ""){
+//				$paginationDialm = 'true';
+//				$search= "?q=".$q;
+//			 }
 //			include("./inc/Classes/pager.class.php");
 //			$page;
 //			$pager       = new pager();

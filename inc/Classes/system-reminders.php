@@ -5,7 +5,7 @@ if(!isset($_SESSION))
     } 
 class systemReminders
 {
-	var $tableName 	= "Reminders";
+	var $tableName 	= "reminders";
 
 	function getsiteReminders($addon = "",$q="")
 	{
@@ -15,7 +15,7 @@ class systemReminders
 		}else{
 			$search = "";
 		}
-		$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `reminders_status` != '0' ".$search." ORDER BY `reminders_sn`  DESC ".$addon);
+		$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `reminders_status` != '0' ".$search." ORDER BY `reminders_sn`  DESC LIMIT 50;");
         $queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
         {
@@ -48,7 +48,7 @@ class systemReminders
             return array(
                 "reminders_sn"			                   => 		 $sitegroup['reminders_sn'],
                 "title"			                           => 		 $sitegroup['title'],
-                "reminders_date"                    =>          $sitegroup['reminders_date'],
+                "reminders_date"                           =>          $sitegroup['reminders_date'],
             	"reminders_status"                         =>          $sitegroup['reminders_status']
             );
         }else{return null;}

@@ -45,7 +45,7 @@
 						</a>
 
 						<div class="dropdown-menu userDropdown" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#"> <?php echo $lang['PROFILE_PAGE'];?></a>
+<!--							<a class="dropdown-item" href="#"> <?php echo $lang['PROFILE_PAGE'];?></a>-->
 							<a class="dropdown-item" href="./login.php?do=logout"><?php echo $lang['LGUT_SUBMIT'];?></a>
 						</div>
 					</span>

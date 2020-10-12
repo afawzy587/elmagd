@@ -26,6 +26,7 @@
 			if($_GET)
 			{
 				$supplier = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
+				$Supplier_Paid = $suppliers_collectible->Get_Supplier_Paid(intval($_GET['supplier']));
 
 				$result   = $suppliers_collectible->GetSearchResult($_GET);
 			}else{
@@ -125,6 +126,19 @@
 							$paid   += $u['paid'];
 							$remain += $u['remain'];
 						}
+						if(is_array($Supplier_Paid))
+						{
+							foreach($Supplier_Paid as $k => $v){
+								echo'<tr>
+								<td>'. _date_format($v['collectible_date']).'</td>
+								<td colspan="5">'.$lang['P_S_LATER'].'</td>
+								<td>'.number_format($v['collectible_value']).'</td>
+								<td colspan="2">'.$lang['P_S_RECIPIENT'].' : '.$v['collectible_recipient'].'</td>
+							</tr>';
+								$paid +=$v['collectible_value'];
+							}
+						}
+
 						echo'<tr>
 								<td class="emptyTD"></td>
 								<td class="emptyTD"></td>
@@ -133,7 +147,7 @@
 								<td class="emptyTD"></td>
 								<td>'.number_format($total).'</td>
 								<td>'.number_format($paid).'</td>
-								<td>'.number_format($remain).'</td>
+								<td>'.number_format(($total-$paid)).'</td>
 								<td class="emptyTD"></td>
 
 							</tr>';

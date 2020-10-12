@@ -187,6 +187,8 @@
                   	 		<div class="row">
 								<?php
 									group_check('settings_user_group',$u['settings_user_group']);
+									group_check('reminders',$u['reminders']);
+									group_check('delete_deposits',$u['delete_deposits']);
 								?>
 							</div>
                    	 </div>

@@ -738,8 +738,8 @@ $lang['GROUP_deposit_check']           =   " امكانية الايداع فى 
 $lang['GROUP_bank_transfer']           =   " التحكم فى تحويلات البنوك";
 $lang['GROUP_supplier_payment']        =   "محاسبة الموردين";
 $lang['GROUP_settings_user_group']     =   "التحكم فى صلاحيات النظام ";
-$lang['GROUP_']              =   " ";
-$lang['GROUP_']              =   " ";
+$lang['GROUP_reminders']               =   " التحكم فى التذكيرات";
+$lang['GROUP_delete_deposits']         =   "التحكم فى حذف الايداع ";
 
 /**********************************************/
 $lang['CARD_REPEATED']                =   "رقم الكارت مسجل سابقا";

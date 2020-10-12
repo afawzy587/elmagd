@@ -123,9 +123,9 @@
 																<td>'.number_format($o['operations_quantity']).'</td>
 																<td>'.number_format($o['operations_general_discount']).'</td>
 																<td>'.number_format($o['operations_net_quantity']).'</td>
-																<td>'.number_format($o['operations_supplier_price']).'</td>
-																<td>'.number_format($o['operations_supplier_paid']).'</td>
-																<td>'.number_format($o['operations_supplier_remain']).'</td>
+																<td>'.number_format($o['operations_customer_price']).'</td>
+																<td>'.number_format($o['operations_customer_paid']).'</td>
+																<td>'.number_format($o['operations_customer_remain']).'</td>
 															</tr>
 														</tbody>
 													</table>
@@ -160,8 +160,8 @@
 																    <td>'.$p['rates_product_rate_excuse_quantity'].'</td>
 																    <td>'.$p['rates_product_rate_quantity'].'</td>
 																    <td>'.$p['rates_product_rate_excuse_price'].'</td>
-																    <td>'.$p['rates_product_rate_supply_price'].'</td>
-																    <td>'.round((($p['rates_supplier_discount_percentage']/100)*$p['rates_product_rate_supply_price'])+$p['rates_product_rate_supply_price'],2).'</td>
+																    <td>'.$p['rates_product_rate_customer_price'].'</td>
+																    <td>'.round((($p['rates_customer_discount_percentage']/100)*$p['rates_product_rate_customer_price'])+$p['rates_product_rate_customer_price'],2).'</td>
 															     </tr>';
                                                         }
 															
@@ -172,9 +172,9 @@
 											<div class="lightDivider"></div>
 									';
 			  $operations_net_quantity    += $o['operations_net_quantity'];
-			  $operations_supplier_price   += $o['operations_supplier_price'];
-			  $operations_supplier_paid   += $o['operations_supplier_paid'];
-			  $operations_supplier_remain += $o['operations_supplier_remain'];
+			  $operations_supplier_price   += $o['operations_customer_price'];
+			  $operations_supplier_paid   += $o['operations_customer_paid'];
+			  $operations_supplier_remain += $o['operations_customer_remain'];
 		  }
 		echo '
 				<div class="row">

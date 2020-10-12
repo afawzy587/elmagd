@@ -78,6 +78,7 @@
 		"client_payment"                      =>          1,
 		"settings_user_group"                 =>          1,
 		"reminders"                           =>          1,
+		"delete_deposits"                     =>          1,
 
 
 			);
@@ -111,6 +112,7 @@
 			"supplier_payment"                   =>          $sitegroup['supplier_payment'],
 			"settings_user_group"                =>          $sitegroup['settings_user_group'],
 			"reminders"                          =>          $sitegroup['reminders'],
+			"delete_deposits"                    =>          $sitegroup['delete_deposits'],
 
 				);
 

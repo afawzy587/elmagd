@@ -101,8 +101,12 @@ include './assets/layout/header.php';
                                 <th>' . $lang['SETTINGS_C_F_M_PRODUCT'] . '</th>
                                 <th>' . $lang['BANKS_CUT_VALUE'] . '</th>
                                 <th style="width: 2rem;">' . $lang['DEPOSITS_BANK_APPROVE'] . '</th>
-                                <th style="width: 2rem;">' . $lang['DEPOSITS_COLLECTED'] . '</th>
-                             </tr>
+                                <th style="width: 2rem;">' . $lang['DEPOSITS_COLLECTED'] . '</th>';
+								if($group['delete_deposits'] == 1)
+								{
+								  echo '<th style="width: 2rem;">'.$lang['SETTINGS_ACTION'].'</th>';
+								}
+						echo'</tr>
 						</thead>
 						<tbody>';
                     foreach ($deposits as $k => $u) {
@@ -183,9 +187,14 @@ include './assets/layout/header.php';
                         } else {
                             echo '-----';
                         }
-                        echo ' </td>';
-                        echo ' </td>
-							</tr>';
+                        echo ' </td></td>';
+						if($group['delete_deposits'] == 1)
+						{
+							echo'<td class="text-center tableaprove">
+									<i class="delete_depoists fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$u['deposits_sn'].'"></i>
+								</td>';
+						}
+                        echo '</tr>';
                     }
                     echo '</tbody>';
                 } ?>
@@ -284,7 +293,6 @@ include './assets/layout/footer.php';
         }
     })
 
-
     $('.collect').click(function() {
         var id = $(this).attr('id').replace("collect_", "");
         var page = "bank_js.php?do=collect";
@@ -325,4 +333,33 @@ include './assets/layout/footer.php';
             });
         }
     })
+
+	$('i.delete_depoists').click(function(e){
+        e.preventDefault();
+		var id               = $(this).attr('id').replace("item_","");
+        var page             = "bank_js.php?do=delete_deposit";
+		if (id != 0)
+		{
+			$.ajax( {
+				async :true,
+				type :"POST",
+				url :page,
+				data: {id:id},
+				success : function(responce) {
+                    if(responce == 100)
+                     {
+							$("#tr_"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("#tr_"+id).animate({width: 'auto', opacity: '0.9'}, "slow");
+							$("#tr_"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+                            $("#tr_"+id).animate({width: 'auto', opacity: '1'}, "slow");
+//                            $("#td_"+id).html('<span class="rose"><?php echo $lang['DELETE_DONE'];?></span>');
+							 $("#tr_"+id).fadeTo(400, 0, function () { $("#tr_" + id).slideUp(400);});
+                      }
+				},
+				error : function() {
+					return true;
+				}
+			});
+		}
+	});
 </SCRIPT>

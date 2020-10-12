@@ -316,6 +316,7 @@
         }else{return null;}
     }
 
+
 	function get_banks_credit_account($id)
     {
          $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_credit` WHERE `banks_credit_bank_id` ='".$id."' LIMIT 1");

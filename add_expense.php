@@ -121,14 +121,14 @@
                                     <div class="col-xs-5  d-flex space_between">
                                         <!-- <div class="form-group"> -->
                                         <div class="form-check radioBtn d-inline-block">
-                                            <input class="form-check-input" type="radio" name="expenses_type"
+                                            <input class="max_value form-check-input" type="radio" name="expenses_type"
                                                 id="cashPaymentMethod" value="cash" >
                                             <label class="form-check-label" for="cashPaymentMethod">
                                                 <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH'];?>
                                             </label>
                                         </div>
                                         <div class="form-check radioBtn d-inline-block">
-                                            <input class="form-check-input" type="radio" name="expenses_type"
+                                            <input class="max_value form-check-input" type="radio" name="expenses_type"
                                                 id="checkPaymentMethod" value="cheque" checked>
                                             <label class="form-check-label " for="checkPaymentMethod">
                                                 <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE'];?>
@@ -140,15 +140,16 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-5">
+                           <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY'];?></label>
+                                    <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM'];?></label>
                                     <div class="col-xs-5">
-                                        <input type="text" class="form-control" name="expenses_amount" placeholder="0">
+                                        <input type="text" class="form-control" name="expenses_cheque_sn" id="check_number"
+                                            placeholder="----">
                                     </div>
                                 </div>
-
                             </div>
+
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_PAYMENT_DATE_CHEQUE'];?></label>
@@ -161,19 +162,10 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
-                                    <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE_NUM'];?></label>
-                                    <div class="col-xs-5">
-                                        <input type="text" class="form-control" name="expenses_cheque_sn" id="check_number"
-                                            placeholder="0">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
                                     <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_ADD_TO'];?></label>
                                     <div class="col-xs-5">
                                         <div class="select" id="banks">
-                                            <select name="expenses_bank_id" class="bank form-control">
+                                            <select name="expenses_bank_id" id="bank_id" class="bank max_value form-control">
                                                  <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK'];?></option>
                                                  <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                                 <?php 
@@ -191,14 +183,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE'];?></label>
                                     <div class="col-xs-5 ">
                                         <div class="select" id="type">
-                                            <select name="expenses_bank_account_type" class="form-control" id="account_type" disabled>
+                                            <select name="expenses_bank_account_type" class="max_value form-control" id="account_type" disabled>
                                                 <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_BANK_FIRST'];?></option>
                                                 <option value="credit"><?php echo $lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU'];?></option>
                                                 <option value="saving"><?php echo $lang['SETTINGS_BAN_SAVE'];?></option>
@@ -208,17 +198,28 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_ACCOUNT_T'];?></label>
                                     <div class="col-xs-5 ">
                                         <div class="select">
-                                            <select name="expenses_bank_account_id" class="form-control" id="bank_item" disabled>
+                                            <select name="expenses_bank_account_id" class="max_value form-control" id="bank_item" disabled>
 												<option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST'];?></option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY'];?></label>
+                                    <div class="col-xs-5">
+                                        <input type="text" class="form-control" id="expenses_amount" name="expenses_amount" placeholder="----">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">
@@ -483,6 +484,55 @@ $(document).ready(function () {
 					});
 			}	
 		});
+
+	$('#addInternalExpensesForm').on('change', '.max_value', function() {
+			var bank            = $('#bank_id').val();
+			var account_type    = $('#account_type').val();
+			var account_id      = $('#bank_item').val();
+			var transfer_type   = $('input[name="expenses_type"]:checked').val();
+//		console.log("bank:"+bank);
+//		console.log("account_type:"+account_type);
+//		console.log("account_id:"+account_id);
+//		console.log("transfer_type:"+transfer_type);
+			var page = "bank_js.php?do=max_value";
+			if (bank && transfer_type) {
+				$.ajax({
+					type: 'POST',
+					url: page,
+					data: {
+						bank: bank,
+						transfer_type: transfer_type,
+						account_type: account_type,
+						account_id: account_id
+					},
+					success: function(responce) {
+//						console.log(responce);
+						valitate_transfer_value(responce);
+					}
+				});
+			}
+
+		});
+		function valitate_transfer_value(max_value){
+			var transfer_value = $('#expenses_amount');
+			$('#addInternalExpensesForm').formValidation('addField', transfer_value, {
+                            validators: {
+								notEmpty: {
+										message: ' <?php echo $lang['SETTINGS_C_F_INSERT_VALUE'];?> '
+									},
+								regexp: {
+										regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+										message: '  <?php echo $lang['SETTINGS_C_MAX_NUM'];?>'
+									},
+								between: {
+									min: 1,
+									max: max_value,
+									message: '<?php echo $lang['VALUE_LESS_THAN']; ?> ' +max_value+ '<?php echo $lang['VALUE_GREATER_THAN']; ?>' + 0 ,
+
+								}
+                            }
+                        })
+		}
 });
 
 </SCRIPT>

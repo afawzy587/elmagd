@@ -272,7 +272,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[0]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -293,7 +293,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[0]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -435,7 +435,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[1]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -456,7 +456,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[1]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -599,7 +599,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[2]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -620,7 +620,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[2]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -763,7 +763,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[3]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -784,7 +784,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[3]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{
@@ -926,7 +926,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_client[4]" class="form-control" id="banks_credit_client">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?></option>
                                                                     <?php
 																		if($clients)
 																		{
@@ -947,7 +947,7 @@
                                                         <div class="col-xs-5">
                                                             <div class="select">
                                                                 <select name="banks_credit_product[4]" class="form-control" id="slct">
-                                                                    <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
+                                                                    <option selected > <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?></option>
                                                                     <?php
 																		if($products)
 																		{

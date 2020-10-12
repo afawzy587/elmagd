@@ -13,7 +13,7 @@ class systemnotifications
         $query1 = $GLOBALS['db']->query("SELECT * FROM `reminders` WHERE `reminders_notification_date` <= '".$date."' AND `reminders_status` = '1'");
         $unseen_notification = $GLOBALS['db']->resultcount();
 
-		$query2 = $GLOBALS['db']->query("SELECT * FROM `reminders` WHERE `reminders_notification_date` <= '".$date."' AND `reminders_status` != '0'");
+		$query2 = $GLOBALS['db']->query("SELECT * FROM `reminders` WHERE `reminders_notification_date` <= '".$date."' AND `reminders_status` != '0' ORDER BY `reminders_sn` DESC ");
         $queryTotal = $GLOBALS['db']->resultcount();
 		$reminders = $GLOBALS['db']->fetchlist();
 		if(is_array($reminders))

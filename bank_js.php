@@ -187,6 +187,20 @@
 				echo floatval($value);
 				exit;
 			}
+		case"delete_deposit":
+			if($_POST)
+			{
+				$id      = sanitize($_POST['id']);
+				$delete  = $deposit->Delete_deposits($id);
+				if($delete == 1)
+				{
+					echo 100;
+					exit;
+				}else{
+					echo 400;
+					exit;
+				}
+			}
 		}
     }
 
