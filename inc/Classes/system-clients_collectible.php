@@ -68,8 +68,8 @@ class systemClients_collectible
 	public function Getcolection_details($search)
 	{
 		$product_id   = intval($search['product']);
-		$serial_from  = sanitize($search['serial_from']);
-		$serial_to    = sanitize($search['serial_to']);
+		$serial_from  = sanitize($search['start']);
+		$serial_to    = sanitize($search['end']);
 		
 		$product      = $product_id > 0 ? " `operations_product` = '".$product_id."'" : "";
 		$serial_from  = $serial_from ? " AND `operations_receipt` >= '".$serial_from."'" : "";

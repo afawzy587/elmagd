@@ -70,13 +70,14 @@ class systemSuppliers_collectible
 	public function Getcolection_details($search)
 	{
 		$product_id   = intval($search['product']);
-		$serial_from  = sanitize($search['serial_from']);
-		$serial_to    = sanitize($search['serial_to']);
+		$serial_from  = sanitize($search['start']);
+		$serial_to    = sanitize($search['end']);
 
 		$product      = $product_id > 0 ? " `operations_product` = '".$product_id."'" : "";
 		$serial_from  = $serial_from ? " AND `operations_receipt` >= '".$serial_from."'" : "";
 		$serial_to    = $serial_to ? " AND `operations_receipt`<= '".$serial_to."'" : "";
-
+        echo "SELECT *  FROM `operations` WHERE
+		".$product.$serial_from.$serial_to." AND `operations_status` != '0'";
 		$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE
 		".$product.$serial_from.$serial_to." AND `operations_status` != '0'");
 		$queryTotal = $GLOBALS['db']->resultcount();
@@ -227,7 +228,7 @@ class systemSuppliers_collectible
 				$new = $sitebank['banks_finance_credit'] - $_collectible['collectible_value'];
 				$banks_total_with_benefits = $sitebank['banks_total_with_benefits'] - $_collectible['collectible_value'];
 				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `setiings_banks_finance` SET
-				`banks_finance_credit`		     =	'".$new."'
+				`banks_finance_credit`		     =	'".$new."',
 				`banks_total_with_benefits`		     =	'".$banks_total_with_benefits."'
 				WHERE `banks_finance_sn` 		 = 	'".$sitebank['banks_finance_sn']."' LIMIT 1 ");
 			}

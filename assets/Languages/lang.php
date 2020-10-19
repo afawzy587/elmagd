@@ -581,7 +581,7 @@ $lang['OPERATIONS_NUMBER']                =    "رقم العملية";
 $lang['OPERATIONS_CARD_SERIAL']           =    "رقم الكارت";
 $lang['OPERATIONS_SUPLLY_TOTAL']          =    "اجمالى المورد( ج م)";
 $lang['OPERATIONS_LIST']                  =    "قائمة العمليات (نتائج بحث)";
-$lang['OPERATIONS_']                      =    " ";
+$lang['OPERATIONS_CAN_DELETE']            =    "لا يمكن حذفها";
 $lang['OPERATIONS_']                      =    " ";
 $lang['OPERATIONS_']                      =    " ";
 

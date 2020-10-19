@@ -90,7 +90,7 @@
 					</li>';
 						?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "supplier_search" || $page_name == "add_suppliers_payment" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "supplier_search" || $page_name == "add_suppliers_payment" || $page_name == "supplier_search_detalis"|| $page_name == "supplier_search_result" ){echo 'active';}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-user-friends"></i>
