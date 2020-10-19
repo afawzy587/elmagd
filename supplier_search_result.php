@@ -84,10 +84,10 @@
 
                 <table class="table table-fluid " id="departmentTable">
                    <?php
-					if($result[0]['operations_customer'] == 0)
-					{
-						echo "<tr><th colspan=\"5\">".$lang['SETTINGS_NO_ITEMS']."</th></tr>";
-					}else{
+//					if($result[0]['operations_customer'] == 0)
+//					{
+//						echo "<tr><th colspan=\"5\">".$lang['SETTINGS_NO_ITEMS']."</th></tr>";
+//					}else{
 						echo '
 						<thead>
 							<tr>
@@ -103,28 +103,31 @@
 							</tr>
 						</thead>
 						<tbody>';
-						foreach($result as $k => $u)
+						if(is_array($result))
 						{
-						 echo'<tr>
-								<td>'.$lang['FROM'].' : '. _date_format($u['start_date']).'<br/>'.
-							 	$lang['TO'].' : '. _date_format($u['end_date'])
-							 	.'</td>
-								<td>'.get_data('settings_clients','clients_name','clients_sn',$u['operations_customer']).'</td>
-								<td>'.get_data('settings_products','products_name','products_sn',$u['operations_product']).'</td>
-								<td>'.$u['start'].'</td>
-								<td>'.$u['end'].'</td>
-								<td>'.number_format($u['total']).'</td>
-								<td>'.number_format($u['paid']).'</td>
-								<td>'.number_format($u['remain']).'</td>
-								<td class="text-center tableaprove">
-									<a href="./supplier_search_detalis.php?product='.$u['operations_product'].'&start='.$u['start'].'&end='.$u['end'].'" class="mr-2">
-										<i class="fas fa-eye  dark_blue"></i>
-									</a>
-								</td>
-							</tr>';
-							$total  += $u['total'];
-							$paid   += $u['paid'];
-							$remain += $u['remain'];
+							foreach($result as $k => $u)
+							{
+							 echo'<tr>
+									<td>'.$lang['FROM'].' : '. _date_format($u['start_date']).'<br/>'.
+									$lang['TO'].' : '. _date_format($u['end_date'])
+									.'</td>
+									<td>'.get_data('settings_clients','clients_name','clients_sn',$u['operations_customer']).'</td>
+									<td>'.get_data('settings_products','products_name','products_sn',$u['operations_product']).'</td>
+									<td>'.$u['start'].'</td>
+									<td>'.$u['end'].'</td>
+									<td>'.number_format($u['total']).'</td>
+									<td>'.number_format($u['paid']).'</td>
+									<td>'.number_format($u['remain']).'</td>
+									<td class="text-center tableaprove">
+										<a href="./supplier_search_detalis.php?product='.$u['operations_product'].'&start='.$u['start'].'&end='.$u['end'].'" class="mr-2">
+											<i class="fas fa-eye  dark_blue"></i>
+										</a>
+									</td>
+								</tr>';
+								$total  += $u['total'];
+								$paid   += $u['paid'];
+								$remain += $u['remain'];
+							}
 						}
 						if(is_array($Supplier_Paid))
 						{
@@ -152,7 +155,8 @@
 
 							</tr>';
 						echo '</tbody>';
-					}?>
+//					}
+					?>
                 </table>
 				<!--		Start Pagination -->
 <!--

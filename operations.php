@@ -124,7 +124,7 @@
 								<td>'.$u['operations_card_number'].'</td>
 								<td>'.$u['operations_supplier_price'].'</td>
                                 <td class="text-center tableActions" id="td_'.$u['operations_sn'].'">';
-                                    if($u['operations_status'] == 1)
+                                    if($u['operations_status'] == 1 && ($u['operations_customer_paid'] != 0 || $u['operations_supplier_paid'] != 0))
                                     {
 									  echo'<i class="delete_operation fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$u['operations_sn'].'"></i>';
                                     }else{
