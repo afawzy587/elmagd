@@ -29,6 +29,7 @@ if ($login->doCheck() == false) {
         $banks_finance = $setting_bank->get_banks_finance_details();
         $banks         = $setting_bank->getaccountsSettings_banks();
         $clients       = $setting_client->getsiteSettings_clients();
+		$collect = intval($_GET['collect']);
         if ($_POST) {
             $_deposit['deposits_date']                     =       sanitize($_POST["deposits_date"]);
             $_deposit['deposits_type']                     =       sanitize($_POST["deposits_type"]);
@@ -57,7 +58,13 @@ if ($login->doCheck() == false) {
                         "id" 	        	=>	$_SESSION['id'],
                     ),"admin",$_SESSION['id'],1
                     );
-                     header("Location:./deposits.php?action=add");
+				if($collect > 0)
+				{
+					header("Location:".$_SESSION['page']);
+				}else{
+					header("Location:./deposits.php?action=add");
+				}
+                     
                     
                     exit;
             }
@@ -270,7 +277,8 @@ include './assets/layout/header.php';
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
                                 <div class="col-xs-5">
-                                    <input type="text" class="deposits_cut_precent  form-control" name="deposits_value" id="deposits_value" placeholder="------">
+                                    <input type="text" class="deposits_cut_precent  form-control" name="deposits_value" id="deposits_value" placeholder="------"
+                                    <?php if($collect > 0 ){ echo 'value="'.get_collect_value($collect).'" readonly';}?>>
                                 </div>
                             </div>
                         </div>
@@ -571,6 +579,9 @@ include './assets/layout/footer.php'; ?>
             var type = $(this).val();
             if (type == "safe") {
                 var transfer_account_type = $('#account_type').prop("disabled", true);
+                var deposits_account_id = $('#deposits_account_id').prop("disabled", true);
+				 deposits_account_id.parent().siblings('.help-block').hide();
+                $('#customersAccountsPaymentForm').formValidation('removeField', deposits_account_id)
             } else {
                 var deposits_account_type = $('#account_type').prop("disabled", false);
                 $('#customersAccountsPaymentForm').formValidation('addField', deposits_account_type, {
@@ -600,12 +611,12 @@ include './assets/layout/footer.php'; ?>
         $('#type').on('change', 'select#account_type', function() {
             var type = $(this).val();
             var id = $('select.bank').val();
-            if (type == 'credit') {
-                var deposits_account_id = $('#deposits_account_id').prop("disabled", false)
+            if (type != 'credit') {
+                var deposits_account_id = $('#deposits_account_id').prop("disabled", true)
                 deposits_account_id.parent().siblings('.help-block').hide();
                 $('#customersAccountsPaymentForm').formValidation('removeField', deposits_account_id)
             } else {
-                var deposits_account_id = $('#deposits_account_id').prop("disabled", true)
+                var deposits_account_id = $('#deposits_account_id').prop("disabled", false)
                 $('#customersAccountsPaymentForm').formValidation('addField', deposits_account_id, {
                     validators: {
                         notEmpty: {

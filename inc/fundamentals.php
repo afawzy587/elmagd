@@ -79,6 +79,8 @@
 		"settings_user_group"                 =>          1,
 		"reminders"                           =>          1,
 		"delete_deposits"                     =>          1,
+		"colect_return"                        =>          1,
+		"colected_search"                        =>          1,
 
 
 			);
@@ -113,6 +115,8 @@
 			"settings_user_group"                =>          $sitegroup['settings_user_group'],
 			"reminders"                          =>          $sitegroup['reminders'],
 			"delete_deposits"                    =>          $sitegroup['delete_deposits'],
+			"colect_return"                      =>          $sitegroup['colect_return'],
+			"colected_search"                      =>          $sitegroup['colected_search'],
 
 				);
 

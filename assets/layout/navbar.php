@@ -90,7 +90,7 @@
 					</li>';
 						?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "supplier_search" || $page_name == "add_suppliers_payment" || $page_name == "supplier_search_detalis"|| $page_name == "supplier_search_result" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "supplier_collected" ||$page_name == "supplier_search" || $page_name == "add_suppliers_payment" || $page_name == "supplier_search_detalis"|| $page_name == "supplier_search_result" ){echo 'active';}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-user-friends"></i>
@@ -98,6 +98,7 @@
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown2">
 							<li class="dropdown-item" href="./supplier_search.php"><a>'.$lang['SETTINGS_C_F_SUPPLIERS_FINANCE'].'</a></li>
+							<li class="dropdown-item" href="./collected_search.php"><a>'.$lang['SETTINGS_C_F_COLLECTED'].'</a></li>
 						</ul>
 					</li>';?>
 					<?php

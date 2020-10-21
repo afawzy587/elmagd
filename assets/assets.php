@@ -296,7 +296,7 @@
 		}
 	}
 
-   function group_check($id,$value)
+   	function group_check($id,$value)
 	{
 		echo '<div class="col-md-4">
 				<input class="customized-checkbox" id="'.$id.'" type="checkbox" name="'.$id.'" value="1"';if($value == 1){echo 'checked';} echo'>
@@ -340,6 +340,70 @@
         $total 				= $queryTotal['total'];
         return ($total);
     }
+
+	function get_supplier_collect_value($id)
+	{
+		$query = $GLOBALS['db']->query(" SELECT * FROM `suppliers_collectible` WHERE `collectible_sn` =  '".$id."' AND `collectible_status` != '0'  LIMIT 1");
+		$queryCount = $GLOBALS['db']->resultcount();
+		if($queryCount == 1)
+		{
+			$_data = $GLOBALS['db']->fetchitem($query);
+			return ($_data['collectible_value']);
+		}
+	}
+
+	function get_client_collect_value($id)
+	{
+		$query = $GLOBALS['db']->query(" SELECT * FROM `clients_collectible` WHERE `collectible_sn` =  '".$id."' AND `collectible_status` != '0'  LIMIT 1");
+		$queryCount = $GLOBALS['db']->resultcount();
+		if($queryCount == 1)
+		{
+			$_data = $GLOBALS['db']->fetchitem($query);
+			return ($_data['collectible_value']);
+		}
+	}
+
+	function get_supplier_return($id)
+	{
+		$query = $GLOBALS['db']->query(" SELECT * FROM `collect_returns` WHERE `collect_returns_person` ='supplier' AND `collect_id` = '".$id."' AND `collect_returns_status` != '0'  LIMIT 1");
+		$queryCount = $GLOBALS['db']->resultcount();
+		if($queryCount == 1)
+		{
+			$_data = $GLOBALS['db']->fetchitem($query);
+			
+			if($_data['collect_returns_insert_in'] == 'safe')
+			{
+				$insert_in = $GLOBALS['lang']['SETTINGS_C_F_SAFE'];
+			}else{
+				
+				$insert_in = get_data('settings_banks','banks_name','banks_sn',$_data['collect_returns_bank_id']) . ' - ';
+				if($_data['collect_returns_account_type'] == 'credit')
+				{
+					$insert_in .= get_data('settings_banks_credit','banks_credit_name','banks_credit_sn',$_data['collect_returns_account_id']);
+				}elseif($_data['collect_returns_account_type'] == 'current'){
+					$insert_in .= $GLOBALS['lang']['SETTINGS_BAN_CURRENT'];
+				}elseif($_data['collect_returns_account_type'] == 'saving'){
+					$insert_in .= $GLOBALS['lang']['SETTINGS_BAN_SAVE'];
+				}
+			}
+			
+			
+			$data_content  =  $GLOBALS['lang']['IN_ACCONT'].' : '.$insert_in.'<br />';
+			$data_content .=  $GLOBALS['lang']['IN_DATE'].' : '._date_format($_data['collect_returns_date']).'<br />';
+			
+			if($_data['collect_returns_type'] == 'cash')
+			{
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_TYPE'].' : '.$GLOBALS['lang']['SETTINGS_C_F_PAYMENT_CASH'].'<br />';
+			}else{
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_TYPE'].' : '.$GLOBALS['lang']['SETTINGS_C_F_PAYMENT_CHEQUE'].'<br />';
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_CHEQUE_NUM'].' : '.$_data['collect_returns_cheque_number'].'<br />';
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_DATE_CHEQUE'].' : '.$_data['collect_returns_cheque_date'].'<br />';
+			}
+			return($data_content);
+		}
+	}
+
+	
 
 	
 

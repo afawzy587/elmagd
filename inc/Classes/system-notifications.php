@@ -32,6 +32,14 @@ class systemnotifications
 								</a>
 								';
 
+				}elseif($r['reminders_type'] == 'suppliers_collectible')
+				{
+					$output .= '<a href="./supplier_collected.php?id='.$r['reminders_type_id'].'" id='.$r['reminders_sn'].' class="read">
+									'.$GLOBALS['lang']['NOT_S_COLLECTED_MESSAGE'].'
+									<div><small>'.$GLOBALS['lang']['NOT_DEPOSITS_DATE'].' : '._date_format($r['reminders_date']).'</small></div>
+								</a>
+								';
+
 				}elseif($r['reminders_type'] == 'transfer'){
 					$output .= '<a href="./transfers.php?id='.$r['reminders_type_id'].'" id='.$r['reminders_sn'].' class="read">
 									'.$GLOBALS['lang']['NOT_TRANSFERS_MESSAGE'].'

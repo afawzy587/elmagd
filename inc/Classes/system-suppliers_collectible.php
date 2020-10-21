@@ -76,10 +76,9 @@ class systemSuppliers_collectible
 		$product      = $product_id > 0 ? " `operations_product` = '".$product_id."'" : "";
 		$serial_from  = $serial_from ? " AND `operations_receipt` >= '".$serial_from."'" : "";
 		$serial_to    = $serial_to ? " AND `operations_receipt`<= '".$serial_to."'" : "";
-        echo "SELECT *  FROM `operations` WHERE
-		".$product.$serial_from.$serial_to." AND `operations_status` != '0'";
+        
 		$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE
-		".$product.$serial_from.$serial_to." AND `operations_status` != '0'");
+		".$product.$serial_from.$serial_to." ");
 		$queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
         {
@@ -128,11 +127,11 @@ class systemSuppliers_collectible
 		$GLOBALS['db']->query("INSERT INTO `".$this->tableName."`
 		(`collectible_sn`, `collectible_supplier_id`, `collectible_date`, `collectible_type`, `collectible_value`, 
         `collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`,
-        `collectible_account_type`, `collectible_account_id`,`collectible_operations`,`collectible_payment_case`,`collectible_recipient`, `collectible_status`)
+        `collectible_account_type`, `collectible_account_id`,`collectible_payment_case`,`collectible_recipient`, `collectible_status`)
 		VALUES
 		(NULL,'".$_collectible['collectible_supplier_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$_collectible['collectible_value']."',
         '".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."',
-        '".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','".$operations_paid."','".$_collectible['collectible_payment_case']."','".$_collectible['collectible_recipient']."',1)");
+        '".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','".$_collectible['collectible_payment_case']."','".$_collectible['collectible_recipient']."',1)");
 	
         $collect_id =$GLOBALS['db']->fetchLastInsertId();
 		
@@ -151,6 +150,9 @@ class systemSuppliers_collectible
 				{
 					if($collectible_value >= $operation['operations_supplier_remain'])
 					{
+						$GLOBALS['db']->query("INSERT INTO `supplier_collectible_operations`
+						(`id`, `collectible_id`, `operations_id`, `value`)
+						VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','". $operation['operations_supplier_remain']."')");
 						$paid   = $operation['operations_supplier_paid'] + $operation['operations_supplier_remain'];
 						$remain = 0;
 						$collectible_value = $collectible_value - $operation['operations_supplier_remain'];
@@ -158,7 +160,11 @@ class systemSuppliers_collectible
 						`operations_supplier_paid`  ='".$paid."',
 						`operations_supplier_remain`='".$remain."'
 						WHERE `operations_sn` ='".$operation['operations_sn']."'");
+						
 					}elseif($collectible_value != 0 && $collectible_value < $operation['operations_supplier_remain']){
+						$GLOBALS['db']->query("INSERT INTO `supplier_collectible_operations`
+						(`id`, `collectible_id`, `operations_id`, `value`)
+						VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','".$collectible_value."')");
 						$paid   = $operation['operations_supplier_paid'] + $collectible_value ;
 						$remain = $operation['operations_supplier_remain'] - $collectible_value;
 						$collectible_value = 0;
@@ -166,10 +172,9 @@ class systemSuppliers_collectible
 						`operations_supplier_paid`  ='".$paid."',
 						`operations_supplier_remain`='".$remain."'
 						WHERE `operations_sn` ='".$operation['operations_sn']."'");
+						
 					}
-					$GLOBALS['db']->query("INSERT INTO `supplier_collectible_operations`
-					(`id`, `collectible_id`, `operations_id`, `value`)
-					VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','".$paid."')");
+					
 
 				}
 			}
@@ -247,15 +252,59 @@ class systemSuppliers_collectible
 
 	}
 
-	function Get_Supplier_Paid($id)
+	function Get_Supplier_Paid($search)
     {
-        $GLOBALS['db']->query("SELECT * FROM `suppliers_collectible` WHERE `collectible_status` != '0' AND `collectible_payment_case` = 'later' AND `collectible_supplier_id` = '".$id."'");
+		$supplier_id  = intval($search['supplier']);
+		$start_date   = format_data_base($search['start_date']);
+		$end_date     = format_data_base($search['end_date']);
+
+		$start_date   = $search['start_date'] ? " AND `collectible_date` >=  '".$start_date."'" : "";
+		$end_date     = $search['end_date'] ? " AND `collectible_date` <=  '".$end_date."'" : "";
+		
+        $GLOBALS['db']->query("SELECT * FROM `suppliers_collectible` WHERE `collectible_payment_case` != 'paid' AND `collectible_supplier_id` = '".$supplier_id."'".$start_date.$end_date);
 		$queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
         {
             return($GLOBALS['db']->fetchlist());
         }else{return null;}
     }
+	
+	function Get_Supplier_Collected($search)
+	{
+		$id  = intval($search['id']);
+		$supplier_id  = intval($search['supplier']);
+		$start_date   = format_data_base($search['start_date']);
+		$end_date     = format_data_base($search['end_date']);
+
+		$id           = $search['id'] ? " `collectible_sn` = '".$id."' " : "";
+		$supplier_id  = $search['supplier'] ? " `collectible_supplier_id` = '".$supplier_id."' " : "";
+		$start_date   = $search['start_date'] ? " AND `collectible_date` >=  '".$start_date."'" : "";
+		$end_date     = $search['end_date'] ? " AND `collectible_date` <=  '".$end_date."'" : "";
+		
+        $GLOBALS['db']->query("SELECT * FROM `suppliers_collectible` WHERE ".$supplier_id.$id.$start_date.$end_date);
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            return($GLOBALS['db']->fetchlist());
+        }else{return null;}
+	}
+	
+	function Get_collect_operation($id)
+	{
+		$GLOBALS['db']->query("SELECT * FROM `supplier_collectible_operations` WHERE `collectible_id` ='".$id."'");
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            $opertions = $GLOBALS['db']->fetchlist();
+			foreach($opertions as $k => $v)
+			{
+				$data .= $GLOBALS['lang']['OPERATIONS_RECIEPT_MENU'].' : ( ' . $v['operations_id'].' ) '.$GLOBALS['lang']['C_S_PAID'].' : ' .$v['value'] .'<br />';
+			}
+			return($data);
+        }else{return null;}
+	}
+	
+	
 
 
 

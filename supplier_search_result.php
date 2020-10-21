@@ -26,7 +26,7 @@
 			if($_GET)
 			{
 				$supplier = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
-				$Supplier_Paid = $suppliers_collectible->Get_Supplier_Paid(intval($_GET['supplier']));
+				$Supplier_Paid = $suppliers_collectible->Get_Supplier_Paid($_GET);
 
 				$result   = $suppliers_collectible->GetSearchResult($_GET);
 			}else{
@@ -78,8 +78,6 @@
 
         <!-- table row -->
         <div class="row">
-            <input type="hidden" value="settings_departments" id="table">
-            <input type="hidden" value="settings_department" id="permission">
             <div class="col">
 
                 <table class="table table-fluid " id="departmentTable">
@@ -134,11 +132,45 @@
 							foreach($Supplier_Paid as $k => $v){
 								echo'<tr>
 								<td>'. _date_format($v['collectible_date']).'</td>
-								<td colspan="5">'.$lang['P_S_LATER'].'</td>
-								<td>'.number_format($v['collectible_value']).'</td>
-								<td colspan="2">'.$lang['P_S_RECIPIENT'].' : '.$v['collectible_recipient'].'</td>
+								<td colspan="5">';
+									if($v['collectible_payment_case'] == 'later')
+									{
+										echo $lang['P_S_LATER'];
+									}elseif($v['collectible_payment_case'] == 'return'){
+										echo $lang['OPERTION_RETURN'].' ( '. $v['collectible_recipient'] .' ) ';
+									}
+									
+								echo'</td>
+								<td>'.number_format($v['collectible_value']).'</td>';
+								if($v['collectible_payment_case'] == 'later'){
+									echo'<td>'.$lang['P_S_RECIPIENT'].' : '.$v['collectible_recipient'].'</td>';
+								}else{
+									echo'<td></td>';
+								}
+								
+								echo'
+								<td class="text-center tableaprove" id="td_'.$v['collectible_sn'].'">';
+                                    if($v['collectible_status'] == 1 )
+                                    {
+										if($group['colect_return'] == 1 )
+										{
+										   echo'
+											<a href="./collect_return.php?s_collect='.$v['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
+												<i class="fas fa-undo  success"></i>
+											</a>';
+										}
+                                    }else{
+                                        echo '<span class="rose" data-html="true"  data-toggle="popover" title="'.$lang['P_S_RETURNED'].'" data-content="'.get_supplier_return($v['collectible_sn']).'">'.$lang['P_S_RETURNED'].'</span>
+										' ;
+                                    }
+						    echo'</td>
 							</tr>';
-								$paid +=$v['collectible_value'];
+								if($v['collectible_status'] == 1){
+									$paid +=$v['collectible_value'];
+								}else{
+									$paid;
+								}
+								
 							}
 						}
 
@@ -200,6 +232,10 @@
 ?>
 <SCRIPT>
 $(document).ready( function () {
+	$('[data-toggle="popover"]').popover({
+        placement : 'top',
+        trigger : 'hover'
+    });
     $('#departmentTable').DataTable({
         "searching": false,
         "ordering": false,
@@ -212,6 +248,7 @@ $(document).ready( function () {
             }
           }
     });
+	
 
 } );
 </SCRIPT>

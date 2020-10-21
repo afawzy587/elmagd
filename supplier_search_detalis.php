@@ -69,6 +69,8 @@
         </div>
         <!-- end account details row -->
         <?php
+		if(is_array($operations))
+		{
 		  foreach($operations as $k => $o)
 		  {
 			  echo'<!-- end links row -->
@@ -113,26 +115,37 @@
 																<th class="smallFont">'.$lang['OPERATIONS_CLIENT_PRICE'].'</th>
 																<th class="smallFont">'.$lang['C_S_CLIENT_COLLECT'].'</th>
 																<th class="smallFont">'.$lang['C_S_CLIENT_REMIEN'].'</th>
+																<th class="smallFont"></th>
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
+															<tr id="tr_'.$o['operations_sn'].'">
 																<td>'.$o['operations_receipt'].'</td>
 																<td>'.$o['operations_code'].'</td>
 																<td>'.get_data('settings_products','products_name','products_sn',$o['operations_product']).'</td>
 																<td>'.number_format($o['operations_quantity']).'</td>
 																<td>'.number_format($o['operations_general_discount']).'</td>
-																<td>'.number_format($o['operations_net_quantity']).'</td>
-																<td>'.number_format($o['operations_supplier_price']).'</td>
-																<td>'.number_format($o['operations_supplier_paid']).'</td>
-																<td>'.number_format($o['operations_supplier_remain']).'</td>
+																<td id="operations_net_quantity_'.$o['operations_sn'].'">'.number_format($o['operations_net_quantity']).'</td>
+																<td id="operations_supplier_price_'.$o['operations_sn'].'">'.number_format($o['operations_supplier_price']).'</td>
+																<td id="operations_supplier_paid_'.$o['operations_sn'].'">'.number_format($o['operations_supplier_paid']).'</td>
+																<td id="operations_supplier_remain_'.$o['operations_sn'].'">'.number_format($o['operations_supplier_remain']).'</td>
+																<td class="text-center tableActions" id="td_'.$o['operations_sn'].'">';
+																		if($o['operations_status'] == 1 )
+																		{
+																			echo'<i class="delete_operation fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$o['operations_sn'].'"></i>';
+																		}else{
+																			echo '<span class="rose">'.$lang['DELETE_DONE'].'</span>' ;
+																		}
+																echo'</td>
 															</tr>
 														</tbody>
 													</table>
 												</div>
-											</div>
-                                            
-                                            <div class="row">
+											</div>';
+			  	                            $product_rate = get_Operation_product($o['operations_sn']);
+			  								if(is_array($product_rate))
+											{
+												echo'<div class="row">
 												<div class="col table-responsive">
 													<table class="table table-fluid accountDetailsTable" id="">
 														<thead>
@@ -150,7 +163,6 @@
 															</tr>
 														</thead>
 														<tbody>';
-                                                        $product_rate = get_Operation_product($o['operations_sn']);
                                                         foreach($product_rate as $k => $p){
                                                             echo'<tr>
 																    <td>'.get_data('settings_clients_products_rate','clients_products_rate_name','clients_products_rate_sn',$p['rates_product_rate_id']).'</td>
@@ -163,67 +175,72 @@
 																    <td>'.$p['rates_product_rate_excuse_price'].'</td>
 																    <td>'.$p['rates_product_rate_supply_price'].'</td>
 																    <td>'.round((($p['rates_supplier_discount_percentage']/100)*$p['rates_product_rate_supply_price'])+$p['rates_product_rate_supply_price'],2).'</td>
-															     </tr>';
+															    	
+																</tr>';
                                                         }
 															
 								                    echo'</tbody>
 													</table>
 												</div>
-											</div>
-                                            <div class="lightDivider"></div>
+											</div>';
+											}
+                                            
+                                            
+                                     echo'<div class="lightDivider"></div>
 									';
 			  $operations_net_quantity    += $o['operations_net_quantity'];
 			  $operations_supplier_price   += $o['operations_supplier_price'];
 			  $operations_supplier_paid   += $o['operations_supplier_paid'];
 			  $operations_supplier_remain += $o['operations_supplier_remain'];
 		  }
-		echo '
-				<div class="row">
-					<div class="col table-responsive">
-						<table class="table table-fluid accountDetailsTable" id="">
-							<thead>
-								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th class="smallFont">'.$lang['MOUNT_TOTAL'] .'</th>
-									<th class="smallFont">'.$lang['FINNACE_TOTAL'] .'</th>
-									<th class="smallFont">'.$lang['COLLECTED_TOTAL'] .'</th>
-									<th class="smallFont">'.$lang['REMAIN_TOTAL'] .'</th>
-								</tr>
-							</thead>
-							<tbody>
+			echo '
+					<div class="row">
+						<div class="col table-responsive">
+							<table class="table table-fluid accountDetailsTable" id="">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th class="smallFont">'.$lang['MOUNT_TOTAL'] .'</th>
+										<th class="smallFont">'.$lang['FINNACE_TOTAL'] .'</th>
+										<th class="smallFont">'.$lang['COLLECTED_TOTAL'] .'</th>
+										<th class="smallFont">'.$lang['REMAIN_TOTAL'] .'</th>
+									</tr>
+								</thead>
+								<tbody>
 
-								<tr>
-									<td class="emptyTD"></td>
-									<td class="emptyTD"></td>
-									<td class="emptyTD"></td>
-									<td>'.number_format($operations_net_quantity).'</td>
-									<td>'.number_format($operations_supplier_price).'</td>
-									<td>'.number_format($operations_supplier_paid).'</td>
-									<td>'.number_format($operations_supplier_remain).'</td>
-								</tr>
+									<tr>
+										<td class="emptyTD"></td>
+										<td class="emptyTD"></td>
+										<td class="emptyTD"></td>
+										<td id="MOUNT_TOTAL">'.number_format($operations_net_quantity).'</td>
+										<td id="FINNACE_TOTAL">'.number_format($operations_supplier_price).'</td>
+										<td id="COLLECTED_TOTAL">'.number_format($operations_supplier_paid).'</td>
+										<td id="REMAIN_TOTAL">'.number_format($operations_supplier_remain).'</td>
+									</tr>
 
-							</tbody>
-						</table>
+								</tbody>
+							</table>
+						</div>
 					</div>
+					<!-- end table footer row -->
 				</div>
-				<!-- end table footer row -->
 			</div>
+			<!-- end results details -->
+
 		</div>
-		<!-- end results details -->
-
 	</div>
-</div>
-<!-- end search results row -->
+	<!-- end search results row -->
 
-<!-- buttons row -->
-<div class="row mt-2 mb-5">
-	<div class="col d-flex justify-content-end">
-		<button class="btn roundedBtn mr-2" type="submit">طباعة</button>
+	<!-- buttons row -->
+	<div class="row mt-2 mb-5">
+		<div class="col d-flex justify-content-end">
+			<button class="btn roundedBtn mr-2" type="submit">طباعة</button>
+		</div>
 	</div>
-</div>
-<!-- end buttons row -->';
+	<!-- end buttons row -->';
+		}
 
 		?>
     </div>
@@ -255,6 +272,55 @@ $(document).ready( function () {
         "info": false,
         "paging": false
     });
+	
+	$('i.delete_operation').click(function(e){
+        e.preventDefault();
+		var id               = $(this).attr('id').replace("item_","");
+        var page             = "operations_js.php?do=delete";
+		
+		if (id != 0)
+		{
+			$.ajax( {
+				async :true,
+				type :"POST",
+				url :page,
+				data: {id:id},
+				success : function(responce) {
+
+                    if(responce == 100)
+                     {
+						 if(typeof  directon == "undefined")
+						 {
+							$("#tr_"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("#tr_"+id).animate({width: 'auto', opacity: '0.9'}, "slow");
+							$("#tr_"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+                            $("#tr_"+id).animate({width: 'auto', opacity: '1'}, "slow");
+                            $("#td_"+id).html('<span class="rose"><?php echo $lang['DELETE_DONE'];?></span>');
+							// $("#tr_"+id).fadeTo(400, 0, function () { $("#tr_" + id).slideUp(400);}); 
+							//*************** update total **********************//
+							var operations_net_quantity     = parseInt($("#operations_net_quantity_"+id).text().replace(',',''));
+							var operations_supplier_price   = parseInt($("#operations_supplier_price_"+id).text().replace(',',''));
+							var operations_supplier_paid    = parseInt($("#operations_supplier_paid_"+id).text().replace(',',''));
+							var operations_supplier_remain  = parseInt($("#operations_supplier_remain_"+id).text().replace(',',''));
+							var MOUNT_TOTAL                 = parseInt($("#MOUNT_TOTAL").text().replace(',','')) - operations_net_quantity;
+							var FINNACE_TOTAL               = parseInt($("#FINNACE_TOTAL").text().replace(',','')) - operations_supplier_price;
+							var COLLECTED_TOTAL             = parseInt($("#COLLECTED_TOTAL").text().replace(',','')) - operations_supplier_paid;
+							var REMAIN_TOTAL                = parseInt($("#REMAIN_TOTAL").text().replace(',','')) - operations_supplier_remain;
+
+							$("#MOUNT_TOTAL").html(MOUNT_TOTAL);
+							$("#FINNACE_TOTAL").html(FINNACE_TOTAL);
+							$("#COLLECTED_TOTAL").html(COLLECTED_TOTAL);
+							$("#REMAIN_TOTAL").html(REMAIN_TOTAL);
+						 }
+						
+                      }
+				},
+				error : function() {
+					return true;
+				}
+			});
+		}
+	});
 
 
 } );

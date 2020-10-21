@@ -29,15 +29,12 @@ if ($login->doCheck() == false) {
         header("Location:./permission.php");
         exit;
     } else {
-        $clients_finance = $clients_collectible->GetClientFinance();
-        $banks         = $setting_bank->getaccountsSettings_banks();
-        $clients       = $setting_client->getsiteSettings_clients();
 		$suppliers     = $setting_supplier->getsiteSettings_suppliers();
                 $logs->addLog(NULL,
                     array(
                         "type" 		        => 	"users",
-                        "module" 	        => 	"deposits",
-                        "mode" 		        => 	"add_deposits",
+                        "module" 	        => 	"collected_search",
+                        "mode" 		        => 	"collected_search",
                         "id" 	        	=>	$_SESSION['id'],
                     ),"admin",$_SESSION['id'],1
                     );
@@ -57,7 +54,7 @@ include './assets/layout/header.php';
                 <i class="fas fa-info-circle"></i>
                 <a class="blueSky" href="./index.php"><?php echo $lang['SETTINGS_TITLE']; ?></a>
                 <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_CLIENT']; ?> </span>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_FINANCES']; ?></span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_COLLECTED']; ?></span>
             </p>
         </div>
     </div>
@@ -65,8 +62,8 @@ include './assets/layout/header.php';
     <div class="row centerContent">
         <div class="col">
             
-            <form method="GET" action="./supplier_search_result.php" id="customersAccountsPaymentForm" enctype="multipart/form-data">
-                <h5><?php echo $lang['C_S_SEARCH_SUPPLIER']; ?></h5>
+            <form method="GET" action="./supplier_collected.php" id="customersAccountsPaymentForm" enctype="multipart/form-data">
+                <h5><?php echo $lang['SUPPLIER_SEARCH_COLLECTED']; ?></h5>
                 <div class="darker-bg centerDarkerDiv formCenterDiv">
                     <div class="row">
                        <div class="col-md-5">
@@ -90,61 +87,6 @@ include './assets/layout/header.php';
                                     </div>
                                 </div>
                             </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PRODUCT'] ?></label>
-                                <div class="col-xs-5 ">
-                                    <div class="select">
-                                        <select name="product" id="product" class="show_product_rate form-control">
-                                            <option selected disabled> <?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'] ?></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                       <div class="col-md-5">
-                            <div class="form-group">
-                                <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_CLI'] ?></label>
-                                <div class="col-xs-5 ">
-                                    <div class="select">
-                                        <select name="client"  class="show_product_rate form-control">
-                                            <option selected ><?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?></option>
-                                            <?php
-												if ($clients) {
-                                            foreach ($clients as $cId => $c) {
-                                                echo '<option value="' . $c["clients_sn"] . '"';
-                                                if ($_bank) {
-                                                    if ($c["clients_sn"] == $_bank['banks_credit_client'][0]) {
-                                                        echo 'selected';
-                                                        }
-                                                    }
-                                                    echo '>' . $c["clients_name"] . '</option>';
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-<!--
-                        <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="col-xs-3"><?php echo $lang['C_S_DEGREES'];?></label>
-                                    <div class="col-xs-5">
-                                        <div class="select">
-                                            <select name="quality" id="quality" class="form-control">
-                                                <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_PRODUCT_FIRST'];?></option>
-                                                
-                                              </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
--->
                     </div>
                     <div class="row">
                             <div class="col-md-5">
@@ -160,42 +102,6 @@ include './assets/layout/header.php';
                                     <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_END_DATE'];?> </label>
                                     <div class="col-xs-5">
                                         <input type="date" name="end_date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-					<div class="row">
-						<div class="col-md-5">
-							<div class="form-group">
-								<label class="col-xs-3"><?php echo $lang['C_S_FROM_SERIAL'];?> </label>
-								<div class="col-xs-5 ">
-									<input type="text" class="form-control" name="serial_from" placeholder="-----">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="form-group">
-								<label class="col-xs-3"><?php echo $lang['C_S_TO_SERIAL'];?> </label>
-								<div class="col-xs-5 ">
-									<input type="text" class="form-control" name="serial_to" placeholder="-----">
-								</div>
-							</div>
-						</div>
-					</div>
-                    <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="col-xs-3"><?php echo $lang['C_S_INVOICES_FROM'];?></label>
-                                    <div class="col-xs-5">
-                                        <input type="text" class="form-control" name="invoice_from" placeholder="-----">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="col-xs-3"><?php echo $lang['C_S_INVOICES_TO'];?>  </label>
-                                    <div class="col-xs-5 ">
-                                        <input type="text" class="form-control" name="invoice_to" placeholder="-----">
                                     </div>
                                 </div>
                             </div>

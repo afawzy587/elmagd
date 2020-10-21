@@ -106,11 +106,13 @@
 							{
 								unset($_SESSION['supplier']);
 								unset($_SESSION['customer']);
+								unset($_SESSION['add']);
 								header("Location:./operation_sum.php?code=".sanitize($_GET['o']));
 							}else{
 
 								$_SESSION['supplier'] =  $_operation['operations_supplier'];
 								$_SESSION['customer'] =  $_operation['operations_customer'];
+								$_SESSION['add'] =  true;
 								header("Location:./add_operation.php?o=".sanitize($_GET['o']));
 							}
 							exit;
@@ -168,7 +170,7 @@
 							echo alert_message("danger",$lang['OPERATIONS_FAILD']);
 						}elseif($add == 'card_repeated'){
                             echo alert_message("danger",$lang['CARD_REPEATED']);
-                        }else{
+                        }elseif($add == 1){
                             echo alert_message("success",$lang['OPERATIONS_SUCCESS']);
                         }
 					?>

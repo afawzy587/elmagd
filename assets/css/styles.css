@@ -812,6 +812,9 @@ label.customized-checkbox-label:before{
 .unread{
    background-color: rgba(10,15,83,1);
 }
+.popover-header {
+background-color: #44526B;
+}
 
 
 

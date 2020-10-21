@@ -675,6 +675,7 @@ include './assets/layout/footer.php'; ?>
             var type = $(this).val();
             if (type == "safe") {
                 var transfer_account_type = $('#account_type_' + id).prop("disabled", true);
+                var transfer_account_id = $('#transfer_account_id_' + id).prop("disabled", true);
             } else {
                 var transfer_account_type = $('#account_type_' + id).prop("disabled", false);
                 $('#customersAccountsPaymentForm').formValidation('addField', transfer_account_type, {

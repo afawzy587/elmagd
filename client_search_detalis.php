@@ -113,6 +113,7 @@
 																<th class="smallFont">'.$lang['OPERATIONS_CLIENT_PRICE'].'</th>
 																<th class="smallFont">'.$lang['C_S_CLIENT_COLLECT'].'</th>
 																<th class="smallFont">'.$lang['C_S_CLIENT_REMIEN'].'</th>
+																<th class="smallFont"></th>
 															</tr>
 														</thead>
 														<tbody>
@@ -126,6 +127,14 @@
 																<td>'.number_format($o['operations_customer_price']).'</td>
 																<td>'.number_format($o['operations_customer_paid']).'</td>
 																<td>'.number_format($o['operations_customer_remain']).'</td>
+																<td class="text-center tableActions" id="td_'.$o['operations_sn'].'">';
+																if($o['operations_status'] == 1 )
+																{
+																	echo'<i class="delete_operation fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$o['operations_sn'].'"></i>';
+																}else{
+																	echo '<span class="rose">'.$lang['DELETE_DONE'].'</span>' ;
+																}
+														echo'</td>
 															</tr>
 														</tbody>
 													</table>
@@ -256,6 +265,40 @@ $(document).ready( function () {
         "info": false,
         "paging": false
     });
+	
+	 $('i.delete_operation').click(function(e){
+        e.preventDefault();
+		var id               = $(this).attr('id').replace("item_","");
+        var page             = "operations_js.php?do=delete";
+		if (id != 0)
+		{
+			$.ajax( {
+				async :true,
+				type :"POST",
+				url :page,
+				data: {id:id},
+				success : function(responce) {
+
+                    if(responce == 100)
+                     {
+						 if(typeof  directon == "undefined")
+						 {
+							$("#tr_"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+							$("#tr_"+id).animate({width: 'auto', opacity: '0.9'}, "slow");
+							$("#tr_"+id).animate({height: 'auto', opacity: '0.2'}, "slow");
+                            $("#tr_"+id).animate({width: 'auto', opacity: '1'}, "slow");
+                            $("#td_"+id).html('<span class="rose"><?php echo $lang['DELETE_DONE'];?></span>');
+							// $("#tr_"+id).fadeTo(400, 0, function () { $("#tr_" + id).slideUp(400);}); 
+						 }
+						
+                      }
+				},
+				error : function() {
+					return true;
+				}
+			});
+		}
+	});
 
 
 } );

@@ -473,6 +473,7 @@ $lang['SETTINGS_D_EDIT_PRICING']          =   "تعديل التسعير";
 $lang['SETTINGS_C_F_SEARCH_TITLE']        =   "بحث تسعير سابق لعميل";
 $lang['SETTINGS_C_F_SUPPLIERS']           =   "الموردين";
 $lang['SETTINGS_C_F_SUPPLIERS_FINANCE']   =   "حسابات  الموردين ";
+$lang['SETTINGS_C_F_COLLECTED']           =   "الفواتير المدفوعة";
 $lang['SETTINGS_C_F_CHOOSE_SUPLLIER']     =   "اختر المورد";
 $lang['SETTINGS_C_F_RATES']               =   "الدرجات";
 $lang['SETTINGS_C_F_CHOOSE_RATE']         =   "اختر الدرجة";
@@ -573,7 +574,7 @@ $lang['OPERATIONS_M_RATE_DI']             =    "نسبة خصم الدرجة";
 $lang['OPERATIONS_M_EX_PRE']              =    "نسبة السماح";
 $lang['OPERATIONS_M_EX_UAN']              =    "كمية السماح";
 $lang['OPERATIONS_M_UAN_AFTR']            =    "كمية بعد الخصم ";
-$lang['OPERATIONS_M_DIC']            =    "كمية الخصم ";
+$lang['OPERATIONS_M_DIC']                 =    "كمية الخصم ";
 $lang['OPERATIONS_M_EX_PRICE']            =    "سعر السماح";
 $lang['OPERATIONS_M_SU_PRICE']            =    "سعر المورد";
 $lang['OPERATIONS_M_SU_FINANCE']          =    "حساب المورد";
@@ -669,7 +670,7 @@ $lang['C_S_INVOICES_FROM']           = "من فاتورة رقم";
 $lang['C_S_INVOICES_TO']             = "الى فاتورة رقم";
 $lang['C_S_MONEY_OPERATION']         = "عمليات مالية";
 $lang['C_S_SEARCH_RESULT']           = "عرض حساب المورد (نتيجة بحث عن مورد)";
-$lang['C_SEARCH_RESULT']           = "عرض حساب العميل (نتيجة بحث عن العميل)";
+$lang['C_SEARCH_RESULT']             = "عرض حساب العميل (نتيجة بحث عن العميل)";
 $lang['C_S_TOTAL']                   = "قيمة التوريد(ج.م)";
 $lang['C_S_PAID']                    = "المدفوع (ج.م)";
 $lang['C_S_REMAIN']                  = "الباقي (ج.م)";
@@ -688,14 +689,19 @@ $lang['P_S_PAYMENTS']           = "حسابات الموردين";
 $lang['P_S_PAY_TO_SUPPLIER']    = "محاسبة المورد";
 $lang['P_S_RECIPIENT']          = "المستلم";
 $lang['P_S_PAID']               = "تسديد";
+$lang['P_S_RETURN']               = "ارجاع";
+$lang['P_S_RETURNED']           = "تم ارجاع المبلغ";
 $lang['P_S_PAID_REASION']       = "سبب الدفع";
 $lang['P_S_LATER']              = "دفعة مقدمة";
+$lang['OPERTION_RETURN']        = " مرتجع فاتورة";
+$lang['OPERTION_PAID']        = " تسديد فاتورة";
 $lang['P_S_RESOEN']             = "اختر سبب الدفع";
 $lang['P_S_RECIPIENT_IN']       = "ادخل اسم المستلم";
 
 
 /****************** NOTIFICATION *****************/
 $lang['NOT_DEPOSITS_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل الايدعات ";
+$lang['NOT_S_COLLECTED_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل فواتير العملاء ";
 $lang['NOT_TRANSFERS_MESSAGE']             = "التذكير بتاريخ تحصيل الشيك داخل التحويلات ";
 $lang['NOT_SAFES_MESSAGE']                 = "التذكير بتاريخ تحصيل الشيك داخل الخزنة ";
 $lang['NOT_EXPENSES_MESSAGE']              = "التذكير بتاريخ تحصيل الشيك داخل المصروفات ";
@@ -757,8 +763,14 @@ $lang['Reminders_SUCCESS']      =   "تم اضافة التذكير بنجاح";
 $lang['Reminders_ADD']          =   "اضافة تذكير";
 $lang['Reminders_DATE']         =   "تاريخ التذكير";
 $lang['Reminders_DESCRIPTION']  =   "محتوى التذكير";
-$lang['Reminders_STOP']             =   "ايقاف";
+$lang['Reminders_STOP']         =   "ايقاف";
 $lang['Reminders_']             =   "";
+
+/**********************/
+$lang['IN_DATE']                     = "بتاريخ";
+$lang['IN_ACCONT']                   = "فى حساب";
+$lang['SUPPLIER_SEARCH_COLLECTED']   = "بحث فواتير مورد";
+$lang['']                = "";
 
 
 

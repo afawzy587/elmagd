@@ -136,7 +136,6 @@ class systemDeposits
 
             }elseif($Deposits['deposits_account_type']=='credit'){
                 $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $Deposits['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $Deposits['deposits_account_type'] . "' AND `banks_finance_account_id` = '" . $Deposits['deposits_account_id'] . "'");
-                $account_query = $GLOBALS['db']->query("SELECT * FROM `setiings_banks_finance` WHERE `banks_finance_bank_id` = '" . $Deposits['deposits_bank_id'] . "' AND `banks_finance_account_type` = '" . $Deposits['deposits_account_type'] . "' AND `banks_finance_account_id` = '" . $Deposits['deposits_account_id'] . "'");
                 $sitebank = $GLOBALS['db']->fetchitem($account_query);
                 if ($Deposits['deposits_type'] == 'cash') {
                     if(is_array($Deposits['invoices_id']))
