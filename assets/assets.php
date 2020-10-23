@@ -316,10 +316,9 @@
         }else{return null;}
     }
 
-
 	function get_banks_credit_account($id)
     {
-         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_credit` WHERE `banks_credit_bank_id` ='".$id."' LIMIT 1");
+         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_credit` WHERE `banks_credit_bank_id` ='".$id."' AND  `banks_credit_status` != '0' LIMIT 1");
         $queryTotal 		= $GLOBALS['db']->fetchrow();
         $total 				= $queryTotal['total'];
         return ($total);
@@ -327,7 +326,7 @@
 	
 	function get_banks_saving_account($id)
     {
-         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_saving` WHERE `banks_saving_bank_id` ='".$id."' LIMIT 1");
+         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_saving` WHERE `banks_saving_bank_id` ='".$id."'  AND  `banks_saving_status` != '0'LIMIT 1");
         $queryTotal 		= $GLOBALS['db']->fetchrow();
         $total 				= $queryTotal['total'];
         return ($total);
@@ -335,7 +334,7 @@
 
 	function get_banks_current_account($id)
     {
-         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_current` WHERE `banks_current_bank_id` ='".$id."' LIMIT 1");
+         $query 		    = $GLOBALS['db']->query("SELECT COUNT(*) AS `total` FROM `settings_banks_current` WHERE `banks_current_bank_id` ='".$id."' AND  `banks_current_status` != '0' LIMIT 1");
         $queryTotal 		= $GLOBALS['db']->fetchrow();
         $total 				= $queryTotal['total'];
         return ($total);
@@ -366,6 +365,45 @@
 	function get_supplier_return($id)
 	{
 		$query = $GLOBALS['db']->query(" SELECT * FROM `collect_returns` WHERE `collect_returns_person` ='supplier' AND `collect_id` = '".$id."' AND `collect_returns_status` != '0'  LIMIT 1");
+		$queryCount = $GLOBALS['db']->resultcount();
+		if($queryCount == 1)
+		{
+			$_data = $GLOBALS['db']->fetchitem($query);
+			
+			if($_data['collect_returns_insert_in'] == 'safe')
+			{
+				$insert_in = $GLOBALS['lang']['SETTINGS_C_F_SAFE'];
+			}else{
+				
+				$insert_in = get_data('settings_banks','banks_name','banks_sn',$_data['collect_returns_bank_id']) . ' - ';
+				if($_data['collect_returns_account_type'] == 'credit')
+				{
+					$insert_in .= get_data('settings_banks_credit','banks_credit_name','banks_credit_sn',$_data['collect_returns_account_id']);
+				}elseif($_data['collect_returns_account_type'] == 'current'){
+					$insert_in .= $GLOBALS['lang']['SETTINGS_BAN_CURRENT'];
+				}elseif($_data['collect_returns_account_type'] == 'saving'){
+					$insert_in .= $GLOBALS['lang']['SETTINGS_BAN_SAVE'];
+				}
+			}
+			
+			
+			$data_content  =  $GLOBALS['lang']['IN_ACCONT'].' : '.$insert_in.'<br />';
+			$data_content .=  $GLOBALS['lang']['IN_DATE'].' : '._date_format($_data['collect_returns_date']).'<br />';
+			
+			if($_data['collect_returns_type'] == 'cash')
+			{
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_TYPE'].' : '.$GLOBALS['lang']['SETTINGS_C_F_PAYMENT_CASH'].'<br />';
+			}else{
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_TYPE'].' : '.$GLOBALS['lang']['SETTINGS_C_F_PAYMENT_CHEQUE'].'<br />';
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_CHEQUE_NUM'].' : '.$_data['collect_returns_cheque_number'].'<br />';
+				$data_content .=  $GLOBALS['lang']['SETTINGS_C_F_PAYMENT_DATE_CHEQUE'].' : '.$_data['collect_returns_cheque_date'].'<br />';
+			}
+			return($data_content);
+		}
+	}
+	function get_client_return($id)
+	{
+		$query = $GLOBALS['db']->query(" SELECT * FROM `collect_returns` WHERE `collect_returns_person` ='client' AND `collect_id` = '".$id."' AND `collect_returns_status` != '0'  LIMIT 1");
 		$queryCount = $GLOBALS['db']->resultcount();
 		if($queryCount == 1)
 		{

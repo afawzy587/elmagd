@@ -27,9 +27,7 @@ if ($login->doCheck() == false) {
     } else {
         $banks_finance = $setting_bank->get_banks_finance_details();
         $banks         = $setting_bank->getaccountsSettings_banks();
-        $clients       = $setting_client->getsiteSettings_clients();
-		$s_collect = intval($_GET['s_collect']);
-		$c_collect = intval($_GET['c_collect']);
+		$c_collect     = intval($_GET['c_collect']);
         if ($_POST) {
 			$_collect_return['collect_returns_type']                     =       sanitize($_POST["collect_returns_type"]);
             $_collect_return['collect_returns_value']                    =       sanitize($_POST["collect_returns_value"]);
@@ -40,15 +38,9 @@ if ($login->doCheck() == false) {
             $_collect_return['collect_returns_bank_id']                  =       sanitize($_POST["collect_returns_bank_id"]);
             $_collect_return['collect_returns_account_type']             =       sanitize($_POST["collect_returns_account_type"]);
             $_collect_return['collect_returns_account_id']               =       sanitize($_POST["collect_returns_account_id"]);
-			if($s_collect > 0)
-			{
-				$_collect_return['collect_returns_person']   = 'supplier' ;
-				$_collect_return['collect_id']   = $s_collect;
-			}elseif($c_collect>0)
-			{
-			    $_collect_return['collect_returns_person']   = 'client' ;
-				$_collect_return['collect_id']   = $c_collect;
-			}
+			$_collect_return['collect_returns_person']                   =       'client' ;
+			$_collect_return['collect_id']                               =       $c_collect;
+			
             $add = $collect_return->Add_collect_returns($_collect_return);
             if($add == 1)
             {
@@ -56,8 +48,8 @@ if ($login->doCheck() == false) {
                 $logs->addLog(NULL,
                     array(
                         "type" 		        => 	"users",
-                        "module" 	        => 	"collect_returns",
-                        "mode" 		        => 	"add_collect_returns",
+                        "module" 	        => 	"client_return",
+                        "mode" 		        => 	"add_client_return",
                         "id" 	        	=>	$_SESSION['id'],
                     ),"admin",$_SESSION['id'],1
                     );
@@ -82,8 +74,8 @@ include './assets/layout/header.php';
             <p class="blueSky">
                 <i class="fas fa-info-circle"></i>
                 <a class="blueSky" href="./index.php"><?php echo $lang['SETTINGS_TITLE']; ?></a>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['BANKS_AND_SAVES']; ?> </span>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['BANKS_collect_return']; ?> </span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['GROUP_clients_finance']; ?> </span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['CLIENT_collect_return']; ?> </span>
             </p>
         </div>
     </div>
@@ -166,13 +158,13 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['BANKS_DEPOSIT_TYPE']; ?></label>
                                 <div class="col-xs-5  d-flex space_between">
                                     <div class="form-check radioBtn d-inline-block">
-                                        <input class="invoices  form-check-input" type="radio" name="collect_returns_type" id="cashPaymentMethod" value="cash">
+                                        <input class="max_value  form-check-input" type="radio" name="collect_returns_type" id="cashPaymentMethod" value="cash">
                                         <label class="form-check-label" for="cashPaymentMethod">
                                             <?php echo $lang['SETTINGS_C_F_PAYMENT_CASH']; ?>
                                         </label>
                                     </div>
                                     <div class="form-check radioBtn d-inline-block">
-                                        <input class="form-check-input" type="radio" checked name="collect_returns_type" id="checkPaymentMethod" value="cheque">
+                                        <input class="max_value form-check-input" type="radio" checked name="collect_returns_type" id="checkPaymentMethod" value="cheque">
                                         <label class="form-check-label " for="checkPaymentMethod">
                                             <?php echo $lang['SETTINGS_C_F_PAYMENT_CHEQUE']; ?>
                                         </label>
@@ -190,7 +182,6 @@ include './assets/layout/header.php';
                                 </div>
                             </div>
                         </div>
-<!--
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_DATE_CHEQUE']; ?></label>
@@ -199,7 +190,6 @@ include './assets/layout/header.php';
                                 </div>
                             </div>
                         </div>
--->
                     </div>
                     <div class="row">
                         <div class="col-md-5">
@@ -207,7 +197,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ADD_TO']; ?></label>
                                 <div class="col-xs-5">
                                     <div class="select" id="banks">
-                                        <select name="collect_returns_bank_id" id="collect_returns_bank_id" class="bank invoices form-control">
+                                        <select name="collect_returns_bank_id" id="collect_returns_bank_id" class="bank max_value form-control">
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_CHOOSE_BANK']; ?></option>
                                             <option value="safe"><?php echo $lang['SETTINGS_C_F_SAFE']; ?></option>
                                             <?php
@@ -228,7 +218,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE']; ?></label>
                                 <div class="col-xs-5 ">
                                     <div class="select" id="type">
-                                        <select name="collect_returns_account_type" id="account_type" class="invoices form-control" disabled>
+                                        <select name="collect_returns_account_type" id="account_type" class="max_value form-control" disabled>
                                             <option selected disabled><?php echo $lang['SETTINGS_C_F_CHOOSE_BANK_FIRST']; ?></option>
                                             <option value="credit"><?php echo $lang['SETTINGS_BAN_CREDIT_ACCOUNT_MENU']; ?></option>
                                             <option value="saving"><?php echo $lang['SETTINGS_BAN_SAVE']; ?></option>
@@ -246,7 +236,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_ACCOUNT_T']; ?></label>
                                 <div class="col-xs-5 ">
                                     <div class="select" id="bank_item">
-                                        <select name="collect_returns_account_id" class="collect_returns_cut_precent invoices form-control" id="collect_returns_account_id" disabled>
+                                        <select name="collect_returns_account_id" class="max_value form-control" id="collect_returns_account_id" disabled>
                                             <option selected disabled> <?php echo $lang['SETTINGS_C_F_ACCOUNT_TYPE_FRIST']; ?></option>
                                         </select>
                                     </div>
@@ -258,7 +248,7 @@ include './assets/layout/header.php';
                                 <label class="col-xs-3"> <?php echo $lang['SETTINGS_C_F_PAYMENT_MONEY']; ?></label>
                                 <div class="col-xs-5">
                                     <input type="text" class="collect_returns_cut_precent  form-control" name="collect_returns_value" id="collect_returns_value" placeholder="------"
-                                    <?php if($s_collect > 0 ){ echo 'value="'.get_supplier_collect_value($s_collect).'" ';}?>readonly>
+                                    <?php if($c_collect > 0 ){ echo 'value="'.get_client_collect_value($c_collect).'" ';}?>readonly>
                                 </div>
                             </div>
                         </div>
@@ -314,7 +304,7 @@ include './assets/layout/footer.php'; ?>
 <SCRIPT>
     $(document).ready(function() {
 
-        $('#customersAccountsPaymentForm').formValidation({
+     $('#customersAccountsPaymentForm').formValidation({
             excluded: [':disabled'],
             fields: {
                 collect_returns_date: {
@@ -375,29 +365,24 @@ include './assets/layout/footer.php'; ?>
                     }
                 },
             }
-        }).on('success.form.bv', function(e) {
-
-
-        })
+        }).on('success.form.bv', function(e) { })
 		
-		$('input[name="collect_returns_type"]').on('change', function() {
+	 $('input[name="collect_returns_type"]').on('change', function() {
             key = $(this).val();
             switch (key) {
                 case 'cheque':
-//                    var collect_returns_cheque_date = $('#collect_returns_cheque_date').removeClass('form-control').addClass('collect_returns_cut_precent form-control').prop("disabled", false);
+                    var collect_returns_cheque_date = $('#collect_returns_cheque_date').removeClass('form-control').addClass('collect_returns_cut_precent form-control').prop("disabled", false);
                     var collect_returns_cheque_number = $('#check_number').prop("disabled", false);
                     $('div#invoices').css("display", "none");
-                    //                var collect_returns_account_type = $('#account_type').prop("disabled", false);
-                    //                var collect_returns_account_id = $('#bank_item').prop("disabled", false);
 
                     $('#customersAccountsPaymentForm')
-//                        .formValidation('addField', collect_returns_cheque_date, {
-//                            validators: {
-//                                notEmpty: {
-//                                    message: '<?php echo $lang['SETTINGS_C_F_CHEQUE_DATE']; ?>'
-//                                }
-//                            }
-//                        })
+                        .formValidation('addField', collect_returns_cheque_date, {
+                            validators: {
+                                notEmpty: {
+                                    message: '<?php echo $lang['SETTINGS_C_F_CHEQUE_DATE']; ?>'
+                                }
+                            }
+                        })
                         .formValidation('addField', collect_returns_cheque_number, {
                             validators: {
                                 notEmpty: {
@@ -411,14 +396,14 @@ include './assets/layout/footer.php'; ?>
                     break;
 
                 case 'cash':
-//                    var collect_returns_cheque_date = $('#collect_returns_cheque_date').removeClass('collect_returns_cut_precent form-control').addClass('form-control').prop("disabled", true);
+                    var collect_returns_cheque_date = $('#collect_returns_cheque_date').removeClass('collect_returns_cut_precent form-control').addClass('form-control').prop("disabled", true);
                     var collect_returns_cheque_number = $('#check_number').prop("disabled", true);
 
-//                    collect_returns_cheque_date.siblings('.help-block').hide();
+                    collect_returns_cheque_date.siblings('.help-block').hide();
                     collect_returns_cheque_number.siblings('.help-block').hide();
 
                     $('#customersAccountsPaymentForm')
-//                        .formValidation('removeField', collect_returns_cheque_date)
+                        .formValidation('removeField', collect_returns_cheque_date)
                         .formValidation('removeField', collect_returns_cheque_number)
                     break;
 
@@ -428,8 +413,7 @@ include './assets/layout/footer.php'; ?>
 
         });
 
-
-        $('#banks').on('change', 'select.bank', function() {
+     $('#banks').on('change', 'select.bank', function() {
             var type = $(this).val();
             if (type == "safe") {
                 var transfer_account_type = $('#account_type').prop("disabled", true);
@@ -462,7 +446,7 @@ include './assets/layout/footer.php'; ?>
 
         });
 
-        $('#type').on('change', 'select#account_type', function() {
+     $('#type').on('change', 'select#account_type', function() {
             var type = $(this).val();
             var id = $('select.bank').val();
             if (type != 'credit') {
@@ -494,12 +478,60 @@ include './assets/layout/footer.php'; ?>
                 });
             }
         });
-        function GetFormattedDate(d) {
+		
+     function GetFormattedDate(d) {
             var todayTime = new Date(d);
             var month = (todayTime.getMonth() + 1);
             var day = (todayTime.getDate());
             var year = (todayTime.getFullYear());
             return month + "/" + day + "/" + year;
         }
+		
+	$('#customersAccountsPaymentForm').on('change', '.max_value', function() {
+			var bank            = $('#collect_returns_bank_id').val();
+			var account_type    = $('#account_type').val();
+			var account_id      = $('#bank_item').val();
+			var transfer_type   = $('input[name="collect_returns_type"]:checked').val();
+
+			var page = "bank_js.php?do=max_value";
+			if (bank && transfer_type) {
+				$.ajax({
+					type: 'POST',
+					url: page,
+					data: {
+						bank: bank,
+						transfer_type: transfer_type,
+						account_type: account_type,
+						account_id: account_id
+					},
+					success: function(responce) {
+//						console.log(responce);
+						valitate_transfer_value(responce);
+					}
+				});
+			}
+
+		});
+	function valitate_transfer_value(max_value){
+			var transfer_value = $('#collect_returns_value');
+			$('#customersAccountsPaymentForm').formValidation('addField', transfer_value, {
+                            validators: {
+								notEmpty: {
+										message: ' <?php echo $lang['SETTINGS_C_F_INSERT_VALUE'];?> '
+									},
+								regexp: {
+										regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+										message: '  <?php echo $lang['SETTINGS_C_MAX_NUM'];?>'
+									},
+								between: {
+									min: 1,
+									max: max_value,
+									message: '<?php echo $lang['VALUE_LESS_THAN']; ?> ' +max_value+ '<?php echo $lang['VALUE_GREATER_THAN']; ?>' + 0 ,
+
+								}
+                            }
+                        })
+		}	
+		
     })
 </SCRIPT>

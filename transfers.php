@@ -141,7 +141,7 @@ include './assets/layout/header.php';
 						
 							if ($u['transfers_from_in'] == "bank") {
 								if ($u['transfers_account_type_from'] == "credit") {
-									echo '<br/>'.$lang['SETTINGS_C_F_ACCOUNT_T'].' / '.get_data('settings_banks_credit', 'banks_credit_name', 'banks_credit_sn', $u['money_transfers_account_id']);
+									echo '<br/>'.$lang['SETTINGS_C_F_ACCOUNT_T'].' / '.get_data('settings_banks_credit', 'banks_credit_name', 'banks_credit_sn', $u['transfers_account_id_from']);
 								} 
 							} 
              

@@ -43,24 +43,24 @@ $('.add_other').click(function() {
     });	
 
 
-function load_unseen_notification(view = '')
- {
-	  var page ="notification_js.php?do=fetch";
-	  jQuery.ajax({
-		async :true,
-		type :"POST",
-		dataType: "json",
-		url :page,
-		data: {view:'view'},
-		success : function(responce) {
-			$('.notifiDropdown').html(responce.notification);
-			if(responce.unseen_notification > 0)
-			{
-			  $('.count').html(responce.unseen_notification);
-			}
-	   }
-	  });
- }
+	function load_unseen_notification(view = '')
+	 {
+		  var page ="notification_js.php?do=fetch";
+		  jQuery.ajax({
+			async :true,
+			type :"POST",
+			dataType: "json",
+			url :page,
+			data: {view:'view'},
+			success : function(responce) {
+				$('.notifiDropdown').html(responce.notification);
+				if(responce.unseen_notification > 0)
+				{
+				  $('.count').html(responce.unseen_notification);
+				}
+		   }
+		  });
+	 }
 	load_unseen_notification();
 
 	function load_seen_notification(view = '')

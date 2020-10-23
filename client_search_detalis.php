@@ -130,7 +130,12 @@
 																<td class="text-center tableActions" id="td_'.$o['operations_sn'].'">';
 																if($o['operations_status'] == 1 )
 																{
-																	echo'<i class="delete_operation fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$o['operations_sn'].'"></i>';
+																	if($group['delete_operation'] == 1 )
+																	{
+																		echo'<i class="delete_operation fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$o['operations_sn'].'"></i>';
+																	}else{
+																		echo'-------';
+																	}
 																}else{
 																	echo '<span class="rose">'.$lang['DELETE_DONE'].'</span>' ;
 																}

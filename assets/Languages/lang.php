@@ -746,6 +746,10 @@ $lang['GROUP_supplier_payment']        =   "محاسبة الموردين";
 $lang['GROUP_settings_user_group']     =   "التحكم فى صلاحيات النظام ";
 $lang['GROUP_reminders']               =   " التحكم فى التذكيرات";
 $lang['GROUP_delete_deposits']         =   "التحكم فى حذف الايداع ";
+$lang['GROUP_delete_operation']        =   "التحكم فى حذف العملية ";
+$lang['GROUP_clients_collect']         =   "التحكم فى فواتير العملاء ";
+$lang['GROUP_suppliers_collect']       =   "التحكم فى فواتير الموردين ";
+$lang['GROUP_colect_return']           =   "التحكم فى المرتجعات ";
 
 /**********************************************/
 $lang['CARD_REPEATED']                =   "رقم الكارت مسجل سابقا";
@@ -770,6 +774,9 @@ $lang['Reminders_']             =   "";
 $lang['IN_DATE']                     = "بتاريخ";
 $lang['IN_ACCONT']                   = "فى حساب";
 $lang['SUPPLIER_SEARCH_COLLECTED']   = "بحث فواتير مورد";
+$lang['SUPPLIER_INVOICES']           = "فواتير العملاء ";
+$lang['CLIENT_collect_return']       = "مرتجعات العملاء";
+$lang['CLIENT_collect_return']       = "مرتجعات الموردين";
 $lang['']                = "";
 
 

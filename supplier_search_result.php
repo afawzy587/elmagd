@@ -155,7 +155,7 @@
 										if($group['colect_return'] == 1 )
 										{
 										   echo'
-											<a href="./collect_return.php?s_collect='.$v['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
+											<a href="./supplier_return.php?s_collect='.$v['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
 												<i class="fas fa-undo  success"></i>
 											</a>';
 										}

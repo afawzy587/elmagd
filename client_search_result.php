@@ -27,6 +27,7 @@
 			{
 				$client = $clients_collectible->GetClientFinanceByid(intval($_GET['client']));
 				$result = $clients_collectible->GetSearchResult($_GET);
+				$client_Paid = $clients_collectible->Get_Client_Return($_GET);
 				
 			}else{
 				header("Location:./error.php");
@@ -128,6 +129,45 @@
 								$remain += $u['remain'];
 							}
 						}
+						if(is_array($client_Paid))
+						{
+							foreach($client_Paid as $k => $v){
+								echo'<tr>
+								<td>'. _date_format($v['collectible_date']).'</td>
+								<td colspan="5">';
+								if($v['collectible_payment_case'] == 'later')
+								{
+									echo $lang['P_S_LATER'];
+								}elseif($v['collectible_payment_case'] == 'return'){
+									echo $lang['OPERTION_RETURN'].' ( '. $v['operation_id'] .' ) ';
+								}
+								echo'</td>
+								<td>'.number_format($v['collectible_value']).'</td>
+								<td></td>
+								<td class="text-center tableaprove" id="td_'.$v['collectible_sn'].'">';
+                                    if($v['collectible_status'] == 1 )
+                                    {
+										if($group['colect_return'] == 1 )
+										{
+										   echo'
+											<a href="./client_return.php?c_collect='.$v['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
+												<i class="fas fa-undo  success"></i>
+											</a>';
+										}
+                                    }else{
+                                        echo '<span class="rose" data-html="true"  data-toggle="popover" title="'.$lang['P_S_RETURNED'].'" data-content="'.get_Client_return($v['collectible_sn']).'">'.$lang['P_S_RETURNED'].'</span>
+										' ;
+                                    }
+						    echo'</td>
+							</tr>';
+								if($v['collectible_status'] == 1){
+									$paid +=$v['collectible_value'];
+								}else{
+									$paid;
+								}
+								
+							}
+						}
 						echo'<tr>
 								<td class="emptyTD"></td>
 								<td class="emptyTD"></td>
@@ -136,7 +176,7 @@
 								<td class="emptyTD"></td>
 								<td>'.number_format($total).'</td>
 								<td>'.number_format($paid).'</td>
-								<td>'.number_format($remain).'</td>
+								<td>'.number_format($total-$paid).'</td>
 								<td class="emptyTD"></td>
 								
 							</tr>';

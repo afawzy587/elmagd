@@ -513,7 +513,7 @@ $(document).ready(function () {
 			}
 
 		});
-		function valitate_transfer_value(max_value){
+	function valitate_transfer_value(max_value){
 			var transfer_value = $('#expenses_amount');
 			$('#addInternalExpensesForm').formValidation('addField', transfer_value, {
                             validators: {

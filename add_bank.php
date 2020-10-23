@@ -157,7 +157,7 @@
                                                     <div class="form-group">
                                                         <label class="col-xs-3"><?php echo $lang['SETTINGS_BAN_CREDIT_NAME_1'];?></label>
                                                         <div class="col-xs-5">
-                                                            <input type="text" class="form-control" name="banks_credit_name[0]" value="<?php if($_bank){echo $_bank['banks_credit_name'][0];}?>"
+                                                            <input type="text" class="account_valide form-control" name="banks_credit_name[0]" value="<?php if($_bank){echo $_bank['banks_credit_name'][0];}else{echo ''; }?>"
                                                                 placeholder="<?php echo $lang['SETTINGS_BAN_CREDIT_NAME_1'];?>">
                                                         </div>
                                                     </div>
@@ -1009,7 +1009,7 @@
                                                         <div class="form-group">
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_CUR_CODE'];?></label>
                                                             <div class="col-xs-5">
-                                                                <input type="text" class="form-control" name="banks_saving_account_number" value="<?php if($_bank){echo $_bank['banks_saving_account_number'];}?>"
+                                                                <input type="text" class="account_valide form-control" name="banks_saving_account_number" value="<?php if($_bank){echo $_bank['banks_saving_account_number'];}else{echo ''; }?>"
                                                                     placeholder="--">
                                                             </div>
                                                         </div>
@@ -1062,7 +1062,7 @@
                                                         <div class="form-group">
                                                             <label class="col-xs-3"> <?php echo $lang['SETTINGS_BAN_CUR_CODE'];?></label>
                                                             <div class="col-xs-5">
-                                                                <input type="text" class="form-control" name="banks_current_account_number" value="<?php if($_bank){echo $_bank['banks_current_account_number'];}?>"
+                                                                <input type="text" class="account_valide form-control" name="banks_current_account_number" value="<?php if($_bank){echo $_bank['banks_current_account_number'];}else{echo ''; }?>"
                                                                     placeholder="--">
                                                             </div>
                                                         </div>
@@ -1121,186 +1121,26 @@ $(document).ready(function () {
                     }
                 }
             },
-            "banks_credit_name[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '  <?php echo $lang['SETTINGS_BAN_IN_CREDIT_NAME'];?>'
-                    }
-                }
-            },
-            "banks_credit_code[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_INSERT_CREDIT_NAME'];?>'
-                    },
-                    digits: {
-                        message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?> '
-                    }
-                }
-            },
-            "banks_credit_open_balance[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
-            "banks_credit_repayment_period[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>    '
-                    },
-                    digits: {
-                        message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-                    }
-                }
-            },
-            "banks_credit_interest_rate[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo  $lang['SETTINGS_BAN_IN_RATE_INT'];?>  '
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
-            "banks_credit_duration_of_interest[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>'
-                    },
-                    digits: {
-                        message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-                    }
-                }
-            },
-            "banks_credit_limit_value[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_IN_BAN_LIMIT_VALUE'];?>   '
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
-            "banks_credit_cutting_ratio[0]": {
-                validators: {
-                    notEmpty: {
-                        message: '<?php echo $lang['SETTINGS_IN_BAN_CUTT_VALUE'];?>'
-                    },
-                    regexp: {
-                        regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-                        message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-                    }
-                }
-            },
-//            "banks_credit_client[0]": {
-//                validators: {
-//                    notEmpty: {
-//                        message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT'];?>'
-//                    }
-//                }
-//            },
-//            "banks_credit_product[0]": {
-//                validators: {
-//                    notEmpty: {
-//                        message: '<?php echo $lang['SETTINGS_BAN_CHOOSE_PRODUCT'];?>'
-//                    }
-//                }
-//            },
-            // banks_saving_account_number: {
-            //     validators: {
-            //         notEmpty: {
-            //             message: '<?php echo $lang['SETTINGS_BAN_IN_ACCOUNT_NUM'];?>'
-            //         },
-            //         digits: {
-            //             message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-            //         }
-            //     }
-            // },
-            // banks_saving_open_balance: {
-            //     validators: {
-            //         notEmpty: {
-            //             message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
-            //         },
-            //         regexp: {
-            //             regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-            //             message: '<?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-            //         }
-            //     }
-            // },
-            // banks_saving_interest_rate: {
-            //     validators: {
-            //         notEmpty: {
-            //             message: '<?php echo  $lang['SETTINGS_BAN_IN_RATE_INT'];?>  '
-            //         },
-            //         regexp: {
-            //             regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-            //             message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-            //         }
-            //     }
-            // },
-            // banks_saving_duration_of_interest: {
-            //     validators: {
-            //         notEmpty: {
-            //             message: '<?php echo $lang['SETTINGS_BAN_IN_DUE_INT'];?>'
-            //         },
-            //         digits: {
-            //             message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-            //         }
-            //     }
-            // },
-            // banks_current_account_number: {
-            //     validators: {
-            //         notEmpty: {
-            //             message: '<?php echo $lang['SETTINGS_BAN_IN_ACCOUNT_NUM'];?>  '
-            //         },
-            //         digits: {
-            //             message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
-            //         }
-            //     }
-            // },
-            // banks_current_opening_balance: {
-            //     validators: {
-            //         notEmpty: {
-            //             message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
-            //         },
-            //         regexp: {
-            //             regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
-            //             message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
-            //         }
-            //     }
-            // },
+
         }
     }).on('success.form.bv', function (e) {
     })
     // calc credit line
-    $('input[name="banks_credit_limit_value[]"]').keyup(function () {
+    $('.creditLineInput').keyup(function () {
         var inputs = $('input.creditLineInput');
         var totalCreditLine = 0;
         $.each(inputs, function () {
-            console.log($(this).val());
             if ($(this).val() != '') {
                 totalCreditLine += parseFloat($(this).val());
             }
 
         })
         $('input#totalCreditLineAmount').val(totalCreditLine)
-        console.log(totalCreditLine);
 
     })
 
-
     // calc credit
-    $('input[name="banks_credit_open_balance[]"]').keyup(function () {
+    $('.openingCreditInput').keyup(function () {
         var inputsEle = $('input.openingCreditInput');
         var totalCredit = 0;
         $.each(inputsEle, function () {
@@ -1314,6 +1154,281 @@ $(document).ready(function () {
         console.log(totalCredit);
 
     })
+	
+	 function add_validate(){
+		var y = $('[name="banks_credit_name[0]"]').val();
+		var m = $('[name="banks_saving_account_number"]').val();
+		var d = $('[name="banks_current_account_number"]').val();
+		var banks_credit_name = $('[name="banks_credit_name[0]"]');
+		var banks_credit_code = $('[name="banks_credit_code[0]"]');
+		var banks_credit_open_balance = $('[name="banks_credit_open_balance[0]"]');
+		var banks_credit_repayment_period = $('[name="banks_credit_repayment_period[0]"]');
+		var banks_credit_interest_rate = $('[name="banks_credit_interest_rate[0]"]');
+		var banks_credit_duration_of_interest = $('[name="banks_credit_duration_of_interest[0]"]');
+		var banks_credit_limit_value    = $('[name="banks_credit_limit_value[0]"]');
+		var banks_credit_cutting_ratio  = $('[name="banks_credit_cutting_ratio[0]"]');
+		 
+		var banks_saving_account_number = $('[name="banks_saving_account_number"]');
+		var banks_saving_open_balance   = $('[name="banks_saving_open_balance"]');
+		var banks_saving_interest_rate  = $('[name="banks_saving_interest_rate"]');
+		var banks_saving_duration_of_interest  = $('[name="banks_saving_duration_of_interest"]');
+		var banks_current_opening_balance  = $('[name="banks_current_opening_balance"]');
+		if(!y && !m  && !d )
+		{
+			console.log(1);
+			 $('#addbankForm').formValidation('addField', banks_credit_name, {
+					validators: {
+						notEmpty: {
+							message: ' <?php echo $lang['SETTINGS_BAN_IN_CREDIT_NAME'];?>'
+						}
+					}
+				})
+								.formValidation('addField',banks_credit_code, {
+									validators: {
+										notEmpty: {
+											message: '<?php echo $lang['SETTINGS_BAN_INSERT_CREDIT_NAME'];?>'
+										},
+										digits: {
+											message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?> '
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_open_balance, {
+								   validators: {
+										notEmpty: {
+											message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
+										},
+										regexp: {
+											regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+											message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_repayment_period, {
+									 validators: {
+											notEmpty: {
+												message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>    '
+											},
+											digits: {
+												message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+											}
+										}
+								})
+								.formValidation('addField', banks_credit_interest_rate, {
+									 validators: {
+										notEmpty: {
+											message: '<?php echo  $lang['SETTINGS_BAN_IN_RATE_INT'];?>  '
+										},
+										regexp: {
+											regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+											message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_duration_of_interest, {
+									 validators: {
+											notEmpty: {
+												message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>'
+											},
+											digits: {
+												message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+											}
+										}
+									})
+								.formValidation('addField', banks_credit_limit_value, {
+									 validators: {
+										notEmpty: {
+											message: '<?php echo $lang['SETTINGS_IN_BAN_LIMIT_VALUE'];?>   '
+										},
+										regexp: {
+											regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+											message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_cutting_ratio, {
+									  validators: {
+											notEmpty: {
+												message: '<?php echo $lang['SETTINGS_IN_BAN_CUTT_VALUE'];?>'
+											},
+											regexp: {
+												regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+												message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+											}
+										}
+								})
+		}else{
+			if(m !="" || d != "" || y != ""){
+				if(m !="" )
+				{
+					console.log(3);
+					$('#addbankForm')
+					.formValidation('addField', banks_saving_open_balance, {
+						 validators: {
+							 notEmpty: {
+								 message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
+							 },
+							 regexp: {
+								 regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+								 message: '<?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+							 }
+						 }
+					})
+					.formValidation('addField', banks_saving_interest_rate, {
+						 validators: {
+								notEmpty: {
+									message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>    '
+								},
+								digits: {
+									message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+								}
+							}
+					})
+					.formValidation('addField', banks_saving_duration_of_interest, {
+						validators: {
+							 notEmpty: {
+								 message: '<?php echo $lang['SETTINGS_BAN_IN_DUE_INT'];?>'
+							 },
+							 digits: {
+								 message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+							 }
+						}
+					})
+				}else if(d !="")
+				{
+					console.log(4);
+					$('#addbankForm')
+						.formValidation('addField', banks_current_opening_balance, {
+							 validators: {
+								 notEmpty: {
+									 message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
+								 },
+								 regexp: {
+									 regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+									 message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+								 }
+							 }
+						})
+				}else if(y != "")
+				{
+					
+					$('#addbankForm')
+								.formValidation('addField',banks_credit_code, {
+									validators: {
+										notEmpty: {
+											message: '<?php echo $lang['SETTINGS_BAN_INSERT_CREDIT_NAME'];?>'
+										},
+										digits: {
+											message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?> '
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_open_balance, {
+								   validators: {
+										notEmpty: {
+											message: '<?php echo $lang['SETTINGS_BAN_IN_OPEN_PALANCE'];?>   '
+										},
+										regexp: {
+											regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+											message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_repayment_period, {
+									 validators: {
+											notEmpty: {
+												message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>    '
+											},
+											digits: {
+												message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+											}
+										}
+								})
+								.formValidation('addField', banks_credit_interest_rate, {
+									 validators: {
+										notEmpty: {
+											message: '<?php echo  $lang['SETTINGS_BAN_IN_RATE_INT'];?>  '
+										},
+										regexp: {
+											regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+											message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_duration_of_interest, {
+									 validators: {
+											notEmpty: {
+												message: '<?php echo $lang['SETTINGS_BAN_IN_PAIED'];?>'
+											},
+											digits: {
+												message: '<?php echo $lang['SETTINGS_US_MUST_NUM'];?>'
+											}
+										}
+									})
+								.formValidation('addField', banks_credit_limit_value, {
+									 validators: {
+										notEmpty: {
+											message: '<?php echo $lang['SETTINGS_IN_BAN_LIMIT_VALUE'];?>   '
+										},
+										regexp: {
+											regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+											message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+										}
+									}
+								})
+								.formValidation('addField', banks_credit_cutting_ratio, {
+									  validators: {
+											notEmpty: {
+												message: '<?php echo $lang['SETTINGS_IN_BAN_CUTT_VALUE'];?>'
+											},
+											regexp: {
+												regexp: /^[0-9]{1,30}(?:\.[0-9]{1,2})?$/,
+												message: ' <?php echo $lang['SETTINGS_US_SALARY_CH'];?>'
+											}
+										}
+								})
+				}
+			}else if(m == "" || d == "" || y == ""){
+					if(m == ""){
+						console.log(5);
+
+						banks_saving_open_balance.siblings('.help-block').hide();
+						banks_saving_interest_rate.siblings('.help-block').hide();
+						banks_saving_duration_of_interest.siblings('.help-block').hide();
+						$('#addbankForm')
+							.formValidation('removeField',banks_saving_open_balance)
+							.formValidation('removeField',banks_saving_interest_rate)
+							.formValidation('removeField',banks_saving_duration_of_interest)
+					}else if(d == ""){
+						console.log(6);
+						 banks_current_opening_balance.siblings('.help-block').hide();
+						$('#addbankForm')
+						.formValidation('removeField',banks_current_opening_balance)
+					}else if(y == ""){
+					banks_credit_code.siblings('.help-block').hide();
+					banks_credit_open_balance.siblings('.help-block').hide();
+					banks_credit_repayment_period.siblings('.help-block').hide();
+					banks_credit_interest_rate.siblings('.help-block').hide();
+					banks_credit_duration_of_interest.siblings('.help-block').hide();
+					banks_credit_limit_value.siblings('.help-block').hide();
+					banks_credit_cutting_ratio.siblings('.help-block').hide();
+					$('#addbankForm')
+						.formValidation('removeField',banks_credit_name)
+						.formValidation('removeField',banks_credit_code)
+						.formValidation('removeField',banks_credit_open_balance)
+						.formValidation('removeField',banks_credit_repayment_period)
+						.formValidation('removeField',banks_credit_interest_rate)
+						.formValidation('removeField',banks_credit_duration_of_interest)
+						.formValidation('removeField',banks_credit_limit_value)
+						.formValidation('removeField',banks_credit_cutting_ratio)
+				}
+			}
+				
+		}
+		
+	};
+	$('.account_valide').on('change',function(){add_validate()});
+	$('.roundedBtn').click(function(){add_validate()});
 
 })	
 	

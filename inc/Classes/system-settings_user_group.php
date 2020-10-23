@@ -71,6 +71,10 @@ class systemSettings_user_group
 				"settings_user_group"                =>          $sitegroup['settings_user_group'],
 				"reminders"                          =>          $sitegroup['reminders'],
 				"delete_deposits"                    =>          $sitegroup['delete_deposits'],
+				"colect_return"                      =>          $sitegroup['colect_return'],
+				"suppliers_collect"                  =>          $sitegroup['suppliers_collect'],
+				"delete_operation"                   =>          $sitegroup['delete_operation'],
+				"clients_collect"                   =>          $sitegroup['clients_collect'],
             	"group_status"                       =>          $sitegroup['group_status']
             );
         }else{return null;}
@@ -106,6 +110,10 @@ class systemSettings_user_group
 					`supplier_payment`            =       '".$Settings_user_group['supplier_payment']."',
 					`reminders`                   =       '".$Settings_user_group['reminders']."',
 					`delete_deposits`             =       '".$Settings_user_group['delete_deposits']."',
+					`colect_return`               =       '".$Settings_user_group['colect_return']."',
+					`suppliers_collect`           =       '".$Settings_user_group['suppliers_collect']."',
+					`clients_collect`             =       '".$Settings_user_group['clients_collect']."',
+					`delete_operation`            =       '".$Settings_user_group['delete_operation']."',
 					`settings_user_group`         =       '".$Settings_user_group['settings_user_group']."'
 			  WHERE `group_sn`    	              = 	  '".$Settings_user_group['group_sn']."' LIMIT 1 ");
 			return 1;

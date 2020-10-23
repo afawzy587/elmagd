@@ -51,6 +51,13 @@
 					$_group['client_payment']                   =         intval($_POST["client_payment"]);
 					$_group['supplier_payment']                 =         intval($_POST["supplier_payment"]);
 					$_group['settings_user_group']              =         intval($_POST["settings_user_group"]);
+					$_group['colect_return']                    =         intval($_POST["colect_return"]);
+					$_group['suppliers_collect']                =         intval($_POST["suppliers_collect"]);
+					$_group['clients_collect']                  =         intval($_POST["clients_collect"]);
+					$_group['delete_operation']                 =         intval($_POST["delete_operation"]);
+					$_group['reminders']                        =         intval($_POST["reminders"]);
+					$_group['delete_deposits']                  =         intval($_POST["delete_deposits"]);
+					$_group['clients_collect']                  =         intval($_POST["clients_collect"]);
 					$edit = $user_group->setSettings_user_groupInformation($_group);
 					if($edit == 1)
 					{
@@ -189,6 +196,18 @@
 									group_check('settings_user_group',$u['settings_user_group']);
 									group_check('reminders',$u['reminders']);
 									group_check('delete_deposits',$u['delete_deposits']);
+								?>
+							</div>
+                  	 		<div class="row">
+								<?php
+									group_check('colect_return',$u['colect_return']);
+									group_check('suppliers_collect',$u['suppliers_collect']);
+									group_check('clients_collect',$u['clients_collect']);
+								?>
+							</div>
+							<div class="row">
+								<?php
+									group_check('delete_operation',$u['delete_operation']);
 								?>
 							</div>
                    	 </div>

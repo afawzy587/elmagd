@@ -90,7 +90,7 @@
 					</li>';
 						?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "supplier_collected" ||$page_name == "supplier_search" || $page_name == "add_suppliers_payment" || $page_name == "supplier_search_detalis"|| $page_name == "supplier_search_result" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "supplier_collected" ||$page_name == "supplier_return" ||$page_name == "supplier_search" || $page_name == "add_suppliers_payment" || $page_name == "supplier_search_detalis"|| $page_name == "supplier_search_result" ){echo 'active';}echo'">
 						<a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-user-friends"></i>
@@ -102,7 +102,7 @@
 						</ul>
 					</li>';?>
 					<?php
-						echo'<li class="nav-item dropdown '; if($page_name == "pricing_search" ||$page_name == "add_client_pricing"||$page_name == "client_search_result"||$page_name == "add_clients_payment" ||$page_name == "clients_pricing"||$page_name == "client_search" ){echo 'active';}echo'">
+						echo'<li class="nav-item dropdown '; if($page_name == "client_return" ||$page_name == "client_collected" ||$page_name == "pricing_search" ||$page_name == "add_client_pricing"||$page_name == "client_search_result"||$page_name == "add_clients_payment" ||$page_name == "clients_pricing"||$page_name == "client_search" ){echo 'active';}echo'">
 								<a class="nav-link dropdown-toggle" id="dropdown3" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">
 									<i class="fas fa-chart-line"></i>
@@ -120,6 +120,10 @@
 								if($group['clients_old_pricing']  == 1)
 								{
 								  echo'<li class="dropdown-item" href="./pricing_search.php"><a >  '.$lang['SETTINGS_C_F_PREFICE_PRICE'].'</a></li>';
+								}
+								if($group['clients_collect']  == 1)
+								{
+								  echo'<li class="dropdown-item" href="./client_search_collect.php"><a >  '.$lang['SUPPLIER_INVOICES'].'</a></li>';
 								}
 									
 								echo'</ul>

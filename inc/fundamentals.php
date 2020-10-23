@@ -79,8 +79,10 @@
 		"settings_user_group"                 =>          1,
 		"reminders"                           =>          1,
 		"delete_deposits"                     =>          1,
-		"colect_return"                        =>          1,
-		"colected_search"                        =>          1,
+		"delete_operation"                     =>          1,
+		"colect_return"                       =>          1,
+		"suppliers_collect"                   =>          1,
+		"clients_collect"                     =>          1,
 
 
 			);
@@ -116,7 +118,9 @@
 			"reminders"                          =>          $sitegroup['reminders'],
 			"delete_deposits"                    =>          $sitegroup['delete_deposits'],
 			"colect_return"                      =>          $sitegroup['colect_return'],
-			"colected_search"                      =>          $sitegroup['colected_search'],
+			"suppliers_collect"                  =>          $sitegroup['suppliers_collect'],
+			"clients_collect"                    =>          $sitegroup['clients_collect'],
+			"delete_operation"                    =>          $sitegroup['delete_operation'],
 
 				);
 

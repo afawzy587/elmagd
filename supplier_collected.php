@@ -18,7 +18,7 @@
         header("Location:./login.php");
         exit;
     }else{
-		if($group['settings_department'] == 0){
+		if($group['suppliers_collect'] == 0){
 			header("Location:./permission.php");
 			exit;
 		}else
@@ -26,7 +26,7 @@
 			
 			if($_GET)
 			{
-				$supplier  = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
+//				$supplier  = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
 				$collected = $suppliers_collectible->Get_Supplier_Collected($_GET);
 
 				$logs->addLog(NULL,
@@ -68,6 +68,7 @@
         <!-- end links row -->
         
          <!-- account details row -->
+<!--
          <?php 
 			if(!$_GET['id']){
 				echo'<div class="row justify-content-center mb-5">
@@ -78,6 +79,7 @@
         </div>';
 			}
 		?>
+-->
         
         <!-- end account details row -->
 
@@ -145,7 +147,7 @@
 										if($group['colect_return'] == 1 )
 										{	
 										   echo'
-											<a href="./collect_return.php?s_collect='.$u['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
+											<a href="./supplier_return.php?s_collect='.$u['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
 												<i class="fas fa-undo  success"></i>
 											</a>';
 										}

@@ -4,3 +4,11 @@
 ------------------------------
 [ October 12, 2020, 1:36 am ] LOGS :  User => أحمد فوزى2 Id =>2  Module =>deposits  Page => list
 ------------------------------
+[ October 23, 2020, 4:37 am ] LOGS :  User => أحمد فوزى2 Id =>2  Module =>login  Page => login
+------------------------------
+[ October 23, 2020, 4:37 am ] LOGS :  User => أحمد فوزى2 Id =>2  Module =>money_transfers  Page => list
+------------------------------
+[ October 23, 2020, 4:40 am ] LOGS :  User => أحمد فوزى2 Id =>2  Module =>money_transfers  Page => list
+------------------------------
+[ October 23, 2020, 4:41 am ] LOGS :  User => أحمد فوزى2 Id =>2  Module =>money_transfers  Page => list
+------------------------------

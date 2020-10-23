@@ -161,7 +161,12 @@ class systemSuppliers_collectible
 						`operations_supplier_remain`='".$remain."'
 						WHERE `operations_sn` ='".$operation['operations_sn']."'");
 						
+						$frist_colleted += $operation['operations_supplier_remain'];
+						
 					}elseif($collectible_value != 0 && $collectible_value < $operation['operations_supplier_remain']){
+						
+						
+						
 						$GLOBALS['db']->query("INSERT INTO `supplier_collectible_operations`
 						(`id`, `collectible_id`, `operations_id`, `value`)
 						VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','".$collectible_value."')");
@@ -176,6 +181,26 @@ class systemSuppliers_collectible
 					}
 					
 
+				}
+				
+				if($collectible_value > 0 )
+				{
+					$second_colleted = $_collectible['collectible_value'] - $frist_colleted;
+
+					$GLOBALS['db']->query("INSERT INTO `".$this->tableName."`
+					(`collectible_sn`, `collectible_supplier_id`, `collectible_date`, `collectible_type`, `collectible_value`, 
+					`collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`,
+					`collectible_account_type`, `collectible_account_id`,`collectible_payment_case`,`collectible_recipient`, `collectible_status`)
+					VALUES
+					(NULL,'".$_collectible['collectible_supplier_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$second_colleted."',
+					'".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."',
+					'".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','later','".$_collectible['collectible_recipient']."',1)");
+
+					$collected_remain = $_collectible['collectible_value'] - $collectible_value;
+
+					$GLOBALS['db']->query("UPDATE `".$this->tableName."` SET
+					`collectible_value`  ='".$collected_remain."'
+					WHERE `collectible_sn` ='".$collect_id."'");
 				}
 			}
 		}
@@ -279,7 +304,7 @@ class systemSuppliers_collectible
 		$id           = $search['id'] ? " `collectible_sn` = '".$id."' " : "";
 		$supplier_id  = $search['supplier'] ? " `collectible_supplier_id` = '".$supplier_id."' " : "";
 		$start_date   = $search['start_date'] ? " AND `collectible_date` >=  '".$start_date."'" : "";
-		$end_date     = $search['end_date'] ? " AND `collectible_date` <=  '".$end_date."'" : "";
+		$end_date     = $search['start_date'] ? " AND `collectible_date` <=  '".$end_date."'" : "";
 		
         $GLOBALS['db']->query("SELECT * FROM `suppliers_collectible` WHERE ".$supplier_id.$id.$start_date.$end_date);
 		$queryTotal = $GLOBALS['db']->resultcount();

@@ -25,16 +25,19 @@ if ($login->doCheck() == false) {
     header("Location:./login.php");
     exit;
 } else {
-    if ($group['suppliers_collect'] == 0) {
+    if ($group['clients_collect'] == 0) {
         header("Location:./permission.php");
         exit;
     } else {
-		$suppliers     = $setting_supplier->getsiteSettings_suppliers();
+        $clients_finance = $clients_collectible->GetClientFinance();
+//        $banks         = $setting_bank->getaccountsSettings_banks();
+        $clients       = $setting_client->getsiteSettings_clients();
+//		$suppliers     = $setting_supplier->getsiteSettings_suppliers();
                 $logs->addLog(NULL,
                     array(
                         "type" 		        => 	"users",
-                        "module" 	        => 	"collected_search",
-                        "mode" 		        => 	"collected_search",
+                        "module" 	        => 	"client_search_collect",
+                        "mode" 		        => 	"client_search_collect",
                         "id" 	        	=>	$_SESSION['id'],
                     ),"admin",$_SESSION['id'],1
                     );
@@ -53,40 +56,76 @@ include './assets/layout/header.php';
             <p class="blueSky">
                 <i class="fas fa-info-circle"></i>
                 <a class="blueSky" href="./index.php"><?php echo $lang['SETTINGS_TITLE']; ?></a>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_CLIENT']; ?> </span>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_C_F_COLLECTED']; ?></span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_CL_CLIENTS']; ?> </span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SUPPLIER_INVOICES']; ?></span>
             </p>
         </div>
     </div>
  
     <div class="row centerContent">
         <div class="col">
-            
-            <form method="GET" action="./supplier_collected.php" id="customersAccountsPaymentForm" enctype="multipart/form-data">
-                <h5><?php echo $lang['SUPPLIER_SEARCH_COLLECTED']; ?></h5>
+            <!-- account details row -->
+            <div class="row justify-content-center mb-5">
+                <div class="col">
+                    <div class="row mt-5">
+                        <?php
+                            if ($clients_finance) {
+                                foreach ($clients_finance as $k => $f) {
+                                    echo '<div class="col-md-2 text-center">
+                                    <h5 class="d-inline-block bg_text2 text_height2 w-100">' . $f['clients_name'] . '</h5>
+                                    <h5 class="d-inline-block bg_text2 text_height2 ';
+                                    if ($f['clients_finance_credit'] < 0) {
+                                        echo 'warning';
+                                    }
+                                    echo ' w-100 ltrDir">' . number_format($f['clients_finance_credit']) . '</h5>
+                                </div>';
+                                $total_finance += $f['clients_finance_credit'];
+                            }
+                        }
+                        ?>
+                    </div>
+
+                    <div class="row mt-5">
+						<div class="col text-center">
+							<h5><?php echo $lang['C_S_TOTAL_REMAIN'];?></h5>
+							<h4 class="d-inline-block bg_text text_height ltrDir"><strong> <?php echo number_format($total_finance);?></strong></h4>
+						</div>
+					</div>
+                </div>
+            </div>
+            <!-- end account details row -->
+            <form method="GET" action="./client_collected.php" id="customersAccountsPaymentForm" enctype="multipart/form-data">
+                <h5><?php echo $lang['C_S_SEARCH_CLIENT']; ?></h5>
                 <div class="darker-bg centerDarkerDiv formCenterDiv">
                     <div class="row">
                        <div class="col-md-5">
-                                <div class="form-group">
-                                    <label class="col-xs-3"><?php echo $lang['OPERATIONS_SUPPLIER'];?></label>
-                                    <div class="col-xs-5">
-                                        <div class="select">
-                                            <select name="supplier" id="supplier" class=" form-control ">
-                                                <option selected disabled value=""> <?php echo $lang['OPERATIONS_SUPPLIER_IN'];?></option>
-                                                <?php
-													if($suppliers)
+                            <div class="form-group">
+                                <label class="col-xs-3"><?php echo $lang['SETTINGS_C_F_CLI'] ?></label>
+                                <div class="col-xs-5 ">
+                                    <div class="select">
+                                        <select name="client" id="client" class="show_product_rate form-control">
+                                            <option selected disabled><?php echo $lang['SETTINGS_BAN_CHOOSE_CLIENT']; ?></option>
+                                            <?php
+												if ($clients) 
+												{
+													foreach ($clients as $cId => $c)
 													{
-														foreach($suppliers as $sId=> $s)
+														echo '<option value="' . $c["clients_sn"] . '"';
+														if ($_bank) 
 														{
-															echo '<option value="'.$s["suppliers_sn"].'">'.$s["suppliers_name"].'</option>';
-														}
+															if ($c["clients_sn"] == $_bank['banks_credit_client'][0]) {
+																echo 'selected';
+																}
+													    }
+															echo '>' . $c["clients_name"] . '</option>';
 													}
-												?>
-                                            </select>
-                                        </div>
+												}
+                                            ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <div class="row">
                             <div class="col-md-5">
@@ -105,7 +144,7 @@ include './assets/layout/header.php';
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                     </div>
 				</div>
 				<div class="row mt-2 mb-5">
 					<div class="col d-flex justify-content-end">
@@ -140,10 +179,10 @@ include './assets/layout/footer.php'; ?>
         $('#customersAccountsPaymentForm').formValidation({
             excluded: [':disabled'],
             fields: {
-                supplier: {
+                client: {
                     validators: {
                         notEmpty: {
-                            message: ' <?php echo $lang['SETTINGS_C_F_CHOOSE_SUPLLIER'];?> '
+                            message: ' <?php echo $lang['OPERATIONS_CLIENT_IN'];?> '
                         }
                     }
                 },
@@ -154,9 +193,9 @@ include './assets/layout/footer.php'; ?>
 
 
         })
-        $('#supplier').change(function() {
+        $('#client').change(function() {
             var id = $(this).val();
-            var page = "client_pricing_js.php?do=supplier_product";
+            var page = "client_pricing_js.php?do=client_product";
             if (id) {
                 $.ajax({
                     type: 'POST',
@@ -172,6 +211,26 @@ include './assets/layout/footer.php'; ?>
 
         })
 		
-	
+	$('.show_product_rate').on('change', function () {
+        if ($('.show_product_rate').filter(function () {
+            return $.trim($(this).val()).length == 0
+        }).length == 0) {
+            var id     = $('#product').val();
+            var page   ="operations_js.php?do=product_rate_select";
+            if(id && client){
+                $.ajax({
+                        type:'POST',
+                        url:page,
+                        data:{id:id},
+                        success:function(html)
+                        {
+                            $('select#quality').html(html);
+                        }
+                    });
+            }
+            
+        }
+     });
+      
     })
 </SCRIPT>

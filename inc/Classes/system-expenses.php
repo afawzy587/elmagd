@@ -107,13 +107,13 @@ class systemExpenses
                 $company_query=$GLOBALS['db']->query("SELECT * FROM `settings_companyinfo` LIMIT 1");
                 $sitecompany = $GLOBALS['db']->fetchitem($company_query);
                 if($sitegroup['expenses_type']== 'cash'){
-                    $cash = $sitecompany['companyinfo_opening_balance_safe'] + $Expenses['expenses_amount'];
+                    $cash = $sitecompany['companyinfo_opening_balance_safe'] + $sitegroup['expenses_amount'];
                     $GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
                      `companyinfo_opening_balance_safe`   =  '".$cash."'
                      WHERE `companyinfo_sn` = '".$sitecompany['companyinfo_sn']."'");
 
                 }else{
-                    $cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $Expenses['expenses_amount'];
+                    $cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $sitegroup['expenses_amount'];
                     $GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
                      `companyinfo_opening_balance_cheques`= '".$cheque."'
                      WHERE `companyinfo_sn` = '".$sitecompany['companyinfo_sn']."'");

@@ -161,7 +161,7 @@ class systemClients_pricing
 			$Clients_pricing['pricing_supply_price'] = $Clients_pricing['pricing_selling_price'] - ($Clients_pricing['pricing_selling_price'] * ($Clients_pricing['pricing_supply_percent']/100));
 		}else
 		{
-			$Clients_pricing['pricing_supply_percent'] = (($Clients_pricing['pricing_selling_price'] - $Clients_pricing['pricing_supply_price'])/$pricing_selling_price)*100;
+			$Clients_pricing['pricing_supply_percent'] = (($Clients_pricing['pricing_selling_price'] - $Clients_pricing['pricing_supply_price'])/$Clients_pricing['pricing_selling_price'] )*100;
 		}
 		$GLOBALS['db']->query("UPDATE LOW_PRIORITY `".$this->tableName."` SET
 				`pricing_start_date`                  =       '".$Clients_pricing['pricing_start_date']."',

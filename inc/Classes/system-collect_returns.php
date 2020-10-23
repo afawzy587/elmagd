@@ -113,7 +113,6 @@ class systemCollect_returns
 				$operations = $GLOBALS['db']->fetchlist();
 				foreach($operations as $k => $operation)
 				{
-					echo"SELECT *  FROM `operations` WHERE `operations_sn` = '".$operation['operations_id']."' LIMIT 1";
 					$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE `operations_sn` = '".$operation['operations_id']."' LIMIT 1");
 					$queryTotal = $GLOBALS['db']->resultcount();
 					if($queryTotal == 1)
@@ -132,7 +131,47 @@ class systemCollect_returns
 		
 			$update_table_collect = 'suppliers_collectible';
 		}else{
-			$update_table_collect = 'cleints_collectible';
+		   
+		   	$clients_collectible = $GLOBALS['db']->query(" SELECT * FROM `clients_collectible` WHERE `collectible_sn` =  '".$Collect_returns['collect_id']."' AND `collectible_status` != '0'  LIMIT 1");
+			$clients_collectibleCount = $GLOBALS['db']->resultcount();
+			if($clients_collectibleCount == 1)
+			{
+				$client = $GLOBALS['db']->fetchitem($clients_collectible);
+				$finance = $GLOBALS['db']->query("SELECT * FROM `clients_finance` WHERE `clients_finance_client_id` = '".$client['collectible_client_id']."'  LIMIT 1 ");
+				$financeTotal = $GLOBALS['db']->resultcount();
+
+				$sitefinance = $GLOBALS['db']->fetchitem($finance);
+				$new = $sitefinance['clients_finance_credit'] + $Collect_returns['collect_returns_value'];
+				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
+				`clients_finance_credit`		     =	'".$new."'
+				WHERE `clients_finance_sn` 		 = 	'".$sitefinance['clients_finance_sn']."' LIMIT 1 ");
+			}
+		    
+		    /********************* insert value in operation *****************************/
+			$GLOBALS['db']->query("SELECT *  FROM `clients_collectible_operations` WHERE `collectible_id` = '".$Collect_returns['collect_id']."'");
+			$queryTotal = $GLOBALS['db']->resultcount();
+			if($queryTotal > 0)
+			{
+				$operations = $GLOBALS['db']->fetchlist();
+				foreach($operations as $k => $operation)
+				{
+					$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE `operations_sn` = '".$operation['operations_id']."' LIMIT 1");
+					$queryTotal = $GLOBALS['db']->resultcount();
+					if($queryTotal == 1)
+					{
+						$siteoperation = $GLOBALS['db']->fetchitem($company_query);
+						$paid   = $siteoperation['operations_customer_paid'] - $operation['value'];
+						$remain = $siteoperation['operations_customer_remain'] + $operation['value'];
+						$GLOBALS['db']->query("UPDATE `operations`
+						SET
+						`operations_customer_paid`='".$paid."',
+						`operations_customer_remain`='".$remain."'
+						WHERE `operations_sn` = '".$siteoperation['operations_sn']."'");
+					}
+				}
+			}
+		   
+			$update_table_collect = 'clients_collectible';
 		}
 		$GLOBALS['db']->query("UPDATE `".$update_table_collect."` SET  `collectible_status`= '0' WHERE `collectible_sn` = '".$Collect_returns['collect_id']."' ");
       

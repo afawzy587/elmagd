@@ -7,7 +7,6 @@ class systemOperations
 {
 	var $tableName 	= "operations";
 
-
 	function GetAllOperations($addon,$q)
 	{
 		if($q == "")
@@ -245,7 +244,6 @@ class systemOperations
         }else{return null;}
 	}
 
-
 	function deleteOperation($id)
 	{
 		$query = $GLOBALS['db']->query("SELECT * FROM `".$this->tableName."` WHERE `operations_sn` = '".$id."' LIMIT 1 ");
@@ -258,10 +256,30 @@ class systemOperations
 			if($financeTotal > 0)
 			{
 				$sitefinance = $GLOBALS['db']->fetchitem($finance);
-				$new = $sitefinance['clients_finance_credit'] + $siteoperation['operations_customer_price'];
+				$new = $sitefinance['clients_finance_credit'] - $siteoperation['operations_customer_price'];
 				$GLOBALS['db']->query("UPDATE LOW_PRIORITY `clients_finance` SET
 				`clients_finance_credit`		 =	'".$new."'
 				WHERE `clients_finance_sn` 		 = 	'".$sitefinance['clients_finance_sn']."' LIMIT 1 ");
+			}
+			if($siteoperation['operations_customer_paid'] > 0)
+			{
+				//*************************** add new later colleticed ***********************//
+				 $GLOBALS['db']->query("INSERT INTO `clients_collectible` 
+				 (`collectible_sn`, `collectible_client_id`, `collectible_date`, `collectible_type`, `collectible_value`,`collectible_insert_in`,`collectible_payment_case`,`operation_id`, `collectible_status`) 
+				VALUES 
+				(NULL,'".$siteoperation['operations_customer']."',NOW(),'cash','".$siteoperation['operations_customer_paid']."','safe','return','".$id."',1)");
+				
+				$collectible_id = $GLOBALS['db']->fetchLastInsertId();
+				
+				$GLOBALS['db']->query("INSERT INTO `clients_collectible_operations`
+				(`id`, `collectible_id`, `operations_id`, `value`)
+				VALUES 
+				(NULL,'".$collectible_id."','".$id."','".$siteoperation['operations_customer_paid']."')");
+				
+				$GLOBALS['db']->query("DELETE c,p
+				FROM `clients_collectible` c JOIN `clients_collectible_operations` p ON c.`collectible_sn` = p.`collectible_id`
+				WHERE p.`operations_id` = '".$id."' AND c.`collectible_payment_case` = 'paid'
+				");
 			}
 			// *************** add to supllier finance **************//
 			$finance_supplier = $GLOBALS['db']->query("SELECT * FROM `suppliers_finance` WHERE `suppliers_finance_supplier_id` = '".$siteoperation['operations_supplier']."'  LIMIT 1 ");
@@ -289,16 +307,18 @@ class systemOperations
 				(`id`, `collectible_id`, `operations_id`, `value`)
 				VALUES 
 				(NULL,'".$collectible_id."','".$id."','".$siteoperation['operations_supplier_paid']."')");
+				
+				$GLOBALS['db']->query("DELETE c,p
+				FROM `suppliers_collectible` c JOIN `supplier_collectible_operations` p ON c.`collectible_sn` = p.`collectible_id`
+				WHERE p.`operations_id` = '".$id."' AND c.`collectible_payment_case` = 'paid'
+				");
 			}
 			
 		}
 		$GLOBALS['db']->query("UPDATE LOW_PRIORITY `".$this->tableName."` SET
-					`operations_status`               =       '0'
+					`operations_status`             =       '0'
 			  WHERE `operations_sn`    	            = 	    '".$id."' LIMIT 1 ");
-		$GLOBALS['db']->query("DELETE c,p
-				FROM `suppliers_collectible` c JOIN `supplier_collectible_operations` p ON c.`collectible_sn` = p.`collectible_id`
-				WHERE p.`operations_id` = '".$id."' AND c.`collectible_payment_case` = 'paid'
-				");
+		
 		return 1;
 	}
 

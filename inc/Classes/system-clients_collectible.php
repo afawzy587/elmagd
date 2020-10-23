@@ -76,7 +76,7 @@ class systemClients_collectible
 		$serial_to    = $serial_to ? " AND `operations_receipt`<= '".$serial_to."'" : "";
 		
 		$GLOBALS['db']->query("SELECT *  FROM `operations` WHERE 
-		".$product.$serial_from.$serial_to." AND `operations_status` != '0'");
+		".$product.$serial_from.$serial_to);
 		$queryTotal = $GLOBALS['db']->resultcount();
         if($queryTotal > 0)
         {
@@ -141,6 +141,7 @@ class systemClients_collectible
 					`operations_customer_paid`  ='".$paid."',
 					`operations_customer_remain`='".$remain."' 
 					WHERE `operations_sn` ='".$operation['operations_sn']."'");
+					$frist_colleted += $operation['operations_customer_remain'];
 				}elseif($collectible_value != 0 && $collectible_value < $operation['operations_customer_remain']){
 					$paid   = $operation['operations_customer_paid'] + $collectible_value ;
 					$remain = $operation['operations_customer_remain'] - $collectible_value;
@@ -153,6 +154,26 @@ class systemClients_collectible
 				$GLOBALS['db']->query("INSERT INTO `clients_collectible_operations`
 				(`id`, `collectible_id`, `operations_id`, `value`)
 				VALUES (NULL,'".$collect_id."','".$operation['operations_sn']."','".$paid."')");
+			}
+			
+			if($collectible_value > 0 )
+			{
+				$second_colleted = $_collectible['collectible_value'] - $frist_colleted;
+
+				$GLOBALS['db']->query("INSERT INTO `".$this->tableName."`
+				(`collectible_sn`, `collectible_client_id`, `collectible_date`, `collectible_type`, `collectible_value`, 
+				`collectible_cheque_date`, `collectible_cheque_number`,`collectible_insert_in`, `collectible_bank_id`,
+				`collectible_account_type`, `collectible_account_id`,`collectible_payment_case`, `collectible_status`)
+				VALUES
+				(NULL,'".$_collectible['collectible_client_id']."','".$_collectible['collectible_date']."','".$_collectible['collectible_type']."','".$second_colleted."',
+				'".$_collectible['collectible_cheque_date']."','".$_collectible['collectible_cheque_number']."','".$_collectible['collectible_insert_in']."','".$_collectible['collectible_bank_id']."',
+				'".$_collectible['collectible_account_type']."','".$_collectible['collectible_account_id']."','later',1)");
+
+				$collected_remain = $_collectible['collectible_value'] - $collectible_value;
+
+				$GLOBALS['db']->query("UPDATE `".$this->tableName."` SET
+				`collectible_value`  ='".$collected_remain."'
+				WHERE `collectible_sn` ='".$collect_id."'");
 			}
         }
 		
@@ -279,6 +300,59 @@ class systemClients_collectible
 		
 		return 1;
 	
+	}
+	
+	function Get_Client_Collected($search)
+	{
+		$id           = intval($search['id']);
+		$client_id    = intval($search['client']);
+		$start_date   = format_data_base($search['start_date']);
+		$end_date     = format_data_base($search['end_date']);
+
+		$id           = $search['id'] ? " `collectible_sn` = '".$id."' " : "";
+		$client_id    = $search['client'] ? " `collectible_client_id` = '".$client_id."' " : "";
+		$start_date   = $search['start_date'] ? " AND `collectible_date` >=  '".$start_date."'" : "";
+		$end_date     = $search['start_date'] ? " AND `collectible_date` <=  '".$end_date."'" : "";
+		
+        $GLOBALS['db']->query("SELECT * FROM `clients_collectible` WHERE ".$client_id.$id.$start_date.$end_date);
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            return($GLOBALS['db']->fetchlist());
+        }else{return null;}
+	}
+	
+	function Get_collect_operation($id)
+	{
+		$GLOBALS['db']->query("SELECT * FROM `clients_collectible_operations` WHERE `collectible_id` ='".$id."'");
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            $opertions = $GLOBALS['db']->fetchlist();
+			foreach($opertions as $k => $v)
+			{
+				$data .= $GLOBALS['lang']['OPERATIONS_RECIEPT_MENU'].' : ( ' . $v['operations_id'].' ) '.$GLOBALS['lang']['C_S_PAID'].' : ' .$v['value'] .'<br />';
+			}
+			return($data);
+        }else{return null;}
+	}
+	
+	function Get_Client_Return($search)
+	{
+		$client_id    = intval($search['client']);
+		$start_date   = format_data_base($search['start_date']);
+		$end_date     = format_data_base($search['end_date']);
+
+		$client_id    = $search['client'] ? "AND `collectible_client_id` = '".$client_id."' " : "";
+		$start_date   = $search['start_date'] ? " AND `collectible_date` >=  '".$start_date."'" : "";
+		$end_date     = $search['start_date'] ? " AND `collectible_date` <=  '".$end_date."'" : "";
+		
+        $GLOBALS['db']->query("SELECT * FROM `clients_collectible` WHERE `collectible_payment_case` !='paid' ".$client_id.$start_date.$end_date);
+		$queryTotal = $GLOBALS['db']->resultcount();
+        if($queryTotal > 0)
+        {
+            return($GLOBALS['db']->fetchlist());
+        }else{return null;}
 	}
 
 

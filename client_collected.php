@@ -10,15 +10,15 @@
 	// get funcamental file which contain config and template files,settings.
 	include("./inc/fundamentals.php");
 	$_SESSION['page']  = $actual_link;
-	include("./inc/Classes/system-suppliers_collectible.php");
-	$suppliers_collectible = new systemSuppliers_collectible();
+	include("./inc/Classes/system-clients_collectible.php");
+	$Clients_collectible = new systemClients_collectible();
 
     if($login->doCheck() == false)
     {
         header("Location:./login.php");
         exit;
     }else{
-		if($group['settings_department'] == 0){
+		if($group['clients_collect'] == 0){
 			header("Location:./permission.php");
 			exit;
 		}else
@@ -26,10 +26,8 @@
 			
 			if($_GET)
 			{
-				$supplier = $suppliers_collectible->GetSupplierFinanceByid(intval($_GET['supplier']));
-				$Supplier_Paid = $suppliers_collectible->Get_Supplier_Paid($_GET);
-
-				$result   = $suppliers_collectible->GetSearchResult($_GET);
+//				$Client  = $Clients_collectible->GetClientFinanceByid(intval($_GET['client']));
+				$collected = $Clients_collectible->Get_Client_Collected($_GET);
 				$logs->addLog(NULL,
 					array(
 						"type" 		        => 	"admin",
@@ -69,12 +67,19 @@
         <!-- end links row -->
         
          <!-- account details row -->
-        <div class="row justify-content-center mb-5">
+<!--
+         <?php 
+			if(!$_GET['id']){
+				echo'<div class="row justify-content-center mb-5">
             <div class="col text-center">
-                <h5><?php echo $lang['OPERATIONS_M_SU_FINANCE'];?> <strong class="blueSky"><?php echo $supplier['name'];?></strong></h5>
-                <h4 class="d-inline-block bg_text text_height <?php echo $supplier['credit'] < 0 ? "warning" : " ";?> ltrDir"><?php echo number_format($supplier['credit']);?></h4>
+                <h5>'.$lang['OPERATIONS_M_SU_FINANCE'].' <strong class="blueSky"> '.$Client['name'].' </strong></h5>
+                <h4 class="d-inline-block bg_text text_height ';$Client['credit'] < 0 ? "warning" : " ";echo'ltrDir">'.number_format($Client['credit']).'</h4>
             </div>
-        </div>
+        </div>';
+			}
+		?>
+-->
+        
         <!-- end account details row -->
 
         <!-- table row -->
@@ -83,28 +88,70 @@
               
                 <table class="table table-fluid " id="departmentTable">
                    <?php 
-					if(empty($departments))
+					if(empty($collected))
 					{
 						echo "<tr><th colspan=\"5\">".$lang['SETTINGS_NO_ITEMS']."</th></tr>";
 					}else{
 						echo '
 						<thead>
 							<tr>
-								<th>'.$lang['SETTINGS_D_DEPARMENT'].'</th>
-								<th>'.$lang['SETTINGS_D_DESCRIPTION'].'</th>
+								<th>'.$lang['OPERATIONS_DATE'].'</th>
+								<th>'.$lang['P_S_PAID_REASION'].'</th>
+								<th>'.$lang['SETTINGS_C_F_PAYMENT_TYPE'].'</th>
+								<th>'.$lang['C_S_PAID'].'</th>
+								<th>'.$lang['TRANSFER_FROM'].'</th>
 								<th style="width: 6rem;">'.$lang['SETTINGS_ACTION'].'</th>
 							</tr>
 						</thead>
 						<tbody>';
-						foreach($departments as $k => $u)
+						foreach($collected as $k => $u)
 						{
-						 echo'<tr id=tr_'.$u['departments_sn'].'>
-								<td>'.$u['departments_name'].'</td>
-								<td>'.$u['departments_description'].'</td>
-								<td class="text-center tableActions">
-									<a href="./edit_department.php?id='.$u['departments_sn'].'"><i class="fas fa-edit mr-3 green" title="'.$lang['SETTINGS_D_EDIT_DEPARMENTS'].'"></i></a>
-									<i class="delete fas fa-trash rose" title="'.$lang['DELETE'].'" id="item_'.$u['departments_sn'].'"></i>
-								</td>
+						 echo'<tr id=tr_'.$u['collectible_sn'].'>
+								<td>'._date_format($u['collectible_date']).'</td>
+								<td>';
+								if($u['collectible_payment_case'] == 'return'){
+									echo $lang['OPERTION_RETURN'].' ( '. $u['operation_id'] .' ) <br />';
+								}elseif($u['collectible_payment_case'] == 'paid'){
+									echo '<span  data-html="true"  data-toggle="popover" title="'.$lang['INVOICES'].'" data-content="'.$Clients_collectible->get_collect_operation($u['collectible_sn']).'">'.$lang['OPERTION_PAID'].'</span>
+										<br />' ;
+								}elseif($v['collectible_payment_case'] == 'later'){
+									echo $lang['P_S_LATER'];
+								}
+							echo'</td>
+								<td>';
+							 	echo $u['collectible_type'] == "cash" ? $lang['SETTINGS_C_F_PAYMENT_CASH'] : $lang['SETTINGS_C_F_PAYMENT_CHEQUE'];
+							 	echo'</td>
+								<td>'.$u['collectible_value'].'</td>
+								<td>';
+								if($u['collectible_insert_in'] == "safe"){
+									echo $lang['SETTINGS_C_F_SAFE'] ;
+								}else{
+									echo get_data('settings_banks', 'banks_name', 'banks_sn', $u['collectible_bank_id']) .'<br />' ;
+									
+									if ($u['collectible_account_type'] == "credit") {
+										echo get_data('settings_banks_credit', 'banks_credit_name', 'banks_credit_sn', $u['collectible_account_id']);
+									} elseif ($u['collectible_account_type'] == "current") {
+										 echo $lang['SETTINGS_BAN_CURRENT'];
+									} elseif ($u['collectible_account_type'] == "saving") {
+										echo $lang['SETTINGS_BAN_SAVE'];
+									}
+								} 
+								echo '</td>
+								<td class="text-center tableaprove">';
+									if($u['collectible_status'] == 1 )
+                                    {
+										if($group['colect_return'] == 1 )
+										{	
+										   echo'
+											<a href="./client_return.php?c_collect='.$u['collectible_sn'].'" title="'.$lang['P_S_RETURN'].'" class="mr-2">
+												<i class="fas fa-undo  success"></i>
+											</a>';
+										}
+                                    }else{
+                                        echo '<span class="rose" data-html="true"  data-toggle="popover" title="'.$lang['P_S_RETURNED'].'" data-content="'.get_Client_return($u['collectible_sn']).'">'.$lang['P_S_RETURNED'].'</span>
+										' ;
+                                    }
+							echo'</td>
 							</tr>';
 						}
 						echo '</tbody>';
@@ -142,6 +189,10 @@
 ?>
 <SCRIPT>
 $(document).ready( function () {
+	$('[data-toggle="popover"]').popover({
+        placement : 'top',
+        trigger : 'hover'
+    });
     $('#departmentTable').DataTable({
         "searching": false,
         "ordering": false,

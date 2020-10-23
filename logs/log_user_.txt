@@ -6,3 +6,5 @@
 ------------------------------
 [ October 12, 2020, 1:36 am ] LOGS :  User =>  Id =>  Module =>login  Page => logout
 ------------------------------
+[ October 23, 2020, 4:37 am ] LOGS :  User =>  Id =>  Module =>login  Page => logout
+------------------------------
