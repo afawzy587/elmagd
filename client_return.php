@@ -74,7 +74,7 @@ include './assets/layout/header.php';
             <p class="blueSky">
                 <i class="fas fa-info-circle"></i>
                 <a class="blueSky" href="./index.php"><?php echo $lang['SETTINGS_TITLE']; ?></a>
-                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['GROUP_clients_finance']; ?> </span>
+                <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['SETTINGS_CL_CLIENTS']; ?> </span>
                 <span class="blueSky"><strong> &gt; </strong> <?php echo $lang['CLIENT_collect_return']; ?> </span>
             </p>
         </div>

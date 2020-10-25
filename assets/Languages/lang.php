@@ -776,7 +776,7 @@ $lang['IN_ACCONT']                   = "فى حساب";
 $lang['SUPPLIER_SEARCH_COLLECTED']   = "بحث فواتير مورد";
 $lang['SUPPLIER_INVOICES']           = "فواتير العملاء ";
 $lang['CLIENT_collect_return']       = "مرتجعات العملاء";
-$lang['CLIENT_collect_return']       = "مرتجعات الموردين";
+$lang['SUPPLIER_collect_return']     = "مرتجعات الموردين";
 $lang['']                = "";
 
 

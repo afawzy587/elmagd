@@ -7613,3 +7613,35 @@ July 19, 2020, 11:58 pmLOGS :  User => Ahmed fawzy Id =>1  Module =>products  Pa
 ------------------------------
 [ October 23, 2020, 4:37 am ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
 ------------------------------
+[ October 24, 2020, 3:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 24, 2020, 3:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_collect  Page => client_search_collect
+------------------------------
+[ October 24, 2020, 3:47 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>collected_search  Page => list
+------------------------------
+[ October 24, 2020, 3:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => add_deposits
+------------------------------
+[ October 24, 2020, 3:49 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_result  Page => list
+------------------------------
+[ October 24, 2020, 3:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_collect  Page => client_search_collect
+------------------------------
+[ October 24, 2020, 3:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>collected_search  Page => list
+------------------------------
+[ October 24, 2020, 3:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>client_search_collect  Page => client_search_collect
+------------------------------
+[ October 24, 2020, 3:50 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>collected_search  Page => list
+------------------------------
+[ October 24, 2020, 3:51 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>collected_search  Page => collected_search
+------------------------------
+[ October 24, 2020, 3:51 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>collected_search  Page => list
+------------------------------
+[ October 24, 2020, 11:21 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 25, 2020, 5:22 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 25, 2020, 5:41 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 7:16 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 25, 2020, 7:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
