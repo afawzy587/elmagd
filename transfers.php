@@ -109,6 +109,7 @@ include './assets/layout/header.php';
                                 <th>' . $lang['TRANSFER_FROM'] . '</th>
                                 <th>' . $lang['TRANSFER_TO'] . '</th>
                                 <th>' . $lang['TRANSFER_INVOICE'] . '</th>
+                                <th>' . $lang['TRANSFER_TEXT'] . '</th>
                                 <th style="width: 2rem;">' . $lang['DEPOSITS_BANK_APPROVE'] . '</th>
                              </tr>
 						</thead>
@@ -169,6 +170,7 @@ include './assets/layout/header.php';
                         
                          echo '</td>
                                 <td>' . $u['invoices_id'] . '</td>
+                                <td>' . $u['transfers_text'] . '</td>
                                 <td class="text-center tableaprove" id="approve_' . $u['transfers_sn'] . '">';
 							if ($u['transfers_to_in'] == "bank" && $u['transfers_type'] != "cash" && $u['transfers_account_type_to'] != "credit") {
 								if ($u['transfers_bank_approved'] == 1) {

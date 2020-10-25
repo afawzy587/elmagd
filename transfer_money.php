@@ -10,7 +10,7 @@ define("inside", true);
 include("./inc/fundamentals.php");
  $_SESSION['page']  = $basename;
 include("./inc/Classes/system-money_transfers.php");
-$deposit = new systemMoney_transfers();
+$transfer = new systemMoney_transfers();
 
 include("./inc/Classes/system-settings_banks.php");
 $setting_bank = new systemSettings_banks();
@@ -48,9 +48,10 @@ if ($login->doCheck() == false) {
             $_transfer['transfers_cut_precent']              =       sanitize($_POST["transfer_cut_precent"]);
             $_transfer['transfers_cut_value']                =       sanitize($_POST["transfer_cut_value"]);
             $_transfer['transfers_days']                     =       sanitize($_POST["transfer_days"]);
+            $_transfer['transfers_text']                     =       sanitize($_POST["transfers_text"]);
             $_transfer['transfers_date_pay']                 =       format_data_base($_POST["transfers_date_pay"]);
             $_transfer['invoices_id']                        =       $_POST["invoices_id"][0];
-            $add = $deposit->Add_Money_Transfer($_transfer);
+            $add = $transfer->Add_Money_Transfer($_transfer);
              if ($add == 1) {
 
                  $logs->addLog(
@@ -426,6 +427,18 @@ include './assets/layout/header.php';
                         </div>
 
                     </div>
+                    <div class="row">
+
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="col-xs-3"> <?php echo $lang['TRANSFER_TEXT'];?></label>
+                                    <div class="col-xs-5 ">
+                                        <input type="text" class="form-control" name="transfers_text"
+                                            placeholder="  <?php echo $lang['TRANSFER_TEXT'];?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <div class="row justify-content-end">
                         <div class="col-md-2">
                             <div class="form-group">
@@ -462,6 +475,7 @@ include './assets/layout/header.php';
                             </div>
                         </div>
                     </div>
+                    
                     <input type="text" class="form-control" name="add_other" hidden>
                     <!-- Modal -->
                     <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> -->
@@ -472,7 +486,7 @@ include './assets/layout/header.php';
                                 <div class="modal-body" id="invoices_items">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close </button>
                                 </div>
                             </div>
                         </div>

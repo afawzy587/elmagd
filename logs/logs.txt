@@ -7670,3 +7670,33 @@ July 19, 2020, 11:58 pmLOGS :  User => Ahmed fawzy Id =>1  Module =>products  Pa
 ------------------------------
 [ October 25, 2020, 7:29 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
 ------------------------------
+[ October 25, 2020, 11:10 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 25, 2020, 11:15 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:17 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:18 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>deposits  Page => list
+------------------------------
+[ October 25, 2020, 11:35 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>login  Page => login
+------------------------------
+[ October 25, 2020, 11:36 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 25, 2020, 11:38 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 25, 2020, 11:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 25, 2020, 11:40 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------
+[ October 25, 2020, 11:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>transfer_money  Page => add_transfer
+------------------------------
+[ October 25, 2020, 11:44 pm ] LOGS :  User => احمد ابو المجد Id =>1  Module =>money_transfers  Page => list
+------------------------------

@@ -650,7 +650,7 @@ $lang['TRANSFER_FROM']               =  "من رصيد";
 $lang['TRANSFER_TO']                 =  "الى رصيد";
 $lang['TRANSFER_INVOICE']            =  "فاتورة رقم ";
 $lang['TRANSFER_ADD_TO_DEPOSITS']    =  "تم الاضافة لايداعات";
-$lang['TRANSFER_']               =  " ";
+$lang['TRANSFER_TEXT']               =  "سبب التحويل";
 $lang['TRANSFER_']               =  " ";
 
 //************************Transfer money **************************//

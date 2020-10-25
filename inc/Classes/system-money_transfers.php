@@ -123,11 +123,11 @@ class systemMoney_transfers
             (`transfers_sn`, `transfers_date`, `transfers_from_in`, `transfers_from`, `transfers_account_type_from`, `transfers_account_id_from`, 
             `transfers_client_id_from`, `transfers_product_id_from`, `transfers_value`, `transfers_type`, `transfers_cheque_date`, `transfers_cheque_number`, 
             `transfers_to_in`,`transfers_to`, `transfers_account_type_to`, `transfers_account_id_to`, `transfers_client_id_to`, `transfers_product_id_to`, `transfers_cut_precent`, 
-            `transfers_cut_value`, `transfers_days`, `transfers_date_pay`, `invoices_id`)
+            `transfers_cut_value`, `transfers_days`, `transfers_date_pay`, `invoices_id`, `transfers_text`)
             VALUES(NULL,'" . $Transfer['transfers_date'] . "','" . $Transfer['transfers_from_in'] . "','" . $Transfer['transfers_from'] . "','" . $Transfer['transfers_account_type_from'] . "','" . $Transfer['transfers_account_id_from'] . "'
             ,'" . $Transfer['transfers_client_id_from'] . "','" . $Transfer['transfers_product_id_from'] . "','" . $Transfer['transfers_value'] . "','" . $Transfer['transfers_type'] . "','" . $Transfer['transfers_cheque_date'] . "','" . $Transfer['transfers_cheque_number'] . "'
             ,'" . $Transfer['transfers_to_in'] . "','" . $Transfer['transfers_to'] . "','" . $Transfer['transfers_account_type_to'] . "','" . $Transfer['transfers_account_id_to'] . "','" . $Transfer['transfers_client_id_to'] . "','" . $Transfer['transfers_product_id_to'] . "','" . $Transfer['transfers_cut_precent'] . "'
-            ,'" . $Transfer['transfers_cut_value'] . "','" . $Transfer['transfers_days'] . "','" . $Transfer['transfers_date_pay'] . "','" . $Transfer['invoices_id'] . "')
+            ,'" . $Transfer['transfers_cut_value'] . "','" . $Transfer['transfers_days'] . "','" . $Transfer['transfers_date_pay'] . "','" . $Transfer['invoices_id'] . "','" . $Transfer['transfers_text'] . "')
         ");
 		$transfer_id=$GLOBALS['db']->fetchLastInsertId();
         // ***************** PULL FROM SAFE *******************//
@@ -202,22 +202,22 @@ class systemMoney_transfers
             $company_query = $GLOBALS['db']->query("SELECT * FROM `settings_companyinfo` LIMIT 1");
             $sitecompany = $GLOBALS['db']->fetchitem($company_query);
             if ($Transfer['transfers_type'] == 'cash') {
-                $cash = $sitecompany['companyinfo_opening_balance_safe'] + $Transfer['transfers_value'];
-                $GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
-                     `companyinfo_opening_balance_safe`   =  '" . $cash . "'
-                     WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
-            } else {
-				if ($Transfer['transfers_from'] == 'safe') {
-                	$cash = $sitecompany['companyinfo_opening_balance_safe'] + $Transfer['transfers_value'];
-                	$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
-                     `companyinfo_opening_balance_safe`   =  '" . $cash . "'
-                     WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+                if ($Transfer['transfers_from'] == 'safe') {
+                	$cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $Transfer['transfers_value'];
+					$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+						 `companyinfo_opening_balance_cheques`= '" . $cheque . "'
+						 WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
 				}else{
+                    $cash = $sitecompany['companyinfo_opening_balance_safe'] + $Transfer['transfers_value'];
+                    $GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
+                        `companyinfo_opening_balance_safe`   =  '" . $cash . "'
+                        WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
+                }
+            } else {
 					$cheque = $sitecompany['companyinfo_opening_balance_cheques'] + $Transfer['transfers_value'];
 					$GLOBALS['db']->query("UPDATE `settings_companyinfo` SET
 						 `companyinfo_opening_balance_cheques`= '" . $cheque . "'
 						 WHERE `companyinfo_sn` = '" . $sitecompany['companyinfo_sn'] . "'");
-				}
             }
         } else {
 
